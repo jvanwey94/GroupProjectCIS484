@@ -10,9 +10,10 @@
                 <asp:Label ID="Label1" runat="server" Text="Date"></asp:Label><br />
                 <asp:Label ID="Label2" runat="server" Text="Month"></asp:Label><br />
                 <asp:Label ID="Label3" runat="server" Text="Type"></asp:Label><br />
-                <asp:Label ID="Label4" runat="server" Text="Kids in class"></asp:Label><br />
-                <asp:Label ID="Label5" runat="server" Text="State/Country"></asp:Label><br />
-                <asp:Label ID="Label6" runat="server" Text="Number of people"></asp:Label><br />
+                <asp:Label ID="Label5" runat="server" Text="State"></asp:Label><br />
+                <asp:Label ID="Label14" runat="server" Text="Country"></asp:Label><br />
+                <asp:Label ID="Label6" runat="server" Text="Number of Kids"></asp:Label><br />
+                <asp:Label ID="Label13" runat="server" Text="Number of Adults"></asp:Label><br />
                 <asp:Label ID="Label7" runat="server" Text="Grade Level"></asp:Label><br />
                 <asp:Label ID="Label8" runat="server" Text="Teacher Name"></asp:Label><br />
                 <asp:Label ID="Label9" runat="server" Text="Email"></asp:Label><br />
@@ -24,9 +25,10 @@
                 <asp:TextBox ID="TextBox11" required="required" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox13" required="required" runat="server"></asp:TextBox><br />
-                <asp:TextBox ID="TextBox14" required="required" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox15" required="required" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox16" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox1" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox2" required="required" runat="server"></asp:TextBox><br />
                 <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><br />
                 <asp:TextBox ID="TextBox17" required="required" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox18" required="required" runat="server"></asp:TextBox><br />
