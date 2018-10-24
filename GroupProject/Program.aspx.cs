@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Program : System.Web.UI.Page
 {
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-    SqlConnection sc = new SqlConnection(@"server =Localhost;Database=WildLifeCenter;Trusted_Connection=True");
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+    //SqlConnection sc = new SqlConnection(@"server =Localhost;Database=WildLifeCenter;Trusted_Connection=True");
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -69,6 +69,6 @@ public partial class Program : System.Web.UI.Page
     //Exit Button
     protected void Button2_Click(object sender, EventArgs e)
     {
-        ClientScript.RegisterStartupScript(typeof(Page), "closePage", "window.open('close.html', '_self', null);", true);
+        System.Environment.Exit(0);
     }
 }
