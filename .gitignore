@@ -2,4 +2,4 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/GroupProject/v15/Server/sqlite3/db.lock
+/.vs/GroupProject/v15/Server/sqlite3/storage.ide-wal
