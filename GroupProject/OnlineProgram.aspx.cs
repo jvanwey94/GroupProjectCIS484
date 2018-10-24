@@ -30,6 +30,13 @@ public partial class OnlineProgram : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@NumberOfAdults", TextBox2.Text);
         cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue);
         cmd.Parameters.AddWithValue("@Email", TextBox18.Text);
+        cmd.Parameters.AddWithValue("@Theme", TextBox20.Text);
+        cmd.Parameters.AddWithValue("@InvoiceID", "1");
+        cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text);
+        cmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
+        cmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+
+        cmd.ExecuteNonQuery();
 
     }
 
