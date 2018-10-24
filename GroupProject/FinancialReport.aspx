@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-       <asp:Label ID="lblTitle" runat="server" Text="Financial report" Font-Size="X-Large" ForeColor="Blue"></asp:Label><br />
+<%--       <asp:Label ID="lblTitle" runat="server" Text="Financial report" Font-Size="X-Large" ForeColor="Blue"></asp:Label><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
         <br />
         <br />
@@ -135,6 +135,6 @@
         <HeaderStyle BackColor="#663300" ForeColor="#ffffff"/>  
         <RowStyle BackColor="#e7ceb6"/>  
         </asp:GridView>
-      
+      --%>
 </asp:Content>
 

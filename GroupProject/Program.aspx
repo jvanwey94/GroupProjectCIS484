@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Program.aspx.cs" Inherits="Program" %>
+﻿<%@ Page Title="Program" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Program.aspx.cs" Inherits="Program" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div>
@@ -62,6 +62,15 @@
                 <asp:RadioButton ID="RadioButton3" runat="server" Text="Yes" />
                 <asp:RadioButton ID="RadioButton4" runat="server" Text="No"/><br />
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click" Text="Add to Database" />
+                <asp:Button ID="Button2" runat="server" class="btn btn-secondary" formNoValidate="formNoValidate" onClick="Button2_Click" Text="Exit" /><br />
+                <asp:Label ID="Label18" runat="server" Text=""></asp:Label>    
+            </div>
+            
         </div>
     </div>
 </asp:Content>
