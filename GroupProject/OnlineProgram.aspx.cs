@@ -41,6 +41,8 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     }
 
+
+    //EXIT METHOD another thing
     protected void Button2_Click(object sender, EventArgs e)
     {
         System.Environment.Exit(0);
