@@ -112,7 +112,7 @@ function Calculation(){
                             <asp:Label ID="lbl_ID" Text ='<%# Eval("InvoiceID") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridInvoiceID" Text ='<%#Eval("InvoiceID") %>' runat ="server" />
+                            <asp:TextBox ID ="GridInvoiceID" Text ='<%#Eval("InvoiceID") %>' runat ="server"  Width="90" />
                         </EditItemTemplate>
                         
                     </asp:TemplateField>
@@ -121,7 +121,7 @@ function Calculation(){
                             <asp:Label ID="lbl_OrganizationName" Text ='<%# Eval("OrganizationName") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridOrganization" Text ='<%#Eval("OrganizationName") %>' runat ="server" />
+                            <asp:TextBox ID ="GridOrganization" Text ='<%#Eval("OrganizationName") %>' runat ="server"  Width="150"/>
                         </EditItemTemplate>
                          </asp:TemplateField>
 
@@ -130,7 +130,7 @@ function Calculation(){
                             <asp:Label ID="lbl_Program" Text ='<%# Eval("Program") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridProgram" Text ='<%#Eval("Program") %>' runat ="server" />
+                            <asp:TextBox ID ="GridProgram" Text ='<%#Eval("Program") %>' runat ="server" Width="150"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -139,7 +139,7 @@ function Calculation(){
                             <asp:Label ID="lbl_PaymentType" Text ='<%# Eval("PaymentType") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridPaymentType" Text ='<%#Eval("PaymentType") %>' runat ="server" />
+                            <asp:TextBox ID ="GridPaymentType" Text ='<%#Eval("PaymentType") %>' runat ="server" Width="100"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -148,7 +148,7 @@ function Calculation(){
                             <asp:Label ID="lbl_CheckNumber" Text ='<%# Eval("CheckNumber") %>' runat ="server" />
                      .   </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridCheckNumber" Text ='<%#Eval("CheckNumber") %>' runat ="server" />
+                            <asp:TextBox ID ="GridCheckNumber" Text ='<%#Eval("CheckNumber") %>' runat ="server" Width="90"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -157,7 +157,7 @@ function Calculation(){
                             <asp:Label ID="lbl_Amount" Text ='<%# Eval("Amount") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server" />
+                            <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server" Width="100"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -166,7 +166,7 @@ function Calculation(){
                             <asp:Label ID="lbl_PaymentCollect" Text ='<%# Eval("PaymentCollect") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridPaymentCollect" Text ='<%#Eval("PaymentCollect") %>' runat ="server" />
+                            <asp:TextBox ID ="GridPaymentCollect" Text ='<%#Eval("PaymentCollect") %>' runat ="server" Width="100"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -176,7 +176,7 @@ function Calculation(){
                             <asp:Label ID="lbl_PaymentLeft" Text ='<%# Eval("PaymentLeft") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridPaymentLeft" Text ='<%#Eval("PaymentLeft") %>' runat ="server" />
+                            <asp:TextBox ID ="GridPaymentLeft" Text ='<%#Eval("PaymentLeft") %>' runat ="server" Width="100"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -186,7 +186,7 @@ function Calculation(){
                         </ItemTemplate>
                         <EditItemTemplate>
         
-                            <asp:TextBox ID ="GridStatus" Text ='<%#Eval("PaymentStatus") %>' runat ="server" />
+                            <asp:TextBox ID ="GridStatus" Text ='<%#Eval("PaymentStatus") %>' runat ="server" Width="90"/>
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -195,7 +195,7 @@ function Calculation(){
                             <asp:Label ID="lbl_LastUpdatedBy" Text ='<%# Eval("LastUpdatedBy") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                        <asp:TextBox ID ="GridLastUpdatedBy" Text ='<%#Eval("LastUpdatedBy") %>' readonly="true" runat ="server" />
+                        <asp:TextBox ID ="GridLastUpdatedBy" Text ='<%#Eval("LastUpdatedBy") %>' readonly="true" runat ="server" Width="80"/>
                     </EditItemTemplate>
                             </asp:TemplateField>
 
@@ -204,16 +204,16 @@ function Calculation(){
                             <asp:Label ID="lbl_LastUpdated" Text ='<%# Eval("LastUpdated") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                        <asp:TextBox ID ="GridLastUpdated" Text ='<%#Eval("LastUpdated") %>' readonly="true" runat ="server" />
+                        <asp:TextBox ID ="GridLastUpdated" Text ='<%#Eval("LastUpdated") %>' readonly="true" runat ="server" Width="160"/>
                     </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText ="Edit">
                         <ItemTemplate>
-                            <asp:Button ID="btn_Edit" runat ="server" CommandName="Edit" Text="Edit" ToolTip="Edit" Width =" 20px" Height =" 20px" />
+                            <asp:Button ID="btn_Edit" runat ="server" CommandName="Edit" Text="Edit" ToolTip="Edit" Width =" 65px" Height =" 30px" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:Button ID="btn_Upload" runat ="server" CommandName="Update" Text="Update" ToolTip="Update" Width =" 20px" Height =" 20px" />
-                            <asp:Button ID="btn_Cancel"  runat ="server" CommandName="Cancel" Text="Cancel" ToolTip="Cancel" Width =" 20px" Height =" 20px" />
+                            <asp:Button ID="btn_Upload" runat ="server" CommandName="Update" Text="Update" ToolTip="Update" Width =" 65px" Height =" 30px" />
+                            <asp:Button ID="btn_Cancel"  runat ="server" CommandName="Cancel" Text="Cancel" ToolTip="Cancel" Width =" 65px" Height =" 30px" />
                         </EditItemTemplate>
 
               

@@ -13,10 +13,12 @@ public partial class CreateUser : System.Web.UI.Page
     {
 
     }
+    
+    
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         if (txtFirstName.Text != "" && txtLastName.Text != "" && txtPassword.Text != "" && txtUsername.Text != ""
-            && txtEmail.Text != "" && txtPN.Text != "" && txtConfirm.Text != "" && txtGender.Text != "") // all fields must be filled out
+            && txtEmail.Text != "" && txtPN.Text != "" && txtConfirm.Text != "" ) // all fields must be filled out
         {
             //COMMIT VALUES
             //try
@@ -40,7 +42,10 @@ public partial class CreateUser : System.Web.UI.Page
             //validation email & Phone Number
 
             Boolean validationEmail = emailIsValid(txtEmail.Text);
-            //Boolean validationPhone = phoneISValid(txtPN.Text);
+
+            
+     
+
 
             // Validate password
             String passwd = txtPassword.Text;
@@ -58,8 +63,8 @@ public partial class CreateUser : System.Web.UI.Page
                         createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
                         createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
                         createUser.Parameters.Add(new SqlParameter("@Phone", txtPN.Text));
-                        createUser.Parameters.Add(new SqlParameter("@Gender", txtGender.Text));
-                        createUser.Parameters.Add(new SqlParameter("@JobLevel", txtJL.Text));
+                        createUser.Parameters.Add(new SqlParameter("@Gender", txtGender.SelectedItem.ToString()));
+                        createUser.Parameters.Add(new SqlParameter("@JobLevel", txtJobLevel.SelectedItem.ToString()));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdated", DateTime.Now));
 
@@ -188,4 +193,27 @@ public partial class CreateUser : System.Web.UI.Page
     //        return false;
     //    }
     //}
+
+    //    protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+    //    {
+    //        inputgender = "Male";
+    //        if (txtGender1.Checked == true)
+    //        {
+    //            txtGender2.Checked = true;
+    //            txtGender1.Checked = false;
+
+    //        }
+
+    //    }
+
+    //    protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+    //    {
+    //        inputgender = "Female";
+    //        if (txtGender2.Checked == true)
+    //        {
+    //            txtGender1.Checked = true;
+    //            txtGender2.Checked = false;
+
+    //        }
+    //    }
 }
