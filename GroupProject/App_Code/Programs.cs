@@ -25,9 +25,11 @@ public class Programs
     private String invoiceID = "";
     private String lastUpdatedBy = "";
     private String lastUpdated = "";
+    private String educator = "";
+    private String programName = "";
 
-    public Programs(String organizationName, String onOffSite, String programStatus, String programAddress, String city, String county, String programMonth, String programDate, int numberOfKids,
-        int numberOfAdults, String birds, String mammals, String reptiles, String payStatus, String invoiceID, String lastUpdatedBy, String lastUpdated)
+    public Programs(String organizationName, String onOffSite, String programStatus, String programAddress, String city, String county, String educator, String programMonth, String programDate, int numberOfKids,
+        int numberOfAdults, String birds, String mammals, String reptiles, String payStatus, String invoiceID, String lastUpdatedBy, String lastUpdated, String programName)
     {
         setOrganizationName(organizationName);
         setOnOffSite(onOffSite);
@@ -46,6 +48,8 @@ public class Programs
         setInvoiceID(invoiceID);
         setLastUpdatedBy(lastUpdatedBy);
         setLastUpdated(lastUpdated);
+        setProgramName(programName);
+        setEducator(educator);
     }
 
     public String getOrganizationName()
@@ -73,9 +77,19 @@ public class Programs
         return this.city;
     }
 
+    public String getProgramName()
+    {
+        return this.programName;
+    }
+
     public String getCounty()
     {
         return this.county;
+    }
+
+    public String getEducator()
+    {
+        return this.educator;
     }
 
     public String getProgramMonth()
@@ -141,6 +155,16 @@ public class Programs
     public void setOnOffSite(String onOffSite)
     {
         this.onOffSite = onOffSite;
+    }
+
+    public void setProgramName(String programName)
+    {
+        this.programName = programName;
+    }
+
+    public void setEducator(String educator)
+    {
+        this.educator = educator;
     }
 
     public void setProgramStatus(String programStatus)

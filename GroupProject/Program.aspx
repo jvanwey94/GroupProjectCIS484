@@ -18,7 +18,7 @@
             <div class="col-md-6" style="background-color:cadetblue">
                 <asp:RadioButton ID="RadioButton1" runat="server" Text="ON" />
                 <asp:RadioButton ID="RadioButton2" runat="server" Text="OFF" /><br />
-                <asp:DropDownList ID="statusDropDown" runat="server" Height="16px"></asp:DropDownList><br />
+                <asp:DropDownList ID="statusDropDown" runat="server"></asp:DropDownList><br />
                 <asp:TextBox ID="organizationTxt" runat="server" required="required" Height="23px"></asp:TextBox><br />
                 <asp:TextBox ID="streetTxt" runat="server" required="required" Width="149px" Height="25px"></asp:TextBox><br />
                 <asp:TextBox ID="cityTxt" runat="server" Height="21px"></asp:TextBox><br />

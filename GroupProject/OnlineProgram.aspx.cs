@@ -17,8 +17,8 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Month, Date, Country, State, NumberOfKids, NumberOfAdults, Grade, Email, Theme, InvoiceID, AnimalsUsed, LastUpdatedBy, LastUpdated) " +
-            "VALUES (@Type, @Month, @Date, @Country, @State, @NumberOfKids, @NumberOfAdults, @Grade, @Email, @Theme, @InvoiceID, @AnimalsUsed, @LastUpdatedBy, @LastUpdated)";
+        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Month, Date, Country, State, NumberOfKids, NumberOfPeople, Grade, Email, Theme, InvoiceID, LastUpdatedBy, LastUpdated, AnimalsUsed) " +
+            "VALUES (@Type, @Month, @Date, @Country, @State, @NumberOfKids, @NumberOfPeople, @Grade, @Email, @Theme, @InvoiceID, @LastUpdatedBy, @LastUpdated, @AnimalsUsed)";
 
         SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
         cmd.Parameters.AddWithValue("@Type", TextBox13.Text);
@@ -27,14 +27,14 @@ public partial class OnlineProgram : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@Country", TextBox16.Text);
         cmd.Parameters.AddWithValue("@State", TextBox15.Text);
         cmd.Parameters.AddWithValue("@NumberOfKids", TextBox1.Text);
-        cmd.Parameters.AddWithValue("@NumberOfAdults", TextBox2.Text);
+        cmd.Parameters.AddWithValue("@NumberOfPeople", TextBox2.Text);
         cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue);
         cmd.Parameters.AddWithValue("@Email", TextBox18.Text);
         cmd.Parameters.AddWithValue("@Theme", TextBox20.Text);
         cmd.Parameters.AddWithValue("@InvoiceID", "1");
-        cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text);
         cmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
         cmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+        cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text);
 
         cmd.ExecuteNonQuery();
 
