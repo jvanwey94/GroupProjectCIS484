@@ -5,7 +5,7 @@
 
 
     
-        <div>
+        <div style="margin-left: 40px">
 
           
             <br />
@@ -23,12 +23,17 @@
             <asp:TextBox ID="txtPN" runat="server"></asp:TextBox>
             <br />
             Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtGender" runat="server"></asp:TextBox> 
-            <asp:Label ID="Label1" runat="server" Text="(Male / Female)"
-                Font-Size="small" ForeColor="black"></asp:Label>
+            <asp:DropDownList ID="txtGender" runat="server">
+                <asp:ListItem >Male</asp:ListItem>
+                <asp:ListItem >Female</asp:ListItem>
+            </asp:DropDownList>
             <br />
             Job Level:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtJL" runat="server"></asp:TextBox>
+            <asp:DropDownList ID="txtJobLevel" runat="server">
+                <asp:ListItem >Full-time Staff</asp:ListItem>
+                <asp:ListItem >Volunteer/Internship</asp:ListItem>
+         
+            </asp:DropDownList>
             <br />
             Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>

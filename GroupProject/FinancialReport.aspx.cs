@@ -9,7 +9,8 @@ using System.Data;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
-    SqlConnection connect = new SqlConnection(@"Server =localhost; Database = Payment4; Trusted_Connection = Yes;");
+    //SqlConnection connect = new SqlConnection(@"Server =localhost; Database = Payment4; Trusted_Connection = Yes;");
+    System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,7 +43,7 @@ public partial class FinancialReport : System.Web.UI.Page
         //connect.Open();
         String getInvoiceNumber = txtSearch.Text;
         txtTest.Text = getInvoiceNumber + "succseessfully connect to database!  ";
-        SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM [Payment4] where InvoiceID like '" + txtSearch.Text + "%'", connect);
+        SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM [dbo].[Payment]  where InvoiceID like '" + txtSearch.Text + "%'", connect);
         lblStatus.Text = "Loading";
         sqlDA.Fill(dtbl);
 
@@ -73,10 +74,19 @@ public partial class FinancialReport : System.Web.UI.Page
     //commit button 
     protected void btn1_Insert(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
+        Int32 InputCheckNumber;
             String InputInvoiceNumber = txtInvoice.Text;
-            Int32 InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
+            if(txtCheckNumber.Text == String.Empty)
+            {
+            InputCheckNumber = 0;
+            }
+            else
+            {
+            InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
+            }
+            
             Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
             Decimal InputPaymentCollect = 0;
             Decimal InputPaymenLeft = 0;
@@ -118,7 +128,7 @@ public partial class FinancialReport : System.Web.UI.Page
             {
 
                 //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-                String query1 = "insert into [dbo].[Payment4] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
+                String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
                 System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
                 insert.Connection = connect;
                 insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
@@ -145,13 +155,13 @@ public partial class FinancialReport : System.Web.UI.Page
                 txtSearch.Text = string.Empty;
 
             }
-            connect.Close();
-        }
-        catch (Exception)
-        {
-            Response.Write("<script>alert('user must fill required fileds!)</script>");
-            return;
-        }
+        //    connect.Close();
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Write("<script>alert('user must fill required fileds!)</script>");
+        //    return;
+        //}
     }//commit button done
 
     protected void btn1_Search(object sender, EventArgs e)
@@ -165,7 +175,7 @@ public partial class FinancialReport : System.Web.UI.Page
         else
         {
             dbInvoice.Visible = false;
-            Response.Write("<script>alert('No matching records are found! Please enter a bird name!')</script>");
+            Response.Write("<script>alert('No matching records are found! Please enter a Payment Number!')</script>");
 
         }
 
@@ -195,7 +205,7 @@ public partial class FinancialReport : System.Web.UI.Page
         //{
 
         connect.Open();
-        String query = "Update [dbo].[Payment4] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
+        String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
             "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
             "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
             " where InvoiceID=@InvoiceID";
