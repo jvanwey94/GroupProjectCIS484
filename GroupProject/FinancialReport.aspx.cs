@@ -39,7 +39,7 @@ public partial class FinancialReport : System.Web.UI.Page
     //populate gridview
     void PopulateGridview()
     {
-        connect.Open();
+        //connect.Open();
         String getInvoiceNumber = txtSearch.Text;
         txtTest.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM [Payment4] where InvoiceID like '" + txtSearch.Text + "%'", connect);
@@ -173,37 +173,23 @@ public partial class FinancialReport : System.Web.UI.Page
     }//search done
 
     //gridview edit image control
-    protected void dbSkill_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void dbInvoice_RowEditing(object sender, GridViewEditEventArgs e)
     {
         dbInvoice.EditIndex = e.NewEditIndex;
         PopulateGridview();
     }
 
     //gridview canceling image control
-    protected void dbSkill_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    protected void dbInvoice_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         dbInvoice.EditIndex = -1;
         PopulateGridview();
         //grindviewControl = true;
     }
 
-    protected void OnPaymentSelection(object sender, EventArgs e)
-    {
-        if (txtPaymentType.SelectedIndex == 1)
-        {
-            lblCheckNumber.Visible = true;
-            txtCheckNumber.Visible = true;
-        }
-        else
-        {
-            lblCheckNumber.Visible = false;
-            txtCheckNumber.Visible = false;
-        }
-    }
-
 
     //gridview update control
-    protected void dbSkill_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    protected void dbInvoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         //try
         //{
@@ -239,7 +225,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
 
 
-        insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
+        //insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
         insert.ExecuteNonQuery();
         dbInvoice.EditIndex = -1;
         PopulateGridview();
@@ -254,16 +240,28 @@ public partial class FinancialReport : System.Web.UI.Page
         //}
     }
 
+    protected void OnPaymentSelection(object sender, EventArgs e)
+    {
+        if (txtPaymentType.SelectedIndex == 1)
+        {
+            lblCheckNumber.Visible = true;
+            txtCheckNumber.Visible = true;
+        }
+        else
+        {
+            lblCheckNumber.Visible = false;
+            txtCheckNumber.Visible = false;
+        }
+    }
+
+
     protected void dbInvoice_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }
 
-    protected void dbInvoice_CellValueChanged(object sender, GridViewUpdateEventArgs e)
+    void dbInvoice_CellValueChanged(object sender, EventArgs e)
     {
-        double amount = Convert.ToDouble(dbInvoice.Rows[e.RowIndex].FindControl("GridAmount"));
-        double coll = Convert.ToDouble(dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect"));
-        double left = amount - coll;
-        (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentLeft") as TextBox).Text = Convert.ToString(left);
+
     }
 }
