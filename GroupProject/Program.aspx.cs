@@ -14,26 +14,8 @@ public partial class Program : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //not started
-            ListItem statusNotStarted = new ListItem();
-            statusNotStarted.Value = "0";
-            statusNotStarted.Text = "Not Started";
-
-            //incomplete
-            ListItem statusIncomplete = new ListItem();
-            statusIncomplete.Value = "1";
-            statusIncomplete.Text = "Incomplete";
-
-            //completed
-            ListItem statusComplete = new ListItem();
-            statusComplete.Value = "2";
-            statusComplete.Text = "Completed";
-
-
-            //adding to drop down list
-            statusDropDown.Items.Add(statusNotStarted);
-            statusDropDown.Items.Add(statusIncomplete);
-            statusDropDown.Items.Add(statusComplete);
+            fillStatusList();
+            fillMonthList();
         }
     }
 
@@ -95,4 +77,99 @@ public partial class Program : System.Web.UI.Page
     {
         System.Environment.Exit(0);
     }
+
+
+    public void fillStatusList()
+    {
+        //not started
+        ListItem statusNotStarted = new ListItem();
+        statusNotStarted.Value = "0";
+        statusNotStarted.Text = "Not Started";
+
+        //incomplete
+        ListItem statusIncomplete = new ListItem();
+        statusIncomplete.Value = "1";
+        statusIncomplete.Text = "Incomplete";
+
+        //completed
+        ListItem statusComplete = new ListItem();
+        statusComplete.Value = "2";
+        statusComplete.Text = "Completed";
+
+
+        //adding to drop down list
+        statusDropDown.Items.Add(statusNotStarted);
+        statusDropDown.Items.Add(statusIncomplete);
+        statusDropDown.Items.Add(statusComplete);
+    }
+
+    protected void fillMonthList()
+    {
+        ListItem info = new ListItem();
+        info.Value = "0";
+        info.Text = "Choose Month";
+
+        ListItem jan = new ListItem();
+        jan.Value = "1";
+        jan.Text = "January";
+
+        ListItem feb = new ListItem();
+        feb.Value = "2";
+        feb.Text = "February";
+
+        ListItem mar = new ListItem();
+        mar.Value = "3";
+        mar.Text = "March";
+
+        ListItem apr = new ListItem();
+        apr.Value = "4";
+        apr.Text = "April";
+
+        ListItem may = new ListItem();
+        may.Value = "5";
+        may.Text = "May";
+
+        ListItem jun = new ListItem();
+        jun.Value = "6";
+        jun.Text = "June";
+
+        ListItem jul = new ListItem();
+        jul.Value = "7";
+        jul.Text = "July";
+
+        ListItem aug = new ListItem();
+        aug.Value = "8";
+        aug.Text = "August";
+
+        ListItem sept = new ListItem();
+        sept.Value = "9";
+        sept.Text = "September";
+
+        ListItem oct = new ListItem();
+        oct.Value = "10";
+        oct.Text = "October";
+
+        ListItem nov = new ListItem();
+        nov.Value = "11";
+        nov.Text = "November";
+
+        ListItem dec = new ListItem();
+        dec.Value = "12";
+        dec.Text = "December";
+
+        DropDownList5.Items.Add(info);
+        DropDownList5.Items.Add(jan);
+        DropDownList5.Items.Add(feb);
+        DropDownList5.Items.Add(mar);
+        DropDownList5.Items.Add(apr);
+        DropDownList5.Items.Add(may);
+        DropDownList5.Items.Add(jun);
+        DropDownList5.Items.Add(jul);
+        DropDownList5.Items.Add(aug);
+        DropDownList5.Items.Add(sept);
+        DropDownList5.Items.Add(oct);
+        DropDownList5.Items.Add(nov);
+        DropDownList5.Items.Add(dec);
+    }
+
 }
