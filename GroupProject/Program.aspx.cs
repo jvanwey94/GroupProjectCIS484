@@ -172,4 +172,31 @@ public partial class Program : System.Web.UI.Page
         DropDownList5.Items.Add(dec);
     }
 
+
+    protected void populateAnimals(String condition, DropDownList list)
+    {
+        SqlDataReader reader;
+        ListItem newItem = new ListItem();
+        String animalQuery = "Select AnimalName from Animals where Animal Type = " + condition;
+        SqlCommand filler = new SqlCommand(animalQuery, sc);
+
+        newItem.Value = "0";
+        newItem.Text = "Select " + condition;
+        list.Items.Add(newItem);
+        sc.Open();
+
+        reader = filler.ExecuteReader();
+
+        while (reader.Read())
+        {
+            newItem = new ListItem();
+            newItem.Value = reader["AnimalID"].ToString();
+            newItem.Text = reader["AnimalName"].ToString();
+            list.Items.Add(newItem);
+        }
+        list.DataBind();
+        reader.Close();
+        sc.Close();
+
+    }
 }
