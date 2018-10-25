@@ -16,6 +16,9 @@ public partial class Program : System.Web.UI.Page
         {
             fillStatusList();
             fillMonthList();
+            populateAnimals("'" + "Bird" +"'", DropDownList2);
+            populateAnimals("'" + "Mammal" + "'", DropDownList3);
+            populateAnimals("'" + "Reptile" + "'", DropDownList4);
         }
     }
 
@@ -177,7 +180,7 @@ public partial class Program : System.Web.UI.Page
     {
         SqlDataReader reader;
         ListItem newItem = new ListItem();
-        String animalQuery = "Select AnimalName from Animals where Animal Type = " + condition;
+        String animalQuery = "Select AnimalID, AnimalName from Animal where AnimalType = " + condition;
         SqlCommand filler = new SqlCommand(animalQuery, sc);
 
         newItem.Value = "0";
