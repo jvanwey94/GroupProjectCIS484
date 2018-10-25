@@ -46,7 +46,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="CreateUser.aspx">Create User</a>
+                    <a class="navbar-brand" runat="server" href="FinancialReport.aspx">Financial Report</a>
+                    <a class="navbar-brand" runat="server" href="OnlineProgram.aspx">Online Program</a>
+                    <a class="navbar-brand" runat="server" href="Program.aspx">Program</a>
+                    <a class="navbar-brand" runat="server" href="Animal.aspx">Animal</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

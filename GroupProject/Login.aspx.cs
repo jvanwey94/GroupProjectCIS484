@@ -49,7 +49,7 @@ public partial class Login : System.Web.UI.Page
                         btnLogin.Enabled = false;
                         txtUserName.Enabled = false;
                         txtPassword.Enabled = false;
-                        Response.Redirect("Program.aspx", false);
+                        Response.Redirect("Program.aspx", false); // change this later (Program
                     }
                     else
                         lblStatus.Text = "Password is wrong.";
