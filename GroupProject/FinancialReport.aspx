@@ -2,7 +2,14 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-
+<%--    <script type="text/javascript">
+    function OnPaymentSelection() {
+        var PaymentType = document.getElementsByName("txtPaymentType").value;
+        if (PaymentType == "Check") {
+            document.getElementById("lblCheckNumber").style.diaplay = 'b';
+        }
+    }
+</script>   --%>
 
 <%--<script type = "text/javascript">
 function Calculation(){
@@ -62,7 +69,7 @@ function Calculation(){
         <br />
         <br />
                 <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" ForeColor="BLue"></asp:Label>
-                <asp:TextBox ID="txtAmount"  runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server"></asp:TextBox>
         <br />
         <br />
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" ForeColor="BLue"></asp:Label>
@@ -95,9 +102,9 @@ function Calculation(){
        <br />
         <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="Search" Width="150" OnClick="btn1_Search" />
         <br />
-         <br />
-        <asp:GridView ID="dbInvoice" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID" OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"   OnRowEditing="dbSkill_RowEditing"  
-                OnRowCancelingEdit="dbSkill_RowCancelingEdit" OnRowUpdating="dbSkill_RowUpdating"  >
+         <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
+        <asp:GridView ID="dbInvoice" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
+                OnRowCancelingEdit="dbInvoice_RowCancelingEdit" OnRowUpdating="dbInvoice_RowUpdating"   >
           
                 <Columns>
                     <asp:TemplateField HeaderText ="InvoiceID">
@@ -145,16 +152,16 @@ function Calculation(){
                         </EditItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText ="Amount" runat ="server">
+                    <asp:TemplateField HeaderText ="Amount">
                         <ItemTemplate>
                             <asp:Label ID="lbl_Amount" Text ='<%# Eval("Amount") %>' runat ="server" />
                         </ItemTemplate>
-                        <EditItemTemplate runat ="server">
-                            <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server"  />
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server" />
                         </EditItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText ="Payment Collect" runat ="server">
+                    <asp:TemplateField HeaderText ="Payment Collect">
                         <ItemTemplate>
                             <asp:Label ID="lbl_PaymentCollect" Text ='<%# Eval("PaymentCollect") %>' runat ="server" />
                         </ItemTemplate>
@@ -164,12 +171,12 @@ function Calculation(){
                     </asp:TemplateField>
 
                     
-                    <asp:TemplateField HeaderText ="Payment Left" runat ="server">
+                    <asp:TemplateField HeaderText ="Payment Left">
                         <ItemTemplate>
                             <asp:Label ID="lbl_PaymentLeft" Text ='<%# Eval("PaymentLeft") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID ="GridPaymentLeft" Text ='<%#Eval("PaymentLeft") %>' runat ="server" Readonly ="true" AutoCompleteType="None" />
+                            <asp:TextBox ID ="GridPaymentLeft" Text ='<%#Eval("PaymentLeft") %>' runat ="server" />
                         </EditItemTemplate>
                     </asp:TemplateField>
 
@@ -187,22 +194,26 @@ function Calculation(){
                         <ItemTemplate>
                             <asp:Label ID="lbl_LastUpdatedBy" Text ='<%# Eval("LastUpdatedBy") %>' runat ="server" />
                         </ItemTemplate>
-                        
-                    </asp:TemplateField>
+                        <EditItemTemplate>
+                        <asp:TextBox ID ="GridLastUpdatedBy" Text ='<%#Eval("LastUpdatedBy") %>' readonly="true" runat ="server" />
+                    </EditItemTemplate>
+                            </asp:TemplateField>
 
                     <asp:TemplateField HeaderText ="LastUpdated">
                         <ItemTemplate>
                             <asp:Label ID="lbl_LastUpdated" Text ='<%# Eval("LastUpdated") %>' runat ="server" />
                         </ItemTemplate>
-                        
+                        <EditItemTemplate>
+                        <asp:TextBox ID ="GridLastUpdated" Text ='<%#Eval("LastUpdated") %>' readonly="true" runat ="server" />
+                    </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText ="Edit">
                         <ItemTemplate>
                             <asp:Button ID="btn_Edit" runat ="server" CommandName="Edit" Text="Edit" ToolTip="Edit" Width =" 20px" Height =" 20px" />
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:Button ID="btn_Upload" runat ="server" CommandName="Upload" Text="Updoad" ToolTip="Edit" Width =" 20px" Height =" 20px" />
-                            <asp:Button ID="btn_Cancel"  runat ="server" CommandName="Cancel" Text="Insert" ToolTip="Edit" Width =" 20px" Height =" 20px" />
+                            <asp:Button ID="btn_Upload" runat ="server" CommandName="Update" Text="Update" ToolTip="Update" Width =" 20px" Height =" 20px" />
+                            <asp:Button ID="btn_Cancel"  runat ="server" CommandName="Cancel" Text="Cancel" ToolTip="Cancel" Width =" 20px" Height =" 20px" />
                         </EditItemTemplate>
 
               
