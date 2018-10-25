@@ -14,7 +14,7 @@ using System.Drawing;
 public partial class Animal : System.Web.UI.Page
 {
     string cs = "Data Source=.;Initial Catalog=WildLifeCenter;Integrated Security=true;";
-    SqlConnection sc = new SqlConnection(@"Server = localhost; Database = WildLifeCenter; Trusted_Connection = Yes;");
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
     private static int animalID;
     SqlConnection con;
     SqlDataAdapter adapt;
@@ -33,7 +33,6 @@ public partial class Animal : System.Web.UI.Page
         Int32 primaryKey = 0;
         Int32 coco = 0;
         int recordCount = 0;
-        SqlConnection sc = new SqlConnection(@"Server = localhost; Database = WildLifeCenter; Trusted_Connection = Yes;");
         SqlCommand insert = new SqlCommand();
 
 
