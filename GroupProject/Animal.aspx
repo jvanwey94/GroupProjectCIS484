@@ -27,7 +27,7 @@
         <asp:TextBox ID="TextBox7" runat="server" required="required"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="Button2" runat="server" Text="Search" OnClick="clickSearchButton"/>
+        <asp:Button ID="Button2" runat="server" Text="Search" formNoValidate="formNoValidate" OnClick="clickSearchButton"/>
 &nbsp;<asp:TextBox ID="searchBox" runat="server"></asp:TextBox>
     </p>
     
@@ -110,10 +110,9 @@ OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
     
 
     <p>
-        <asp:Button ID="insertBtn" runat="server" Text="Insert" OnClick="clickInsertButton" />
-    &nbsp;<asp:Button ID="viewBtn" runat="server" Text="View" OnClick="clickViewButton"/>
-    &nbsp;<asp:Button ID="downloadBtn" runat="server" Text="Download" />
-        &nbsp;</p>
+        <asp:Button ID="insertBtn" runat="server" Text="Insert" formNoValidate="formNoValidate" OnClick="clickInsertButton" />
+    &nbsp;<asp:Button ID="viewBtn" runat="server" Text="View" formNoValidate="formNoValidate" OnClick="clickViewButton"/>
+    &nbsp;&nbsp;</p>
     <p>
         &nbsp;</p>
 </asp:Content>
