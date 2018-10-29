@@ -65,10 +65,10 @@ public partial class Animal : System.Web.UI.Page
 
 
 
-        SqlCommand cmd = new SqlCommand("insert into [Animal] values (@animalName, @animalType, @animalStatus, @lastUpdatedBy, @lastUpdated)", sc);
+        SqlCommand cmd = new SqlCommand("insert into [Animal] values (@animalType, @animalName, @animalStatus, @lastUpdatedBy, @lastUpdated)", sc);
 
-        cmd.Parameters.AddWithValue("@animalName", TextBox1.Text);
         cmd.Parameters.AddWithValue("@animalType", TextBox2.Text);
+        cmd.Parameters.AddWithValue("@animalName", TextBox1.Text);
         cmd.Parameters.AddWithValue("@animalStatus", TextBox3.Text);
         cmd.Parameters.AddWithValue("@lastUpdatedBy", TextBox6.Text);
         cmd.Parameters.AddWithValue("@lastUpdated", TextBox7.Text);
