@@ -68,7 +68,7 @@ public partial class OnlineProgram : System.Web.UI.Page
     {
         ListItem gradeBlank = new ListItem();
         gradeBlank.Value = "0";
-        gradeBlank.Text = "Choose";
+        gradeBlank.Text = "Choose Grade Level";
 
         ListItem gradeK = new ListItem();
         gradeK.Value = "1";
