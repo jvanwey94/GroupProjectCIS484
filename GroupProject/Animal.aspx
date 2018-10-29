@@ -37,11 +37,11 @@ OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
             <Columns>  
                 <asp:TemplateField>  
                     <ItemTemplate>  
-                        <asp:Button ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />  
+                        <asp:Button ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" ToolTip="Edit" formNoValidate="FormNoValidate"/>  
                     </ItemTemplate>  
                     <EditItemTemplate>  
                         <asp:Button ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>  
-                        <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>  
+                        <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel" ToolTip="Cancel" formNoValidate="FormNoValidate"/>  
                     </EditItemTemplate>  
                 </asp:TemplateField>  
 
