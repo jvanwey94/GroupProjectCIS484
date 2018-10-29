@@ -2,28 +2,29 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <p>
-        <asp:Label ID="Label1" runat="server" Text="ANIMAL"></asp:Label>
         <br />
+        <asp:Label ID="lblTitle" runat="server" Text="Animal" Font-Size="XX-Large" ></asp:Label><br />
+        
     </p>
     <p>
         <asp:Label ID="Label2" runat="server" Text="Name: "></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" required="required"></asp:TextBox>
     </p>
     <p>
         <asp:Label ID="Label3" runat="server" Text="Animal Type: "></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" required="required"></asp:TextBox>
     </p>
     <p>
         <asp:Label ID="Label4" runat="server" Text="Status: "></asp:Label>
-        <asp:TextBox ID="TextBox3" runat="server" Width="97px"></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" required="required" Width="97px"></asp:TextBox>
     </p>
     <p>
         <asp:Label ID="Label7" runat="server" Text="Last Updated By: "></asp:Label>
-        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox6" runat="server" required="required"></asp:TextBox>
     </p>
     <p>
         <asp:Label ID="Label8" runat="server" Text="Last Updated: "></asp:Label>
-        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox7" runat="server" required="required"></asp:TextBox>
     </p>
     <p>
         <asp:Button ID="Button2" runat="server" Text="Search" OnClick="clickSearchButton"/>

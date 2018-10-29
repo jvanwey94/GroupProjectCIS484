@@ -23,27 +23,46 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Month, Date, Country, State, NumberOfKids, NumberOfPeople, Grade, Email, Theme, InvoiceID, LastUpdatedBy, LastUpdated, AnimalsUsed) " +
-            "VALUES (@Type, @Month, @Date, @Country, @State, @NumberOfKids, @NumberOfPeople, @Grade, @Email, @Theme, @InvoiceID, @LastUpdatedBy, @LastUpdated, @AnimalsUsed)";
+        sc.Open();
+        String payment = "";
+        if (RadioButton3.Checked)
+        {
+            payment = "Waiting for payment";
+        }
+        else
+        {
+            payment = "Payment received";
+        }
+
+        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Country, State, Grade, Email, Theme) " +
+            "VALUES (@Type, @Country, @State, @Grade, @Email, @Theme)";
+        String insertProgramQuery = "Insert into Program (ProgMonth, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID, LastUpdatedBy, LastUpdated) " +
+            "VALUES (@ProgMonth, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID, @LastUpdatedBy, @LastUpdated)";
+
+
+        SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
+        programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
+        programcmd.Parameters.AddWithValue("@ProgDate", TextBox11.Text);
+        programcmd.Parameters.AddWithValue("@NumberOfKids", TextBox1.Text);
+        programcmd.Parameters.AddWithValue("@NumberOfAdult", TextBox2.Text);
+        programcmd.Parameters.AddWithValue("@PayStatus", payment);
+        programcmd.Parameters.AddWithValue("@InvoiceID", "1");
+        programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
+        programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
 
         SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
-        cmd.Parameters.AddWithValue("@Type", TextBox13.Text);
-        cmd.Parameters.AddWithValue("@Month", TextBox12.Text);
-        cmd.Parameters.AddWithValue("@Date", TextBox11.Text);
-        cmd.Parameters.AddWithValue("@Country", TextBox16.Text);
-        cmd.Parameters.AddWithValue("@State", TextBox15.Text);
-        cmd.Parameters.AddWithValue("@NumberOfKids", TextBox1.Text);
-        cmd.Parameters.AddWithValue("@NumberOfPeople", TextBox2.Text);
-        cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue);
-        cmd.Parameters.AddWithValue("@Email", TextBox18.Text);
-        cmd.Parameters.AddWithValue("@Theme", TextBox20.Text);
-        cmd.Parameters.AddWithValue("@InvoiceID", "1");
-        cmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
-        cmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
-        cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text);
+        cmd.Parameters.AddWithValue("@Type", TextBox13.Text); // add drop down list to describe types of viewing
+        cmd.Parameters.AddWithValue("@Country", TextBox16.Text); //
+        cmd.Parameters.AddWithValue("@State", TextBox15.Text); //
+        cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
+        cmd.Parameters.AddWithValue("@Email", TextBox18.Text); //
+        cmd.Parameters.AddWithValue("@Theme", TextBox20.Text); // 
+        //cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text); used for proganimal table
 
+        programcmd.ExecuteNonQuery();
         cmd.ExecuteNonQuery();
 
+        sc.Close();
     }
     protected void fillGradeList()
     {

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.Common;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
@@ -40,12 +41,15 @@ public partial class FinancialReport : System.Web.UI.Page
     //populate gridview
     void PopulateGridview()
     {
-        //connect.Open();
+        connect.Open();
         String getInvoiceNumber = txtSearch.Text;
         txtTest.Text = getInvoiceNumber + "succseessfully connect to database!  ";
-        SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM [dbo].[Payment]  where InvoiceID like '" + txtSearch.Text + "%'", connect);
+        String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
+        System.Data.SqlClient.SqlCommand insert= new System.Data.SqlClient.SqlCommand(sqlDA, connect);
+        insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
+        SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
         lblStatus.Text = "Loading";
-        sqlDA.Fill(dtbl);
+        getsqlDA.Fill(dtbl);
 
         //if no matching records found, the system populate error message!
         if (dtbl.Rows.Count == 0)
@@ -155,7 +159,7 @@ public partial class FinancialReport : System.Web.UI.Page
                 txtSearch.Text = string.Empty;
 
             }
-        //    connect.Close();
+        connect.Close();
         //}
         //catch (Exception)
         //{
@@ -238,8 +242,9 @@ public partial class FinancialReport : System.Web.UI.Page
         //insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
         insert.ExecuteNonQuery();
         dbInvoice.EditIndex = -1;
-        PopulateGridview();
         connect.Close();
+        PopulateGridview();
+       
         txtTest.Text = "Successfully updated";
         txtTest.Text = "";
         //}

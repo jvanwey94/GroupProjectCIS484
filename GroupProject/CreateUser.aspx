@@ -9,7 +9,7 @@
 
           
             <br />
-            <strong>Create Employee Account</strong><br />
+            <asp:Label ID="lblTitle" runat="server" Text="Create User" Font-Size="XX-Large" ></asp:Label><br />
             First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
             <br />
@@ -42,7 +42,7 @@
             <asp:TextBox ID="txtPassword" type="password" runat="server"></asp:TextBox>
             &nbsp;<br />
             <asp:Label ID="lblReminder" runat="server" Text="(Password must be at least 8 characters, no more than 16 characters, and must include at least one upper case letter, lower case letter, and numeric digit.)"
-                Font-Size="small" ForeColor="#ff3300"></asp:Label>
+                Font-Size="small" ForeColor="gray"></asp:Label>
             <br />
             Confirm Password:
             <asp:TextBox ID="txtConfirm" type="password" runat="server"></asp:TextBox>

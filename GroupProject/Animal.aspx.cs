@@ -156,14 +156,25 @@ public partial class Animal : System.Web.UI.Page
 
         else
         {
-            con = new SqlConnection(cs);
-            con.Open();
-            adapt = new SqlDataAdapter("select * from animal where animalName like '" + searchBox.Text + "%'", con);
+            sc.Open();
             DataSet ds = new DataSet();
-            adapt.Fill(ds);
+            String sqlDA = "SELECT * FROM [dbo].[Animal]  where animalName = @animalName";
+            System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, sc);
+            insert.Parameters.AddWithValue("@animalName", searchBox.Text);
+            SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
+            getsqlDA.Fill(ds);
             GridView1.DataSource = ds;
             GridView1.DataBind();
-            con.Close();
+            sc.Close();
+
+            //con = new SqlConnection(cs);
+            //con.Open();
+            //adapt = new SqlDataAdapter("select * from animal where animalName like '" + searchBox.Text + "%'", con);
+            //DataSet ds = new DataSet();
+            //adapt.Fill(ds);
+            //GridView1.DataSource = ds;
+            //GridView1.DataBind();
+            //con.Close();
         }
     }
 

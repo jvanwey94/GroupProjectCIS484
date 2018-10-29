@@ -2,12 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div>
-        <h1>PROGRAM</h1>
+        
+        <br />
+        <asp:Label ID="lblTitle" runat="server" Text="Programs" Font-Size="XX-Large" ></asp:Label><br />
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6" style="background-color:aqua">
+            <div class="col-md-6" >
                 <asp:Label ID="Label1" runat="server" line-height="20px" Text="*On/Off Site: "></asp:Label><br />
                 <asp:Label ID="Label2" runat="server" line-height="200%" Text="*Status: "></asp:Label><br />
                 <asp:Label ID="Label3" runat="server" line-height="200%" Text="Organization Name: "></asp:Label><br />
@@ -15,7 +17,7 @@
                 <asp:Label ID="Label5" runat="server" line-height="200%" Text="City: "></asp:Label><br />
                 <asp:Label ID="Label6" runat="server" line-height="200%" Text="County: "></asp:Label><br />
             </div>
-            <div class="col-md-6" style="background-color:cadetblue">
+            <div class="col-md-6" >
                 <asp:RadioButton ID="RadioButton1" runat="server" Text="ON" />
                 <asp:RadioButton ID="RadioButton2" runat="server" Text="OFF" /><br />
                 <asp:DropDownList ID="statusDropDown" runat="server"></asp:DropDownList><br />
@@ -28,14 +30,14 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-md-6" style="background-color:darkviolet">
+            <div class="col-md-6" >
                 <asp:Label ID="Label7" runat="server" Text="State: "></asp:Label><br />
                 <asp:Label ID="Label8" runat="server" Text="Report Month: "></asp:Label><br />
                 <asp:Label ID="Label9" runat="server" Text="Date: "></asp:Label><br />
                 <asp:Label ID="Label10" runat="server" Text="Program: "></asp:Label><br />
                 <asp:Label ID="Label11" runat="server" Text="Educators: "></asp:Label><br />
             </div>
-            <div class="col-md-6" style="background-color:gold">
+            <div class="col-md-6" >
                 <asp:TextBox ID="TextBox3" runat="server" Height="22px"></asp:TextBox><br />
                 <asp:DropDownList ID="DropDownList5" runat="server"></asp:DropDownList><br />
                 <asp:TextBox ID="TextBox4" runat="server" required="required" Height="16px"></asp:TextBox><br />
@@ -45,7 +47,7 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-md-6" style="background-color:fuchsia">
+            <div class="col-md-6" >
                 <asp:Label ID="Label12" runat="server" Text="Birds:"></asp:Label><br />
                 <asp:Label ID="Label13" runat="server" Text="Mammals"></asp:Label><br />
                 <asp:Label ID="Label14" runat="server" Text="Reptiles"></asp:Label><br />
@@ -53,7 +55,7 @@
                 <asp:Label ID="Label16" runat="server" Text="Number of adults:"></asp:Label><br />
                 <asp:Label ID="Label17" runat="server" Text="Waiting for payment?"></asp:Label><br />
             </div>
-            <div class="col-md-6" style="background-color:lawngreen">
+            <div class="col-md-6" >
                 <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList><br />
                 <asp:DropDownList ID="DropDownList3" runat="server"></asp:DropDownList><br />
                 <asp:DropDownList ID="DropDownList4" runat="server"></asp:DropDownList><br />

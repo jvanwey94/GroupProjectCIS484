@@ -6,20 +6,21 @@
     <h2>Wild Animal center </h2><br />--%>
     <p>
                <%-- This is Title--%>
-                <asp:Label ID="lblTitle" runat="server" Text="Welcome to" Font-Size="XX-Large" ForeColor="Green"></asp:Label><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblTitle2" runat="server" Text="Wildlife Center" Font-Size="XX-Large" ForeColor="Green"></asp:Label><br />
         <br />
-        <br />
+                <asp:Label ID="lblTitle" runat="server" Text="Welcome to Wildlife Center" Font-Size="XX-Large" ></asp:Label><br />
+
+               
+      
                   
-                <asp:Label ID="lblUserName" runat="server" Text="UserName:" Font-Size="Large" ForeColor="#669900"></asp:Label><br />
+                <asp:Label ID="lblUserName" runat="server" Text="Username:" Font-Size="Large" ></asp:Label><br />
                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox><br />
         <br />
         <br />
-                <asp:Label ID="lblPassWord" runat="server" Text="Password"  Font-Size="Large" ForeColor="#669900"></asp:Label><br />
+                <asp:Label ID="lblPassWord" runat="server" Text="Password"  Font-Size="Large" ></asp:Label><br />
                 <asp:TextBox ID="txtPassword" type="password" runat="server"></asp:TextBox>
     <p>
                <asp:CheckBox ID="CheckBox1" runat="server" />
-                <asp:Label ID="Label1" runat="server" Text="Remember my Username"  Font-Size="small" ForeColor="Black"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="Remember my Username"  Font-Size="small" ></asp:Label>
                <br />
        
                <asp:Button ID="btnLogin" class="btn btn-primary" runat="server" Text="Login" Width="150" OnClick="btn1_Login" />

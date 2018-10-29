@@ -26,6 +26,8 @@ public partial class Program : System.Web.UI.Page
     // Insert into database
     protected void Button1_Click(object sender, EventArgs e)
     {
+
+        sc.Open();
         String site = "";
         if (RadioButton1.Checked)
         {
@@ -47,30 +49,41 @@ public partial class Program : System.Web.UI.Page
         }
         Programs prog = new Programs(organizationTxt.Text, site, statusDropDown.SelectedValue, streetTxt.Text, cityTxt.Text, countyTxt.Text, TextBox6.Text, DropDownList5.SelectedValue, TextBox4.Text, int.Parse(TextBox1.Text),
             int.Parse(TextBox2.Text), DropDownList2.SelectedValue, DropDownList3.SelectedValue, DropDownList4.SelectedValue, payment, "foreign key", "Stosh", DateTime.Today.ToString("d"), TextBox5.Text);
-        String programInsertQuery = "INSERT INTO Program (ProgramName, OnOffSite, ProgramStatus, ProgAddress, City, County, " +
-            "ProgMonth, ProgDate, NumberOfKids, NumberOfAdults, Birds, Mammals, Reptiles, PayStatus, InvoiceID, LastUpdatedBy, LastUpdated, OrganizationName, Educator)" +
-            " Values (@ProgramName, @OnOffSite, @ProgramStatus, @ProgAddress, @City, @County, @ProgMonth, @ProgDate, @NumberOfKids, @NumberOfAdults, @Birds, @Mammals, @Reptiles, @PayStatus, @InvoiceID, @LastUpdatedBy, @LastUpdated, @OrganizationName, @Educator)";
-        SqlCommand cmd = new SqlCommand(programInsertQuery, sc);
-        cmd.Parameters.AddWithValue("@ProgramName", prog.getProgramName());
-        cmd.Parameters.AddWithValue("@OnOffSite", prog.getOnOffSite());
-        cmd.Parameters.AddWithValue("@ProgramStatus", prog.getProgramStatus());
-        cmd.Parameters.AddWithValue("@ProgAddress", prog.getProgramAddress());
-        cmd.Parameters.AddWithValue("@City", prog.getCity());
-        cmd.Parameters.AddWithValue("County", prog.getCounty());
-        cmd.Parameters.AddWithValue("@ProgMonth", prog.getProgramMonth());
-        cmd.Parameters.AddWithValue("@ProgDate", prog.getProgramDate());
-        cmd.Parameters.AddWithValue("@NumberOfKids", prog.getNumberOfKids());
-        cmd.Parameters.AddWithValue("@NumberOfAdults", prog.getNumberOfAdults());
-        cmd.Parameters.AddWithValue("@Birds", prog.getBirds());
-        cmd.Parameters.AddWithValue("@Mammals", prog.getMammals());
-        cmd.Parameters.AddWithValue("@Reptiles", prog.getReptiles());
-        cmd.Parameters.AddWithValue("@PayStatus", prog.getPayStatus());
-        cmd.Parameters.AddWithValue("@InvoiceID", prog.getInvoiceID());
-        cmd.Parameters.AddWithValue("@LastUpdatedBy", prog.getLastUpdatedBy());
-        cmd.Parameters.AddWithValue("@LastUpdated", prog.getLastUpdated());
-        cmd.Parameters.AddWithValue("@OrganizationName", prog.getOrganizationName());
+       String insertProgramQuery = "Insert into Program (ProgMonth, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID, LastUpdatedBy, LastUpdated) " +
+            "VALUES (@ProgMonth, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID, @LastUpdatedBy, @LastUpdated)";
+        String regularProgramQuery = "INSERT INTO RegularProgram (ProgName, SiteType, ProgStatus, ProgAddress, City, County) " +
+            "VALUES (@ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
+
+
+        SqlCommand cmd = new SqlCommand(regularProgramQuery, sc);
+        SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
+
+        cmd.Parameters.AddWithValue("@ProgName", prog.getProgramName()); //
+        cmd.Parameters.AddWithValue("@SiteType", site); //
+        cmd.Parameters.AddWithValue("@ProgStatus", statusDropDown.SelectedItem.Text); //
+        cmd.Parameters.AddWithValue("@ProgAddress", prog.getProgramAddress()); //
+        cmd.Parameters.AddWithValue("@City", prog.getCity()); //
+        cmd.Parameters.AddWithValue("@County", prog.getCounty()); //
+
+
+        
+
+        programcmd.Parameters.AddWithValue("@ProgMonth", prog.getProgramMonth());
+        programcmd.Parameters.AddWithValue("@ProgDate", prog.getProgramDate());
+        programcmd.Parameters.AddWithValue("@NumberOfKids", prog.getNumberOfKids());
+        programcmd.Parameters.AddWithValue("@NumberOfAdult", prog.getNumberOfAdults());
+        programcmd.Parameters.AddWithValue("@PayStatus", payment);
+        programcmd.Parameters.AddWithValue("@InvoiceID", "1");
+        programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
+        programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+
+
+
 
         cmd.ExecuteNonQuery();
+        programcmd.ExecuteNonQuery();
+
+        sc.Close();
     }
 
     //Yoooooooooooooooooooooooooooooooooooooo dogggggggg
