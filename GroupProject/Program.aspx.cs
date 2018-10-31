@@ -189,7 +189,7 @@ public partial class Program : System.Web.UI.Page
     }
 
 
-    protected void populateAnimals(String condition, DropDownList list)
+    protected void populateAnimals(String condition, ListBox list)
     {
         SqlDataReader reader;
         ListItem newItem = new ListItem();

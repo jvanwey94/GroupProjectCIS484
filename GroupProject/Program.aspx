@@ -38,27 +38,27 @@
                 <asp:Label ID="Label11" runat="server" Text="Educators: "></asp:Label><br />
             </div>
             <div class="col-md-6" >
-                <asp:TextBox ID="TextBox3" runat="server" Height="22px"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox><br />
                 <asp:DropDownList ID="DropDownList5" runat="server"></asp:DropDownList><br />
-                <asp:TextBox ID="TextBox4" runat="server" required="required" Height="16px"></asp:TextBox><br />
-                <asp:TextBox ID="TextBox5" runat="server" Height="16px"></asp:TextBox><br />
-                <asp:TextBox ID="TextBox6" runat="server" Height="16px"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox4" runat="server" required="required" type="date"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-md-6" >
-                <asp:Label ID="Label12" runat="server" Text="Birds:"></asp:Label><br />
-                <asp:Label ID="Label13" runat="server" Text="Mammals"></asp:Label><br />
-                <asp:Label ID="Label14" runat="server" Text="Reptiles"></asp:Label><br />
+                <asp:Label ID="Label12" runat="server" Text="Birds:" ></asp:Label><br />
+                <asp:Label ID="Label13" runat="server" Text="Mammals" ></asp:Label><br />
+                <asp:Label ID="Label14" runat="server" Text="Reptiles" ></asp:Label><br />
                 <asp:Label ID="Label15" runat="server" Text="Number of children:"></asp:Label><br />
                 <asp:Label ID="Label16" runat="server" Text="Number of adults:"></asp:Label><br />
                 <asp:Label ID="Label17" runat="server" Text="Waiting for payment?"></asp:Label><br />
             </div>
             <div class="col-md-6" >
-                <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList><br />
-                <asp:DropDownList ID="DropDownList3" runat="server"></asp:DropDownList><br />
-                <asp:DropDownList ID="DropDownList4" runat="server"></asp:DropDownList><br />
+                <asp:ListBox ID="DropDownList2" runat="server" SelectionMode="Multiple"></asp:ListBox><br />
+                <asp:ListBox ID="DropDownList3" runat="server" SelectionMode="Multiple"></asp:ListBox><br />
+                <asp:ListBox ID="DropDownList4" runat="server" SelectionMode="Multiple"></asp:ListBox><br />
                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
                 <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
                 <asp:RadioButton ID="RadioButton3" runat="server" Text="Yes" />
@@ -68,7 +68,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click" Text="Add to Database" />
+                <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click" Text="Insert" />
                 <asp:Button ID="Button2" runat="server" class="btn btn-secondary" formNoValidate="formNoValidate" onClick="Button2_Click" Text="Exit" /><br />
                 <asp:Label ID="Label18" runat="server" Text=""></asp:Label>    
             </div>
