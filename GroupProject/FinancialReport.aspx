@@ -141,6 +141,7 @@ function Calculation(){
        <br />
         <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="Search" Width="150" OnClick="btn1_Search" />
         <br />
+    <asp:Button ID="ButtonExport" runat="server" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
         <asp:GridView ID="dbInvoice" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
                 OnRowCancelingEdit="dbInvoice_RowCancelingEdit" OnRowUpdating="dbInvoice_RowUpdating"   >

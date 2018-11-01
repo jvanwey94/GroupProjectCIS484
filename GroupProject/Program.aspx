@@ -53,7 +53,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="events.html"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
@@ -252,7 +252,7 @@
         </div>
     </div>
 
-<%--    <div class="row">
+    <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -260,24 +260,14 @@
                         </div>
                         <!--Panel Heading-->
                         <div class="panel-body">
-                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="AnimalID" DataSourceID="SqlDataSource1">
-                                <Columns>
-                                    <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" InsertVisible="False" ReadOnly="True" SortExpression="AnimalID" />
-                                    <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
-                                    <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
-                                    <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
-                                    <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
-                                    <asp:BoundField DataField="NumberOfPeopleMet" HeaderText="NumberOfPeopleMet" SortExpression="NumberOfPeopleMet" />
-                                </Columns>
-                            </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT * FROM [Animal]"></asp:SqlDataSource>
+                            <asp:GridView ID="GridView1" CssClass="table table-responsive" runat="server"></asp:GridView>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>
                                 
                            
                         </div>
                     </div>
                 </div>
-            </div>--%>
+            </div>
         </div>
     </div>
             
