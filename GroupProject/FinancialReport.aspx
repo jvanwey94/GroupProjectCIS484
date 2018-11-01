@@ -16,67 +16,99 @@ function Calculation(){
     var id = document.getElementsByClassName("<%= dbInvoice.InvoiceID%>");
 
 </script>--%>
-    <br />
 
-        <asp:Label ID="lblTitle" runat="server" Text="Financial report" Font-Size="XX-Large" ></asp:Label><br />
-    
-          
-                  
-                <asp:Label ID="lblInvoice" runat="server" Text="Invoice #:" Font-Size="Large" ></asp:Label>
-                <asp:TextBox ID="txtInvoice" runat="server"></asp:TextBox>
-        <br />
-        <br />
-                 <asp:Label ID="lblProgram" runat="server" Text="Program Name:"  Font-Size="Large" ></asp:Label>
-                <asp:DropDownList ID="txtProgram" runat="server">
+    <br />
+     
+    <!--Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <asp:Label ID="lblTitle" runat="server" Text="Financial report" Font-Size="XX-Large" class="page-header" ></asp:Label><br />
+        </div>
+    </div>
+        
+     <div class="row">
+         <div class="col-lg-12">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                     Enter Information Here
+                 </div>
+                <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-row">
+               <div class="col-lg-4">
+                <asp:Label ID="lblInvoice" runat="server" Text="Invoice #:" Font-Size="Large" class="form-control-label"></asp:Label>
+                <asp:TextBox ID="txtInvoice" runat="server" class="form-control"></asp:TextBox>
+                </div>
+            <div class="col-lg-4">
+                 <asp:Label ID="lblProgram" runat="server" Text="Program Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                <asp:DropDownList ID="txtProgram" runat="server" class="custom-select form-control">
                     <asp:ListItem >     </asp:ListItem>
                     <asp:ListItem >Program1</asp:ListItem>
                     <asp:ListItem >Program2</asp:ListItem>
                     <asp:ListItem >Program3</asp:ListItem>
                  </asp:DropDownList>
-       <br />
-        <br />
-                <asp:Label ID="lblOrganization" runat="server" Text="Organization Title:"  Font-Size="Large" ></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server">
+            </div>
+            <div class="col-lg-4">
+                <asp:Label ID="lblOrganization" runat="server" Text="Organization Title:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control">
                     <asp:ListItem >     </asp:ListItem>
                     <asp:ListItem >Organiztion1</asp:ListItem>
                     <asp:ListItem >Organiztion2</asp:ListItem>
                     <asp:ListItem >Organiztion3 </asp:ListItem>
                  </asp:DropDownList>
-        <br />
-        <br />
-               <asp:Label ID="lblPayType" runat="server" Text="PayType"  Font-Size="Large" ></asp:Label>
-            
+            </div>
+                    </div> 
+                    <!-- closes form-row -->
+               </div>
+                <!-- closes col-lg-12 -->
+            </div>
+            <!--closes row -->
+       <div class="row">
+           <div class="col-lg-12">
+               <div class="form-row">
+               <div class="col-lg-4">
+                <asp:Label ID="lblPayType" runat="server" Text="PayType"  Font-Size="Large" class="form-control-label"></asp:Label>
+               
                     
 
             
-        <asp:DropDownList ID="txtPaymentType" AutoPostBack="true" runat="server" OnSelectedIndexChanged="OnPaymentSelection">
+        <asp:DropDownList ID="txtPaymentType" AutoPostBack="true" runat="server" OnSelectedIndexChanged="OnPaymentSelection" class="custom-select form-control">
             
              <asp:ListItem >     </asp:ListItem>
             <asp:ListItem >Check</asp:ListItem>
             <asp:ListItem >Cash</asp:ListItem>
             <asp:ListItem >Credit/Debit Card</asp:ListItem>
        </asp:DropDownList><br />
+      
             
                     
 
           
 
-                <asp:Label ID="lblCheckNumber" runat="server" Text="Check Number:"  Font-Size="Large" Visible="false"></asp:Label>
-                <asp:TextBox ID="txtCheckNumber" runat="server" Visible="false"></asp:TextBox> 
-                <asp:Label ID="lblCheckNumberNote" runat="server" Text="NOTE(Please add a check number only if the payment type is 'Check')"  Font-Size="small" ForeColor="gray"></asp:Label>
-   
-        <br />
-        <br />
-                <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" ></asp:Label>
-                <asp:TextBox ID="txtAmount" runat="server"></asp:TextBox>
-        <br />
-        <br />
-                <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" ></asp:Label>
-                <asp:TextBox ID="txtPaymentCollect" runat="server"></asp:TextBox>
+                <asp:Label ID="lblCheckNumber" runat="server" Text="Check Number:"  Font-Size="Large" Visible="false" class="form-control-label"></asp:Label>
+                <asp:TextBox ID="txtCheckNumber" runat="server" Visible="false" class="form-control"></asp:TextBox> 
+                <asp:Label ID="lblCheckNumberNote" runat="server" Text="NOTE(Please add a check number only if the payment type is 'Check')"  Font-Size="small" ForeColor="gray" class="text-muted"></asp:Label>
+        </div>
+        <div class="col-lg-3">
+                <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <div class="col-3">
+                <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>
+                <asp:TextBox ID="txtPaymentCollect" runat="server" class="form-control"></asp:TextBox>
         
-                <asp:Label ID="lblPaymentLeft" runat="server" Text="Payment Left:"  Font-Size="Large" ></asp:Label>
-                <asp:TextBox ID="txtPaymentLeft" runat="server"></asp:TextBox>
-        <br />
+                <asp:Label ID="lblPaymentLeft" runat="server" Text="Payment Left:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                <asp:TextBox ID="txtPaymentLeft" runat="server" class="form-control"></asp:TextBox>
+         </div>     
+            </div>
+               <!--closes form-row-->
+            </div>
+            <!-- closes col-lg-12-->
+        </div>
+        <!-- closes row -->
+           <br />
+
         <br />
                 <asp:Label ID="lblLastUpdatedBy" runat="server" Text="UpdatedBy:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdatedBy" runat="server"></asp:TextBox>
@@ -96,6 +128,14 @@ function Calculation(){
      <asp:TextBox ID="txtTest" runat="server"></asp:TextBox>
         <br />
          <br />
+        </div>
+        <!--close "panel-body"-->
+        </div>
+        <!--close "panel"-->
+    </div>
+    <!--close "col-lg-12"-->
+</div>
+<!--close "row"-->
                 <asp:Label ID="lblSearch" runat="server" Text="Search for Invoice Number:"  Font-Size="X-Large" ></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
@@ -223,27 +263,75 @@ function Calculation(){
         </asp:GridView>
       <asp:Label ID="lblComplete" runat="server" Text="Complete"  Font-Size="Large" ForeColor="Green"></asp:Label>
        <asp:Label ID="lblIncomplete" runat="server" Text="Incomplete"  Font-Size="Large" ForeColor="Red"></asp:Label>
-    
-    <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID" DataSourceID="SqlDataSource2">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Financial Reports
+            </div>
+            <div class="panel-body">
+     
+    <div class="table-responsive">
+<%--        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Organization</th>
+                <th>Program</th>
+                <th>Payment Type</th>
+                <th>Check Number</th>
+                <th>Amount</th>
+                <th>Payment Collect</th>
+                <th>Payment Left</th>
+                <th>Payment Status</th>
+            </tr>
+            </thead>--%>
+    <asp:GridView ID="GridView1" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID" DataSourceID="SqlDataSource2">
         <Columns>
-            <asp:BoundField DataField="InvoiceID" HeaderText="InvoiceID" ReadOnly="True" SortExpression="InvoiceID" />
-            <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
-            <asp:BoundField DataField="Program" HeaderText="Program" SortExpression="Program" />
-            <asp:BoundField DataField="PaymentType" HeaderText="PaymentType" SortExpression="PaymentType" />
-            <asp:BoundField DataField="CheckNumber" HeaderText="CheckNumber" SortExpression="CheckNumber" />
-            <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
-            <asp:BoundField DataField="PaymentCollect" HeaderText="PaymentCollect" SortExpression="PaymentCollect" />
-            <asp:BoundField DataField="PaymentLeft" HeaderText="PaymentLeft" SortExpression="PaymentLeft" />
-            <asp:BoundField DataField="PaymentStatus" HeaderText="PaymentStatus" SortExpression="PaymentStatus" />
-            <asp:BoundField DataField="LastUpdatedBy" HeaderText="LastUpdatedBy" SortExpression="LastUpdatedBy" />
-            <asp:BoundField DataField="LastUpdated" HeaderText="LastUpdated" SortExpression="LastUpdated" />
+            <asp:BoundField DataField="InvoiceID" ReadOnly="True" SortExpression="InvoiceID" />
+            <asp:BoundField DataField="OrganizationName" SortExpression="OrganizationName" />
+            <asp:BoundField DataField="Program" SortExpression="Program" />
+            <asp:BoundField DataField="PaymentType" SortExpression="PaymentType" />
+            <asp:BoundField DataField="CheckNumber" SortExpression="CheckNumber" />
+            <asp:BoundField DataField="Amount" SortExpression="Amount" />
+            <asp:BoundField DataField="PaymentCollect" SortExpression="PaymentCollect" />
+            <asp:BoundField DataField="PaymentLeft" SortExpression="PaymentLeft" />
+            <asp:BoundField DataField="PaymentStatus" SortExpression="PaymentStatus" />
         </Columns>
-        <HeaderStyle BackColor="#33cc33" />  
 <%--        <RowStyle BackColor="#339933"/> --%>
     </asp:GridView>
+    </div>
+
+            </div>
+            <!-- ends panel-body-->
+        </div>
+        <!--ends panel-->
+    </div>
+    <!--ends row-->
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WildLifeCenterConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-    
+    <!-- jQuery -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 </asp:Content>
 
