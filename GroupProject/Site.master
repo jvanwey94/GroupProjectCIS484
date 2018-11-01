@@ -1,8 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
 
-<!DOCTYPE html>
-
-<html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -98,18 +95,18 @@
                     </asp:LoginView>
                 </div>
             </div>
-        </div>
-        <div class="container body-content">
+        </div>-->
+        <div class="container-fluid">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
+            <hr /> 
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Wild Life Center Application</p>
             </footer>
-        </div>-->
+        </div>
     </form>
     <!--<script src="http://localhost:62931/Scripts/jquery-3.3.1.slim.min.js"></script>
     <script src="http://localhost:62931/Scripts/popper.min.js"></script>
     <script src="http://localhost:62931/Scripts/bootstrap.bundle.min.js"></script>--%>-->
 </body>
-</html>
+

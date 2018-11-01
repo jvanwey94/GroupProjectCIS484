@@ -18,7 +18,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Sign In</h3>
+                        <h3 class="panel-title">Sign in to Wildlife Center</h3>
                     </div>
                     <div class="panel-body">
 
@@ -36,8 +36,11 @@
                                 <!-- Change this to a button or input when using this as a form -->
                                 
                                 <asp:Button ID="btnLogin" class="btn btn-lg btn-success btn-block" Text="Login" OnClick="btn_Login" runat="server" />
-
+                                
                     </div>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCreateUser" class="form-control" style="height: 50px; text-align: center; background-color:none;" runat="server"><a href="CreateUser.aspx">Create New User Account</a></asp:Label>
                 </div>
             </div>
         </div>
