@@ -25,7 +25,7 @@ public partial class OnlineProgram : System.Web.UI.Page
     {
         sc.Open();
         String payment = "";
-        if (RadioButton3.Checked)
+        if (txtPayment1.Checked)
         {
             payment = "Waiting for payment";
         }
@@ -36,27 +36,28 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Country, State, Grade, Email, Theme) " +
             "VALUES (@Type, @Country, @State, @Grade, @Email, @Theme)";
-        String insertProgramQuery = "Insert into Program (ProgMonth, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID, LastUpdatedBy, LastUpdated) " +
-            "VALUES (@ProgMonth, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID, @LastUpdatedBy, @LastUpdated)";
+        String insertProgramQuery = "Insert into Program (OrganizationName, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID) " +
+            "VALUES (@OrganizationName, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID)";
 
-
+        
         SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
-        programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
-        programcmd.Parameters.AddWithValue("@ProgDate", TextBox11.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfKids", TextBox1.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfAdult", TextBox2.Text);
+        //programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
+        programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+        programcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
+        programcmd.Parameters.AddWithValue("@NumberOfKids", txtNK.Text);
+        programcmd.Parameters.AddWithValue("@NumberOfAdult", txtNumberOFAdults.Text);
         programcmd.Parameters.AddWithValue("@PayStatus", payment);
         programcmd.Parameters.AddWithValue("@InvoiceID", "1");
-        programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
-        programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+        //programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
+        //programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
 
         SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
-        cmd.Parameters.AddWithValue("@Type", TextBox13.Text); // add drop down list to describe types of viewing
-        cmd.Parameters.AddWithValue("@Country", TextBox16.Text); //
-        cmd.Parameters.AddWithValue("@State", TextBox15.Text); //
+        cmd.Parameters.AddWithValue("@Type", txtType.Text); // add drop down list to describe types of viewing
+        cmd.Parameters.AddWithValue("@Country", txtCountry.Text); //
+        cmd.Parameters.AddWithValue("@State", txtState.Text); //
         cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
-        cmd.Parameters.AddWithValue("@Email", TextBox18.Text); //
-        cmd.Parameters.AddWithValue("@Theme", TextBox20.Text); // 
+        cmd.Parameters.AddWithValue("@Email", txtEmail.Text); //
+        cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
         //cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text); used for proganimal table
 
         programcmd.ExecuteNonQuery();
@@ -143,5 +144,40 @@ public partial class OnlineProgram : System.Web.UI.Page
     protected void Button2_Click(object sender, EventArgs e)
     {
         System.Environment.Exit(0);
+    }
+
+
+    protected void txtOrganizationName_TextChanged(object sender, EventArgs e)
+    {
+        txtTeacher.Text = "kevin";
+        System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+
+        string callState = " select Country from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
+
+        string callCountry = " select * from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
+        SqlCommand cmdDatabase1 = new SqlCommand(callState, connect);
+        SqlCommand cmdDatabase2 = new SqlCommand(callCountry, connect);
+        SqlDataReader myreader ;
+
+        try
+        {
+            connect.Open();
+            myreader = cmdDatabase1.ExecuteReader();
+            myreader = cmdDatabase2.ExecuteReader();
+      
+
+            while (myreader.Read())
+            {
+                string country = myreader.GetString("Country");
+                string state = myreader.GetString("State");
+                txtCountry.Text = country;
+                txtState.Text = state;
+            }
+        }
+        catch(Exception ex)
+        {
+
+        }
+
     }
 }

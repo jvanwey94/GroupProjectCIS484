@@ -21,7 +21,7 @@
                         <h3 class="panel-title">Sign in to Wildlife Center</h3>
                     </div>
                     <div class="panel-body">
-
+                            <div style="margin: 0 0 0 7.5%;">
                                 <div class="form-group">
                                     <asp:TextBox ID="txtUserName" class="form-control" placeholder="User Name" runat="server" />
                                 </div>
@@ -36,7 +36,7 @@
                                 <!-- Change this to a button or input when using this as a form -->
                                 
                                 <asp:Button ID="btnLogin" class="btn btn-lg btn-success btn-block" Text="Login" OnClick="btn_Login" runat="server" />
-                                
+                         </div>       
                     </div>
                 </div>
                 <div class="form-group">
