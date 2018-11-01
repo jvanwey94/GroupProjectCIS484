@@ -253,19 +253,38 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <Label type="label" id="animalNameLabel" Text="Name of Animal"></Label>
-                            <TextBox type="input" id="AnimalNameTXT"></TextBox>
-
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Animal Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input id="AnimalNameTxt" type="text" /><br />
+                            </div>
                         </div>
-                    </form>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Type of Animal</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input id="AnimalTypeTxt" type="text" /><br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Age</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input id="AnimalAgeTxt" type="text" /><br />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="insertAnimalButton" class="btn btn-primary">Insert</button>
                     <button type="button" id="exitAnimalButton" data-dismiss="modal" class="btn btn-secondary">Exit</button>
+
                 </div>
             </div>
         </div>
