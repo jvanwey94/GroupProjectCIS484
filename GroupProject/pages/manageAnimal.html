@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -137,7 +137,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="addAnimal.html">Add an Animal</a>
+                                        <li><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addAnimals">WORK PLS</button>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Delete an Animal</a>
@@ -240,6 +240,35 @@
         </div>
         <!-- /#page-wrapper -->
 
+    </div>
+
+    <div class="modal fade" id="addAnimals" tabindex="1" role="dialog" aria-labelledby="addAnimals" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="addAnimalsModal">
+                            Add An Animal
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <Label type="label" id="animalNameLabel" Text="Name of Animal"></Label>
+                            <TextBox type="input" id="AnimalNameTXT"></TextBox>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="insertAnimalButton" class="btn btn-primary">Insert</button>
+                    <button type="button" id="exitAnimalButton" data-dismiss="modal" class="btn btn-secondary">Exit</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /#wrapper -->
 

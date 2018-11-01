@@ -6,12 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
+using System.Reflection;
 using System.Data.Common;
+using ClosedXML.Excel;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
     //SqlConnection connect = new SqlConnection(@"Server =localhost; Database = Payment4; Trusted_Connection = Yes;");
     System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+
+    //create data table variable ti display gridview
+    DataTable dtbl = new DataTable();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,8 +41,8 @@ public partial class FinancialReport : System.Web.UI.Page
     }
 
 
-    //create data table variable ti display gridview
-    DataTable dtbl = new DataTable();
+    
+    
 
     //populate gridview
     void PopulateGridview()
@@ -278,5 +284,46 @@ public partial class FinancialReport : System.Web.UI.Page
     void dbInvoice_CellValueChanged(object sender, EventArgs e)
     {
 
+    }
+
+    public void ExportToExcel()
+    {
+        DataTable dt = new DataTable();
+        String sqlDA = "SELECT * FROM [dbo].[Payment]";
+        SqlCommand filltable = new SqlCommand(sqlDA, connect);
+        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+        adapt.Fill(dt);
+
+
+        String folderPath = "C:\\Users\\labpatron\\Documents";
+        if(!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        using (XLWorkbook wb = new XLWorkbook())
+        {
+            wb.Worksheets.Add(dt, "Financial Reports");
+            String myName = Server.UrlEncode("Test" + "_" +
+                DateTime.Now.ToShortDateString() + ".xlsx");
+            MemoryStream stream = GetStream(wb);
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.BinaryWrite(stream.ToArray());
+            Response.End();
+        }
+    }
+
+    public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    {
+        MemoryStream fs = new MemoryStream();
+        excelWorkbook.SaveAs(fs);
+        fs.Position = 0;
+        return fs;
+    }
+
+    protected void Export(object sender, EventArgs e)
+    {
+        ExportToExcel();
     }
 }
