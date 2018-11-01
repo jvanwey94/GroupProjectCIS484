@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Online Program" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
         <div>
@@ -12,7 +12,7 @@
                 <asp:Label ID="Label1" runat="server" Text="Date: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox11" required="required" Type="date" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox11" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
@@ -113,7 +113,16 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click"  Text="Insert" />
+                <asp:Label ID="Label4" runat="server" Text="Waiting for payment? "></asp:Label><br />
+            </div>
+            <div class="col-md-2">
+                <asp:RadioButton ID="RadioButton3" runat="server" Text="Yes" />
+                <asp:RadioButton ID="RadioButton4" runat="server" Text="No"/><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <asp:Button ID="Button1" runat="server" onClick="Button1_Click"  Text="Insert" />
             </div>
         </div>
     </div>
