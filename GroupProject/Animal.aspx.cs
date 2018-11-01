@@ -13,19 +13,37 @@ using System.Drawing;
 
 public partial class Animal : System.Web.UI.Page
 {
-    //string cs = "Data Source=.;Initial Catalog=WildLifeCenter;Integrated Security=true;";
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-    //private static int animalID;
-    //SqlConnection con;
-    //SqlDataAdapter adapt;
-    //DataTable dt;
+    string cs = "Data Source=.;Initial Catalog=WildLifeCenter;Integrated Security=true;";
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+    private static int animalID;
+    SqlConnection con;
+    SqlDataAdapter adapt;
+    DataTable dt;
 
-    //protected void Page_Load(object sender, EventArgs e)
-    //{
+    protected void Page_Load(object sender, EventArgs e)
+    {
 
-    //}
+    }
 
+    protected void addAnimalToDataBaseButton(object sender, EventArgs e)
+    {
+        String insertAnimalQuery = "INSERT INTO Animal VALUES (@AnimalType, @AnimalName, @AnimalStatus, @NumberOfEvents, @NumberOfPeopleMet)";
+        sc.Open();
 
+        SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
+        insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeTxt.Text);
+        insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
+        insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
+        insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", int.Parse(AnimalEventsTxt.Text));
+        insertAnimalcmd.Parameters.AddWithValue("@NumberOfPeopleMet", int.Parse(AnimalPeopleMetTxt.Text));
+
+        insertAnimalcmd.ExecuteNonQuery();
+    }
+
+    protected void ExitButton(object sender, EventArgs e)
+    {
+        System.Environment.Exit(0);
+    }
 
     //protected void clickInsertButton(object sender, EventArgs e)
     //{

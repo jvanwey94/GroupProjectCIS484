@@ -24,15 +24,8 @@ public partial class OnlineProgram : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         sc.Open();
-        String payment = "";
-        if (txtPayment1.Checked)
-        {
-            payment = "Waiting for payment";
-        }
-        else
-        {
-            payment = "Payment received";
-        }
+        String payment = "delete later";
+       
 
         String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Country, State, Grade, Email, Theme) " +
             "VALUES (@Type, @Country, @State, @Grade, @Email, @Theme)";
@@ -168,16 +161,17 @@ public partial class OnlineProgram : System.Web.UI.Page
 
             while (myreader.Read())
             {
-                string country = myreader.GetString("Country");
-                string state = myreader.GetString("State");
-                txtCountry.Text = country;
-                txtState.Text = state;
+                //string country = myreader.GetString("Country");
+                //string state = myreader.GetString("State");
+                //txtCountry.Text = country;
+                //txtState.Text = state;
             }
         }
         catch(Exception ex)
         {
 
         }
+        connect.Close();
 
     }
 }

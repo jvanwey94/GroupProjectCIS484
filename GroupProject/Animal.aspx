@@ -98,7 +98,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="addAnimal.html">Add an Animal</a>
+                                        <li><a href="#addAnimals" data-toggle="modal" data-target="#addAnimals">Add an Animal</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Delete an Animal</a>
@@ -201,6 +201,69 @@
         </div>
         <!-- /#page-wrapper -->
 
+    </div>
+
+    <div class="modal fade" id="addAnimals" tabindex="1" role="dialog" aria-labelledby="addAnimals" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="addAnimalsModal">
+                            Add An Animal
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Animal Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalNameTxt" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Type of Animal</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalTypeTxt" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Age</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalAgeTxt" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of Events</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalEventsTxt" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of People Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalPeopleMetTxt" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="insertAnimalButton" runat="server" onClick="addAnimalToDataBaseButton" class="btn btn-primary" Text="Insert" />
+                    <asp:Button ID="exitAnimalButton" class="btn btn-secondary" OnClick="ExitButton" runat="server" Text="Button" />
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /#wrapper -->
 
