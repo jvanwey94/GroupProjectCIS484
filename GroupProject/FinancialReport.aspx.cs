@@ -21,8 +21,8 @@ public partial class FinancialReport : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtLastUpdatedBy.Text = "Kevin    ";
-        txtLastUpdated.Text = DateTime.Now.ToString();
+        //txtLastUpdatedBy.Text = "Kevin    ";
+        //txtLastUpdated.Text = DateTime.Now.ToString();
         lblPaymentCollect.Visible = false;
         lblPaymentLeft.Visible = false;
         txtPaymentCollect.Visible = false;
@@ -31,7 +31,7 @@ public partial class FinancialReport : System.Web.UI.Page
         lblIncomplete.Visible = false;
         if (!Page.IsPostBack)
         {
-            txtLastUpdated.Text = DateTime.Now.ToString();
+            //txtLastUpdated.Text = DateTime.Now.ToString();
             if (txtPaymentType.SelectedItem.ToString() == "Check")
             {
 
@@ -49,7 +49,7 @@ public partial class FinancialReport : System.Web.UI.Page
     {
         connect.Open();
         String getInvoiceNumber = txtSearch.Text;
-        txtTest.Text = getInvoiceNumber + "succseessfully connect to database!  ";
+        lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert= new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
@@ -150,18 +150,18 @@ public partial class FinancialReport : System.Web.UI.Page
                 insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
                 insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
                 insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
-                insert.Parameters.AddWithValue("@LastUpdatedBy", InputLastUpdatedBy);
-                insert.Parameters.AddWithValue("@LastUpdated", InputLastUpdated);
+                insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+                insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
 
                 insert.ExecuteNonQuery();
                 lblStatus.Text = "succseessful to add this payment to database!";
-                txtTest.Text = InputStatus;
+                //txtTest.Text = InputStatus;
 
                 txtAmount.Text = string.Empty;
                 txtCheckNumber.Text = string.Empty;
                 txtInvoice.Text = string.Empty;
-                txtLastUpdatedBy.Text = string.Empty;
-                txtLastUpdated.Text = string.Empty;
+                //txtLastUpdatedBy.Text = string.Empty;
+                //txtLastUpdated.Text = string.Empty;
                 txtSearch.Text = string.Empty;
 
             }
@@ -251,8 +251,8 @@ public partial class FinancialReport : System.Web.UI.Page
         connect.Close();
         PopulateGridview();
        
-        txtTest.Text = "Successfully updated";
-        txtTest.Text = "";
+        lblStatus.Text = "Successfully updated";
+       
         //}
         //catch (Exception ex)
         //{

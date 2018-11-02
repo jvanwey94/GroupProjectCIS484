@@ -43,20 +43,19 @@ function Calculation(){
             <div class="col-lg-4">
                  <asp:Label ID="lblProgram" runat="server" Text="Program Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:DropDownList ID="txtProgram" runat="server" class="custom-select form-control">
-                    <asp:ListItem >     </asp:ListItem>
-                    <asp:ListItem >Program1</asp:ListItem>
-                    <asp:ListItem >Program2</asp:ListItem>
-                    <asp:ListItem >Program3</asp:ListItem>
+                   
                  </asp:DropDownList>
             </div>
-            <div class="col-lg-4">
-                <asp:Label ID="lblOrganization" runat="server" Text="Organization Title:"  Font-Size="Large" class="form-control-label"></asp:Label>
+            <div class="row">
+            <div class="col-lg-3">
+                <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control">
                     <asp:ListItem >     </asp:ListItem>
                     <asp:ListItem >Organiztion1</asp:ListItem>
                     <asp:ListItem >Organiztion2</asp:ListItem>
                     <asp:ListItem >Organiztion3 </asp:ListItem>
                  </asp:DropDownList>
+            </div>
             </div>
                     </div> 
                     <!-- closes form-row -->
@@ -94,6 +93,14 @@ function Calculation(){
                 <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
         </div>
+        <div class="row">
+        <div class="col-lg-3">
+            
+                  <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                   
+                  <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control"></asp:TextBox><br />
+         </div>
+        </div>
         <div class="col-3">
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>
                 <asp:TextBox ID="txtPaymentCollect" runat="server" class="form-control"></asp:TextBox>
@@ -110,12 +117,13 @@ function Calculation(){
            <br />
 
         <br />
-                <asp:Label ID="lblLastUpdatedBy" runat="server" Text="UpdatedBy:"  Font-Size="Large" ></asp:Label>
+
+     <%--           <asp:Label ID="lblLastUpdatedBy" runat="server" Text="UpdatedBy:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdatedBy" runat="server"></asp:TextBox>
         <br />
         <br />
                  <asp:Label ID="lblLastUpdated" runat="server" Text="Updated:"  Font-Size="Large" ></asp:Label>
-                <asp:TextBox ID="txtLastUpdated" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtLastUpdated" runat="server"></asp:TextBox>--%>
         <br />
         <br />
                 

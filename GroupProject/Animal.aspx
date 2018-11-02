@@ -119,7 +119,7 @@
                                         <th>Name</th>
                                         <th>Kind of Animal</th>
                                         <th>Specific Kind of Animal</th>
-                                        <th>Age</th>
+                              <%--          <th>Age</th>--%>
                                         <th class="col-lg-1">Available for an Event?</th>
                                     </tr>
                                 </thead>
@@ -128,63 +128,63 @@
                                         <td>Eugene</td>
                                         <td>Bird</td>
                                         <td>Falcon</td>
-                                        <td>2</td>
+                                        <%--<td>2</td>--%>
                                         <td><i class="fa  fa-check"></i></td>
                                     </tr>
                                       <tr class="even GradeC">
                                         <td>Kyle</td>
                                         <td>Bird</td>
                                         <td>Falcon</td>
-                                        <td>1</td>
+                                  <%--      <td>1</td>--%>
                                         <td><i class="fa  fa-check"></i></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Porter</td>
                                         <td>Bird</td>
                                         <td>Owl</td>
-                                        <td>4</td>
+                                      <%--  <td>4</td>--%>
                                         <td><i class="fa fa-times"></i></td>
                                     </tr>
                                     <tr class="even gradeA">
                                         <td>Hector</td>
                                         <td>Bird</td>
                                         <td>Owl</td>
-                                        <td>5</td>
+                           <%--             <td>5</td>--%>
                                         <td><i class="fa fa-check"></i></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Ursala</td>
                                         <td>Bird</td>
                                         <td>Owl</td>
-                                        <td>2</td>
+                                     <%--   <td>2</td>--%>
                                         <td><i class="fa fa-times"></i></td>
                                     </tr>
                                     <tr class="even gradaA">
                                         <td>Lucy</td>
                                         <td>Mammal</td>
                                         <td>Oppossum</td>
-                                        <td>3</td>
+                               <%--         <td>3</td>--%>
                                         <td><i class="fa fa-times"></i></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Stevie</td>
                                         <td>Reptile</td>
                                         <td>Snake</td>
-                                        <td>4</td>
+                                <%--        <td>4</td>--%>
                                         <td><i class="fa fa-times"></i></td>
                                     </tr>
                                     <tr class="even gradeA">
                                         <td>Mairin</td>
                                         <td>Reptile</td>
                                         <td>Snake</td>
-                                        <td>2</td>
+                                  <%--      <td>2</td>--%>
                                         <td><i class="fa fa-check"></i></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Ethan</td>
                                         <td>Reptile</td>
                                         <td>Snake</td>
-                                        <td>1</td>
+<%--                                        <td>1</td>--%>
                                         <td><i class="fa fa-check"></i></td>
                                     </tr>
 

@@ -142,36 +142,44 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void txtOrganizationName_TextChanged(object sender, EventArgs e)
     {
-        txtTeacher.Text = "kevin";
+       
         System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
 
-        string callState = " select Country from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
-
-        string callCountry = " select * from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
+        string callState = "select * from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
         SqlCommand cmdDatabase1 = new SqlCommand(callState, connect);
-        SqlCommand cmdDatabase2 = new SqlCommand(callCountry, connect);
+
         SqlDataReader myreader ;
 
         try
         {
             connect.Open();
             myreader = cmdDatabase1.ExecuteReader();
-            myreader = cmdDatabase2.ExecuteReader();
+            //myreader = cmdDatabase2.ExecuteReader();
       
 
             while (myreader.Read())
             {
-                //string country = myreader.GetString("Country");
-                //string state = myreader.GetString("State");
-                //txtCountry.Text = country;
-                //txtState.Text = state;
+                //string country = "Usa";
+                //string state = "Va";
+                string country = myreader.GetString(2);
+                string state = myreader.GetString(3);
+                txtState.Text = country;
+                txtCountry.Text = state;
+                //txtState.AutoComplteCUstomerSource = country;
             }
         }
         catch(Exception ex)
         {
-
+            
         }
         connect.Close();
 
+    }
+}
+
+public class autocompletestringcollection
+{
+    public autocompletestringcollection()
+    {
     }
 }
