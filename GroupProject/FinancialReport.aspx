@@ -9,16 +9,18 @@
             document.getElementById("lblCheckNumber").style.diaplay = 'b';
         }
     }
-</script>   --%>
+</script> 
 
 <%--<script type = "text/javascript">
 function Calculation(){
     var id = document.getElementsByClassName("<%= dbInvoice.InvoiceID%>");
 
 </script>--%>
+ 
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jQuery.dataTables.min.js"></script>
+    <link href="https://cdn.datatable.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-    <br />
-     
     <!--Page header -->
     <div class="row">
         <div class="col-lg-12">
@@ -278,36 +280,28 @@ function Calculation(){
                 Financial Reports
             </div>
             <div class="panel-body">
-     
-    <div class="table-responsive">
-<%--        <thead>
-            <tr>
-                <th>Invoice ID</th>
-                <th>Organization</th>
-                <th>Program</th>
-                <th>Payment Type</th>
-                <th>Check Number</th>
-                <th>Amount</th>
-                <th>Payment Collect</th>
-                <th>Payment Left</th>
-                <th>Payment Status</th>
-            </tr>
-            </thead>--%>
-    <asp:GridView ID="GridView1" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID" DataSourceID="SqlDataSource2">
-        <Columns>
-            <asp:BoundField DataField="InvoiceID" ReadOnly="True" SortExpression="InvoiceID" />
-            <asp:BoundField DataField="OrganizationName" SortExpression="OrganizationName" />
-            <asp:BoundField DataField="Program" SortExpression="Program" />
-            <asp:BoundField DataField="PaymentType" SortExpression="PaymentType" />
-            <asp:BoundField DataField="CheckNumber" SortExpression="CheckNumber" />
-            <asp:BoundField DataField="Amount" SortExpression="Amount" />
-            <asp:BoundField DataField="PaymentCollect" SortExpression="PaymentCollect" />
-            <asp:BoundField DataField="PaymentLeft" SortExpression="PaymentLeft" />
-            <asp:BoundField DataField="PaymentStatus" SortExpression="PaymentStatus" />
-        </Columns>
-<%--        <RowStyle BackColor="#339933"/> --%>
-    </asp:GridView>
-    </div>
+                <div class="table-responsive">
+                    <asp:Table class="table table-hover table-striped table-bordered" runat="server">
+
+                    </asp:Table>
+                    <asp:GridView ID="GridView1" class="table table-hover table-striped table-bordered" OnRowDataBound="GridView1_RowDataBound" runat="server" AllowPaging="true" AutoGenerateColumns="False" DataKeyNames="InvoiceID" DataSourceID="SqlDataSource2">
+                        <Columns>
+                            <asp:BoundField DataField="InvoiceID" HeaderText="Invoice ID" ReadOnly="True" SortExpression="InvoiceID" />
+                            <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
+                            <asp:BoundField DataField="Program" HeaderText="Program" SortExpression="Program" />
+                            <asp:BoundField DataField="PaymentType" HeaderText="Payment Type" SortExpression="PaymentType" />
+                            <asp:BoundField DataField="CheckNumber" HeaderText="Check Number" SortExpression="CheckNumber" />
+                            <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
+                            <asp:BoundField DataField="PaymentCollect" HeaderText="Payment Collected" SortExpression="PaymentCollect" />
+                            <asp:BoundField DataField="PaymentLeft" HeaderText="Payment Remaining" SortExpression="PaymentLeft" />
+                            <asp:BoundField DataField="PaymentStatus" HeaderText="Payment Status" SortExpression="PaymentStatus" />
+                        </Columns>
+                <%--        <RowStyle BackColor="#339933"/> --%>
+                    </asp:GridView>
+                    
+                    
+                </div>
+                
 
             </div>
             <!-- ends panel-body-->
@@ -337,10 +331,19 @@ function Calculation(){
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
+        $('#GridView1').DataTable({
+            //responsive: true,
+            paging: true,
+            ordering: true,
+            searching: true
+
         });
+        $("#GridView1").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable();
+       
     });
+    </script>
+    <script>
+        
     </script>
 </asp:Content>
 

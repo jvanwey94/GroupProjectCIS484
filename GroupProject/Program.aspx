@@ -260,7 +260,17 @@
                         </div>
                         <!--Panel Heading-->
                         <div class="panel-body">
-                            <asp:GridView ID="GridView1" CssClass="table table-responsive" runat="server"></asp:GridView>
+                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                                <Columns>
+                                    <asp:BoundField DataField="ProgName" HeaderText="ProgName" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="SiteType" HeaderText="SiteType" SortExpression="SiteType" />
+                                    <asp:BoundField DataField="ProgStatus" HeaderText="ProgStatus" SortExpression="ProgStatus" />
+                                    <asp:BoundField DataField="ProgAddress" HeaderText="ProgAddress" SortExpression="ProgAddress" />
+                                    <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+                                    <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
+                                </Columns>
+                            </asp:GridView>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [ProgName], [SiteType], [ProgStatus], [ProgAddress], [City], [County] FROM [RegularProgram]"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>
                                 
                            

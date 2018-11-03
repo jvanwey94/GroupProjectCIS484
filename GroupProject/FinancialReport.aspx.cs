@@ -9,7 +9,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-using ClosedXML.Excel;
+//using ClosedXML.Excel;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
@@ -38,9 +38,33 @@ public partial class FinancialReport : System.Web.UI.Page
             }
             //    dbInvoice.Visible = true;
         }
+        
+
     }
 
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            e.Row.TableSection = TableRowSection.TableHeader;
+        }
+    }
 
+    public static void MakeAccessible(GridView GridView1)
+    {
+        if (GridView1.Rows.Count <= 0) return;
+        GridView1.UseAccessibleHeader = true;
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        if (GridView1.ShowFooter)
+            GridView1.FooterRow.TableSection = TableRowSection.TableFooter;
+    }
+
+    protected override void OnPreRender(EventArgs e)
+    {
+       
+        base.OnPreRender(e);
+        MakeAccessible(GridView1);
+    }
     
     
 
@@ -295,32 +319,32 @@ public partial class FinancialReport : System.Web.UI.Page
         adapt.Fill(dt);
 
 
-        String folderPath = "C:\\Users\\labpatron\\Documents";
-        if(!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-        using (XLWorkbook wb = new XLWorkbook())
-        {
-            wb.Worksheets.Add(dt, "Financial Reports");
-            String myName = Server.UrlEncode("Test" + "_" +
-                DateTime.Now.ToShortDateString() + ".xlsx");
-            MemoryStream stream = GetStream(wb);
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.BinaryWrite(stream.ToArray());
-            Response.End();
-        }
+        //String folderPath = "C:\\Users\\labpatron\\Documents";
+        //if(!Directory.Exists(folderPath))
+        //{
+        //    Directory.CreateDirectory(folderPath);
+        //}
+        //using (XLWorkbook wb = new XLWorkbook())
+        //{
+        //    wb.Worksheets.Add(dt, "Financial Reports");
+        //    String myName = Server.UrlEncode("Test" + "_" +
+        //        DateTime.Now.ToShortDateString() + ".xlsx");
+        //    MemoryStream stream = GetStream(wb);
+        //    Response.Clear();
+        //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.BinaryWrite(stream.ToArray());
+        //    Response.End();
+        //}
     }
 
-    public MemoryStream GetStream(XLWorkbook excelWorkbook)
-    {
-        MemoryStream fs = new MemoryStream();
-        excelWorkbook.SaveAs(fs);
-        fs.Position = 0;
-        return fs;
-    }
+    //public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    //{
+    //    MemoryStream fs = new MemoryStream();
+    //    excelWorkbook.SaveAs(fs);
+    //    fs.Position = 0;
+    //    return fs;
+    //}
 
     protected void Export(object sender, EventArgs e)
     {
