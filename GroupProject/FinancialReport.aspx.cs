@@ -9,7 +9,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-using ClosedXML.Excel;
+//using ClosedXML.Excel;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
@@ -300,27 +300,27 @@ public partial class FinancialReport : System.Web.UI.Page
         {
             Directory.CreateDirectory(folderPath);
         }
-        using (XLWorkbook wb = new XLWorkbook())
-        {
-            wb.Worksheets.Add(dt, "Financial Reports");
-            String myName = Server.UrlEncode("Test" + "_" +
-                DateTime.Now.ToShortDateString() + ".xlsx");
-            MemoryStream stream = GetStream(wb);
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.BinaryWrite(stream.ToArray());
-            Response.End();
-        }
+        //using (XLWorkbook wb = new XLWorkbook())
+        //{
+        //    wb.Worksheets.Add(dt, "Financial Reports");
+        //    String myName = Server.UrlEncode("Test" + "_" +
+        //        DateTime.Now.ToShortDateString() + ".xlsx");
+        //    MemoryStream stream = GetStream(wb);
+        //    Response.Clear();
+        //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.BinaryWrite(stream.ToArray());
+        //    Response.End();
+        //}
     }
 
-    public MemoryStream GetStream(XLWorkbook excelWorkbook)
-    {
-        MemoryStream fs = new MemoryStream();
-        excelWorkbook.SaveAs(fs);
-        fs.Position = 0;
-        return fs;
-    }
+    //public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    //{
+    //    MemoryStream fs = new MemoryStream();
+    //    excelWorkbook.SaveAs(fs);
+    //    fs.Position = 0;
+    //    return fs;
+    //}
 
     protected void Export(object sender, EventArgs e)
     {

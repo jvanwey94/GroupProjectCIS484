@@ -146,11 +146,11 @@
                                         <td><i class="fa fa-times"></i></td>
                                     </tr>
                                     <tr class="even gradeA">
-                                        <td>Hector</td>
-                                        <td>Bird</td>
-                                        <td>Owl</td>
+                                        <td style="height: 39px">Hector</td>
+                                        <td style="height: 39px">Bird</td>
+                                        <td style="height: 39px">Owl</td>
                            <%--             <td>5</td>--%>
-                                        <td><i class="fa fa-check"></i></td>
+                                        <td style="height: 39px"><i class="fa fa-check"></i></td>
                                     </tr>
                                     <tr class="odd gradeA">
                                         <td>Ursala</td>
@@ -197,6 +197,19 @@
                     </div>
                     <!-- /.panel -->
                 </div>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal]"></asp:SqlDataSource>
+                &nbsp;<asp:Button ID="Button1" runat="server" Text="Search" class="btn btn-primary" onClick ="btn1_Search" Width="98px"/>
+                <asp:TextBox ID="TextBox1" class="form-control" runat="server" Width="99px"></asp:TextBox>
+                &nbsp;<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
+                    <Columns>
+                        <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
+                        <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
+                        <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
+                        <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
+                        <asp:BoundField DataField="NumberOfPeopleMet" HeaderText="NumberOfPeopleMet" SortExpression="NumberOfPeopleMet" />
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalType], [AnimalName], [AnimalStatus], [NumberOfEvents], [NumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
             </div>
         </div>
         <!-- /#page-wrapper -->

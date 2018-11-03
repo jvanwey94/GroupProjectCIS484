@@ -147,7 +147,6 @@ function Calculation(){
                 <asp:Label ID="lblSearch" runat="server" Text="Search for Invoice Number:"  Font-Size="X-Large" ></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
-        <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="Search" Width="150" OnClick="btn1_Search" />
         <br />
     <asp:Button ID="ButtonExport" runat="server" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
