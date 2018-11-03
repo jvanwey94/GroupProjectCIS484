@@ -193,55 +193,7 @@
                             Past Events
                         </div>
                         <!--Panel Heading-->
-                        <div class="panel-body">
-                               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Organization</th>
-                                        <th>Address</th>
-                                        <th>Date and Time</th>
-                                        <th>Program</th>
-                                        <th>Educators</th>
-                                        <th>Birds</th>
-                                        <th>Mammals</th>
-                                        <th>Reptiles</th>
-                                        <th>Payment Received?</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Bridgett's Sweet Sixteen</td>
-                                        <td>PaddleRidge Country Club</td>
-                                        <td>11/17/2017 8:00PM</td>
-                                        <td>For Goodness Snakes</td>
-                                        <td>Heath</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Stevie, Mairin, Ethan</td>
-                                        <td>Yes ($280)</td>
-                                    </tr>
-                                    <tr class="even GradeC">
-                                        <td>Stonewall Elementary School</td>
-                                        <td>Downtown Harrisonburg</td>
-                                        <td>10/15/2017 10:00AM</td>
-                                        <td>Special Request</td>
-                                        <td>Mary</td>
-                                        <td>Porter, Hector</td>
-                                        <td>Lucy</td>
-                                        <td>Ethan</td>
-                                        <td>No (waiting)</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Beethoven High School</td>
-                                        <td>Outside Downtown Harrisonburg</td>
-                                        <td>10/10/2017 11:00AM</td>
-                                        <td>Birds of Prey</td>
-                                        <td>Heath</td>
-                                        <td>Eugene, Kyle, Ursala</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Yes ($150)</td>
-                                    </tr>
+                        
 
                                 </tbody>
                             </table>
@@ -260,7 +212,11 @@
                         </div>
                         <!--Panel Heading-->
                         <div class="panel-body">
+<<<<<<< HEAD
+                            <asp:GridView ID="GridView1" CssClass="table table-responsive" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+=======
                             <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+>>>>>>> b89fa7cdff37a0949aebbad2f3821d81db98b615
                                 <Columns>
                                     <asp:BoundField DataField="ProgName" HeaderText="ProgName" SortExpression="ProgName" />
                                     <asp:BoundField DataField="SiteType" HeaderText="SiteType" SortExpression="SiteType" />
@@ -356,5 +312,7 @@
             
         </div>
     </div>--%>
+</div>
+    </div>
 </asp:Content>
 
