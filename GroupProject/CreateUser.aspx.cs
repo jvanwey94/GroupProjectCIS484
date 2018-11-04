@@ -34,7 +34,7 @@ public partial class CreateUser : System.Web.UI.Page
             createUser.Connection = sc;
 
             //find the personID
-            String countdata = "select count(*) From [dbo].[Person]";
+            String countdata = "select count(*) From [dbo].[User]";
             createUser = new SqlCommand(countdata, sc);
             Int32 countItem = (Int32)createUser.ExecuteScalar();
             int readcount = (int)countItem + 1;
@@ -58,7 +58,7 @@ public partial class CreateUser : System.Web.UI.Page
                     if (response == true)
                     {
                         // INSERT USER RECORD
-                        createUser.CommandText = "insert into[dbo].[Person] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated)";
+                        createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@userName)";
                         createUser.Parameters.Add(new SqlParameter("@FName", txtFirstName.Text));
                         createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
                         createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
@@ -67,6 +67,7 @@ public partial class CreateUser : System.Web.UI.Page
                         createUser.Parameters.Add(new SqlParameter("@JobLevel", txtJobLevel.SelectedItem.ToString()));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdated", DateTime.Now));
+                        createUser.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
 
 
                         createUser.ExecuteNonQuery();

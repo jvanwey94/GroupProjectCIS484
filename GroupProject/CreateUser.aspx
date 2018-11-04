@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="CreateUser.aspx.cs" Inherits="CreateUser" %>
+﻿<%@ Page Title="Create User" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="CreateUser.aspx.cs" Inherits="CreateUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 
@@ -45,6 +45,7 @@
                 </asp:DropDownList>
             </div>
         </div>
+
        <div  style="margin: 5% 0 1% 17.5%;">
         <div class="row">
             <div class="col-lg-4 col-md-2" style="margin: 0 0 1% 0;">
@@ -66,9 +67,10 @@
                 <asp:TextBox ID="txtConfirm" type="password" class="form-control" runat="server"></asp:TextBox>
             </div>
          </div>
-        <div class="row">
+        <div class="row" style=" padding-top:1em; " >
             <div class="col-lg-4 col-md-2">
-                <asp:Button ID="btnSubmit" class="btn btn-primary" runat="server" OnClick="btnSubmit_Click" Text="Create" Width="150"  />
+                
+                <asp:Button ID="btnSubmit" class="btn btn-lg btn-success btn-block" Text="Create" OnClick="btnSubmit_Click" runat="server"  Width="150" />
             </div>
         </div>
     </div>
