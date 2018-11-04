@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -8,20 +9,19 @@ using System.Web.UI.WebControls;
 
 public partial class Program : System.Web.UI.Page
 {
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
     ////SqlConnection sc = new SqlConnection(@"server =Localhost;Database=WildLifeCenter;Trusted_Connection=True");
-    //protected void Page_Load(object sender, EventArgs e)
-    //{
-    //    if (!IsPostBack)
-    //    {
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
     //        fillStatusList();
     //        fillMonthList();
     //        populateAnimals("'" + "Bird" +"'", DropDownList2);
     //        populateAnimals("'" + "Mammal" + "'", DropDownList3);
     //        populateAnimals("'" + "Reptile" + "'", DropDownList4);
-    //    }
-    //}
-
+        }
+    }
 
     //// Insert into database
     //protected void Button1_Click(object sender, EventArgs e)

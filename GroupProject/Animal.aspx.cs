@@ -42,60 +42,60 @@ public partial class Animal : System.Web.UI.Page
         sc.Close();
     }
 
-    protected void btn1_Search(object sender, EventArgs e)
-    {
+    //protected void btn1_Search(object sender, EventArgs e)
+    //{
 
-        if (TextBox1.Text != string.Empty)
-        {
-            PopulateGridview();
-            GridView1.Visible = true;
-        }
-        else
-        {
-            GridView1.Visible = false;
-            Response.Write("<script>alert('No matching records are found! Please enter a Payment Number!')</script>");
+    //    if (TextBox1.Text != string.Empty)
+    //    {
+    //        PopulateGridview();
+    //        GridView1.Visible = true;
+    //    }
+    //    else
+    //    {
+    //        GridView1.Visible = false;
+    //        Response.Write("<script>alert('No matching records are found! Please enter a Payment Number!')</script>");
 
-        }
+    //    }
 
 
-    }
+    //}
 
-    void PopulateGridview()
-    {
-        sc.Open();
-        String getAnimalID = TextBox1.Text;
+    //void PopulateGridview()
+    //{
+    //    sc.Open();
+    //    String getAnimalID = TextBox1.Text;
 
-        String sqlDA = "SELECT * FROM [dbo].[Animal]  where animalName = @animalName";
-        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, sc);
-        insert.Parameters.AddWithValue("@animalName", TextBox1.Text);
-        SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
+    //    String sqlDA = "SELECT * FROM [dbo].[Animal]  where animalName = @animalName";
+    //    System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, sc);
+    //    insert.Parameters.AddWithValue("@animalName", TextBox1.Text);
+    //    SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
 
-        getsqlDA.Fill(dt);
+    //    getsqlDA.Fill(dt);
 
-        //if no matching records found, the system populate error message!
-        if (dt.Rows.Count == 0)
-        {
-            GridView1.Visible = false;
-            Response.Write("<script>alert('No matching records are found')</script>");
-            return;
-        }
-        else
-        {
-            //check the textbox validation (no empty string input
-            if (TextBox1.Text != string.Empty)
-            {
-                if (dt.Rows.Count > 0)
-                {
-                    GridView1.DataSourceID = null;
-                    GridView1.DataSource = dt;
-                    GridView1.DataBind();
-                }
-                GridView1.Visible = true;
-            }
-        }
-        sc.Close();
+    //    //if no matching records found, the system populate error message!
+    //    if (dt.Rows.Count == 0)
+    //    {
+    //        GridView1.Visible = false;
+    //        Response.Write("<script>alert('No matching records are found')</script>");
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        //check the textbox validation (no empty string input
+    //        if (TextBox1.Text != string.Empty)
+    //        {
+    //            if (dt.Rows.Count > 0)
+    //            {
+    //                GridView1.DataSourceID = null;
+    //                GridView1.DataSource = dt;
+    //                GridView1.DataBind();
+    //            }
+    //            GridView1.Visible = true;
+    //        }
+    //    }
+    //    sc.Close();
 
-    }
+    //}
 
     protected void ExitButton(object sender, EventArgs e)
     {

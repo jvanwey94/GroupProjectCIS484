@@ -112,104 +112,26 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Kind of Animal</th>
-                                        <th>Specific Kind of Animal</th>
-                              <%--          <th>Age</th>--%>
-                                        <th class="col-lg-1">Available for an Event?</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Eugene</td>
-                                        <td>Bird</td>
-                                        <td>Falcon</td>
-                                        <%--<td>2</td>--%>
-                                        <td><i class="fa  fa-check"></i></td>
-                                    </tr>
-                                      <tr class="even GradeC">
-                                        <td>Kyle</td>
-                                        <td>Bird</td>
-                                        <td>Falcon</td>
-                                  <%--      <td>1</td>--%>
-                                        <td><i class="fa  fa-check"></i></td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Porter</td>
-                                        <td>Bird</td>
-                                        <td>Owl</td>
-                                      <%--  <td>4</td>--%>
-                                        <td><i class="fa fa-times"></i></td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td style="height: 39px">Hector</td>
-                                        <td style="height: 39px">Bird</td>
-                                        <td style="height: 39px">Owl</td>
-                           <%--             <td>5</td>--%>
-                                        <td style="height: 39px"><i class="fa fa-check"></i></td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Ursala</td>
-                                        <td>Bird</td>
-                                        <td>Owl</td>
-                                     <%--   <td>2</td>--%>
-                                        <td><i class="fa fa-times"></i></td>
-                                    </tr>
-                                    <tr class="even gradaA">
-                                        <td>Lucy</td>
-                                        <td>Mammal</td>
-                                        <td>Oppossum</td>
-                               <%--         <td>3</td>--%>
-                                        <td><i class="fa fa-times"></i></td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Stevie</td>
-                                        <td>Reptile</td>
-                                        <td>Snake</td>
-                                <%--        <td>4</td>--%>
-                                        <td><i class="fa fa-times"></i></td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Mairin</td>
-                                        <td>Reptile</td>
-                                        <td>Snake</td>
-                                  <%--      <td>2</td>--%>
-                                        <td><i class="fa fa-check"></i></td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Ethan</td>
-                                        <td>Reptile</td>
-                                        <td>Snake</td>
-<%--                                        <td>1</td>--%>
-                                        <td><i class="fa fa-check"></i></td>
-                                    </tr>
-
-                                </tbody>
-                                </table>
-                            </div>
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
+                    <Columns>
+                        <asp:BoundField DataField="AnimalName" HeaderText="Name" SortExpression="AnimalName" />
+                        <asp:BoundField DataField="AnimalType" HeaderText="Type" SortExpression="AnimalType" />
+                        <asp:BoundField DataField="AnimalStatus" HeaderText="Status" SortExpression="AnimalStatus" />
+                        <asp:BoundField DataField="NumberOfEvents" HeaderText="Number Of Events" SortExpression="NumberOfEvents" />
+                        <asp:BoundField DataField="NumberOfPeopleMet" HeaderText="Number Of People Met" SortExpression="NumberOfPeopleMet" />
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal]"></asp:SqlDataSource>
+<%--                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal]"></asp:SqlDataSource>
                 &nbsp;<asp:Button ID="Button1" runat="server" Text="Search" class="btn btn-primary" onClick ="btn1_Search" Width="98px"/>
-                <asp:TextBox ID="TextBox1" class="form-control" runat="server" Width="99px"></asp:TextBox>
-                &nbsp;<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
-                    <Columns>
-                        <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
-                        <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
-                        <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
-                        <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
-                        <asp:BoundField DataField="NumberOfPeopleMet" HeaderText="NumberOfPeopleMet" SortExpression="NumberOfPeopleMet" />
-                    </Columns>
-                </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalType], [AnimalName], [AnimalStatus], [NumberOfEvents], [NumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
+                <asp:TextBox ID="TextBox1" class="form-control" runat="server" Width="99px"></asp:TextBox>--%>
+
             </div>
         </div>
         <!-- /#page-wrapper -->
@@ -281,29 +203,26 @@
     <!-- /#wrapper -->
 
           <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=GridView1]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                responsive: true,
+                paging: true,
+                lengthChange: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false
+            });
         });
-    });
     </script>
 
     <%--<p>

@@ -57,8 +57,7 @@
         
         <div class="container-fluid">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr /> 
+            </asp:ContentPlaceHolder> 
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Wild Life Center Application</p>
             </footer>

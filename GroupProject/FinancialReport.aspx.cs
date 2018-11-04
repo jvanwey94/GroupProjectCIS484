@@ -63,7 +63,7 @@ public partial class FinancialReport : System.Web.UI.Page
     {
        
         base.OnPreRender(e);
-        MakeAccessible(GridView1);
+        //MakeAccessible(GridView1);
     }
     
     

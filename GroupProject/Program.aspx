@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Program" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Program.aspx.cs" Inherits="Program" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+   
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -53,10 +54,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="events.html"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
@@ -88,7 +89,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Upcoming Events
+                            Past Events
                              <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -110,132 +111,42 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Organization</th>
-                                        <th>Address</th>
-                                        <th>Date and Time</th>
-                                        <th>Program</th>
-                                        <th>Educators</th>
-                                        <th>Birds</th>
-                                        <th>Mammals</th>
-                                        <th>Reptiles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>James Madison University</td>
-                                        <td>800 South Main Street Harrisonburg, VA 22801</td>
-                                        <td>1/1/2018 4:00PM</td>
-                                        <td>Legends</td>
-                                        <td>Heath, Mary</td>
-                                        <td>Eugene</td>
-                                        <td></td>
-                                        <td>Stevie</td>
-                                    </tr>
-                                      <tr class="even GradeC">
-                                        <td>Harrisonburg Library</td>
-                                        <td>Downtown</td>
-                                        <td>1/17/2018 10:00AM</td>
-                                        <td>Litter</td>
-                                        <td>Heath</td>
-                                        <td>Eugene, Porter</td>
-                                        <td>Lucy</td>
-                                        <td>Stevie</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Dylan's Birthday Party</td>
-                                        <td>Small house</td>
-                                        <td>2/2/2018 11:00AM </td>
-                                        <td>Owls</td>
-                                        <td>Bart</td>
-                                        <td>Porter, Hector, Ursala</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Kappa Pi</td>
-                                        <td>Madison Ballroom</td>
-                                        <td>2/12/2018 12:00Pm</td>
-                                        <td>Falcons</td>
-                                        <td>Heath</td>
-                                        <td>Eugene, Kyle</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>New and Improv'd</td>
-                                        <td>Comedy House</td>
-                                        <td>2/29/2018 4:00PM</td>
-                                        <td>Snakes</td>
-                                        <td>Mary</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Stevie, Mairin, Ethan</td>
-                                    </tr>
-
-                                </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-            </div>
-            <div class="row">
+                            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Past Events
-                        </div>
-                        <!--Panel Heading-->
-                        
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Past Events
-                        </div>
                         <!--Panel Heading-->
                         <div class="panel-body">
-<<<<<<< HEAD
-                            <asp:GridView ID="GridView1" CssClass="table table-responsive" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-=======
-                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
->>>>>>> b89fa7cdff37a0949aebbad2f3821d81db98b615
+                            
+                           
+                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
+
                                 <Columns>
-                                    <asp:BoundField DataField="ProgName" HeaderText="ProgName" SortExpression="ProgName" />
-                                    <asp:BoundField DataField="SiteType" HeaderText="SiteType" SortExpression="SiteType" />
-                                    <asp:BoundField DataField="ProgStatus" HeaderText="ProgStatus" SortExpression="ProgStatus" />
-                                    <asp:BoundField DataField="ProgAddress" HeaderText="ProgAddress" SortExpression="ProgAddress" />
+                                    <asp:BoundField DataField="ProgName" HeaderText="Program Name" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
+                                    <asp:BoundField DataField="ProgStatus" HeaderText="Program Status" SortExpression="ProgStatus" />
+                                    <asp:BoundField DataField="ProgAddress" HeaderText="Program Address" SortExpression="ProgAddress" />
                                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
                                 </Columns>
                             </asp:GridView>
                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [ProgName], [SiteType], [ProgStatus], [ProgAddress], [City], [County] FROM [RegularProgram]"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>
-                                
+                            
                            
                         </div>
                     </div>
                 </div>
             </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
+
             
 
     <%--<div>
@@ -314,5 +225,27 @@
     </div>--%>
 </div>
     </div>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=GridView1]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                responsive: true,
+                paging: true,
+                lengthChange: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false
+            });
+        });
+    </script>
 </asp:Content>
 

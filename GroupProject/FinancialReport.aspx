@@ -21,6 +21,83 @@ function Calculation(){
     <script src="https://cdn.datatables.net/1.10.13/js/jQuery.dataTables.min.js"></script>
     <link href="https://cdn.datatable.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Home.aspx">Wildlife Center Of Virginia</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+      
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="manageAnimal.html">Manage Animals</a>
+                            	</li>
+                            	<li>
+                            		<a href="trackAnimal.html">Track Animals</a>
+                            	</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    
+    <div id="page-wrapper">
     <!--Page header -->
     <div class="row">
         <div class="col-lg-12">
@@ -152,7 +229,8 @@ function Calculation(){
         <br />
     <asp:Button ID="ButtonExport" runat="server" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
-        <asp:GridView ID="dbInvoice" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
+    <div class="panel-body">
+        <asp:GridView ID="dbInvoice" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
                 OnRowCancelingEdit="dbInvoice_RowCancelingEdit" OnRowUpdating="dbInvoice_RowUpdating"   >
           
                 <Columns>
@@ -271,6 +349,7 @@ function Calculation(){
         <HeaderStyle BackColor="#663300" ForeColor="#ffffff"/>  
         <RowStyle BackColor="#e7ceb6"/>  
         </asp:GridView>
+        </div>
       <asp:Label ID="lblComplete" runat="server" Text="Complete"  Font-Size="Large" ForeColor="Green"></asp:Label>
        <asp:Label ID="lblIncomplete" runat="server" Text="Incomplete"  Font-Size="Large" ForeColor="Red"></asp:Label>
     <div class="row">
@@ -279,33 +358,130 @@ function Calculation(){
                 Financial Reports
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <asp:Table class="table table-hover table-striped table-bordered" runat="server">
+        <asp:GridView ID="GridViewTest" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID">
+          
+                <Columns>
+                    <asp:TemplateField HeaderText ="InvoiceID">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_ID" Text ='<%# Eval("InvoiceID") %>' runat ="server" Width="80"/>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridInvoiceID" Text ='<%#Eval("InvoiceID") %>' runat ="server"  Width="90" />
+                        </EditItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Organization Name">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_OrganizationName" Text ='<%# Eval("OrganizationName") %>' runat ="server" Width="150"/>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridOrganization" Text ='<%#Eval("OrganizationName") %>' runat ="server"  Width="150"/>
+                        </EditItemTemplate>
+                         </asp:TemplateField>
 
-                    </asp:Table>
-                    <asp:GridView ID="GridView1" class="table table-hover table-striped table-bordered" OnRowDataBound="GridView1_RowDataBound" runat="server" AllowPaging="true" AutoGenerateColumns="False" DataKeyNames="InvoiceID" DataSourceID="SqlDataSource2">
-                        <Columns>
-                            <asp:BoundField DataField="InvoiceID" HeaderText="Invoice ID" ReadOnly="True" SortExpression="InvoiceID" />
-                            <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
-                            <asp:BoundField DataField="Program" HeaderText="Program" SortExpression="Program" />
-                            <asp:BoundField DataField="PaymentType" HeaderText="Payment Type" SortExpression="PaymentType" />
-                            <asp:BoundField DataField="CheckNumber" HeaderText="Check Number" SortExpression="CheckNumber" />
-                            <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
-                            <asp:BoundField DataField="PaymentCollect" HeaderText="Payment Collected" SortExpression="PaymentCollect" />
-                            <asp:BoundField DataField="PaymentLeft" HeaderText="Payment Remaining" SortExpression="PaymentLeft" />
-                            <asp:BoundField DataField="PaymentStatus" HeaderText="Payment Status" SortExpression="PaymentStatus" />
-                        </Columns>
-                <%--        <RowStyle BackColor="#339933"/> --%>
-                    </asp:GridView>
-                    
-                    
-                </div>
-                
+                    <asp:TemplateField HeaderText ="Program">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Program" Text ='<%# Eval("Program") %>' runat ="server" Width="150"/>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridProgram" Text ='<%#Eval("Program") %>' runat ="server" Width="150"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
 
-            </div>
+                    <asp:TemplateField HeaderText ="Payment Type">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PaymentType" Text ='<%# Eval("PaymentType") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridPaymentType" Text ='<%#Eval("PaymentType") %>' runat ="server" Width="100"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="Check Number">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_CheckNumber" Text ='<%# Eval("CheckNumber") %>' runat ="server" />
+                     .   </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridCheckNumber" Text ='<%#Eval("CheckNumber") %>' runat ="server" Width="90"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="Amount">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Amount" Text ='<%# Eval("Amount") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server" Width="100"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="Payment Collect">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PaymentCollect" Text ='<%# Eval("PaymentCollect") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridPaymentCollect" Text ='<%#Eval("PaymentCollect") %>' runat ="server" Width="100"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    
+                    <asp:TemplateField HeaderText ="Payment Left">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PaymentLeft" Text ='<%# Eval("PaymentLeft") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID ="GridPaymentLeft" Text ='<%#Eval("PaymentLeft") %>' runat ="server" Width="100"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="Status">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Status" Text ='<%# Eval("PaymentStatus") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+        
+                            <asp:TextBox ID ="GridStatus" Text ='<%#Eval("PaymentStatus") %>' runat ="server" Width="90"/>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="LastUpdatedBy">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_LastUpdatedBy" Text ='<%# Eval("LastUpdatedBy") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                        <asp:TextBox ID ="GridLastUpdatedBy" Text ='<%#Eval("LastUpdatedBy") %>' readonly="true" runat ="server" Width="80"/>
+                    </EditItemTemplate>
+                            </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText ="LastUpdated">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_LastUpdated" Text ='<%# Eval("LastUpdated") %>' runat ="server" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                        <asp:TextBox ID ="GridLastUpdated" Text ='<%#Eval("LastUpdated") %>' readonly="true" runat ="server" Width="160"/>
+                    </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Edit">
+                        <ItemTemplate>
+                            <asp:Button ID="btn_Edit" runat ="server" CommandName="Edit" Text="Edit" ToolTip="Edit" Width =" 65px" Height =" 30px" />
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:Button ID="btn_Upload" runat ="server" CommandName="Update" Text="Update" ToolTip="Update" Width =" 65px" Height =" 30px" />
+                            <asp:Button ID="btn_Cancel"  runat ="server" CommandName="Cancel" Text="Cancel" ToolTip="Cancel" Width =" 65px" Height =" 30px" />
+                        </EditItemTemplate>
+
+              
+                    </asp:TemplateField>
+                </Columns>
+        <HeaderStyle BackColor="#663300" ForeColor="#ffffff"/>  
+        <RowStyle BackColor="#e7ceb6"/>  
+        </asp:GridView>
+        </div>
             <!-- ends panel-body-->
         </div>
         <!--ends panel-->
+    </div>
+    </div>
     </div>
     <!--ends row-->
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WildLifeCenterConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
