@@ -6,17 +6,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
+using System.Reflection;
 using System.Data.Common;
+//using ClosedXML.Excel;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
     //SqlConnection connect = new SqlConnection(@"Server =localhost; Database = Payment4; Trusted_Connection = Yes;");
     System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
 
+    //create data table variable ti display gridview
+    DataTable dtbl = new DataTable();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtLastUpdatedBy.Text = "Kevin    ";
-        txtLastUpdated.Text = DateTime.Now.ToString();
+        //txtLastUpdatedBy.Text = "Kevin    ";
+        //txtLastUpdated.Text = DateTime.Now.ToString();
         lblPaymentCollect.Visible = false;
         lblPaymentLeft.Visible = false;
         txtPaymentCollect.Visible = false;
@@ -25,25 +31,49 @@ public partial class FinancialReport : System.Web.UI.Page
         lblIncomplete.Visible = false;
         if (!Page.IsPostBack)
         {
-            txtLastUpdated.Text = DateTime.Now.ToString();
+            //txtLastUpdated.Text = DateTime.Now.ToString();
             if (txtPaymentType.SelectedItem.ToString() == "Check")
             {
 
             }
             //    dbInvoice.Visible = true;
         }
+        
+
     }
 
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            e.Row.TableSection = TableRowSection.TableHeader;
+        }
+    }
 
-    //create data table variable ti display gridview
-    DataTable dtbl = new DataTable();
+    public static void MakeAccessible(GridView GridView1)
+    {
+        if (GridView1.Rows.Count <= 0) return;
+        GridView1.UseAccessibleHeader = true;
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        if (GridView1.ShowFooter)
+            GridView1.FooterRow.TableSection = TableRowSection.TableFooter;
+    }
+
+    protected override void OnPreRender(EventArgs e)
+    {
+       
+        base.OnPreRender(e);
+        //MakeAccessible(GridView1);
+    }
+    
+    
 
     //populate gridview
     void PopulateGridview()
     {
         connect.Open();
         String getInvoiceNumber = txtSearch.Text;
-        txtTest.Text = getInvoiceNumber + "succseessfully connect to database!  ";
+        lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert= new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
@@ -144,18 +174,18 @@ public partial class FinancialReport : System.Web.UI.Page
                 insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
                 insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
                 insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
-                insert.Parameters.AddWithValue("@LastUpdatedBy", InputLastUpdatedBy);
-                insert.Parameters.AddWithValue("@LastUpdated", InputLastUpdated);
+                insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+                insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
 
                 insert.ExecuteNonQuery();
                 lblStatus.Text = "succseessful to add this payment to database!";
-                txtTest.Text = InputStatus;
+                //txtTest.Text = InputStatus;
 
                 txtAmount.Text = string.Empty;
                 txtCheckNumber.Text = string.Empty;
                 txtInvoice.Text = string.Empty;
-                txtLastUpdatedBy.Text = string.Empty;
-                txtLastUpdated.Text = string.Empty;
+                //txtLastUpdatedBy.Text = string.Empty;
+                //txtLastUpdated.Text = string.Empty;
                 txtSearch.Text = string.Empty;
 
             }
@@ -245,8 +275,8 @@ public partial class FinancialReport : System.Web.UI.Page
         connect.Close();
         PopulateGridview();
        
-        txtTest.Text = "Successfully updated";
-        txtTest.Text = "";
+        lblStatus.Text = "Successfully updated";
+       
         //}
         //catch (Exception ex)
         //{
@@ -278,5 +308,46 @@ public partial class FinancialReport : System.Web.UI.Page
     void dbInvoice_CellValueChanged(object sender, EventArgs e)
     {
 
+    }
+
+    public void ExportToExcel()
+    {
+        DataTable dt = new DataTable();
+        String sqlDA = "SELECT * FROM [dbo].[Payment]";
+        SqlCommand filltable = new SqlCommand(sqlDA, connect);
+        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+        adapt.Fill(dt);
+
+
+        //String folderPath = "C:\\Users\\labpatron\\Documents";
+        //if(!Directory.Exists(folderPath))
+        //{
+        //    Directory.CreateDirectory(folderPath);
+        //}
+        //using (XLWorkbook wb = new XLWorkbook())
+        //{
+        //    wb.Worksheets.Add(dt, "Financial Reports");
+        //    String myName = Server.UrlEncode("Test" + "_" +
+        //        DateTime.Now.ToShortDateString() + ".xlsx");
+        //    MemoryStream stream = GetStream(wb);
+        //    Response.Clear();
+        //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.BinaryWrite(stream.ToArray());
+        //    Response.End();
+        //}
+    }
+
+    //public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    //{
+    //    MemoryStream fs = new MemoryStream();
+    //    excelWorkbook.SaveAs(fs);
+    //    fs.Position = 0;
+    //    return fs;
+    //}
+
+    protected void Export(object sender, EventArgs e)
+    {
+        ExportToExcel();
     }
 }

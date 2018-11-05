@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Waynesboro Wildlife Refuge</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- My own CSS -->
+    <link href="../dist/css/capstone.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Waynesboro Wildlife Refuge</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+      
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="events.html"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="manageAnimal.html">Manage Animals</a>
+                            	</li>
+                                <li>
+                                    <a href="trackAnimal.html">Tracking Animals</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Events</h1>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Enter Information Here
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form">
+                                        <div class="form-row">
+                                            <div class="col-lg-2 form-check-inline">
+                                                <label class="form-check-label">In House?</label>
+                                                <input class="form-check-input" type="checkbox">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Street Address</label>
+                                                <input class="form-control">
+                                             </div>
+                                             <div class="col-lg-3">
+                                                <label class="form-control-label">City</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-2 flex-column">
+                                                <label class="form-control-label">State</label>
+                                                <div>
+                                                <select class="custom-select form-control">
+                                                    <option>Alabama</option>
+                                                    <option>Alaska</option>
+                                                    <option>Arizona</option>
+                                                    <option>Arkansas</option>
+                                                    <option>California</option>
+                                                    <option>Colorado</option>
+                                                    <option>Connecticut</option>
+                                                    <option>Delaware</option>
+                                                    <option>DC</option>
+                                                    <option>Florida</option>
+                                                    <option>Georgia</option>
+                                                    <option>Hawaii</option>
+                                                    <option>Idaho</option>
+                                                    <option>Illinois</option>
+                                                    <option>Indiana</option>
+                                                    <option>Iowa</option>
+                                                    <option>Kansas</option>
+                                                    <option>Kentucky</option>
+                                                    <option>Louisiana</option>
+                                                    <option>Maine</option>
+                                                    <option>Maryland</option>
+                                                    <option>Massachussetts</option>
+                                                    <option>Michigan</option>
+                                                    <option>Minnesota</option>
+                                                    <option>Missouri</option>
+                                                    <option>Montana</option>
+                                                    <option>Nebraska</option>
+                                                    <option>Nevada</option>
+                                                    <option>New Hampshire</option>
+                                                    <option>New Jersey</option>
+                                                    <option>New Mexico</option>
+                                                    <option>New York</option>
+                                                    <option>North Carolina</option>
+                                                    <option>North Dakota</option>
+                                                    <option>Ohio</option>
+                                                    <option>Oklahoma</option>
+                                                    <option>Oregon</option>
+                                                    <option>Pennsylvania</option>
+                                                    <option>Rhode Island</option>
+                                                    <option>South Carolina</option>
+                                                    <option>South Dakota</option>
+                                                    <option>Tennessee</option>
+                                                    <option>Texas</option>
+                                                    <option>Utah</option>
+                                                    <option>Vermont</option>
+                                                    <option>Virginia</option>
+                                                    <option>Washington</option>
+                                                    <option>West Virginia</option>
+                                                    <option>Wisconsin</option>
+                                                    <option>Wyoming</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-control-label">Zip Code</label>
+                                                <input class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-row col-lg-12">
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Organization Name</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="col-lg-3 form-group flex-column">
+                                                <label class="form-control-label">Program</label>
+                                                <div>
+                                                <select class="custom-select form-control">
+                                                    <option>Display</option>
+                                                    <option>Special Request</option>
+                                                    <option>Open House</option>
+                                                    <option>Tour</option>
+                                                    <option>Whoo's Awake in the Night</option>
+                                                    <option>Wild Winter Worlds</option>
+                                                    <option>Home Sweet Habitat</option>
+                                                    <option>You Are What you Eat</option>
+                                                    <option>Critter's Don't Need Litters</option>
+                                                    <option>For Goodness Snakes</option>
+                                                    <option>Birds of Prey</option>
+                                                    <option>Treat to Release</option>
+                                                    <option>Classroom Visit: Owls</option>
+                                                    <option>Classroom Visit: Turtles</option>
+                                                    <option>Classroom Visit: Snakes</option>
+                                                    <option>Classroom Visit: Falcons</option>
+                                                    <option>Classrooom Visit: Opossums</option>
+                                                    <option>Classroom Visit: Special</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-control-label">Date</label>
+                                                <input class="form-control" placeholder="MM/DD/YYYY">
+                                             </div>
+                                             <div class="col-lg-2">
+                                                <label class="form-control-label">Time</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="col-lg-1 form-group" >
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">AM</label>
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">PM</label>
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row col-lg-12">
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Educator(s)</label>
+                                                <div>
+                                                    <select class="custom-select form-control" multiple>
+                                                        <option>Heath Morrison</option>
+                                                        <option>Caroline Fox</option>
+                                                        <option>Jeremy Soler</option>
+                                                        <option>Shelly Hokanson</option>
+                                                        <option>David Wang</option>
+                                                        <option>Mike Mathis</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Bird(s)</label>
+                                                <div>
+                                                    <select class="custom-select form-control" multiple>
+                                                        <option>Porter</option>
+                                                        <option>Hector</option>
+                                                        <option>Ursala</option>
+                                                        <option>Eugene</option>
+                                                        <option>Kyle</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Mammal(s)</label>
+                                                <div>
+                                                    <select class="custom-select form-control" multiple>
+                                                        <option>Lucy</option>
+                                                        <option>Pedro</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label">Reptile(s)</label>
+                                                <div>
+                                                    <select class="custom-select form-control" multiple>
+                                                        <option>Stevie</option>
+                                                        <option>Mairin</option>
+                                                        <option>Ethan</option>
+                                                        <option>Baxter</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row col-lg-12">
+                                            <a href="eventsAdded.html"><button class="btn btn-primary submit" type="button">Submit</button></a>
+                                        </div>
+                                    </form>
+
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+   <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+</body>
+</html>

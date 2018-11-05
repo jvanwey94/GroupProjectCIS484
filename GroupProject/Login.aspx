@@ -1,42 +1,65 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+﻿<%@ Page Title="Login Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+<asp:Content ID="LoginContent" ContentPlaceHolderID="MainContent" runat="server">
     
-<%--    <h1>Welcome to</h1><br />
-    <h2>Wild Animal center </h2><br />--%>
-    <p>
-               <%-- This is Title--%>
-        <br />
-                <asp:Label ID="lblTitle" runat="server" Text="Welcome to Wildlife Center" Font-Size="XX-Large" ></asp:Label><br />
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-               
-      
-                  
-                <asp:Label ID="lblUserName" runat="server" Text="Username:" Font-Size="Large" ></asp:Label><br />
-                <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox><br />
-        <br />
-        <br />
-                <asp:Label ID="lblPassWord" runat="server" Text="Password"  Font-Size="Large" ></asp:Label><br />
-                <asp:TextBox ID="txtPassword" type="password" runat="server"></asp:TextBox>
-    <p>
-               <asp:CheckBox ID="CheckBox1" runat="server" />
-                <asp:Label ID="Label1" runat="server" Text="Remember my Username"  Font-Size="small" ></asp:Label>
-               <br />
-       
-               <asp:Button ID="btnLogin" class="btn btn-primary" runat="server" Text="Login" Width="150" OnClick="btn1_Login" />
-        <br />
-       
-            <asp:Label ID="lblStatus" runat="server"></asp:Label> <br />
-        <br />
-               <%--<asp:Button ID="lnkCreate" class="btn btn-primary" runat="server" Text="Create"  OnClick="btn1_NewUser" />--%>
-        <asp:LinkButton ID="lnkCreate" runat="server" OnClick="lnkCreate_Click">Create User</asp:LinkButton>
-<%--        btnCreateUser {padding: 2px 5px;}
-        btnLogin {padding: 32px 16px;}--%>
-                  
-              <%--    <asp:Button ID="btn2" class="btn btn-primary" runat="server" Text="Edit" Width="150" OnClick="btn2_Click"/>
-              
-              <asp:Button ID="Button2" class="btn btn-primary" runat="server" OnClick="Button2_Click" Text="Commit" />--%>
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sign in to Wildlife Center</h3>
+                    </div>
+                    <div class="panel-body">
+                            <div style="margin: 0 0 0 7.5%;">
+                                <div class="form-group">
+                                    <asp:Label ID="lblUserName" runat="server">Username</asp:Label>
+                                    <asp:TextBox ID="txtUserName" class="form-control" runat="server" />
+                                </div>
+                                <div class="form-group">
+                                    <asp:Label ID="lblPassword" runat="server">Password</asp:Label>
+                                    <asp:TextBox ID="txtPassword" class="form-control" type="password" value="" runat="server" />
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                
+                                <asp:Button ID="btnLogin" class="btn btn-lg btn-success btn-block" Text="Login" OnClick="btn_Login" runat="server" />
+                                
+                         </div>       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCreateUser" class="form-control" style="height: 50px; text-align: center; padding-top:1em; background-color:none;" runat="server"><a href="CreateUser.aspx">Create New User Account</a></asp:Label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+
 </asp:Content>
-
-
-

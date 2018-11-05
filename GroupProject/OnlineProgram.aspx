@@ -1,7 +1,149 @@
-﻿<%@ Page Title="Online Program" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-        <div>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Home.aspx">Waynesboro Wildlife Refuge</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+      
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="manageAnimal.html">Manage Animals</a>
+                            	</li>
+                                <li>
+                                    <a href="trackAnimal.html">Track Animals</a>
+                                <li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Online Programs</h1>
+            </div>
+        </div>
+         <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Past Events
+                             <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="createEvent.html">Create an Event</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Edit Events</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Delete Event</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!--Panel Heading-->
+                        <div class="panel-body">
+            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                <Columns>
+                    <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
+                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
+                    <asp:BoundField DataField="ProgDate" HeaderText="ProgDate" SortExpression="ProgDate" />
+                    <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
+                    <asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" />
+                    <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
+                    <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                    <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
+                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
+                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
+                </Columns>
+            </asp:GridView>
+            </div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
+
+
+            <%--<div>
        
             <br />
         <asp:Label ID="lblTitle" runat="server" Text="Online Programs" Font-Size="XX-Large" ></asp:Label><br />
@@ -9,58 +151,67 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label1" runat="server" Text="Date: "></asp:Label>
+                <asp:Label ID="lblOrganizationName" runat="server" Text="Organization Name: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox11" required="required" Type="date" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtOrganizationName" required="required" runat="server" AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
+            <div class="col-md-2">
+                <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtDate" type="Date"  runat="server"></asp:TextBox><br />
+                <br />
+            </div>
+        </div>
+       <%-- <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="Label2" runat="server" Text="Month: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
             </div>
-        </div>
-        <div class="row">
+        </div>--%>
+        <%--<div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label3" runat="server" Text="Type: "></asp:Label>
+                <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox13" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Label ID="Label5" runat="server" Text="State: "></asp:Label>
-            </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="TextBox15" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtType" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label14" runat="server" Text="Country: "></asp:Label>
+                <asp:Label ID="lblState" runat="server" Text="State: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox16" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Label ID="Label6" runat="server" Text="Number of Kids: "></asp:Label>
-            </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="TextBox1" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtState" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label13" runat="server" Text="Number of Adults: "></asp:Label>
+                <asp:Label ID="lblCountry" runat="server" Text="Country: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox2" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtCountry" required="required" runat="server"></asp:TextBox><br />
+            </div>
+        </div>--%>
+        <%--<div class="row">--%>  <%--required="required"--%>
+            <%--<div class="col-md-2">
+                <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtNK" runat="server"></asp:TextBox><br />
+            </div>
+        </div>--%>
+        <%--<div class="row">--%> <%--required="required" --%>
+            <%--<div class="col-md-2">
+                <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtNumberOFAdults" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
@@ -73,50 +224,84 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label8" runat="server" Text="Teacher Name: "></asp:Label>
+                <asp:Label ID="lblTeacherName" runat="server" Text="Teacher Name: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox17" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtTeacherName" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label9" runat="server" Text="Email: "></asp:Label>
+                <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox18" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
+            </div>
+        </div>--%>
+        <%--<div class="row">--%> <%--required="required" --%>
+            <%--<div class="col-md-2">
+                <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtTeacher"  runat="server"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="row">--%> <%--required="required" --%>
+            <%--<div class="col-md-2">
+                <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtTheme" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label10" runat="server" Text="Educator: "></asp:Label>
+                <asp:Label ID="lblAnimalUsed" runat="server" Text="Animals Used: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox19" required="required" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtAnimalUsed" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label11" runat="server" Text="Theme: "></asp:Label>
+                <asp:Label ID="lblPayment" runat="server" Text="Waiting for payment? "></asp:Label><br />
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="TextBox20" required="required" runat="server"></asp:TextBox><br />
+                <asp:RadioButton ID="txtPayment1" runat="server" Text="Yes" />
+                <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
-                <asp:Label ID="Label12" runat="server" Text="Animals Used: "></asp:Label>
-            </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="TextBox21" required="required" runat="server"></asp:TextBox><br />
+                <asp:Button ID="btnCreate" runat="server" onClick="Button1_Click"  Text="Create" />
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click"  Text="Insert" />
-            </div>
+    </div>--%>--%>
+            
         </div>
     </div>
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=GridViewOnlineProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                responsive: true,
+                paging: true,
+                lengthChange: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false
+            });
+        });
+    </script>
 
 </asp:Content>
 
