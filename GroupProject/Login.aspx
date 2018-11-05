@@ -23,10 +23,12 @@
                     <div class="panel-body">
                             <div style="margin: 0 0 0 7.5%;">
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtUserName" class="form-control" placeholder="User Name" runat="server" />
+                                    <asp:Label ID="lblUserName" runat="server">Username</asp:Label>
+                                    <asp:TextBox ID="txtUserName" class="form-control" runat="server" />
                                 </div>
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtPassword" class="form-control" placeholder="Password" type="password" value="" runat="server" />
+                                    <asp:Label ID="lblPassword" runat="server">Password</asp:Label>
+                                    <asp:TextBox ID="txtPassword" class="form-control" type="password" value="" runat="server" />
                                 </div>
                                 <div class="checkbox">
                                     <label>

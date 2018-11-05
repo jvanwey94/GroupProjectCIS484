@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
+﻿<%@ Page Title="FinancialReport" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -125,8 +125,8 @@ function Calculation(){
                    
                  </asp:DropDownList>
             </div>
-            <div class="row">
-            <div class="col-lg-3">
+           
+            <div class="col-lg-4">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control">
                     <asp:ListItem >     </asp:ListItem>
@@ -135,7 +135,7 @@ function Calculation(){
                     <asp:ListItem >Organiztion3 </asp:ListItem>
                  </asp:DropDownList>
             </div>
-            </div>
+           
                     </div> 
                     <!-- closes form-row -->
                </div>
@@ -145,7 +145,7 @@ function Calculation(){
        <div class="row">
            <div class="col-lg-12">
                <div class="form-row">
-               <div class="col-lg-4">
+               <div class="col-lg-4" style="padding-top:1em;">
                 <asp:Label ID="lblPayType" runat="server" Text="PayType"  Font-Size="Large" class="form-control-label"></asp:Label>
                
                     
@@ -168,19 +168,19 @@ function Calculation(){
                 <asp:TextBox ID="txtCheckNumber" runat="server" Visible="false" class="form-control"></asp:TextBox> 
                 <asp:Label ID="lblCheckNumberNote" runat="server" Text="NOTE(Please add a check number only if the payment type is 'Check')"  Font-Size="small" ForeColor="gray" class="text-muted"></asp:Label>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3" style="padding-top:1em;">
                 <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
         </div>
         <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-5" style="padding-top:1em;">
             
                   <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
                   <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control"></asp:TextBox><br />
          </div>
         </div>
-        <div class="col-3">
+        <div class="col-3" style="padding-top:1em;">
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>
                 <asp:TextBox ID="txtPaymentCollect" runat="server" class="form-control"></asp:TextBox>
         
@@ -195,7 +195,7 @@ function Calculation(){
         <!-- closes row -->
            <br />
 
-        <br />
+     
 
      <%--           <asp:Label ID="lblLastUpdatedBy" runat="server" Text="UpdatedBy:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdatedBy" runat="server"></asp:TextBox>
@@ -203,11 +203,10 @@ function Calculation(){
         <br />
                  <asp:Label ID="lblLastUpdated" runat="server" Text="Updated:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdated" runat="server"></asp:TextBox>--%>
-        <br />
-        <br />
+       
                 
        
-               <asp:Button ID="btnInsert" class="btn btn-primary" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
+               <asp:Button ID="btnInsert" class="btn btn-lg btn-success btn-block" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
         <br />
        
             <asp:Label ID="lblStatus" runat="server"></asp:Label>
@@ -227,7 +226,7 @@ function Calculation(){
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
         <br />
-    <asp:Button ID="ButtonExport" runat="server" onClick="Export" Text="Export to Excel" />
+    <asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
     <div class="panel-body">
         <asp:GridView ID="dbInvoice" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
