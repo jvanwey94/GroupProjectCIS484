@@ -114,14 +114,16 @@
                         <div class="panel-body">
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
                     <Columns>
-                        <asp:BoundField DataField="AnimalName" HeaderText="Name" SortExpression="AnimalName" />
-                        <asp:BoundField DataField="AnimalType" HeaderText="Type" SortExpression="AnimalType" />
-                        <asp:BoundField DataField="AnimalStatus" HeaderText="Status" SortExpression="AnimalStatus" />
-                        <asp:BoundField DataField="NumberOfEvents" HeaderText="Number Of Events" SortExpression="NumberOfEvents" />
-                        <asp:BoundField DataField="NumberOfPeopleMet" HeaderText="Number Of People Met" SortExpression="NumberOfPeopleMet" />
+                        <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
+                        <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
+                        <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
+                        <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
+                        <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="NumberOfAdultsMet" SortExpression="NumberOfAdultsMet" />
+                        <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="NumberOfChildrenMet" SortExpression="NumberOfChildrenMet" />
+                        <asp:BoundField DataField="TotalNumberOfPeopleMet" HeaderText="TotalNumberOfPeopleMet" SortExpression="TotalNumberOfPeopleMet" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfAdultsMet], [NumberOfChildrenMet], [TotalNumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -156,7 +158,7 @@
                                 <label>Animal Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalNameTxt" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -164,38 +166,46 @@
                                 <label>Type of Animal</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Age</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAgeTxt" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
+<%--                        <div class="row">
                             <div class="col-sm-3">
                                 <label>Number of Events</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalEventsTxt" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="AnimalEventsTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Number of People Met</label>
+                                <label>Number of Children Met</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalPeopleMetTxt" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="AnimalChildrenMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of Adults Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalAdultMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Total Number of People Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalTotalPeopleMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>--%>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="insertAnimalButton" runat="server" onClick="addAnimalToDataBaseButton" class="btn btn-primary" Text="Insert" />
-                    <asp:Button ID="exitAnimalButton" class="btn btn-secondary" OnClick="ExitButton" runat="server" Text="Button" />
+                    <asp:Button ID="exitAnimalButton" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
         </div>

@@ -131,12 +131,16 @@
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
                                     <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <a href="#" data-toggle="modal" data-target="editProgram" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
+                                
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R"></asp:SqlDataSource>
-                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>
-                            
-                           
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R where P.ProgramID = R.ProgramID"></asp:SqlDataSource>
+                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>                           
                         </div>
                     </div>
                 </div>
@@ -148,6 +152,7 @@
                 </div>
             </div>
             </div>
+
         </div>
 
             
@@ -226,7 +231,74 @@
             
         </div>
     </div>--%>
-</div>
+        <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="editProgramModal">
+                            Edit Program
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Animal Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Type of Animal</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+<%--                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of Events</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalEventsTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of Children Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalChildrenMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Number of Adults Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalAdultMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Total Number of People Met</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="AnimalTotalPeopleMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                            </div>
+                        </div>--%>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
@@ -248,6 +320,13 @@
                 info: true,
                 autoWidth: false
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("tr").click(function() {
+                $(".row-button", this).click();
+          });
         });
     </script>
 </asp:Content>
