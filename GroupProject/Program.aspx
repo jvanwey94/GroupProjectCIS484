@@ -82,7 +82,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Events</h1>
+                <h1 class="page-header">Programs</h1>
             </div>
         </div>
          <div class="row">
@@ -122,15 +122,18 @@
                             <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
 
                                 <Columns>
-                                    <asp:BoundField DataField="ProgName" HeaderText="Program Name" SortExpression="ProgName" />
-                                    <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
-                                    <asp:BoundField DataField="ProgStatus" HeaderText="Program Status" SortExpression="ProgStatus" />
-                                    <asp:BoundField DataField="ProgAddress" HeaderText="Program Address" SortExpression="ProgAddress" />
+                                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
+                                    <asp:BoundField DataField="ProgName" HeaderText="ProgName" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="SiteType" HeaderText="SiteType" SortExpression="SiteType" />
+                                    <asp:BoundField DataField="ProgStatus" HeaderText="ProgStatus" SortExpression="ProgStatus" />
+                                    <asp:BoundField DataField="ProgAddress" HeaderText="ProgAddress" SortExpression="ProgAddress" />
                                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
+                                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
+                                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
                                 </Columns>
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [ProgName], [SiteType], [ProgStatus], [ProgAddress], [City], [County] FROM [RegularProgram]"></asp:SqlDataSource>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>
                             
                            

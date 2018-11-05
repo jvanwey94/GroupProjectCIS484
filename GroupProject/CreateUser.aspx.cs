@@ -58,7 +58,7 @@ public partial class CreateUser : System.Web.UI.Page
                     if (response == true)
                     {
                         // INSERT USER RECORD
-                        createUser.CommandText = "insert into[dbo].[Person] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated)";
+                        createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated)";
                         createUser.Parameters.Add(new SqlParameter("@FName", txtFirstName.Text));
                         createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
                         createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
