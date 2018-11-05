@@ -45,18 +45,31 @@ public partial class Login : System.Web.UI.Page
 
                 if (PasswordHash.ValidatePassword(txtPassword.Text, storedHash)) // if the entered password matches what is stored, it will show success
                 {
+                   
                     //lblStatus.Text = "Success!";
                     btnLogin.Enabled = false;
                     txtUserName.Enabled = false;
                     txtPassword.Enabled = false;
-                    Response.Redirect("Home.aspx", false); // change this later (Program
+                     // change this later (Program
+                    
                 }
                 //else
                     //lblStatus.Text = "Password is wrong.";
             }
         }
+        sc.Close();
+
+        sc.Open();
+        string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+        System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
+        emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+        string level = Convert.ToString(emlevel.ExecuteScalar());
+        if (level == "Full-time Staff")
+            Response.Redirect("Home.aspx", false);
+        else
+            Response.Redirect("Homelimited.aspx", false);
         //else // if the username doesn't exist, it will show failure
-            //lblStatus.Text = "Login failed.";
+        //lblStatus.Text = "Login failed.";
 
         sc.Close();
         //}
