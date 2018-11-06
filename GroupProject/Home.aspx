@@ -79,6 +79,9 @@
                             	<li>
                             		<a href="ProgramReport.aspx">Program Report</a>
                             	</li>
+                                <li>
+                            		<a href="AnimalReport.aspx">Animal Report</a>
+                            	</li>
                             </ul>
                         </li>
                     </ul>

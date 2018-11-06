@@ -128,10 +128,11 @@ function Calculation(){
             <div class="row">
             <div class="col-lg-3">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged" >
-                    <asp:ListItem >OrganizationA</asp:ListItem>
-                    <asp:ListItem >OrganizationB</asp:ListItem>
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control"  OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged" DataSourceID="SqlDataSource3" >
+                    <%--<asp:ListItem >OrganizationA</asp:ListItem>
+                    <asp:ListItem >OrganizationB</asp:ListItem>--%>
                  </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [OrganizationName] FROM [Program]"></asp:SqlDataSource>
             </div>
             </div>
                     </div> 
@@ -482,7 +483,7 @@ function Calculation(){
     </div>
     </div>
     <!--ends row-->
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [OrganizationName] FROM [Organization]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select OrganizationName from dbo.Program"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [programName] FROM [Program]"></asp:SqlDataSource>
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
