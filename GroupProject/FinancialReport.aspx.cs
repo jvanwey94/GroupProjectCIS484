@@ -9,7 +9,12 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-//using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
+using System.Drawing;
+using System.ComponentModel;
+using System.Windows.Forms;
+
 
 public partial class FinancialReport : System.Web.UI.Page
 {
@@ -235,54 +240,54 @@ public partial class FinancialReport : System.Web.UI.Page
     //gridview update control
     protected void dbInvoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        //try
-        //{
+        ////try
+        ////{
 
-        connect.Open();
-        String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
-            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
-            "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
-            " where InvoiceID=@InvoiceID";
-        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
-        insert.Connection = connect;
-        insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as TextBox).Text.Trim());
+        //connect.Open();
+        //String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
+        //    "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
+        //    "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
+        //    " where InvoiceID=@InvoiceID";
+        //System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
+        //insert.Connection = connect;
+        //insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentLeft", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentLeft") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentLeft", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentLeft") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentStatus", (dbInvoice.Rows[e.RowIndex].FindControl("GridStatus") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentStatus", (dbInvoice.Rows[e.RowIndex].FindControl("GridStatus") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@LastUpdatedBy", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdatedBy") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@LastUpdatedBy", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdatedBy") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@LastUpdated", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdated") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@LastUpdated", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdated") as TextBox).Text.Trim());
 
 
 
-        //insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
-        insert.ExecuteNonQuery();
-        dbInvoice.EditIndex = -1;
-        connect.Close();
-        PopulateGridview();
+        ////insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
+        //insert.ExecuteNonQuery();
+        //dbInvoice.EditIndex = -1;
+        //connect.Close();
+        //PopulateGridview();
        
-        lblStatus.Text = "Successfully updated";
+        //lblStatus.Text = "Successfully updated";
        
-        //}
-        //catch (Exception ex)
-        //{
-        //    txtTest.Text = "";
-        //    txtTest.Text = ex.Message;
-        //}
+        ////}
+        ////catch (Exception ex)
+        ////{
+        ////    txtTest.Text = "";
+        ////    txtTest.Text = ex.Message;
+        ////}
     }
 
     protected void OnPaymentSelection(object sender, EventArgs e)
@@ -310,6 +315,12 @@ public partial class FinancialReport : System.Web.UI.Page
 
     }
 
+
+    //if not working try:
+    // tools -> nuget package manager -> Manage nuget package for solution -> reinstall ClosedXML
+    // if still not working try:
+    // tools -> nuget package manager console -> Install-Package DocumentFormat.OpenXml -Version 2.5.0
+    // if that doesn't work, then just give up.
     public void ExportToExcel()
     {
         DataTable dt = new DataTable();
@@ -319,32 +330,64 @@ public partial class FinancialReport : System.Web.UI.Page
         adapt.Fill(dt);
 
 
-        //String folderPath = "C:\\Users\\labpatron\\Documents";
-        //if(!Directory.Exists(folderPath))
-        //{
-        //    Directory.CreateDirectory(folderPath);
-        //}
-        //using (XLWorkbook wb = new XLWorkbook())
-        //{
-        //    wb.Worksheets.Add(dt, "Financial Reports");
-        //    String myName = Server.UrlEncode("Test" + "_" +
-        //        DateTime.Now.ToShortDateString() + ".xlsx");
-        //    MemoryStream stream = GetStream(wb);
-        //    Response.Clear();
-        //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-        //    Response.ContentType = "application/vnd.ms-excel";
-        //    Response.BinaryWrite(stream.ToArray());
-        //    Response.End();
-        //}
+        String folderPath = "C:\\Users\\labpatron\\Documents";
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        using (XLWorkbook wb = new XLWorkbook())
+        {
+            wb.Worksheets.Add(dt, "Financial Reports");
+            String myName = Server.UrlEncode("Test1" + "_" +
+                DateTime.Now.ToShortDateString() + ".xlsx");
+            MemoryStream stream = GetStream(wb);
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.BinaryWrite(stream.ToArray());
+            Response.End();
+        }
     }
 
-    //public MemoryStream GetStream(XLWorkbook excelWorkbook)
-    //{
-    //    MemoryStream fs = new MemoryStream();
-    //    excelWorkbook.SaveAs(fs);
-    //    fs.Position = 0;
-    //    return fs;
-    //}
+    //try to add each table to a separate worksheet
+    public void ExportMonthlyToExcel()
+    {
+        String jan = "January";
+        DataTable dt = new DataTable();
+        String sqlMonthlyToExcel = "SELECT * FROM [dbo].[Payment]"; // WHERE LastUpdatedBy = ";
+        SqlCommand fillMonthlyTable = new SqlCommand(sqlMonthlyToExcel, connect);
+        SqlDataAdapter adapt = new SqlDataAdapter(fillMonthlyTable);
+        adapt.Fill(dt);
+        
+        Microsoft.Office.Interop.Excel.Application excelApp = new Excel.Application();
+        Microsoft.Office.Interop.Excel.Worksheet xlworksheet;
+        Microsoft.Office.Interop.Excel.Workbook wb;
+        
+
+        String folderPath = "C:\\Users\\labpatron\\Documents";
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        
+        Clipboard.SetText(jan);
+
+        wb = excelApp.Workbooks.Add(dt);
+        xlworksheet = (Excel.Worksheet)wb.Worksheets.get_Item(1);
+        Excel.Range range = (Excel.Range)xlworksheet.Cells[1, 1];
+        xlworksheet.Paste(range, false);
+
+        wb.Close(true, dt, dt);
+
+    }
+
+    public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    {
+        MemoryStream fs = new MemoryStream();
+        excelWorkbook.SaveAs(fs);
+        fs.Position = 0;
+        return fs;
+    }
 
     protected void Export(object sender, EventArgs e)
     {
