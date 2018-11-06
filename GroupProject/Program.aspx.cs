@@ -42,7 +42,13 @@ public partial class Program : System.Web.UI.Page
                 r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
                 r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
                 r.ToolTip = "Click to select row";
-                r.Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[5].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[7].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
             }
         }
 
@@ -51,7 +57,7 @@ public partial class Program : System.Web.UI.Page
 
     protected void OnSelectedIndexChanged(object sender, EventArgs e)
     {
-        
+
         Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "openModal()", true);
         GridViewRow organizationName = gvRegularProgram.SelectedRow;
         //txtOrganizationName.Text = (string)gvRegularProgram.DataKeys[organizationName.RowIndex]["Column1"];
@@ -64,11 +70,14 @@ public partial class Program : System.Web.UI.Page
         txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
         txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
         txtDate.Text = gvRegularProgram.SelectedRow.Cells[1].Text;
-        
+
 
     }
 
+    protected void CreateProgram(object sender, EventArgs e)
+    {
 
+    }
 
 
     //// Insert into database

@@ -93,38 +93,6 @@
                                 <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
-<%--                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Events</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalEventsTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Children Met</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalChildrenMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Adults Met</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAdultMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Total Number of People Met</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTotalPeopleMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>--%>
                     </div>
                 </div>
                 <div class="modal-footer">

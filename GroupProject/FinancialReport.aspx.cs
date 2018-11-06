@@ -9,8 +9,8 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-using Excel = Microsoft.Office.Interop.Excel;
-using ClosedXML.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
+//using ClosedXML.Excel;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -321,76 +321,76 @@ public partial class FinancialReport : System.Web.UI.Page
     // if still not working try:
     // tools -> nuget package manager console -> Install-Package DocumentFormat.OpenXml -Version 2.5.0
     // if that doesn't work, then just give up.
-    public void ExportToExcel()
-    {
-        DataTable dt = new DataTable();
-        String sqlDA = "SELECT * FROM [dbo].[Payment]";
-        SqlCommand filltable = new SqlCommand(sqlDA, connect);
-        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
-        adapt.Fill(dt);
+    //public void ExportToExcel()
+    //{
+    //    DataTable dt = new DataTable();
+    //    String sqlDA = "SELECT * FROM [dbo].[Payment]";
+    //    SqlCommand filltable = new SqlCommand(sqlDA, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+    //    adapt.Fill(dt);
 
 
-        String folderPath = "C:\\Users\\labpatron\\Documents";
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-        using (XLWorkbook wb = new XLWorkbook())
-        {
-            wb.Worksheets.Add(dt, "Financial Reports");
-            String myName = Server.UrlEncode("Test1" + "_" +
-                DateTime.Now.ToShortDateString() + ".xlsx");
-            MemoryStream stream = GetStream(wb);
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.BinaryWrite(stream.ToArray());
-            Response.End();
-        }
-    }
+    //    String folderPath = "C:\\Users\\labpatron\\Documents";
+    //    if (!Directory.Exists(folderPath))
+    //    {
+    //        Directory.CreateDirectory(folderPath);
+    //    }
+    //    using (XLWorkbook wb = new XLWorkbook())
+    //    {
+    //        wb.Worksheets.Add(dt, "Financial Reports");
+    //        String myName = Server.UrlEncode("Test1" + "_" +
+    //            DateTime.Now.ToShortDateString() + ".xlsx");
+    //        MemoryStream stream = GetStream(wb);
+    //        Response.Clear();
+    //        Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+    //        Response.ContentType = "application/vnd.ms-excel";
+    //        Response.BinaryWrite(stream.ToArray());
+    //        Response.End();
+    //    }
+    //}
 
-    //try to add each table to a separate worksheet
-    public void ExportMonthlyToExcel()
-    {
-        String jan = "January";
-        DataTable dt = new DataTable();
-        String sqlMonthlyToExcel = "SELECT * FROM [dbo].[Payment]"; // WHERE LastUpdatedBy = ";
-        SqlCommand fillMonthlyTable = new SqlCommand(sqlMonthlyToExcel, connect);
-        SqlDataAdapter adapt = new SqlDataAdapter(fillMonthlyTable);
-        adapt.Fill(dt);
+    ////try to add each table to a separate worksheet
+    //public void ExportMonthlyToExcel()
+    //{
+    //    String jan = "January";
+    //    DataTable dt = new DataTable();
+    //    String sqlMonthlyToExcel = "SELECT * FROM [dbo].[Payment]"; // WHERE LastUpdatedBy = ";
+    //    SqlCommand fillMonthlyTable = new SqlCommand(sqlMonthlyToExcel, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(fillMonthlyTable);
+    //    adapt.Fill(dt);
 
-        Microsoft.Office.Interop.Excel.Application excelApp = new Excel.Application();
-        Microsoft.Office.Interop.Excel.Worksheet xlworksheet;
-        Microsoft.Office.Interop.Excel.Workbook wb;
+    //    Microsoft.Office.Interop.Excel.Application excelApp = new Excel.Application();
+    //    Microsoft.Office.Interop.Excel.Worksheet xlworksheet;
+    //    Microsoft.Office.Interop.Excel.Workbook wb;
 
 
-        String folderPath = "C:\\Users\\labpatron\\Documents";
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
+    //    String folderPath = "C:\\Users\\labpatron\\Documents";
+    //    if (!Directory.Exists(folderPath))
+    //    {
+    //        Directory.CreateDirectory(folderPath);
+    //    }
 
-        Clipboard.SetText(jan);
+    //    Clipboard.SetText(jan);
 
-        wb = excelApp.Workbooks.Add(dt);
-        xlworksheet = (Excel.Worksheet)wb.Worksheets.get_Item(1);
-        Excel.Range range = (Excel.Range)xlworksheet.Cells[1, 1];
-        xlworksheet.Paste(range, false);
+    //    wb = excelApp.Workbooks.Add(dt);
+    //    xlworksheet = (Excel.Worksheet)wb.Worksheets.get_Item(1);
+    //    Excel.Range range = (Excel.Range)xlworksheet.Cells[1, 1];
+    //    xlworksheet.Paste(range, false);
 
-        wb.Close(true, dt, dt);
+    //    wb.Close(true, dt, dt);
 
-    }
+    //}
 
-    public MemoryStream GetStream(XLWorkbook excelWorkbook)
-    {
-        MemoryStream fs = new MemoryStream();
-        excelWorkbook.SaveAs(fs);
-        fs.Position = 0;
-        return fs;
-    }
+    //public MemoryStream GetStream(XLWorkbook excelWorkbook)
+    //{
+    //    MemoryStream fs = new MemoryStream();
+    //    excelWorkbook.SaveAs(fs);
+    //    fs.Position = 0;
+    //    return fs;
+    //}
 
-    protected void Export(object sender, EventArgs e)
-    {
-        ExportToExcel();
-    }
+    //protected void Export(object sender, EventArgs e)
+    //{
+    //    ExportToExcel();
+    //}
 }

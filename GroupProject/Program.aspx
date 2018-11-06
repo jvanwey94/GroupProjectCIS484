@@ -21,7 +21,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="createEvent.html">Create an Event</a>
+                                        <li><a href="#addProgram" data-toggle="modal" data-target="#addProgram">Create a Program</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Edit Events</a>
@@ -46,9 +46,9 @@
                             <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
 
                                 <Columns>
-                                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
+                                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
                                     <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" />
-                                    <asp:BoundField DataField="ProgName" HeaderText="Name" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
                                     <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
                                     <asp:BoundField DataField="ProgStatus" HeaderText="Status" SortExpression="ProgStatus" />
                                     <asp:BoundField DataField="ProgAddress" HeaderText="Address" SortExpression="ProgAddress" />
@@ -56,10 +56,11 @@
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
                                     <asp:BoundField DataField="NumberOfChildren" HeaderText="Number Of Children" SortExpression="NumberOfChildren" />
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
+                                    <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                 </Columns>
                                 
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R where P.ProgramID = R.ProgramID"></asp:SqlDataSource>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>                           
                         </div>
                     </div>
@@ -151,6 +152,101 @@
             
         </div>
     </div>--%>
+    <div class="modal fade" id="addProgram" tabindex="1" role="dialog" aria-labelledby="addProgram" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="addProgramModal">
+                            Create Program
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Organization Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox1" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox2" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>City</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox3" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>County</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox4" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Site Type</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox5" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Program Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox6" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox7" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="TextBox8" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Animal</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:DropDownList ID="ddAnimal" class="form-control" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                </div>
+            </div>
+        </div>
+    </div>
+
         <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -237,6 +333,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
