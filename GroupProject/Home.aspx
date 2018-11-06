@@ -72,6 +72,14 @@
                         </li>
                         <li>
                             <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports </a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="financialReport.aspx">Financial Report</a>
+                            	</li>
+                            	<li>
+                            		<a href="ProgramReport.aspx">Program Report</a>
+                            	</li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

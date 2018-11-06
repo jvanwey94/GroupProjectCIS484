@@ -77,73 +77,7 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
-            <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Online Programs</h1>
-            </div>
-        </div>
-         <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Past Events
-                             <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="createEvent.html">Create an Event</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Edit Events</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Delete Event</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-
-                        <!--Panel Heading-->
-                        <div class="panel-body">
-            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                <Columns>
-                    <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
-                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
-                    <asp:BoundField DataField="ProgDate" HeaderText="ProgDate" SortExpression="ProgDate" />
-                    <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
-                    <asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" />
-                    <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-                    <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                    <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
-                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
-                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
-                </Columns>
-            </asp:GridView>
-            </div>
-                    </div>
-                </div>
-            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-            </div>
-
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
-
-
-            <%--<div>
+            <div>
        
             <br />
         <asp:Label ID="lblTitle" runat="server" Text="Online Programs" Font-Size="XX-Large" ></asp:Label><br />
@@ -155,6 +89,14 @@
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="txtOrganizationName" required="required" runat="server" AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"></asp:TextBox><br />
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-2">
+                <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtProgramName" required="required" runat="server" ></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
@@ -174,7 +116,7 @@
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>--%>
-        <%--<div class="row">
+        <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
             </div>
@@ -197,17 +139,17 @@
             <div class="col-md-2">
                 <asp:TextBox ID="txtCountry" required="required" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%>  <%--required="required"--%>
-            <%--<div class="col-md-2">
+        </div>
+        <div class="row">  <%--required="required"--%>
+            <div class="col-md-2">
                 <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="txtNK" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        </div>
+        <div class="row"> <%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
             </div>
             <div class="col-md-2">
@@ -237,21 +179,21 @@
             <div class="col-md-2">
                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        </div>
+        <div class="row"> <%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="txtTeacher"  runat="server"></asp:TextBox><br />
             </div>
         </div>
-        <div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        <div class="row"> <%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="txtTheme" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtTheme" runat="server" ></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
@@ -277,31 +219,10 @@
 
             </div>
         </div>
-    </div>--%>--%>
-            
+    </div>
         </div>
     </div>
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("[id*=GridViewOnlineProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                responsive: true,
-                paging: true,
-                lengthChange: false,
-                searching: true,
-                ordering: true,
-                info: true,
-                autoWidth: false
-            });
-        });
-    </script>
+        
 
 </asp:Content>
 

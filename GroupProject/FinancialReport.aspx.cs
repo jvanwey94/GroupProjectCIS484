@@ -38,7 +38,7 @@ public partial class FinancialReport : System.Web.UI.Page
             }
             //    dbInvoice.Visible = true;
         }
-        
+
 
     }
 
@@ -61,12 +61,12 @@ public partial class FinancialReport : System.Web.UI.Page
 
     protected override void OnPreRender(EventArgs e)
     {
-       
+
         base.OnPreRender(e);
         //MakeAccessible(GridView1);
     }
-    
-    
+
+
 
     //populate gridview
     void PopulateGridview()
@@ -75,7 +75,7 @@ public partial class FinancialReport : System.Web.UI.Page
         String getInvoiceNumber = txtSearch.Text;
         lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
-        System.Data.SqlClient.SqlCommand insert= new System.Data.SqlClient.SqlCommand(sqlDA, connect);
+        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
         SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
         lblStatus.Text = "Loading";
@@ -111,84 +111,95 @@ public partial class FinancialReport : System.Web.UI.Page
         //try
         //{
         Int32 InputCheckNumber;
-            String InputInvoiceNumber = txtInvoice.Text;
-            if(txtCheckNumber.Text == String.Empty)
-            {
+        String InputInvoiceNumber = txtInvoice.Text;
+        if (txtCheckNumber.Text == String.Empty)
+        {
             InputCheckNumber = 0;
-            }
-            else
-            {
+        }
+        else
+        {
             InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
-            }
-            
-            Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
-            Decimal InputPaymentCollect = 0;
-            Decimal InputPaymenLeft = 0;
-            String InputLastUpdatedBy = "Kevin";
-            DateTime InputLastUpdated = DateTime.Now.Date;
-            String InputProgram = txtProgram.SelectedItem.ToString();
-            String InputOrganization = txtOrganization.SelectedItem.ToString();
-            String InputPaymentType = txtPaymentType.SelectedItem.ToString();
-            String InputStatus = lblIncomplete.Text;
+        }
+
+        Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
+        Decimal InputPaymentCollect = 0;
+        Decimal InputPaymenLeft = 0;
+        String InputProgram = txtProgram.SelectedItem.ToString();
+        String InputOrganization = txtOrganization.SelectedItem.ToString();
+        String InputPaymentType = txtPaymentType.SelectedItem.ToString();
+        String InputStatus = lblIncomplete.Text;
 
 
-            //check the validation for required field
-            if (txtInvoice.Text == string.Empty)
-            {
-                Response.Write("<script>alert('user must fill Invoice Number')</script>");
-                return;
-            }
-            if (txtAmount.Text == string.Empty)
-            {
-                Response.Write("<script>alert('user must fill Amount)</script>");
-                return;
-            }
-            if (txtPaymentType.SelectedItem.ToString() != "Check" && txtCheckNumber.Text != string.Empty)
-            {
-                Response.Write("<script>alert('Invalid Check Number, User can not add check number if the payment type is not 'check'')</script>");
-                return;
-            }
+        //check the validation for required field
+        if (txtInvoice.Text == string.Empty)
+        {
+            Response.Write("<script>alert('user must fill Invoice Number')</script>");
+            return;
+        }
+        if (txtAmount.Text == string.Empty)
+        {
+            Response.Write("<script>alert('user must fill Amount)</script>");
+            return;
+        }
+        if (txtPaymentType.SelectedItem.ToString() != "Check" && txtCheckNumber.Text != string.Empty)
+        {
+            Response.Write("<script>alert('Invalid Check Number, User can not add check number if the payment type is not 'check'')</script>");
+            return;
+        }
 
-            //Calculation
-            InputPaymenLeft = (Convert.ToInt32(txtAmount.Text) - InputPaymenLeft);
+        //Calculation
+        InputPaymenLeft = (Convert.ToInt32(txtAmount.Text) - InputPaymenLeft);
 
-            connect.Open();
+        connect.Open();
 
-            //@PaymentCollect,@PaymentLeft,,@Amount
-            //@OrganizationName" +
-            //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
-            //insert data to Bird table if text box is qualified
-            if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
-            {
+        String GetProgramID = "SELECT ProgramID FROM [dbo].[Program] where OrganizationName = '" + txtProgram.Text + "'";
 
-                //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-                String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
-                System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
-                insert.Connection = connect;
-                insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
-                insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
-                insert.Parameters.AddWithValue("@Program", InputProgram);
-                insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
-                insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
-                insert.Parameters.AddWithValue("@Amount", InputAmount);
-                insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
-                insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
-                insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
-                insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
-                insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
+        SqlCommand select = new SqlCommand(GetProgramID, connect);
 
-                insert.ExecuteNonQuery();
-                lblStatus.Text = "succseessful to add this payment to database!";
-                //txtTest.Text = InputStatus;
+        SqlDataReader myreader;
 
-                txtAmount.Text = string.Empty;
-                txtCheckNumber.Text = string.Empty;
-                txtInvoice.Text = string.Empty;
-                //txtLastUpdatedBy.Text = string.Empty;
-                //txtLastUpdated.Text = string.Empty;
-                txtSearch.Text = string.Empty;
+        myreader = select.ExecuteReader();
 
-            }
+        string ProgramID = myreader.GetString(0);
+
+        //@PaymentCollect,@PaymentLeft,,@Amount
+        //@OrganizationName" +
+        //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
+        //insert data to Bird table if text box is qualified
+        if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
+        {
+
+            //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
+            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft," +
+            "@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID)";
+            System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
+            insert.Connection = connect;
+            insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
+            insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
+            insert.Parameters.AddWithValue("@Program", InputProgram);
+            insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
+            insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
+            insert.Parameters.AddWithValue("@Amount", InputAmount);
+            insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
+            insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
+            insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
+            insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+            insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
+            insert.Parameters.AddWithValue("@ProgramID", ProgramID);
+            insert.Parameters.AddWithValue("@OrganizationID", "OMG");
+            insert.ExecuteNonQuery();
+
+            lblStatus.Text = "succseessful to add this payment to database!";
+            //txtTest.Text = InputStatus;
+
+            txtAmount.Text = string.Empty;
+            txtCheckNumber.Text = string.Empty;
+            txtInvoice.Text = string.Empty;
+            //txtLastUpdatedBy.Text = string.Empty;
+            //txtLastUpdated.Text = string.Empty;
+            txtSearch.Text = string.Empty;
+
+        }
         connect.Close();
         //}
         //catch (Exception)
@@ -235,54 +246,54 @@ public partial class FinancialReport : System.Web.UI.Page
     //gridview update control
     protected void dbInvoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        //try
-        //{
+        ////try
+        ////{
 
-        connect.Open();
-        String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
-            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
-            "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
-            " where InvoiceID=@InvoiceID";
-        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
-        insert.Connection = connect;
-        insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as TextBox).Text.Trim());
+        //connect.Open();
+        //String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
+        //    "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
+        //    "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
+        //    " where InvoiceID=@InvoiceID";
+        //System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
+        //insert.Connection = connect;
+        //insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentLeft", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentLeft") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentLeft", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentLeft") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@PaymentStatus", (dbInvoice.Rows[e.RowIndex].FindControl("GridStatus") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@PaymentStatus", (dbInvoice.Rows[e.RowIndex].FindControl("GridStatus") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@LastUpdatedBy", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdatedBy") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@LastUpdatedBy", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdatedBy") as TextBox).Text.Trim());
 
-        insert.Parameters.AddWithValue("@LastUpdated", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdated") as TextBox).Text.Trim());
+        //insert.Parameters.AddWithValue("@LastUpdated", (dbInvoice.Rows[e.RowIndex].FindControl("GridLastUpdated") as TextBox).Text.Trim());
 
 
 
-        //insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
-        insert.ExecuteNonQuery();
-        dbInvoice.EditIndex = -1;
-        connect.Close();
-        PopulateGridview();
-       
-        lblStatus.Text = "Successfully updated";
-       
-        //}
-        //catch (Exception ex)
-        //{
-        //    txtTest.Text = "";
-        //    txtTest.Text = ex.Message;
-        //}
+        ////insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
+        //insert.ExecuteNonQuery();
+        //dbInvoice.EditIndex = -1;
+        //connect.Close();
+        //PopulateGridview();
+
+        //lblStatus.Text = "Successfully updated";
+
+        ////}
+        ////catch (Exception ex)
+        ////{
+        ////    txtTest.Text = "";
+        ////    txtTest.Text = ex.Message;
+        ////}
     }
 
     protected void OnPaymentSelection(object sender, EventArgs e)
@@ -349,5 +360,46 @@ public partial class FinancialReport : System.Web.UI.Page
     protected void Export(object sender, EventArgs e)
     {
         ExportToExcel();
+    }
+
+    //protected void txtAddress_TextChanged(object sender, EventArgs e)
+    //{
+
+    //}
+
+    protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+
+        string callState = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.Text + "';";
+        SqlCommand cmdDatabase1 = new SqlCommand(callState, connect);
+
+        SqlDataReader myreader;
+
+        try
+        {
+            connect.Open();
+            myreader = cmdDatabase1.ExecuteReader();
+            //myreader = cmdDatabase2.ExecuteReader();
+
+
+            while (myreader.Read())
+            {
+
+                string OrgAddress = myreader.GetString(1);
+                string OrgCity = myreader.GetString(2);
+                string OrgCounty = myreader.GetString(3);
+                string OrgCountry = myreader.GetString(4);
+                txtAddress.Text = OrgAddress + ", " + OrgCity + ", " + OrgCounty + ", " + OrgCountry;
+
+                //txtState.AutoComplteCUstomerSource = country;
+            }
+            connect.Close();
+        }
+        catch (Exception ex)
+        {
+
+        }
+        connect.Close();
     }
 }
