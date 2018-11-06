@@ -66,7 +66,12 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //string txtLevel = Session["userLevel"].ToString();
+        //if (txtLevel == "Full-time Staff")
+        //    Response.Redirect("Home.aspx", false);
+        //else 
+        //    Response.Redirect("Homelimited.aspx", false);
+
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

@@ -64,10 +64,8 @@ public partial class Login : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
         emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
         string level = Convert.ToString(emlevel.ExecuteScalar());
-        if (level == "Full-time Staff")
-            Response.Redirect("Home.aspx", false);
-        else
-            Response.Redirect("Homelimited.aspx", false);
+        Session["userLevel"] = level;
+        
         //else // if the username doesn't exist, it will show failure
         //lblStatus.Text = "Login failed.";
 
