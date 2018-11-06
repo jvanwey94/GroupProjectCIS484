@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.aspx">Waynesboro Wildlife Refuge</a>
+                <a class="navbar-brand" href="Home.aspx"></a>
+                <asp:Label ID="Header" runat="server" Text="Wildlife Center Of Virginia" Font-Bold="True" Font-Italic="True" Font-Size="XX-Large" ForeColor="#006600"></asp:Label>
             </div>
             <!-- /.navbar-header -->
 
@@ -22,7 +23,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="Userprofile.aspx"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -30,6 +31,7 @@
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
+             
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -62,13 +64,24 @@
                             	<li>
                             		<a href="manageAnimal.html">Manage Animals</a>
                             	</li>
-                                <li>
-                                    <a href="trackAnimal.html">Track Animals</a>
-                                <li>
+                            	<li>
+                            		<a href="trackAnimal.html">Track Animals</a>
+                            	</li>
                             </ul>
                         </li>
                         <li>
-                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports </a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="financialReport.aspx">Financial Report</a>
+                            	</li>
+                            	<li>
+                            		<a href="ProgramReport.aspx">Program Report</a>
+                            	</li>
+                                <li>
+                            		<a href="AnimalReport.aspx">Animal Report</a>
+                            	</li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -76,6 +89,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
         <div id="page-wrapper">
             <div>
        
