@@ -46,24 +46,73 @@
                             <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
 
                                 <Columns>
-                                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
-                                    <asp:BoundField DataField="ProgName" HeaderText="ProgName" SortExpression="ProgName" />
-                                    <asp:BoundField DataField="SiteType" HeaderText="SiteType" SortExpression="SiteType" />
-                                    <asp:BoundField DataField="ProgStatus" HeaderText="ProgStatus" SortExpression="ProgStatus" />
-                                    <asp:BoundField DataField="ProgAddress" HeaderText="ProgAddress" SortExpression="ProgAddress" />
-                                    <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
-                                    <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
-                                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
-                                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
-                                    <asp:TemplateField>
+                                    <%-- %><asp:TemplateField HeaderText="Organization Name">
                                         <ItemTemplate>
-                                            <a href="#" data-toggle="modal" data-target="editProgram" />
+                                            <asp:Label ID="lblOrganizationName" Text='<%# Eval("OrganizationName") %>' runat="server" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblProgDate" Text='<%# Eval("ProgDate") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblProgName" Text='<%# Eval("ProgName") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Site Type">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblSiteType" Text='<%# Eval("SiteType") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Status">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblProgStatus" Text='<%# Eval("ProgStatus") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Address">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblProgAddress" Text='<%# Eval("ProgAddress") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="City">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCity" Text='<%# Eval("City") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="County">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCounty" Text='<%# Eval("County") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Number of Children">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNumberOfChildren" Text='<%# Eval("NumberOfChildren") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Number of Adults">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNumberOfAdults" Text='<%# Eval("NumberOfAdults") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>--%>
+                                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
+                                    <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" />
+                                    <asp:BoundField DataField="ProgName" HeaderText="Name" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
+                                    <asp:BoundField DataField="ProgStatus" HeaderText="Status" SortExpression="ProgStatus" />
+                                    <asp:BoundField DataField="ProgAddress" HeaderText="Address" SortExpression="ProgAddress" />
+                                    <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+                                    <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
+                                    <asp:BoundField DataField="NumberOfChildren" HeaderText="Number Of Children" SortExpression="NumberOfChildren" />
+                                    <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
+                                    
+                                    <asp:HyperLinkField />
+                                    
                                 </Columns>
                                 
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R where P.ProgramID = R.ProgramID"></asp:SqlDataSource>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults from dbo.Program P, dbo.RegularProgram R where P.ProgramID = R.ProgramID"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>                           
                         </div>
                     </div>
@@ -246,12 +295,10 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("tr").click(function() {
-                $(".row-button", this).click();
-          });
-        });
-    </script>
+<%--    <script type="text/javascript">
+        function openModal() {
+        $("[id*=GridView1]").modal('show')
+    };
+    </script>--%>
 </asp:Content>
 
