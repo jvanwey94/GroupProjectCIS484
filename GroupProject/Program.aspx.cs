@@ -12,6 +12,7 @@ public partial class Program : System.Web.UI.Page
 {
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
     ////SqlConnection sc = new SqlConnection(@"server =Localhost;Database=WildLifeCenter;Trusted_Connection=True");
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -23,29 +24,49 @@ public partial class Program : System.Web.UI.Page
             //        populateAnimals("'" + "Reptile" + "'", DropDownList4);
             BindData();
         }
+
+        
     }
 
     private void BindData()
     {
-        GridView1.DataBind();
+        gvRegularProgram.DataBind();
     }
 
-    //protected override void Render(HtmlTextWriter writer)
-    //{
-    //    foreach (GridViewRow r in GridView1.Rows)
-    //    {
-    //        if (r.RowType == DataControlRowType.DataRow)
-    //        {
-    //            r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
-    //            r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
-    //            r.ToolTip = "Click to select row";
-    //            r.Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "$openModal()" + r.RowIndex, true);
-                
-    //        }
-    //    }
+    protected override void Render(HtmlTextWriter writer)
+    {
+        foreach (GridViewRow r in gvRegularProgram.Rows)
+        {
+            if (r.RowType == DataControlRowType.DataRow)
+            {
+                r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
+                r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
+                r.ToolTip = "Click to select row";
+                r.Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+            }
+        }
 
-    //    base.Render(writer);
-    //}
+        base.Render(writer);
+    }
+
+    protected void OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "openModal()", true);
+        GridViewRow organizationName = gvRegularProgram.SelectedRow;
+        //txtOrganizationName.Text = (string)gvRegularProgram.DataKeys[organizationName.RowIndex]["Column1"];
+
+        txtOrganizationName.Text = gvRegularProgram.SelectedRow.Cells[0].Text;
+        txtOrganizationAddress.Text = gvRegularProgram.SelectedRow.Cells[5].Text;
+        txtCity.Text = gvRegularProgram.SelectedRow.Cells[6].Text;
+        txtCounty.Text = gvRegularProgram.SelectedRow.Cells[7].Text;
+        txtProgramName.Text = gvRegularProgram.SelectedRow.Cells[2].Text;
+        txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
+        txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
+        txtDate.Text = gvRegularProgram.SelectedRow.Cells[1].Text;
+        
+
+    }
 
 
 
@@ -115,11 +136,10 @@ public partial class Program : System.Web.UI.Page
 
     ////Yoooooooooooooooooooooooooooooooooooooo dogggggggg
 
-    ////Exit Button
-    //protected void Button2_Click(object sender, EventArgs e)
-    //{
-    //    System.Environment.Exit(0);
-    //}
+    protected void UpdateProgram(object sender, EventArgs e)
+    {
+
+    }
 
 
     //public void fillStatusList()

@@ -43,59 +43,9 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
 
                                 <Columns>
-                                    <%-- %><asp:TemplateField HeaderText="Organization Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblOrganizationName" Text='<%# Eval("OrganizationName") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Date">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProgDate" Text='<%# Eval("ProgDate") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProgName" Text='<%# Eval("ProgName") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Site Type">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblSiteType" Text='<%# Eval("SiteType") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Status">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProgStatus" Text='<%# Eval("ProgStatus") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Address">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProgAddress" Text='<%# Eval("ProgAddress") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="City">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblCity" Text='<%# Eval("City") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="County">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblCounty" Text='<%# Eval("County") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Number of Children">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblNumberOfChildren" Text='<%# Eval("NumberOfChildren") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Number of Adults">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblNumberOfAdults" Text='<%# Eval("NumberOfAdults") %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>--%>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
                                     <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" />
                                     <asp:BoundField DataField="ProgName" HeaderText="Name" SortExpression="ProgName" />
@@ -106,9 +56,6 @@
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
                                     <asp:BoundField DataField="NumberOfChildren" HeaderText="Number Of Children" SortExpression="NumberOfChildren" />
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
-                                    
-                                    <asp:HyperLinkField />
-                                    
                                 </Columns>
                                 
                             </asp:GridView>
@@ -219,56 +166,73 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Animal Name</label>
+                                <label>Organization Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtOrganizationName" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Type of Animal</label>
+                                <label>Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-<%--                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Events</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalEventsTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtOrganizationAddress" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Number of Children Met</label>
+                                <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalChildrenMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtCity" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Number of Adults Met</label>
+                                <label>County</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAdultMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtCounty" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Total Number of People Met</label>
+                                <label>Site Type</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTotalPeopleMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtSiteType" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>--%>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Program Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtProgramName" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtStatus" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-
+                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
+                    <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
         </div>
@@ -284,7 +248,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id*=GridView1]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+            $("[id*=gvRegularProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
                 responsive: true,
                 paging: true,
                 lengthChange: false,
@@ -295,10 +259,10 @@
             });
         });
     </script>
-<%--    <script type="text/javascript">
+<script type='text/javascript'>
         function openModal() {
-        $("[id*=GridView1]").modal('show')
-    };
-    </script>--%>
+            $('[id*=editProgram]').modal();
+        }
+    </script>
 </asp:Content>
 
