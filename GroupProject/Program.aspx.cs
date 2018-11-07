@@ -70,16 +70,63 @@ public partial class Program : System.Web.UI.Page
         txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
         txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
         txtDate.Text = gvRegularProgram.SelectedRow.Cells[1].Text;
-
-
+        txtNumberOfChildren.Text = gvRegularProgram.SelectedRow.Cells[8].Text;
+        txtNumberOfAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
+        //CheckBoxAnimal.SelectedIndex = gvRegularProgram.SelectedRow.Cells[10];
+        DropDownEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
     }
+
+
 
     protected void CreateProgram(object sender, EventArgs e)
     {
+        //Get multiple selections from Animal CheckBoxList and concatenate into 1 string to insert into database?
+        //Need a way to input multiple animals -> in database, had to manually input the different animalID and animal names separately
+        //^^basically added the same program and programID multiple times with its own different animal in ProgramAnimal table
+        //Maybe have a foreach loop to insert the animals separately into each row with the corresponding ProgramID
+        string selection = "";
+        foreach (ListItem item in CheckBoxList1.Items)
+        {
+            selection += item.Selected + ", ";
+        }
+        //String id = "Select scope_identity from Program";
+        String getID = "select max(ProgramID) as ProgramID from Program";
+
+        //Once a user creates a program: Program, RegularProgram, Organization, ProgramOrganization, ProgramAnimal, Animal, Educator, and EducatorProgram Tables must be inserted and updated to
+
+        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
+        String insertRegularProgramQuery = "INSERT INTO RegularProgram VALUES (@ProgramID, @ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
+        sc.Open();
+        //Inserting into Program table -- maybe have the trigger run to update ProgramID after inserting?
+        SqlCommand insertProgramcmd = new SqlCommand(insertProgramQuery, sc);
+        insertProgramcmd.Parameters.AddWithValue("@ProgDate", txtAddDate.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtAddChildren.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtAddAdults.Text);
+        insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", txtAddPaymentStatus.Text);
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdatedBy", "jlieu96");
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+        insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtAddOrg.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+
+        insertProgramcmd.ExecuteNonQuery();
+        //Inserting into RegularProgram table
+        SqlCommand insertRegularProgramCmd = new SqlCommand(insertRegularProgramQuery, sc);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", Int32.Parse(getID));
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgName", DropDownProgram.SelectedValue);
+        insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", DropDownSite.SelectedValue);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", CheckBoxStatus.Checked);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", txtAddProgAddress.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@City", txtAddProgCity.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@County", txtAddProgCounty.Text);
+
+        insertRegularProgramCmd.ExecuteNonQuery();
+
+        gvRegularProgram.DataBind();
+        sc.Close();
 
     }
 
-
+    
     //// Insert into database
     //protected void Button1_Click(object sender, EventArgs e)
     //{
