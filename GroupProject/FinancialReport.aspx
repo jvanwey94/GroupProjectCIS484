@@ -1,4 +1,4 @@
-﻿<%@ Page Title="FinancialReport" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -21,6 +21,94 @@ function Calculation(){
     <script src="https://cdn.datatables.net/1.10.13/js/jQuery.dataTables.min.js"></script>
     <link href="https://cdn.datatable.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+    <div id="wrapper">
+       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Home.aspx"></a>
+                <asp:Label ID="Header" runat="server" Text="Wildlife Center Of Virginia" Font-Bold="True" Font-Italic="True" Font-Size="XX-Large" ForeColor="#006600"></asp:Label>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+      
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="Userprofile.aspx"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+             
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="manageAnimal.html">Manage Animals</a>
+                            	</li>
+                            	<li>
+                            		<a href="trackAnimal.html">Track Animals</a>
+                            	</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports </a>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="financialReport.aspx">Financial Report</a>
+                            	</li>
+                            	<li>
+                            		<a href="ProgramReport.aspx">Program Report</a>
+                            	</li>
+                                <li>
+                            		<a href="AnimalReport.aspx">Animal Report</a>
+                            	</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
     
     <div id="page-wrapper">
     <!--Page header -->
@@ -46,21 +134,20 @@ function Calculation(){
                 </div>
             <div class="col-lg-4">
                  <asp:Label ID="lblProgram" runat="server" Text="Program Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtProgram" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource3" DataTextField="ProgName" DataValueField="ProgName">
+                <asp:DropDownList ID="txtProgram" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource1">
                    
                  </asp:DropDownList>
-                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [ProgName] FROM [RegularProgram]"></asp:SqlDataSource>
             </div>
-           
-            <div class="col-lg-4">
+            <div class="row">
+            <div class="col-lg-3">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName">
-                    <asp:ListItem >     </asp:ListItem>
-                    
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control"  OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged" DataSourceID="SqlDataSource3" >
+                    <%--<asp:ListItem >OrganizationA</asp:ListItem>
+                    <asp:ListItem >OrganizationB</asp:ListItem>--%>
                  </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [OrganizationName] FROM [Organization]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [OrganizationName] FROM [Program]"></asp:SqlDataSource>
             </div>
-           
+            </div>
                     </div> 
                     <!-- closes form-row -->
                </div>
@@ -70,7 +157,7 @@ function Calculation(){
        <div class="row">
            <div class="col-lg-12">
                <div class="form-row">
-               <div class="col-lg-4" style="padding-top:1em;">
+               <div class="col-lg-4">
                 <asp:Label ID="lblPayType" runat="server" Text="PayType"  Font-Size="Large" class="form-control-label"></asp:Label>
                
                     
@@ -93,19 +180,19 @@ function Calculation(){
                 <asp:TextBox ID="txtCheckNumber" runat="server" Visible="false" class="form-control"></asp:TextBox> 
                 <asp:Label ID="lblCheckNumberNote" runat="server" Text="NOTE(Please add a check number only if the payment type is 'Check')"  Font-Size="small" ForeColor="gray" class="text-muted"></asp:Label>
         </div>
-        <div class="col-lg-3" style="padding-top:1em;">
+        <div class="col-lg-3">
                 <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
         </div>
-        <div class="row">
-        <div class="col-lg-5" style="padding-top:1em;">
+
+        <div class="col-lg-2">
             
                   <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
-                  <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control"></asp:TextBox><br />
+                  <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control" ></asp:TextBox><br />
          </div>
-        </div>
-        <div class="col-3" style="padding-top:1em;">
+    
+        <div class="col-1">
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>
                 <asp:TextBox ID="txtPaymentCollect" runat="server" class="form-control"></asp:TextBox>
         
@@ -120,7 +207,7 @@ function Calculation(){
         <!-- closes row -->
            <br />
 
-     
+        <br />
 
      <%--           <asp:Label ID="lblLastUpdatedBy" runat="server" Text="UpdatedBy:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdatedBy" runat="server"></asp:TextBox>
@@ -128,10 +215,11 @@ function Calculation(){
         <br />
                  <asp:Label ID="lblLastUpdated" runat="server" Text="Updated:"  Font-Size="Large" ></asp:Label>
                 <asp:TextBox ID="txtLastUpdated" runat="server"></asp:TextBox>--%>
-       
+        <br />
+        <br />
                 
        
-               <asp:Button ID="btnInsert" class="btn btn-lg btn-success btn-block" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
+               <asp:Button ID="btnInsert" class="btn btn-primary" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
         <br />
        
             <asp:Label ID="lblStatus" runat="server"></asp:Label>
@@ -151,7 +239,7 @@ function Calculation(){
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
         <br />
-    <%--<asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" onClick="Export" Text="Export to Excel" />--%>
+    <asp:Button ID="ButtonExport" runat="server" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
     <div class="panel-body">
         <asp:GridView ID="dbInvoice" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
@@ -408,8 +496,8 @@ function Calculation(){
     </div>
     </div>
     <!--ends row-->
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WildLifeCenterConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select OrganizationName from dbo.Program"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [programName] FROM [Program]"></asp:SqlDataSource>
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 
