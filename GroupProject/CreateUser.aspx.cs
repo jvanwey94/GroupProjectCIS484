@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,28 +13,28 @@ public partial class CreateUser : System.Web.UI.Page
     {
 
     }
-
-
+    
+    
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         if (txtFirstName.Text != "" && txtLastName.Text != "" && txtPassword.Text != "" && txtUsername.Text != ""
-            && txtEmail.Text != "" && txtPN.Text != "" && txtConfirm.Text != "") // all fields must be filled out
+            && txtEmail.Text != "" && txtPN.Text != "" && txtConfirm.Text != "" ) // all fields must be filled out
         {
             //COMMIT VALUES
             //try
             //{
             System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-
-
+            
+            
 
             sc.Open();
-
+            
 
             System.Data.SqlClient.SqlCommand createUser = new System.Data.SqlClient.SqlCommand();
             createUser.Connection = sc;
 
             //find the personID
-            String countdata = "select count(*) From [dbo].[Person]";
+            String countdata = "select count(*) From [dbo].[User]";
             createUser = new SqlCommand(countdata, sc);
             Int32 countItem = (Int32)createUser.ExecuteScalar();
             int readcount = (int)countItem + 1;
@@ -43,8 +43,8 @@ public partial class CreateUser : System.Web.UI.Page
 
             Boolean validationEmail = emailIsValid(txtEmail.Text);
 
-
-
+            
+     
 
 
             // Validate password
@@ -58,7 +58,7 @@ public partial class CreateUser : System.Web.UI.Page
                     if (response == true)
                     {
                         // INSERT USER RECORD
-                        createUser.CommandText = "insert into[dbo].[Person] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@Username)";
+                        createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@userName)";
                         createUser.Parameters.Add(new SqlParameter("@FName", txtFirstName.Text));
                         createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
                         createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
