@@ -70,80 +70,76 @@ public partial class Program : System.Web.UI.Page
         txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
         txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
         txtDate.Text = gvRegularProgram.SelectedRow.Cells[1].Text;
-
-
+        txtNumberOfChildren.Text = gvRegularProgram.SelectedRow.Cells[8].Text;
+        txtNumberOfAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
+        //CheckBoxAnimal.SelectedIndex = gvRegularProgram.SelectedRow.Cells[10];
+        DropDownEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
     }
+
+
 
     protected void CreateProgram(object sender, EventArgs e)
     {
+        //Get multiple selections from Animal CheckBoxList and concatenate into 1 string to insert into database?
+        //Need a way to input multiple animals -> in database, had to manually input the different animalID and animal names separately
+        //^^basically added the same program and programID multiple times with its own different animal in ProgramAnimal table
+        //Maybe have a foreach loop to insert the animals separately into each row with the corresponding ProgramID
+        string selection = "";
+        foreach (ListItem item in CheckBoxList1.Items)
+        {
+            selection += item.Selected + ", ";
+        }
+
+        //Once a user creates a program: Program, RegularProgram, Organization, ProgramOrganization, ProgramAnimal, Animal, Educator, and EducatorProgram Tables must be inserted and updated to
+
+        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
+        String insertRegularProgramQuery = "INSERT INTO RegularProgram VALUES ((Select MAX(ProgramID) from dbo.Program),@ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
+        String insertProgramAnimalQuery = "INSERT INTO ProgramAnimal VALUES (((Select MAX(ProgramID) from dbo.Program), @AnimalID, @ProgramName, @AnimalName, @NumberOfAdultsMet, @NumberOfChildrenMet)";
+        String updateAnimalQuery = "Update Animal set NumberOfEvents = @NumberOfEvents, NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet";
+        sc.Open();
+        //Inserting into Program table -- maybe have the trigger run to update ProgramID after inserting?
+        SqlCommand insertProgramcmd = new SqlCommand(insertProgramQuery, sc);
+        insertProgramcmd.Parameters.AddWithValue("@ProgDate", txtAddDate.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtAddChildren.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtAddAdults.Text);
+        insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", txtAddPaymentStatus.Text);
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdatedBy", "jlieu96");
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+        insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtAddOrg.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+
+        insertProgramcmd.ExecuteNonQuery();
+        //Inserting into RegularProgram table
+        SqlCommand insertRegularProgramCmd = new SqlCommand(insertRegularProgramQuery, sc);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgName", DropDownProgram.SelectedValue);
+        insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", DropDownSite.SelectedValue);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", CheckBoxStatus.Checked);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", txtAddProgAddress.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@City", txtAddProgCity.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@County", txtAddProgCounty.Text);
+
+        insertRegularProgramCmd.ExecuteNonQuery();
+
+        //***Problem with inserting AnimalID into the database
+        //***Might have to change into a ListBox to select animals from 
+        //SqlCommand insertProgramAnimalCmd = new SqlCommand(insertProgramAnimalQuery, sc);
+
+        //foreach (ListItem item in CheckBoxList1.Items)
+        //{
+        //    insertProgramAnimalCmd.Parameters.AddWithValue("@AnimalID", item.Value);
+        //    insertProgramAnimalCmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+        //    insertProgramAnimalCmd.Parameters.AddWithValue("@AnimalName", item.Selected);
+        //    insertProgramAnimalCmd.Parameters.AddWithValue("@NumberOfAdultsMet", txtAddAdults.Text);
+        //    insertProgramAnimalCmd.Parameters.AddWithValue("@NumberOfChildrenMet", txtAddChildren.Text);
+        //}
+
+        //insertProgramAnimalCmd.ExecuteNonQuery();
+
+        gvRegularProgram.DataBind();
+        sc.Close();
 
     }
 
-
-    //// Insert into database
-    //protected void Button1_Click(object sender, EventArgs e)
-    //{
-
-    //    sc.Open();
-    //    String site = "";
-    //    if (RadioButton1.Checked)
-    //    {
-    //        site = "OnSite";
-    //    }
-    //    else
-    //    {
-    //        site = "OffSite";
-    //    }
-
-    //    String payment = "";
-    //    if (RadioButton3.Checked)
-    //    {
-    //        payment = "Waiting for payment";
-    //    }
-    //    else
-    //    {
-    //        payment = "Payment received";
-    //    }
-    //    Programs prog = new Programs(organizationTxt.Text, site, statusDropDown.SelectedValue, streetTxt.Text, cityTxt.Text, countyTxt.Text, TextBox6.Text, DropDownList5.SelectedValue, TextBox4.Text, int.Parse(TextBox1.Text),
-    //        int.Parse(TextBox2.Text), DropDownList2.SelectedValue, DropDownList3.SelectedValue, DropDownList4.SelectedValue, payment, "foreign key", "Stosh", DateTime.Today.ToString("d"), TextBox5.Text);
-    //   String insertProgramQuery = "Insert into Program (ProgMonth, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID, LastUpdatedBy, LastUpdated) " +
-    //        "VALUES (@ProgMonth, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID, @LastUpdatedBy, @LastUpdated)";
-    //    String regularProgramQuery = "INSERT INTO RegularProgram (ProgName, SiteType, ProgStatus, ProgAddress, City, County) " +
-    //        "VALUES (@ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
-
-
-    //    SqlCommand cmd = new SqlCommand(regularProgramQuery, sc);
-    //    SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
-
-    //    cmd.Parameters.AddWithValue("@ProgName", prog.getProgramName()); //
-    //    cmd.Parameters.AddWithValue("@SiteType", site); //
-    //    cmd.Parameters.AddWithValue("@ProgStatus", statusDropDown.SelectedItem.Text); //
-    //    cmd.Parameters.AddWithValue("@ProgAddress", prog.getProgramAddress()); //
-    //    cmd.Parameters.AddWithValue("@City", prog.getCity()); //
-    //    cmd.Parameters.AddWithValue("@County", prog.getCounty()); //
-
-
-
-
-    //    programcmd.Parameters.AddWithValue("@ProgMonth", prog.getProgramMonth());
-    //    programcmd.Parameters.AddWithValue("@ProgDate", prog.getProgramDate());
-    //    programcmd.Parameters.AddWithValue("@NumberOfKids", prog.getNumberOfKids());
-    //    programcmd.Parameters.AddWithValue("@NumberOfAdult", prog.getNumberOfAdults());
-    //    programcmd.Parameters.AddWithValue("@PayStatus", payment);
-    //    programcmd.Parameters.AddWithValue("@InvoiceID", "1");
-    //    programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
-    //    programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
-
-
-
-
-    //    cmd.ExecuteNonQuery();
-    //    programcmd.ExecuteNonQuery();
-
-    //    sc.Close();
-    //}
-
-    ////Yoooooooooooooooooooooooooooooooooooooo dogggggggg
 
     protected void UpdateProgram(object sender, EventArgs e)
     {
