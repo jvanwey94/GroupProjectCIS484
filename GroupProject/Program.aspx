@@ -132,7 +132,7 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False"  DataSourceID="SqlDataSource1">
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
@@ -144,11 +144,7 @@
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
                                     <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
-                                    <asp:TemplateField>
-                                        <ItemTemplate>
-                                            <a href="#" data-toggle="modal" data-target="editProgram" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+
                                 </Columns>
                                 
                             </asp:GridView>
@@ -244,12 +240,12 @@
             
         </div>
     </div>--%>
-        <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true">
+        <div class="modal fade" id="addProgram" tabindex="1" role="dialog" aria-labelledby="addProgram" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title" id="editProgramModal">
-                            Edit Program
+                        <h5 class="modal-title" id="addProgramModal">
+                            Create Program
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -259,58 +255,89 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Animal Name</label>
+                                <label>Organization Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtOrganizationName" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Type of Animal</label>
+                                <label>Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-<%--                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Events</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalEventsTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtOrganizationAddress" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Number of Children Met</label>
+                                <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalChildrenMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtCity" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Number of Adults Met</label>
+                                <label>County</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAdultMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtCounty" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Total Number of People Met</label>
+                                <label>Site Type</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTotalPeopleMetTxt" class="form-control" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtProgramName" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>--%>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Program Name</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtSiteType" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtStatus" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Animal</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:DropDownList ID="ddAnimal" class="form-control" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
+        </div>
+    </div>
+         <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+@@ -238,6 +334,8 @@
         </div>
     </div>
 
@@ -324,7 +351,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id*=GridView1]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+            $("[id*=gvRegularProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
                 responsive: true,
                 paging: true,
                 lengthChange: false,
