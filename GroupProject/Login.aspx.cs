@@ -11,7 +11,7 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
 
@@ -50,6 +50,7 @@ public partial class Login : System.Web.UI.Page
                     btnLogin.Enabled = false;
                     txtUserName.Enabled = false;
                     txtPassword.Enabled = false;
+                    Response.Redirect("Home.aspx");
                      // change this later (Program
                     
                 }
