@@ -20,7 +20,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="createEvent.html">Create an Event</a>
+                                         <li><a href="#addOnlineProgram" data-toggle="modal" data-target="#addOnlineProgram">Create a OnlineProgram</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Edit Events</a>
@@ -55,6 +55,8 @@
                     <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
                 </Columns>
             </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="
+                        <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
             </div>
                     </div>
                 </div>
@@ -65,22 +67,34 @@
                     <!-- /.panel -->
                 </div>
             </div>
-
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
-
-
-            <%--<div>
+            <div>
        
             <br />
-        <asp:Label ID="lblTitle" runat="server" Text="Online Programs" Font-Size="XX-Large" ></asp:Label><br />
-    </div>
+               <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
+                <asp:Panel ID="ModalPanel" runat="server" ></asp:Panel>
+        <div class="modal fade" id="addOnlineProgram" tabindex="1" role="dialog" aria-labelledby="addOnlineProgram" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="addOnlineProgramModal">
+                            Create OnlineProgram
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+
+<%-- 
+AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
     <div class="container">
         <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblOrganizationName" runat="server" Text="Organization Name: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="txtOrganizationName" required="required" runat="server" AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"></asp:TextBox><br />
+                <asp:TextBox ID="txtOrganizationName" required="required" runat="server" ></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
@@ -92,15 +106,15 @@
                 <br />
             </div>
         </div>
-       <%-- <div class="row">
+   <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="Label2" runat="server" Text="Month: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">
+        </div>
+       <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
             </div>
@@ -123,17 +137,17 @@
             <div class="col-md-2">
                 <asp:TextBox ID="txtCountry" required="required" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%>  <%--required="required"--%>
-            <%--<div class="col-md-2">
+        </div>
+        <div class="row"> <%--required="required"--%>
+            <div class="col-md-2">
                 <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="txtNK" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        </div>
+        <div class="row"><%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
             </div>
             <div class="col-md-2">
@@ -163,17 +177,17 @@
             <div class="col-md-2">
                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
             </div>
-        </div>--%>
-        <%--<div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        </div>
+      <div class="row"> <%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="txtTeacher"  runat="server"></asp:TextBox><br />
             </div>
         </div>
-        <div class="row">--%> <%--required="required" --%>
-            <%--<div class="col-md-2">
+        <div class="row"><%--required="required" --%>
+            <div class="col-md-2">
                 <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
             </div>
             <div class="col-md-2">
@@ -197,16 +211,20 @@
                 <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Button ID="btnCreate" runat="server" onClick="Button1_Click"  Text="Create" />
-
+                    </div>
+                </div>
+               
+                <div class="modal-footer">
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                </div>
             </div>
         </div>
-    </div>--%>--%>
-            
-        </div>
+    
     </div>
+
+<%--    </asp:UpdatePanel>--%>
+
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
@@ -229,5 +247,6 @@
         });
     </script>
 
+        </div>
 </asp:Content>
 

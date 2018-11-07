@@ -43,7 +43,7 @@ public partial class FinancialReport : System.Web.UI.Page
             }
             //    dbInvoice.Visible = true;
         }
-        
+
 
     }
 
@@ -66,12 +66,12 @@ public partial class FinancialReport : System.Web.UI.Page
 
     protected override void OnPreRender(EventArgs e)
     {
-       
+
         base.OnPreRender(e);
         //MakeAccessible(GridView1);
     }
-    
-    
+
+
 
     //populate gridview
     void PopulateGridview()
@@ -80,7 +80,7 @@ public partial class FinancialReport : System.Web.UI.Page
         String getInvoiceNumber = txtSearch.Text;
         lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
-        System.Data.SqlClient.SqlCommand insert= new System.Data.SqlClient.SqlCommand(sqlDA, connect);
+        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
         SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
         lblStatus.Text = "Loading";
@@ -116,84 +116,111 @@ public partial class FinancialReport : System.Web.UI.Page
         //try
         //{
         Int32 InputCheckNumber;
-            String InputInvoiceNumber = txtInvoice.Text;
-            if(txtCheckNumber.Text == String.Empty)
-            {
+        String InputInvoiceNumber = txtInvoice.Text;
+        if (txtCheckNumber.Text == String.Empty)
+        {
             InputCheckNumber = 0;
-            }
-            else
-            {
+        }
+        else
+        {
             InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
-            }
-            
-            Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
-            Decimal InputPaymentCollect = 0;
-            Decimal InputPaymenLeft = 0;
-            String InputLastUpdatedBy = "Kevin";
-            DateTime InputLastUpdated = DateTime.Now.Date;
-            String InputProgram = txtProgram.SelectedItem.ToString();
-            String InputOrganization = txtOrganization.SelectedItem.ToString();
-            String InputPaymentType = txtPaymentType.SelectedItem.ToString();
-            String InputStatus = lblIncomplete.Text;
+        }
+
+        Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
+        Decimal InputPaymentCollect = 0;
+        Decimal InputPaymenLeft = 0;
+        //String InputLastUpdatedBy = "Kevin";
+        //DateTime InputLastUpdated = DateTime.Now.Date;
+        String InputProgram = txtProgram.SelectedItem.ToString();
+        String InputOrganization = txtOrganization.SelectedItem.ToString();
+        String InputPaymentType = txtPaymentType.SelectedItem.ToString();
+        String InputStatus = lblIncomplete.Text;
 
 
-            //check the validation for required field
-            if (txtInvoice.Text == string.Empty)
+        //check the validation for required field
+        if (txtInvoice.Text == string.Empty)
+        {
+            Response.Write("<script>alert('user must fill Invoice Number')</script>");
+            return;
+        }
+        if (txtAmount.Text == string.Empty)
+        {
+            Response.Write("<script>alert('user must fill Amount)</script>");
+            return;
+        }
+        if (txtPaymentType.SelectedItem.ToString() != "Check" && txtCheckNumber.Text != string.Empty)
+        {
+            Response.Write("<script>alert('Invalid Check Number, User can not add check number if the payment type is not 'check'')</script>");
+            return;
+        }
+
+        //Calculation
+        InputPaymenLeft = (Convert.ToInt32(txtAmount.Text) - InputPaymenLeft);
+
+        connect.Open();
+
+        string primaryContact = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.ToString() + "';";
+        SqlCommand cmdDatabase1 = new SqlCommand(primaryContact, connect);
+
+        SqlDataReader myreader;
+
+        try
+        {
+
+            myreader = cmdDatabase1.ExecuteReader();
+            //myreader = cmdDatabase2.ExecuteReader();
+
+
+            while (myreader.Read())
             {
-                Response.Write("<script>alert('user must fill Invoice Number')</script>");
-                return;
-            }
-            if (txtAmount.Text == string.Empty)
-            {
-                Response.Write("<script>alert('user must fill Amount)</script>");
-                return;
-            }
-            if (txtPaymentType.SelectedItem.ToString() != "Check" && txtCheckNumber.Text != string.Empty)
-            {
-                Response.Write("<script>alert('Invalid Check Number, User can not add check number if the payment type is not 'check'')</script>");
-                return;
-            }
 
-            //Calculation
-            InputPaymenLeft = (Convert.ToInt32(txtAmount.Text) - InputPaymenLeft);
-
-            connect.Open();
-
-            //@PaymentCollect,@PaymentLeft,,@Amount
-            //@OrganizationName" +
-            //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
-            //insert data to Bird table if text box is qualified
-            if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
-            {
-
-                //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-                String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
-                System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
-                insert.Connection = connect;
-                insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
-                insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
-                insert.Parameters.AddWithValue("@Program", InputProgram);
-                insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
-                insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
-                insert.Parameters.AddWithValue("@Amount", InputAmount);
-                insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
-                insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
-                insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
-                insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
-                insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
-
-                insert.ExecuteNonQuery();
-                lblStatus.Text = "succseessful to add this payment to database!";
-                //txtTest.Text = InputStatus;
-
-                txtAmount.Text = string.Empty;
-                txtCheckNumber.Text = string.Empty;
-                txtInvoice.Text = string.Empty;
-                //txtLastUpdatedBy.Text = string.Empty;
-                //txtLastUpdated.Text = string.Empty;
-                txtSearch.Text = string.Empty;
+                string ContactPerson = myreader.GetString(5);
+                txtContactPerson.Text = ContactPerson;
 
             }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        connect.Close();
+
+
+        //@PaymentCollect,@PaymentLeft,,@Amount
+        //@OrganizationName" +
+        //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
+        //insert data to Bird table if text box is qualified
+        if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
+        {
+
+            //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
+            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
+            System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
+            insert.Connection = connect;
+            insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
+            insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
+            insert.Parameters.AddWithValue("@Program", InputProgram);
+            insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
+            insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
+            insert.Parameters.AddWithValue("@Amount", InputAmount);
+            insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
+            insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
+            insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
+            insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+            insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
+
+            insert.ExecuteNonQuery();
+            lblStatus.Text = "succseessful to add this payment to database!";
+            //txtTest.Text = InputStatus;
+
+            txtAmount.Text = string.Empty;
+            txtCheckNumber.Text = string.Empty;
+            txtInvoice.Text = string.Empty;
+            //txtLastUpdatedBy.Text = string.Empty;
+            //txtLastUpdated.Text = string.Empty;
+            txtSearch.Text = string.Empty;
+
+        }
         connect.Close();
         //}
         //catch (Exception)
@@ -279,9 +306,9 @@ public partial class FinancialReport : System.Web.UI.Page
         //dbInvoice.EditIndex = -1;
         //connect.Close();
         //PopulateGridview();
-       
+
         //lblStatus.Text = "Successfully updated";
-       
+
         ////}
         ////catch (Exception ex)
         ////{
@@ -393,4 +420,45 @@ public partial class FinancialReport : System.Web.UI.Page
     //{
     //    ExportToExcel();
     //}
+
+
+
+    protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+        connect.Open();
+
+        string primaryContact = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.ToString() + "';";
+        SqlCommand cmdDatabase1 = new SqlCommand(primaryContact, connect);
+
+        SqlDataReader myreader;
+
+        try
+        {
+
+            myreader = cmdDatabase1.ExecuteReader();
+            //myreader = cmdDatabase2.ExecuteReader();
+
+
+            while (myreader.Read())
+            {
+                //get the bill address 
+                string OrgAddress = myreader.GetString(1);
+                string OrgCounty = myreader.GetString(3);
+                string OrgCity = myreader.GetString(2);
+                txtAddress.Text = OrgAddress + ", " + OrgCounty + ", " + OrgCity;
+
+                //get the primary contact person name
+                string ContactPerson = myreader.GetString(5);
+                txtContactPerson.Text = ContactPerson;
+
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        connect.Close();
+    }
 }

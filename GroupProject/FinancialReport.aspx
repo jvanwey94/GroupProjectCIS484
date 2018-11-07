@@ -54,7 +54,7 @@ function Calculation(){
            
             <div class="col-lg-4">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName">
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName"  AutoPostBack="true" OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged">
                     <asp:ListItem >     </asp:ListItem>
                     
                  </asp:DropDownList>
@@ -98,12 +98,17 @@ function Calculation(){
                 <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
         </div>
         <div class="row">
-        <div class="col-lg-5" style="padding-top:1em;">
+        <div class="col-lg-3" style="padding-top:1em;">
             
                   <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
                   <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control"></asp:TextBox><br />
          </div>
+         <div class="col-lg-3">
+               <asp:Label ID="lblContactPerson" runat="server" Text="Primary Contact Person:"  Font-Size="Large" class="form-control-label"></asp:Label>
+                   
+                  <asp:TextBox ID="txtContactPerson" required="required" runat="server" class="form-control"></asp:TextBox><br />
+          </div>
         </div>
         <div class="col-3" style="padding-top:1em;">
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>

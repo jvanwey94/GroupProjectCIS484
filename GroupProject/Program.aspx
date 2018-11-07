@@ -346,8 +346,7 @@
                                 <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
-                    </div>
-                </div>
+                 
                 <div class="modal-footer">
                     <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
