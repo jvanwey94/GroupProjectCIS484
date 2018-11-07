@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,7 +24,7 @@ public partial class Program : System.Web.UI.Page
             //        populateAnimals("'" + "Reptile" + "'", DropDownList4);
             BindData();
         }
-        //update
+
         
     }
 
