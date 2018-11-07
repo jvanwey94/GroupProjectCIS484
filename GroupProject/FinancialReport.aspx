@@ -1,4 +1,4 @@
-﻿<%@ Page Title="FinancialReport" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
+<%@ Page Title="FinancialReport" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FinancialReport.aspx.cs" Inherits="FinancialReport" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -151,7 +151,7 @@ function Calculation(){
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
         <br />
-    <asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" onClick="Export" Text="Export to Excel" />
+    <%--<asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" onClick="Export" Text="Export to Excel" />--%>
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
     <div class="panel-body">
         <asp:GridView ID="dbInvoice" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
