@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -28,19 +28,24 @@ public partial class Animal : System.Web.UI.Page
 
     protected void addAnimalToDataBaseButton(object sender, EventArgs e)
     {
-        String insertAnimalQuery = "INSERT INTO Animal VALUES (@AnimalType, @AnimalName, @AnimalStatus, @NumberOfEvents, @NumberOfAdultsMet, @NumberOfChildrenMet)";
+        String insertAnimalQuery = "INSERT INTO Animal VALUES (@AnimalType, @AnimalName, @AnimalStatus, @NumberOfEvents, @NumberOfChildrenMet, @NumberOfAdultsMet, @TotalPeopleMet)";
         sc.Open();
 
         SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
         insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeTxt.Text);
         insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
         insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", int.Parse(AnimalEventsTxt.Text));
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", int.Parse(AnimalAdultMetTxt.Text));
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", int.Parse(AnimalChildrenMetTxt.Text));
+        insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", 0);
+        insertAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", 0);
+        insertAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", 0);
+        insertAnimalcmd.Parameters.AddWithValue("@TotalPeopleMet", 0);
 
         insertAnimalcmd.ExecuteNonQuery();
+        GridView1.DataBind();
         sc.Close();
+
+        
+
     }
 
     //protected void btn1_Search(object sender, EventArgs e)
