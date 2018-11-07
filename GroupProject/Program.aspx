@@ -144,7 +144,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"> stuff
                 <asp:Button ID="Button1" runat="server" class="btn btn-primary" onClick="Button1_Click" Text="Add to Database" />
                 <asp:Button ID="Button2" runat="server" class="btn btn-secondary" formNoValidate="formNoValidate" onClick="Button2_Click" Text="Exit" /><br />
                 <asp:Label ID="Label18" runat="server" Text=""></asp:Label>    
