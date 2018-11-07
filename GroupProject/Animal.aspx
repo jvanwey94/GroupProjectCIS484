@@ -1,96 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Animal.aspx.cs" Inherits="Animal" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Animal.aspx.cs" Inherits="Animal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="Home.aspx"></a>
-                <asp:Label ID="Header" runat="server" Text="Wildlife Center Of Virginia" Font-Bold="True" Font-Italic="True" Font-Size="XX-Large" ForeColor="#006600"></asp:Label>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-      
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="Userprofile.aspx"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-             
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="Home.aspx"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                            	<li>
-                            		<a href="manageAnimal.html">Manage Animals</a>
-                            	</li>
-                            	<li>
-                            		<a href="trackAnimal.html">Track Animals</a>
-                            	</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="reports.html"><i class="fa fa-files-o fa-fw"></i> Reports </a>
-                            <ul class="nav nav-second-level">
-                            	<li>
-                            		<a href="financialReport.aspx">Financial Report</a>
-                            	</li>
-                            	<li>
-                            		<a href="ProgramReport.aspx">Program Report</a>
-                            	</li>
-                                <li>
-                            		<a href="AnimalReport.aspx">Animal Report</a>
-                            	</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+    
 
         <div id="page-wrapper">
             <div class="row">
@@ -111,8 +22,8 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                <%--        <li><a href="#addAnimals" data-toggle="modal" data-target="#addAnimals">Add an Animal</a>
-                                        </li>--%>
+                                        <li><a href="#addAnimals" data-toggle="modal" data-target="#addAnimals">Add an Animal</a>
+                                        </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Delete an Animal</a>
                                         </li>
@@ -127,17 +38,16 @@
                         <div class="panel-body">
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
                     <Columns>
-                        <asp:BoundField DataField="AnimalName" HeaderText="Name" SortExpression="AnimalName" />
-                        <asp:BoundField DataField="AnimalType" HeaderText="Type" SortExpression="AnimalType" />
-                        <asp:BoundField DataField="AnimalStatus" HeaderText="Status" SortExpression="AnimalStatus" />
-                        <asp:BoundField DataField="NumberOfEvents" HeaderText="Number Of Events" SortExpression="NumberOfEvents" />
-                        <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="Number Of People Met" SortExpression="NumberOfAdultsMet" />
-                        <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="Number Of People Met" SortExpression="NumberOfChildrenMet" />
-
+                        <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
+                        <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
+                        <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
+                        <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
+                        <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="NumberOfAdultsMet" SortExpression="NumberOfAdultsMet" />
+                        <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="NumberOfChildrenMet" SortExpression="NumberOfChildrenMet" />
+                        <asp:BoundField DataField="TotalNumberOfPeopleMet" HeaderText="TotalNumberOfPeopleMet" SortExpression="TotalNumberOfPeopleMet" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" 
-                    SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfAdultsMet],[NumberOfChildrenMet] FROM [Animal]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfAdultsMet], [NumberOfChildrenMet], [TotalNumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -172,7 +82,7 @@
                                 <label>Animal Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalNameTxt" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -180,46 +90,14 @@
                                 <label>Type of Animal</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Age</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAgeTxt" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Events</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalEventsTxt" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Adults Met</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalAdultMetTxt" runat="server" Text="0"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Number of Children Met</label>
-                            </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalChildrenMetTxt" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="insertAnimalButton" runat="server" onClick="addAnimalToDataBaseButton" class="btn btn-primary" Text="Insert" />
-                    <asp:Button ID="exitAnimalButton" class="btn btn-secondary" OnClick="ExitButton" runat="server" Text="Button" />
+                    <asp:Button ID="exitAnimalButton" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
         </div>
@@ -364,3 +242,4 @@ OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
     <p>
         &nbsp;</p>--%>
 </asp:Content>
+
