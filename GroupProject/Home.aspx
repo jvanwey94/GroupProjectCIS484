@@ -12,13 +12,14 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row" id="dashboardPanels">
+            <div id="dashboardPanels">
+              <div class="row" id="panelsTopRow">
                 <div class="col-lg-4 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-calendar-o fa-5x"></i>
+                                    <i class="fa fa-calendar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div>Manage Events</div>
@@ -55,12 +56,14 @@
                         </a>
                     </div>
                 </div>
+               </div>
+                <div class="row" id="panelsBottomRow">
                 <div class="col-lg-4 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-files-o fa-5x"></i>
+                                    <i class="fa fa-dollar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div>Financial Payments</div>
@@ -81,7 +84,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-files-o fa-5x"></i>
+                                    <i class="fa fa-wifi fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div>Manage Online Events</div>

@@ -6,13 +6,13 @@
         <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manage Animals</h1>
+                    <h1 class="page-header">Manage Animals <i class="fa fa-paw icon"></i> </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-red">
+                    <div class="panel">
                         <div class="panel-heading">
                             Animals
                              <div class="pull-right">
