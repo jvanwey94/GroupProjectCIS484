@@ -28,22 +28,24 @@ public partial class OnlineProgram : System.Web.UI.Page
         String payment = "delete later";
 
 
-        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (Type, Country, State, Grade, Email, Theme) " +
-            "VALUES (@Type, @Country, @State, @Grade, @Email, @Theme)";
-        String insertProgramQuery = "Insert into Program (OrganizationName, ProgDate, NumberOfKids, NumberOfAdult, PayStatus, InvoiceID) " +
-            "VALUES (@OrganizationName, @ProgDate, @NumberOfKids, @NumberOfAdult, @PayStatus, @InvoiceID)";
-
+        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
+            "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
+        String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName) " +
+            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
+        String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+ 
 
         SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
         //programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
-        programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
         programcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfKids", txtNK.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfAdult", txtNumberOFAdults.Text);
-        programcmd.Parameters.AddWithValue("@PayStatus", payment);
-        programcmd.Parameters.AddWithValue("@InvoiceID", "1");
-        //programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Stosh");
-        //programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+        programcmd.Parameters.AddWithValue("@NumberOfChildren", txtNK.Text);
+        programcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOFAdults.Text);
+        programcmd.Parameters.AddWithValue("@PaymentStatus", payment);
+        programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+        programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+        programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+        programcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+
 
         SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
         cmd.Parameters.AddWithValue("@Type", txtType.Text); // add drop down list to describe types of viewing
@@ -54,8 +56,35 @@ public partial class OnlineProgram : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
         //cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text); used for proganimal table
 
+
+        string AnimalNameString = "";
+        //foreach (ListItem item in CheckBoxList1.Items)
+        //{
+        //    AnimalNameString += item.Selected + ", ";
+        //}
+        //txtCountry.Text = AnimalNameString;
+
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        {
+            if (CheckBoxList1.Items[i].Selected)
+            {
+                AnimalNameString += CheckBoxList1.Items[i].Text + "  ";
+            }
+        }
+
+        string finalAnimalNameString = AnimalNameString;
+
+        SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+        cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
+        cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+        cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
+        cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
+        cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+
+
         programcmd.ExecuteNonQuery();
         cmd.ExecuteNonQuery();
+        cmd1.ExecuteNonQuery();
 
         sc.Close();
     }

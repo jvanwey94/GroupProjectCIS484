@@ -97,6 +97,14 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:TextBox ID="txtOrganizationName" required="required" runat="server" ></asp:TextBox><br />
             </div>
         </div>
+          <div class="row">
+            <div class="col-md-2">
+                <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
+            </div>
+            <div class="col-md-2">
+                <asp:TextBox ID="txtProgramName" required="required" runat="server" ></asp:TextBox><br />
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
@@ -106,14 +114,14 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <br />
             </div>
         </div>
-   <div class="row">
+<%--   <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="Label2" runat="server" Text="Month: "></asp:Label>
             </div>
             <div class="col-md-2">
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
             </div>
-        </div>
+        </div>--%>
        <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
@@ -199,9 +207,13 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:Label ID="lblAnimalUsed" runat="server" Text="Animals Used: "></asp:Label>
             </div>
             <div class="col-md-2">
-                <asp:TextBox ID="txtAnimalUsed" required="required" runat="server"></asp:TextBox><br />
-            </div>
+
+                <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
+                                <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
+                            </asp:Panel>
+                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal]"></asp:SqlDataSource>
         </div>
+            </div>
         <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblPayment" runat="server" Text="Waiting for payment? "></asp:Label><br />

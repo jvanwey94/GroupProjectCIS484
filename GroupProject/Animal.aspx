@@ -117,7 +117,7 @@
                                 <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
                             </div>
                             <div class="col-md-6">
-                                <asp:DropDownList ID="DeleteDDL" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="DeletefDDL" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
