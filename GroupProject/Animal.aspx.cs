@@ -108,6 +108,12 @@ public partial class Animal : System.Web.UI.Page
         System.Environment.Exit(0);
     }
 
+    protected void DeleteButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
     //protected void clickInsertButton(object sender, EventArgs e)
     //{
     //    int pkpk = 0;
