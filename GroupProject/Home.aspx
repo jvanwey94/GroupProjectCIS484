@@ -13,7 +13,8 @@
             </div>
             <!-- /.row -->
             <div id="dashboardPanels">
-              <div class="row" id="panelsTopRow">
+              <a href="Program.aspx">
+                <div class="row" id="panelsTopRow">
                 <div class="col-lg-4 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -26,16 +27,17 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="Program.aspx">
+                        
                             <div class="panel-footer">
                                 <span class="pull-left">Get Started</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
+                   <a href="Animal.aspx">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -47,18 +49,19 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="Animal.aspx">
+                        
                             <div class="panel-footer">
                                 <span class="pull-left">Get Started</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
+                    </a>
                 </div>
                </div>
                 <div class="row" id="panelsBottomRow">
                 <div class="col-lg-4 col-md-6">
+                    <a href="FinancialReport.aspx">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -70,16 +73,17 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="FinancialReport.aspx">
                             <div class="panel-footer">
                                 <span class="pull-left">Get Started</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
+                       
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
+                    <a href="OnlineProgram.aspx">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
@@ -91,14 +95,14 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="OnlineProgram.aspx">
+                        
                             <div class="panel-footer">
                                 <span class="pull-left">Get Started</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
+                    </a>
                 </div>
             </div>
             <!-- /.row -->
