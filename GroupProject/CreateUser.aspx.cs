@@ -77,7 +77,7 @@ public partial class CreateUser : System.Web.UI.Page
                         setPass.Connection = sc;
                         // INSERT PASSWORD RECORD AND CONNECT TO USER
                         setPass.CommandText = "insert into[dbo].[Passwd] values(@PersonID, @Username, @Password,@LastUpdatedBy,@LastUpdated)";
-                        setPass.Parameters.Add(new SqlParameter("@PersonID", readcount));
+                        setPass.Parameters.Add(new SqlParameter("@PersonID", readcount+4));
                         setPass.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
                         setPass.Parameters.Add(new SqlParameter("@Password", PasswordHash.HashPassword(txtPassword.Text))); // hash entered password
                         setPass.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
