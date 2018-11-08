@@ -54,7 +54,7 @@ function Calculation(){
            
             <div class="col-lg-4">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName"  AutoPostBack="true" OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged">
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName"  AutoPostBack="true">
                     <asp:ListItem >     </asp:ListItem>
                     
                  </asp:DropDownList>
@@ -156,7 +156,7 @@ function Calculation(){
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
        <br />
         <br />
-    <%--<asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" onClick="Export" Text="Export to Excel" />--%>
+    <asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" onClick="Export" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
     <div class="panel-body">
         <asp:GridView ID="dbInvoice" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID"   OnRowEditing="dbInvoice_RowEditing" 
