@@ -25,7 +25,7 @@
                                         <li><a href="#addAnimals" data-toggle="modal" data-target="#addAnimals">Add an Animal</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Delete an Animal</a>
+                                        <li><a href="#DeleteModal" data-toggle="modal" data-target="#DeleteModal">Delete an Animal</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#">Edit an Animal</a>
@@ -61,8 +61,6 @@
             </div>
         </div>
         <!-- /#page-wrapper -->
-
-    </div>
 
     <div class="modal fade" id="addAnimals" tabindex="1" role="dialog" aria-labelledby="addAnimals" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -102,6 +100,36 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="deleteModalTitle">Delete Animal</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <span aria-hidden="true"></span>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:DropDownList ID="DeleteDDL" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" Text="Delete" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- /#wrapper -->
 
           <!-- jQuery -->
