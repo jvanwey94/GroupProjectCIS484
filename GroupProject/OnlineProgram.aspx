@@ -10,7 +10,7 @@
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-yellow">
                         <div class="panel-heading">
                             Past Events
                              <div class="pull-right">
