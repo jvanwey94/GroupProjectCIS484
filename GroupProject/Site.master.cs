@@ -14,7 +14,7 @@ public partial class SiteMaster : MasterPage
     private const string AntiXsrfTokenKey = "__AntiXsrfToken";
     private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
     private string _antiXsrfTokenValue;
-
+    Session["User"] = "";
     protected void Page_Init(object sender, EventArgs e)
     {
         // The code below helps to protect against XSRF attacks
@@ -68,7 +68,7 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["User"] = "";
+        
         System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
         sc.Open();
         string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
