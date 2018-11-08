@@ -113,17 +113,17 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
                             </div>
-                            <div class="col-md-6">
-                                <asp:DropDownList ID="DeletefDDL" runat="server"></asp:DropDownList>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="DeleteDDL" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" Text="Delete" />
+                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Delete" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
             </div>

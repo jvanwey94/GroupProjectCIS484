@@ -54,7 +54,7 @@ public partial class Login : System.Web.UI.Page
                     txtUserName.Enabled = false;
                     txtPassword.Enabled = false;
                     
-                    
+                    Response.Redirect("Home.aspx", false);
 
                 }
                 //else
@@ -63,20 +63,20 @@ public partial class Login : System.Web.UI.Page
         }
         sc.Close();
 
-        sc.Open();
-        string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
-        System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
-        emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
-        string level = Convert.ToString(emlevel.ExecuteScalar());
-        Session["userLevel"] = level;
-        if (level == "Full-time Staff")
-            Response.Redirect("Home.aspx", false);
-        else
-            Response.Redirect("Homelimited.aspx", false);
+       // sc.Open();
+      //  string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+      //  System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
+      //  emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+      //  string level = Convert.ToString(emlevel.ExecuteScalar());
+      //  Session["userLevel"] = level;
+      //  if (level == "Full-time Staff")
+      //      Response.Redirect("Home.aspx", false);
+       // else
+      //      Response.Redirect("Homelimited.aspx", false);
         //else // if the username doesn't exist, it will show failure
         //lblStatus.Text = "Login failed.";
 
-        sc.Close();
+     //   sc.Close();
         //}
         //catch
         //{

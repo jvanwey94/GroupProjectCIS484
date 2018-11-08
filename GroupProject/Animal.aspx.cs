@@ -23,10 +23,11 @@ public partial class Animal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
-        {
-            
-        }
+        populateAnimals(DeleteDDL);
+        //if(!IsPostBack)
+        //{
+        //    populateAnimals(DeleteDDL);
+        //}
     }
 
     protected void addAnimalToDataBaseButton(object sender, EventArgs e)
@@ -113,8 +114,15 @@ public partial class Animal : System.Web.UI.Page
 
     protected void DeleteButton_Click(object sender, EventArgs e)
     {
+        String deleteQuery = "Delete from Animal where AnimalID = @AnimalID";
+        sc.Open();
+        SqlCommand deletecmd = new SqlCommand(deleteQuery, sc);
+        deletecmd.Parameters.AddWithValue("@AnimalID", DeleteDDL.SelectedItem.Value);
 
+        deletecmd.ExecuteNonQuery();
+        sc.Close();
     }
+
 
 
     //protected void clickInsertButton(object sender, EventArgs e)
@@ -268,7 +276,32 @@ public partial class Animal : System.Web.UI.Page
     //    }
     //}
 
+    protected void populateAnimals(DropDownList list)
+    {
+        SqlDataReader reader;
+        ListItem newItem = new ListItem();
+        String animalQuery = "Select AnimalID, AnimalName from Animal order by AnimalName";
+        SqlCommand filler = new SqlCommand(animalQuery, sc);
 
+        newItem.Value = "0";
+        newItem.Text = "Select Animal";
+        list.Items.Add(newItem);
+        sc.Open();
+
+        reader = filler.ExecuteReader();
+
+        while (reader.Read())
+        {
+            newItem = new ListItem();
+            newItem.Value = reader["AnimalID"].ToString();
+            newItem.Text = reader["AnimalName"].ToString();
+            list.Items.Add(newItem);
+        }
+        list.DataBind();
+        reader.Close();
+        sc.Close();
+
+    }
 
 
 }

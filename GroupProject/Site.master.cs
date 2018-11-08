@@ -68,17 +68,17 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-            //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-            //sc.Open();
-            //string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
-            //System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
-            //emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
-            //string level = Convert.ToString(emlevel.ExecuteScalar());
+           // System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+           // sc.Open();
+           // string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+           // System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
+           // emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
+           // string level = Convert.ToString(emlevel.ExecuteScalar());
 
-            //if (level == "Full-time Staff")
+          //  if (level == "Full-time Staff")
             //    dash.HRef = "Home.aspx";
-            //else
-            //    dash.HRef = "Homelimited.aspx";
+         //   else
+           //     dash.HRef = "Homelimited.aspx";
         
 
     }
