@@ -11,7 +11,10 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if(IsPostBack)
+        {
+            Session["User"] = txtUserName.Text;
+        }
     }
 
 
@@ -50,12 +53,12 @@ public partial class Login : System.Web.UI.Page
                     btnLogin.Enabled = false;
                     txtUserName.Enabled = false;
                     txtPassword.Enabled = false;
-                    Response.Redirect("Home.aspx");
-                     // change this later (Program
                     
+                    
+
                 }
                 //else
-                    //lblStatus.Text = "Password is wrong.";
+                //lblStatus.Text = "Password is wrong.";
             }
         }
         sc.Close();
@@ -66,7 +69,10 @@ public partial class Login : System.Web.UI.Page
         emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
         string level = Convert.ToString(emlevel.ExecuteScalar());
         Session["userLevel"] = level;
-        
+        if (level == "Full-time Staff")
+            Response.Redirect("Home.aspx", false);
+        else
+            Response.Redirect("Homelimited.aspx", false);
         //else // if the username doesn't exist, it will show failure
         //lblStatus.Text = "Login failed.";
 
