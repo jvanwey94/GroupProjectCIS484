@@ -26,7 +26,7 @@ function Calculation(){
     <!--Page header -->
     <div class="row">
         <div class="col-lg-12">
-            <asp:Label ID="lblTitle" runat="server" Text="Financial report" Font-Size="XX-Large" class="page-header" ></asp:Label><br />
+            <h1 class="page-header">Financial Reports <i class="fa fa-dollar icon"></i></h1>
         </div>
     </div>
         

@@ -1,5 +1,13 @@
+.icon{
+    margin-left: 2%;
+}
 
-
+#panelsTopRow{
+    margin-left: 20%;
+}
+#panelsBottomRow{
+    margin-left: 20%;
+}
 #donut{
 	margin-left: 17%;
 }
