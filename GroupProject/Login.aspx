@@ -5,10 +5,7 @@
         #nava{
             display:none;
         }
-       
-
-
-    </style>
+   </style>
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->

@@ -54,7 +54,7 @@ function Calculation(){
            
             <div class="col-lg-4">
                 <asp:Label ID="lblOrganization" runat="server" Text="Organization Name:"  Font-Size="Large" class="form-control-label"></asp:Label>
-                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName"  AutoPostBack="true">
+                <asp:DropDownList ID="txtOrganization" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource4" DataTextField="OrganizationName" DataValueField="OrganizationName"  AutoPostBack="true" OnSelectedIndexChanged="txtOrganization_SelectedIndexChanged">
                     <asp:ListItem >     </asp:ListItem>
                     
                  </asp:DropDownList>
