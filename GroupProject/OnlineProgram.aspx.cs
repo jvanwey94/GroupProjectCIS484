@@ -88,6 +88,11 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         sc.Close();
     }
+
+    protected void DeleteOnlineProgram(object sender, EventArgs e)
+    {
+        String deleteQuery = "Delete from [dbo].[OnlineProgram] where ";
+    }
     protected void fillGradeList()
     {
         ListItem gradeBlank = new ListItem();

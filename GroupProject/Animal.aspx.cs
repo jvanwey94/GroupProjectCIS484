@@ -50,9 +50,6 @@ public partial class Animal : System.Web.UI.Page
         insertAnimalcmd.ExecuteNonQuery();
         GridView1.DataBind();
         sc.Close();
-
-        
-
     }
 
     //protected void btn1_Search(object sender, EventArgs e)
@@ -306,5 +303,65 @@ public partial class Animal : System.Web.UI.Page
 
     }
 
+    private void bindAnimalData()
+    {
+        GridView1.DataBind();
+    }
+
+    protected override void Render(HtmlTextWriter writer)
+    {
+        foreach(GridViewRow r in GridView1.Rows)
+        {
+            if(r.RowType == DataControlRowType.DataRow)
+            {
+                r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
+                r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
+                r.ToolTip = "Click to edit Animal";
+                r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[5].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+            }
+        }
+        base.Render(writer);
+    }
+
+    protected void OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "openModal()", true);
+        
+        //this is probably wrong, im not sure
+        GridViewRow organizationName = GridView1.SelectedRow;
+
+        AnimalTypeDDL.Text = "";
+        AnimalNameEditTXT.Text = "";
+        AnimalStatusDDL.Text = "";
+        AnimalAdultsMetTXT.Text = "";
+        AnimalKidsMetTXT.Text = "";
+    }
+
+
+    //protected void OnSelectedIndexChanged(object sender, EventArgs e)
+    //{
+
+    //    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "openModal()", true);
+    //    GridViewRow organizationName = gvRegularProgram.SelectedRow;
+    //    //txtOrganizationName.Text = (string)gvRegularProgram.DataKeys[organizationName.RowIndex]["Column1"];
+
+    //    txtOrganizationName.Text = gvRegularProgram.SelectedRow.Cells[0].Text;
+    //    txtOrganizationAddress.Text = gvRegularProgram.SelectedRow.Cells[5].Text;
+    //    txtCity.Text = gvRegularProgram.SelectedRow.Cells[6].Text;
+    //    txtCounty.Text = gvRegularProgram.SelectedRow.Cells[7].Text;
+    //    txtProgramName.Text = gvRegularProgram.SelectedRow.Cells[2].Text;
+    //    txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
+    //    txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
+    //    txtDate.Text = gvRegularProgram.SelectedRow.Cells[1].Text;
+    //    txtNumberOfChildren.Text = gvRegularProgram.SelectedRow.Cells[8].Text;
+    //    txtNumberOfAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
+    //    //CheckBoxAnimal.SelectedIndex = gvRegularProgram.SelectedRow.Cells[10];
+    //    DropDownEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
+    //}
 
 }

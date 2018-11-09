@@ -9,8 +9,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-//using Excel = Microsoft.Office.Interop.Excel;
-//using ClosedXML.Excel;
+using ClosedXML.Excel;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
     //create data table variable ti display gridview
     DataTable dtbl = new DataTable();
-    //XLWorkbook wb = new XLWorkbook();
+    XLWorkbook wb = new XLWorkbook();
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -350,81 +349,81 @@ public partial class FinancialReport : System.Web.UI.Page
     // if still not working try:
     // tools -> nuget package manager console -> Install-Package DocumentFormat.OpenXml -Version 2.5.0
     // if that doesn't work, then just give up.
-    public void ExportToExcel()
-    {
-        //DataTable dt = new DataTable();
-        //String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
-        //    " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
-        //SqlCommand filltable = new SqlCommand(sqlDA, connect);
-        //SqlDataAdapter adapt = new SqlDataAdapter(filltable);
-        //adapt.Fill(dt);
+    //public void ExportToExcel()
+    //{
+    //    DataTable dt = new DataTable();
+    //    String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+    //        " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+    //    SqlCommand filltable = new SqlCommand(sqlDA, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+    //    adapt.Fill(dt);
 
 
-        //String folderPath = "C:\\Users\\labpatron\\Documents";
-        //if (!Directory.Exists(folderPath))
-        //{
-        //    Directory.CreateDirectory(folderPath);
-        //}
-        //using (XLWorkbook wb = new XLWorkbook())
-        //{
-        //    wb.Worksheets.Add(dt, "Financial Reports");
-        //    String myName = Server.UrlEncode("Test1" + "_" +
-        //        DateTime.Now.ToShortDateString() + ".xlsx");
-        //    MemoryStream stream = GetStream(wb);
-        //    Response.Clear();
-        //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-        //    Response.ContentType = "application/vnd.ms-excel";
-        //    Response.BinaryWrite(stream.ToArray());
-        //    Response.End();
-        //}
-    }
+    //    String folderPath = "C:\\Users\\labpatron\\Documents";
+    //    if (!Directory.Exists(folderPath))
+    //    {
+    //        Directory.CreateDirectory(folderPath);
+    //    }
+    //    using (XLWorkbook wb = new XLWorkbook())
+    //    {
+    //        wb.Worksheets.Add(dt, "Financial Reports");
+    //        String myName = Server.UrlEncode("Test1" + "_" +
+    //            DateTime.Now.ToShortDateString() + ".xlsx");
+    //        MemoryStream stream = GetStream(wb);
+    //        Response.Clear();
+    //        Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+    //        Response.ContentType = "application/vnd.ms-excel";
+    //        Response.BinaryWrite(stream.ToArray());
+    //        Response.End();
+    //    }
+    //}
 
-    //try to add each table to a separate worksheet
-    public void ExportMonthlyToExcel()
-    {
-        connect.Open();
-        String[] monthsTxt = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-        String[] monthsNum = new String[] { "01", "02", "03", "04", "04", "06", "07", "08", "09", "10", "11", "12" };
-        int monthlyDays = 0;
-        String year = DateTime.Now.Year.ToString();
-        String folderPath = "C:\\Users\\labpatron\\Documents";
+    ////try to add each table to a separate worksheet
+    //public void ExportMonthlyToExcel()
+    //{
+    //    connect.Open();
+    //    String[] monthsTxt = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    //    String[] monthsNum = new String[] { "01", "02", "03", "04", "04", "06", "07", "08", "09", "10", "11", "12" };
+    //    int monthlyDays = 0;
+    //    String year = DateTime.Now.Year.ToString();
+    //    String folderPath = "C:\\Users\\labpatron\\Documents";
 
-        DataTable yearlydt = new DataTable();
-        String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
-            " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
-        SqlCommand tablefiller = new SqlCommand(sqlDA, connect);
-        SqlDataAdapter adapter = new SqlDataAdapter(tablefiller);
-        adapter.Fill(yearlydt);
+    //    DataTable yearlydt = new DataTable();
+    //    String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+    //        " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+    //    SqlCommand tablefiller = new SqlCommand(sqlDA, connect);
+    //    SqlDataAdapter adapter = new SqlDataAdapter(tablefiller);
+    //    adapter.Fill(yearlydt);
 
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
+    //    if (!Directory.Exists(folderPath))
+    //    {
+    //        Directory.CreateDirectory(folderPath);
+    //    }
 
-        //wb.Worksheets.Add(yearlydt, "Annual Report");
+    //    wb.Worksheets.Add(yearlydt, "Annual Report");
 
 
-        //add a sheet for each month in the year
-        //for (int i = 0; i < monthsNum.Length; i++)
-        //    {
-        //        monthlyDays = DateTime.DaysInMonth(int.Parse(year), int.Parse(monthsNum[i]));
-        //        generateReports(year + "/" + monthsNum[i] + "/01", year + "/" + monthsNum[i] + "/" + monthlyDays.ToString(), monthsTxt[i]);
-        //    }
+    //    //add a sheet for each month in the year
+    //    //for (int i = 0; i < monthsNum.Length; i++)
+    //    //    {
+    //    //        monthlyDays = DateTime.DaysInMonth(int.Parse(year), int.Parse(monthsNum[i]));
+    //    //        generateReports(year + "/" + monthsNum[i] + "/01", year + "/" + monthsNum[i] + "/" + monthlyDays.ToString(), monthsTxt[i]);
+    //    //    }
 
-        //generateMonthlyReports();
+    //    generateMonthlyReports();
 
-        //String myName = Server.UrlEncode("Test1" + "_" +
-        //        DateTime.Now.ToShortDateString() + ".xlsx");
-        //MemoryStream stream = GetStream(wb);
-        //Response.Clear();
-        //Response.AddHeader("content-disposition", "attachment; filename=" + myName);
-        //Response.ContentType = "application/vnd.ms-excel";
-        //Response.BinaryWrite(stream.ToArray());
-        //Response.End();
+    //    String myName = Server.UrlEncode("Test1" + "_" +
+    //            DateTime.Now.ToShortDateString() + ".xlsx");
+    //    MemoryStream stream = GetStream(wb);
+    //    Response.Clear();
+    //    Response.AddHeader("content-disposition", "attachment; filename=" + myName);
+    //    Response.ContentType = "application/vnd.ms-excel";
+    //    Response.BinaryWrite(stream.ToArray());
+    //    Response.End();
 
-        connect.Close();
+    //    connect.Close();
 
-    }
+    //}
 
     //public MemoryStream GetStream(XLWorkbook excelWorkbook)
     //{
@@ -434,8 +433,8 @@ public partial class FinancialReport : System.Web.UI.Page
     //    return fs;
     //}
 
-    protected void Export(object sender, EventArgs e)
-    {
+    //protected void Export(object sender, EventArgs e)
+    //{
     //    generateMonthlyReports();
     //}
 
@@ -568,7 +567,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
 
 
-    }
+    //}
 
     //protected void generateReports(String beginDate, String endDate, String month)
     //{
