@@ -59,40 +59,34 @@ public partial class Program : System.Web.UI.Page
     {
         List<ListItem> pklist = new List<ListItem>();
         String regProgPkQuery = "Select ProgramID, ProgName from [dbo].[RegularProgram]";
-        String deleteQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID where rp.ProgName = @ProgName " +
-            "AND rp.SiteType = @SiteType AND rp.ProgStatus = @ProgStatus AND rp.City = @City AND rp.County = @County AND p.ProgDate = @ProgDate AND " +
-            "p.NumberOfChildren = @NumberOfChildren AND p.NumberOfAdults = @NumberOfAdults AND p.OrganizationName = @OrganizationName AND p.ProgramName = @ProgamName";
+        String deleteQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID inner join [dbo].[EducatorProgram] ep on p.ProgramID = ep.ProgramID where rp.ProgName = @ProgName " +
+            "AND rp.SiteType = @SiteType AND rp.ProgStatus = @ProgStatus AND rp.ProgAddress = @ProgAddress AND rp.City = @City AND rp.County = @County AND p.ProgDate = @ProgDate AND " +
+            "p.NumberOfChildren = @NumberOfChildren AND p.NumberOfAdults = @NumberOfAdults AND p.OrganizationName = @OrganizationName AND p.ProgramName = @ProgamName AND ep.EducatorName = @EducatorName AND ep.ProgramName = @ProgramName";
         sc.Open();
-        SqlDataReader reader;
 
-        ListItem newItem = new ListItem();
-        newItem.Value = "0";
-        newItem.Text = "RegProg PK list";
-        pklist.Add(newItem);
-
-        SqlCommand pkcmd = new SqlCommand(regProgPkQuery, sc);
-        reader = pkcmd.ExecuteReader();
-
-        while (reader.Read())
-        {
-            newItem = new ListItem();
-            newItem.Value = reader["ProgamID"].ToString();
-            newItem.Text = reader["ProgName"].ToString();
-            pklist.Add(newItem);
-        }
+        String delQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID inner join [dbo].[EducatorProgram] ep on p.programID = ep.ProgramID where rp.ProgName = @ProgName " +
+            "AND rp.SiteType = @SiteType AND rp.ProgStatus = @ProgStatus AND rp.ProgAddress = @ProgAddress AND rp.City = @City AND rp.County = @County AND p.progDate = @ProgDate AND " +
+            "p.NumberOfChildren = @NumberOfChildren AND p.NumberOfAdults = @NumberOfAdults AND p.OrganizationName = @OrganizationName AND p.ProgramName = @ProgramName AND ep.EducatorName = @EducatorName AND ep.ProgramName = @ProgramName";
+        //fix this 
+        String delete = "DELETE FROM [dbo].[RegularProgram] r inner join ";
+        // select scope_identity() - gets latest inserted value
 
 
-
-
-        SqlCommand delcmd = new SqlCommand(deleteQuery, sc);
+        SqlCommand delcmd = new SqlCommand(delQuery, sc);
         delcmd.Parameters.AddWithValue("@ProgName", txtProgramName.Text);
         delcmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
         delcmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
+        delcmd.Parameters.AddWithValue("@ProgAddress", txtOrganizationAddress.Text);
         delcmd.Parameters.AddWithValue("@City", txtCity.Text);
         delcmd.Parameters.AddWithValue("@County", txtCounty.Text);
-        //delcmd.Parameters.AddWithValue("@ProgDate", );
-        //delcmd.Parameters.AddWithValue("@NumberOfChildren", );
-        //delcmd.Parameters.AddWithValue
+        delcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
+        delcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
+        delcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
+        delcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+        delcmd.Parameters.AddWithValue("@ProgamName", txtProgramName.Text);
+        delcmd.Parameters.AddWithValue("@EducatorName", DropDownEducator.SelectedItem.Value);
+        delcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+    
 
         delcmd.ExecuteNonQuery();
     }

@@ -9,7 +9,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Data.Common;
-using ClosedXML.Excel;
+//using ClosedXML.Excel;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
     //create data table variable ti display gridview
     DataTable dtbl = new DataTable();
-    XLWorkbook wb = new XLWorkbook();
+    //XLWorkbook wb = new XLWorkbook();
     
     protected void Page_Load(object sender, EventArgs e)
     {
