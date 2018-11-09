@@ -22,7 +22,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
     //create data table variable ti display gridview
     DataTable dtbl = new DataTable();
-   // XLWorkbook wb = new XLWorkbook();
+    //XLWorkbook wb = new XLWorkbook();
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -581,41 +581,4 @@ public partial class FinancialReport : System.Web.UI.Page
     //}
 
 
-
-    protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-
-        string callOrganization = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.ToString() + "';";
-        SqlCommand cmdDatabase1 = new SqlCommand(callOrganization, connect);
-
-        SqlDataReader myreader;
-
-        try
-        {
-            connect.Open();
-            myreader = cmdDatabase1.ExecuteReader();
-            //myreader = cmdDatabase2.ExecuteReader();
-
-
-            while (myreader.Read())
-            {
-                string Address = myreader.GetString(1);
-                string country = myreader.GetString(3);
-                string City = myreader.GetString(2);
-                
-                string Country = myreader.GetString(4);
-                txtAddress.Text = Address + ", " + country + ", " + City + ", " + Country;
-                
-                
-                string contactPerson = myreader.GetString(5);
-                txtContactPerson.Text = contactPerson;
-                //txtState.AutoComplteCUstomerSource = country;
-            }
-        }
-        catch (Exception ex)
-        {
-
-        }
-    }
 }
