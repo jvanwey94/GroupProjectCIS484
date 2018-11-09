@@ -68,7 +68,8 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        try
+        { 
         System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
         sc.Open();
         string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
@@ -80,6 +81,13 @@ public partial class SiteMaster : MasterPage
             dash.HRef = "Home.aspx";
         else
             dash.HRef = "Homelimited.aspx";
+        }
+        catch(Exception)
+        {
+            
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+            
+        }
 
 
     }
