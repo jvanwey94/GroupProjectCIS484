@@ -66,23 +66,23 @@ public partial class SiteMaster : MasterPage
         }
     }
 
-    //protected void Page_Load(object sender, EventArgs e)
-    //{
-        
-    //    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-    //    sc.Open();
-    //    string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
-    //    System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
-    //    emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
-    //    string level = Convert.ToString(emlevel.ExecuteScalar());
+    protected void Page_Load(object sender, EventArgs e)
+    {
 
-    //    if (level == "Full-time Staff")
-    //        dash.HRef = "Home.aspx";
-    //    else
-    //        dash.HRef = "Homelimited.aspx";
+        System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+        sc.Open();
+        string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+        System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
+        emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
+        string level = Convert.ToString(emlevel.ExecuteScalar());
+
+        if (level == "Full-time Staff")
+            dash.HRef = "Home.aspx";
+        else
+            dash.HRef = "Homelimited.aspx";
 
 
-    //}
+    }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
     {
