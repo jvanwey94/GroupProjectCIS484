@@ -28,7 +28,7 @@
                                         <li><a href="#DeleteModal" data-toggle="modal" data-target="#DeleteModal">Delete an Animal</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Edit an Animal</a>
+                                        <li><a href="#EditModal" data-toggle="modal" data-target="#EditModal" >Edit an Animal</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -124,6 +124,75 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Delete" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="editModalTitle">Edit Animal</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <span aria-hidden="true"></span>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalTypeEditLBL" runat="server" Text="Animal Type"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="AnimalTypeDDL" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalNameEditLBL" runat="server" Text="Animal Name"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="AnimalNameEditTXT" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalStatusLBL" runat="server" Text="Animal Status"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="AnimalStatusDDL" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalEventsLBL" runat="server" Text="Number of Events"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="AnimalEditEventsTXT" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalAdultsMetLBL" runat="server" Text="Number of Adults Met"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="AnimalAdultsMetTXT" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="AnimalKidsMetLBL" runat="server" Text="Number of Children Met"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="AnimalKidsMetTXT" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" Text="Update Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
             </div>

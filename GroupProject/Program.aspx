@@ -259,7 +259,7 @@
         </div>
     </div>
 
-        <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true">
+        <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -374,7 +374,35 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
+                    <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Delete" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" data-toggle="modal" data-target="#DeleteModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="DeleteModalTitle">Delete a Progam</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <<asp:Button ID="DeleteProgramBTN" class="btn btn-primary" runat="server" Text="Delete Program" />
                 </div>
             </div>
         </div>
@@ -406,6 +434,11 @@
 <script type='text/javascript'>
         function openModal() {
             $('[id*=editProgram]').modal();
+        }
+    </script>
+    <script type="text/javascript">
+        function closeModal() {
+            $('[id=editModal]').modal().hide();
         }
     </script>
 </asp:Content>

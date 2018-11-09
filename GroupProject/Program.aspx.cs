@@ -55,6 +55,48 @@ public partial class Program : System.Web.UI.Page
         base.Render(writer);
     }
 
+    protected void DeleteProgram(object sender, EventArgs e)
+    {
+        List<ListItem> pklist = new List<ListItem>();
+        String regProgPkQuery = "Select ProgramID, ProgName from [dbo].[RegularProgram]";
+        String deleteQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID where rp.ProgName = @ProgName " +
+            "AND rp.SiteType = @SiteType AND rp.ProgStatus = @ProgStatus AND rp.City = @City AND rp.County = @County AND p.ProgDate = @ProgDate AND " +
+            "p.NumberOfChildren = @NumberOfChildren AND p.NumberOfAdults = @NumberOfAdults AND p.OrganizationName = @OrganizationName AND p.ProgramName = @ProgamName";
+        sc.Open();
+        SqlDataReader reader;
+
+        ListItem newItem = new ListItem();
+        newItem.Value = "0";
+        newItem.Text = "RegProg PK list";
+        pklist.Add(newItem);
+
+        SqlCommand pkcmd = new SqlCommand(regProgPkQuery, sc);
+        reader = pkcmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            newItem = new ListItem();
+            newItem.Value = reader["ProgamID"].ToString();
+            newItem.Text = reader["ProgName"].ToString();
+            pklist.Add(newItem);
+        }
+
+
+
+
+        SqlCommand delcmd = new SqlCommand(deleteQuery, sc);
+        delcmd.Parameters.AddWithValue("@ProgName", txtProgramName.Text);
+        delcmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
+        delcmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
+        delcmd.Parameters.AddWithValue("@City", txtCity.Text);
+        delcmd.Parameters.AddWithValue("@County", txtCounty.Text);
+        //delcmd.Parameters.AddWithValue("@ProgDate", );
+        //delcmd.Parameters.AddWithValue("@NumberOfChildren", );
+        //delcmd.Parameters.AddWithValue
+
+        delcmd.ExecuteNonQuery();
+    }
+
     protected void OnSelectedIndexChanged(object sender, EventArgs e)
     {
 
