@@ -303,4 +303,9 @@ public partial class Program : System.Web.UI.Page
     //    sc.Close();
 
     //}
+
+    protected void cityDropdown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtCity.Text = cityDropdown.SelectedValue;
+    }
 }

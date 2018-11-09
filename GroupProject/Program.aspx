@@ -1,8 +1,22 @@
 <%@ Page Title="Program" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Program.aspx.cs" Inherits="Program" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-   
-    
+   <script >
+    function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+  </script>  
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -68,6 +82,8 @@
                     </div>
                 </div>
 
+                               
+
             </div>
                             <%--<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Column1" DataValueField="EducatorID"></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [EducatorID], [FirstName] + ' ' + [LastName] FROM [Educator]"></asp:SqlDataSource>--%>
@@ -117,6 +133,14 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddOrgCity" class="form-control" runat="server"></asp:TextBox>
                             </div>
+                            <div class="Cdropdown">
+                                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                  <asp:DropDownList id="cityDropdown" class="dropdown-content" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" OnSelectedIndexChanged="cityDropdown_SelectedIndexChanged">
+                                    
+                                    
+                                  </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CityName] from [CityInVA] order by CityName"></asp:SqlDataSource>
+                           </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
@@ -253,7 +277,8 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
-                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
             </div>
         </div>
@@ -430,6 +455,19 @@
                 autoWidth: false
             });
         });
+
+         $(function () {
+            $("[id*=Cdropdown]").prepend($("<thead></thead>").append($(this).find("tr:first"))).value({
+                responsive: true,
+                paging: true,
+                lengthChange: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false
+            });
+        });
+
     </script>
 <script type='text/javascript'>
         function openModal() {
