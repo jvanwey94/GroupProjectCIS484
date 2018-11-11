@@ -32,7 +32,7 @@ public partial class OnlineProgram : System.Web.UI.Page
             "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
         String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName) " +
             "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
-        String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+   
  
 
         SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
@@ -54,7 +54,10 @@ public partial class OnlineProgram : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
         cmd.Parameters.AddWithValue("@Email", txtEmail.Text); //
         cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
-        //cmd.Parameters.AddWithValue("@AnimalsUsed", TextBox21.Text); used for proganimal table
+
+        programcmd.ExecuteNonQuery();
+        cmd.ExecuteNonQuery();
+
 
 
         string AnimalNameString = "";
@@ -68,23 +71,47 @@ public partial class OnlineProgram : System.Web.UI.Page
         {
             if (CheckBoxList1.Items[i].Selected)
             {
-                AnimalNameString += CheckBoxList1.Items[i].Text + "  ";
+                AnimalNameString = CheckBoxList1.Items[i].Text + "  ";
+
+
+                string getAnimalID = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxList1.Items[i].Text + "';";
+                SqlCommand cmdDatabase1 = new SqlCommand(getAnimalID, sc);
+
+                SqlDataReader myreader;
+
+              
+                myreader = cmdDatabase1.ExecuteReader();
+
+                //while (myreader.Read())
+                 myreader.Read();
+                  
+
+                    int animalID = myreader.GetInt32(0);
+                    String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+                    SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+                    cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
+                    cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+                    cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
+                    cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
+                    cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+
+
+                myreader.Close();
+                cmd1.ExecuteNonQuery();
+
+                //}
+
             }
         }
 
-        string finalAnimalNameString = AnimalNameString;
-
-        SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
-        cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
-        cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
-        cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
-        cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
-        cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+        //SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+        //cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
+        //cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+        //cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
+        //cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
+        //cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
 
 
-        programcmd.ExecuteNonQuery();
-        cmd.ExecuteNonQuery();
-        cmd1.ExecuteNonQuery();
 
         sc.Close();
     }

@@ -171,6 +171,52 @@ public partial class Program : System.Web.UI.Page
 
         //insertProgramAnimalCmd.ExecuteNonQuery();
 
+
+
+        string AnimalNameString = "";
+        //foreach (ListItem item in CheckBoxList1.Items)
+        //{
+        //    AnimalNameString += item.Selected + ", ";
+        //}
+        //txtCountry.Text = AnimalNameString;
+
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        {
+            if (CheckBoxList1.Items[i].Selected)
+            {
+                AnimalNameString = CheckBoxList1.Items[i].Text + "  ";
+
+
+                string getAnimalID = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxList1.Items[i].Text + "';";
+                SqlCommand cmdDatabase1 = new SqlCommand(getAnimalID, sc);
+
+                SqlDataReader myreader;
+
+
+                myreader = cmdDatabase1.ExecuteReader();
+
+                //while (myreader.Read())
+                myreader.Read();
+
+
+                int animalID = myreader.GetInt32(0);
+                String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+                SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+                cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
+                cmd1.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue); //
+                cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
+                cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtAddAdults.Text);
+                cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtAddChildren.Text);
+
+
+                myreader.Close();
+                cmd1.ExecuteNonQuery();
+
+                //}
+
+            }
+        }
+
         gvRegularProgram.DataBind();
         sc.Close();
 
