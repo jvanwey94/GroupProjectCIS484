@@ -77,8 +77,8 @@ public partial class Program : System.Web.UI.Page
         delcmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
         delcmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
         delcmd.Parameters.AddWithValue("@ProgAddress", txtOrganizationAddress.Text);
-        delcmd.Parameters.AddWithValue("@City", txtCity.Text);
-        delcmd.Parameters.AddWithValue("@County", txtCounty.Text);
+        delcmd.Parameters.AddWithValue("@City", cityDropdownCreate.SelectedValue);
+        delcmd.Parameters.AddWithValue("@County",CountydropdownCreate.SelectedValue );
         delcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
         delcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
         delcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
@@ -100,8 +100,8 @@ public partial class Program : System.Web.UI.Page
 
         txtOrganizationName.Text = gvRegularProgram.SelectedRow.Cells[0].Text;
         txtOrganizationAddress.Text = gvRegularProgram.SelectedRow.Cells[5].Text;
-        txtCity.Text = gvRegularProgram.SelectedRow.Cells[6].Text;
-        txtCounty.Text = gvRegularProgram.SelectedRow.Cells[7].Text;
+        cityDropdownCreate.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[6].Text;
+        CountydropdownCreate.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[7].Text;
         txtProgramName.Text = gvRegularProgram.SelectedRow.Cells[2].Text;
         txtSiteType.Text = gvRegularProgram.SelectedRow.Cells[3].Text;
         txtStatus.Text = gvRegularProgram.SelectedRow.Cells[4].Text;
@@ -151,8 +151,8 @@ public partial class Program : System.Web.UI.Page
         insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", DropDownSite.SelectedValue);
         insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", CheckBoxStatus.Checked);
         insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", txtAddProgAddress.Text);
-        insertRegularProgramCmd.Parameters.AddWithValue("@City", txtAddProgCity.Text);
-        insertRegularProgramCmd.Parameters.AddWithValue("@County", txtAddProgCounty.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@City", cityDropdownCreate.SelectedValue);
+        insertRegularProgramCmd.Parameters.AddWithValue("@County", CountydropdownCreate.SelectedValue);
 
         insertRegularProgramCmd.ExecuteNonQuery();
 
@@ -304,8 +304,5 @@ public partial class Program : System.Web.UI.Page
 
     //}
 
-    protected void cityDropdown_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        txtCity.Text = cityDropdown.SelectedValue;
-    }
+    
 }
