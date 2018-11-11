@@ -581,4 +581,42 @@ public partial class FinancialReport : System.Web.UI.Page
     //}
 
 
+
+
+    protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+
+        string callState = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.ToString() + "';";
+        SqlCommand cmdDatabase1 = new SqlCommand(callState, connect);
+
+        SqlDataReader myreader;
+
+        try
+        {
+            connect.Open();
+            myreader = cmdDatabase1.ExecuteReader();
+
+
+
+            while (myreader.Read())
+            {
+                //string country = "Usa";
+                //string state = "Va";
+                string address = myreader.GetString(1);
+                string city = myreader.GetString(2);
+                string county = myreader.GetString(3);
+                string country = myreader.GetString(4);
+                string primaryPerson = myreader.GetString(5);
+                txtAddress.Text = address + ", " + county + ", " + city + ", " + country;
+                txtContactPerson.Text = primaryPerson;
+                //txtState.AutoComplteCUstomerSource = country;
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        connect.Close();
+    }
 }
