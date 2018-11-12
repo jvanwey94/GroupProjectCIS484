@@ -121,6 +121,9 @@
                         </li>
                         <li>
                             <a href="report.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                            <li>
+                            		<a href="Financial.aspx">Financial report</a>
+                            	</li>
                         </li>
                     </ul>
                 </div>
