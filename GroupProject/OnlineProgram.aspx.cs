@@ -22,10 +22,29 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     }
 
+    protected void updateOnlineProgram(object sender, EventArgs e)
+    {
+        String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
+            "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
+        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults " +
+            "where ProgramID = @ProgramID";
+        sc.Open();
+        SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
+        opcmd.Parameters.AddWithValue("@Type", TypeTXT.Text);
+        opcmd.Parameters.AddWithValue("@Country", CountryTXT.Text);
+        opcmd.Parameters.AddWithValue("@State", StateTXT.Text);
+        opcmd.Parameters.AddWithValue("@Grade", GradeTXT.Text);
+        opcmd.Parameters.AddWithValue("@Email", EmailTXT.Text);
+        opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
+        opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
+
+        opcmd.ExecuteNonQuery();
+    }
+
     protected void CreateProgram(object sender, EventArgs e)
     {
         sc.Open();
-        String payment = "delete later";
+        String payment = "Free";
 
 
         String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
@@ -201,6 +220,44 @@ public partial class OnlineProgram : System.Web.UI.Page
         System.Environment.Exit(0);
     }
 
+    protected override void Render(HtmlTextWriter writer)
+    {
+        foreach (GridViewRow r in GridViewOnlineProgram.Rows)
+        {
+            if (r.RowType == DataControlRowType.DataRow)
+            {
+                r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
+                r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
+                r.ToolTip = "Click to edit Animal";
+                r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[5].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+            }
+        }
+        base.Render(writer);
+    }
+
+    protected void OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "openModal()", true);
+
+        //this is probably wrong, im not sure
+        GridViewRow organizationName = GridViewOnlineProgram.SelectedRow;
+        ProgNameTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[0].Text;
+        OrgNameTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[1].Text;
+        ProgDateTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[2].Text;
+        TypeTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[3].Text;
+        CountryTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[4].Text;
+        StateTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[5].Text;
+        GradeTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[6].Text;
+        EmailTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[7].Text;
+        ThemeTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[8].Text;
+        NumberOfChildrenTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[9].Text;
+        NumberOfAdultsTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[10].Text;
+    }
 
     protected void txtOrganizationName_TextChanged(object sender, EventArgs e)
     {

@@ -106,10 +106,18 @@
                             <a href="Home.aspx" id="dash" runat="server"><i class="fa fa-dashboard fa-fw" ></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Regular Events </a>
+                                </li>
+                                <li>
+                                    <a href="OnlineProgram.aspx"><i class="fa fa-calendar-o fa-fw"></i> Online Events </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <a href="Animal.aspx"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             	<li>
                             		<a href="Animal.aspx">Manage Animals</a>
