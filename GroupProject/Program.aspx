@@ -138,12 +138,10 @@
                             <div class="col-sm-3">
                                 <label>City</label>
                             </div>
+                            
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddOrgCity" class="form-control" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="Cdropdown">
-                                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                                  <asp:DropDownList id="cityDropdown" class="dropdown-content" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" OnSelectedIndexChanged="cityDropdown_SelectedIndexChanged">
+                                
+                                  <asp:DropDownList id="cityDropdownCreate" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
                                     
                                     
                                   </asp:DropDownList>
@@ -155,8 +153,13 @@
                                 <label>County</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddOrgCounty" class="form-control" runat="server"></asp:TextBox>
-                            </div>
+                                
+                                  <asp:DropDownList id="CountydropdownCreate" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CountyName] from [CountyInVA] order by CountyName"></asp:SqlDataSource>
+                           </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
@@ -210,16 +213,26 @@
                                 <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddProgCity" class="form-control" runat="server"></asp:TextBox>
-                            </div>
+                                
+                                  <asp:DropDownList id="DropDownList2" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                
+                           </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>County</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddProgCounty" class="form-control" runat="server"></asp:TextBox>
-                            </div>
+                                
+                                  <asp:DropDownList id="DropDownList3" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                
+                           </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
@@ -326,7 +339,10 @@
                                 <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtCity" class="form-control" runat="server"></asp:TextBox>
+                                 <asp:DropDownList id="DropDownCityEdit" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
+                                    
+                                    
+                                  </asp:DropDownList>
                             </div>
                         </div>
                         <div class="row">
@@ -334,8 +350,13 @@
                                 <label>County</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtCounty" class="form-control" runat="server"></asp:TextBox>
-                            </div>
+                                
+                                  <asp:DropDownList id="DropDownCountyEdit" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                
+                           </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
