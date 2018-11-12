@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <%--href="Home.aspx"--%>
-                <a class="navbar-brand" >Wildlife Center Of Virginia</a>
+                <a href="Homelimited.aspx" class="navbar-brand" ><img src="/content/Wildlife Logo.gif" class="img-fluid" width="150px" height="50px" id="wildlifeLogo"</a>
             </div>
             <!-- /.navbar-header -->
 
