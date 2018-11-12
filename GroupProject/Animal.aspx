@@ -2,6 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     
+    <style type="text/css">
+        .hidden
+        {
+            display:none;
+        }
+    </style>
 
         <div id="page-wrapper">
             <div class="row ">
@@ -36,7 +42,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
                     <Columns>
                         <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
                         <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
@@ -45,9 +51,10 @@
                         <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="NumberOfAdultsMet" SortExpression="NumberOfAdultsMet" />
                         <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="NumberOfChildrenMet" SortExpression="NumberOfChildrenMet" />
                         <asp:BoundField DataField="TotalNumberOfPeopleMet" HeaderText="TotalNumberOfPeopleMet" SortExpression="TotalNumberOfPeopleMet" />
+                        <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfAdultsMet], [NumberOfChildrenMet], [TotalNumberOfPeopleMet] FROM [Animal]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalType], [AnimalStatus], [NumberOfEvents], [NumberOfAdultsMet], [NumberOfChildrenMet], [TotalNumberOfPeopleMet], [AnimalID] FROM [Animal]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -192,7 +199,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" Text="Update Animal" />
+                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Update Animal" />
+                    <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Delete Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
             </div>
@@ -222,6 +230,16 @@
                 autoWidth: false
             });
         });
+    </script>
+<script type='text/javascript'>
+        function openModal() {
+            $('[id*=EditModal]').modal();
+        }
+    </script>
+    <script type="text/javascript">
+        function closeModal() {
+            $('[id=EditModal]').modal().hide();
+        }
     </script>
 
     <%--<p>

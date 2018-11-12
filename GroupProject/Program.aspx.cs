@@ -24,7 +24,7 @@ public partial class Program : System.Web.UI.Page
             //        populateAnimals("'" + "Reptile" + "'", DropDownList4);
             BindData();
         }
-
+        
         
     }
 
@@ -62,6 +62,8 @@ public partial class Program : System.Web.UI.Page
         String deleteQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID inner join [dbo].[EducatorProgram] ep on p.ProgramID = ep.ProgramID where rp.ProgName = @ProgName " +
             "AND rp.SiteType = @SiteType AND rp.ProgStatus = @ProgStatus AND rp.ProgAddress = @ProgAddress AND rp.City = @City AND rp.County = @County AND p.ProgDate = @ProgDate AND " +
             "p.NumberOfChildren = @NumberOfChildren AND p.NumberOfAdults = @NumberOfAdults AND p.OrganizationName = @OrganizationName AND p.ProgramName = @ProgamName AND ep.EducatorName = @EducatorName AND ep.ProgramName = @ProgramName";
+        String pkdelete = "Delete from [dbo].[Program] where ProgramID = @ProgramID";
+
         sc.Open();
 
         String delQuery = "Delete from [dbo].[RegularProgram] rp inner join [dbo].[Program] p on rp.ProgramID = p.ProgramID inner join [dbo].[EducatorProgram] ep on p.programID = ep.ProgramID where rp.ProgName = @ProgName " +
@@ -71,24 +73,28 @@ public partial class Program : System.Web.UI.Page
         String delete = "DELETE FROM [dbo].[RegularProgram] r inner join ";
         // select scope_identity() - gets latest inserted value
 
-
-        SqlCommand delcmd = new SqlCommand(delQuery, sc);
-        delcmd.Parameters.AddWithValue("@ProgName", txtProgramName.Text);
-        delcmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
-        delcmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
-        delcmd.Parameters.AddWithValue("@ProgAddress", txtOrganizationAddress.Text);
-        delcmd.Parameters.AddWithValue("@City", txtCity.Text);
-        delcmd.Parameters.AddWithValue("@County", txtCounty.Text);
-        delcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
-        delcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
-        delcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
-        delcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
-        delcmd.Parameters.AddWithValue("@ProgamName", txtProgramName.Text);
-        delcmd.Parameters.AddWithValue("@EducatorName", DropDownEducator.SelectedItem.Value);
-        delcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
-    
+        SqlCommand delcmd = new SqlCommand(pkdelete, sc);
+        delcmd.Parameters.AddWithValue("@ProgramID", gvRegularProgram.SelectedRow.Cells[12].Text);
 
         delcmd.ExecuteNonQuery();
+
+        //SqlCommand delcmd = new SqlCommand(delQuery, sc);
+        //delcmd.Parameters.AddWithValue("@ProgName", txtProgramName.Text);
+        //delcmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
+        //delcmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
+        //delcmd.Parameters.AddWithValue("@ProgAddress", txtOrganizationAddress.Text);
+        //delcmd.Parameters.AddWithValue("@City", txtCity.Text);
+        //delcmd.Parameters.AddWithValue("@County", txtCounty.Text);
+        //delcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
+        //delcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
+        //delcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
+        //delcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+        //delcmd.Parameters.AddWithValue("@ProgamName", txtProgramName.Text);
+        //delcmd.Parameters.AddWithValue("@EducatorName", DropDownEducator.SelectedItem.Value);
+        //delcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+    
+
+        //delcmd.ExecuteNonQuery();
     }
 
     protected void OnSelectedIndexChanged(object sender, EventArgs e)

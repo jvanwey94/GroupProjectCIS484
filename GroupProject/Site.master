@@ -106,7 +106,7 @@
                             <a href="Home.aspx" id="dash" runat="server"><i class="fa fa-dashboard fa-fw" ></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
+                            <a href="Program.aspx" id="programlink"><i class="fa fa-calendar-o fa-fw"></i> Events </a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
@@ -119,9 +119,13 @@
                                 <li>
                             </ul>
                         </li>
+                        <asp:Panel id="Panel1" runat="server">
                         <li>
+                            
                             <a href="report.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                                
                         </li>
+                        </asp:Panel>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

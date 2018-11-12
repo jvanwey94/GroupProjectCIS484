@@ -23,11 +23,13 @@ public partial class Animal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        populateAnimals(DeleteDDL);
-        //if(!IsPostBack)
-        //{
-        //    populateAnimals(DeleteDDL);
-        //}
+
+        if(!IsPostBack)
+        {
+            populateAnimalStatus(AnimalStatusDDL);
+            populateAnimals(DeleteDDL);
+            populateAnimalType(AnimalTypeDDL);
+        }
 
 
 
@@ -123,7 +125,36 @@ public partial class Animal : System.Web.UI.Page
         sc.Close();
     }
 
+    protected void UpdateAnimal(object sender, EventArgs e)
+    {
+        String updateAnimalQuery = "Update [dbo].[Animal] set AnimalType = @AnimalType, AnimalName = @AnimalName, AnimalStatus = @AnimalStatus, NumberOfEvents = @NumberOfEvents, " +
+            "NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet where AnimalID = @AnimalID";
+        sc.Open();
+        SqlCommand updateAnimalcmd = new SqlCommand(updateAnimalQuery, sc);
+        updateAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeDDL.SelectedItem.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameEditTXT.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@AnimalStatus", AnimalStatusDDL.SelectedItem.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", AnimalEditEventsTXT.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", AnimalAdultsMetTXT.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", AnimalKidsMetTXT.Text);
+        updateAnimalcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
+        updateAnimalcmd.ExecuteNonQuery();
+        sc.Close();
+        
+    }
+    
+    protected void DeleteAnimal(object sender, EventArgs e)
+    {
+        String deleteAnimalQuery = "Delete from [dbo].[Animal] where AnimalID = @AnimalID";
+        sc.Open();
+        SqlCommand delcmd = new SqlCommand(deleteAnimalQuery, sc);
+        delcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
+
+        delcmd.ExecuteNonQuery();
+
+        sc.Close();
+    }
 
     //protected void clickInsertButton(object sender, EventArgs e)
     //{
@@ -303,6 +334,62 @@ public partial class Animal : System.Web.UI.Page
 
     }
 
+    protected void populateAnimalType(DropDownList list)
+    {
+        int counter = 0;
+        SqlDataReader reader;
+        ListItem newItem = new ListItem();
+        String animalQuery = "Select DISTINCT AnimalType from Animal order by AnimalType";
+        SqlCommand filler = new SqlCommand(animalQuery, sc);
+
+        newItem.Value = counter.ToString();
+        newItem.Text = "Select Animal Type";
+        list.Items.Add(newItem);
+        sc.Open();
+
+        reader = filler.ExecuteReader();
+
+        while (reader.Read())
+        {
+            counter++;
+            newItem = new ListItem();
+            newItem.Value = (counter).ToString();
+            newItem.Text = reader["AnimalType"].ToString();
+            list.Items.Add(newItem);
+        }
+        list.DataBind();
+        reader.Close();
+        sc.Close();
+    }
+
+    protected void populateAnimalStatus(DropDownList list)
+    {
+        int counter = 0;
+        SqlDataReader reader;
+        ListItem newItem = new ListItem();
+        String animalQuery = "Select DISTINCT AnimalStatus from Animal order by AnimalStatus";
+        SqlCommand filler = new SqlCommand(animalQuery, sc);
+
+        newItem.Value = counter.ToString();
+        newItem.Text = "Select Animal Status";
+        list.Items.Add(newItem);
+        sc.Open();
+
+        reader = filler.ExecuteReader();
+
+        while (reader.Read())
+        {
+            counter++;
+            newItem = new ListItem();
+            newItem.Value = (counter).ToString();
+            newItem.Text = reader["AnimalStatus"].ToString();
+            list.Items.Add(newItem);
+        }
+        list.DataBind();
+        reader.Close();
+        sc.Close();
+    }
+
     private void bindAnimalData()
     {
         GridView1.DataBind();
@@ -335,11 +422,12 @@ public partial class Animal : System.Web.UI.Page
         //this is probably wrong, im not sure
         GridViewRow organizationName = GridView1.SelectedRow;
 
-        AnimalTypeDDL.Text = "";
-        AnimalNameEditTXT.Text = "";
-        AnimalStatusDDL.Text = "";
-        AnimalAdultsMetTXT.Text = "";
-        AnimalKidsMetTXT.Text = "";
+        AnimalTypeDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[1].Text + " (Current Animal Type)";
+        AnimalNameEditTXT.Text = GridView1.SelectedRow.Cells[0].Text;
+        AnimalStatusDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[2].Text + " (Current Animal Status)";
+        AnimalEditEventsTXT.Text = GridView1.SelectedRow.Cells[3].Text;
+        AnimalAdultsMetTXT.Text = GridView1.SelectedRow.Cells[4].Text;
+        AnimalKidsMetTXT.Text = GridView1.SelectedRow.Cells[5].Text;
     }
 
 

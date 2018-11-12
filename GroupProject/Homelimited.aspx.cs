@@ -9,6 +9,6 @@ public partial class Homelimited : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ((Panel)Master.FindControl("FinancialPanel")).Visible = false;
     }
 }
