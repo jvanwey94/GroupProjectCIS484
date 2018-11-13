@@ -134,7 +134,7 @@ public partial class Program : System.Web.UI.Page
 
         //Once a user creates a program: Program, RegularProgram, Organization, ProgramOrganization, ProgramAnimal, Animal, Educator, and EducatorProgram Tables must be inserted and updated to
        
-        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
+        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName,@Comments)";
         String insertRegularProgramQuery = "INSERT INTO RegularProgram VALUES ((Select MAX(ProgramID) from dbo.Program),@ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
        
         String updateAnimalQuery = "Update Animal set NumberOfEvents = @NumberOfEvents, NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet";
@@ -149,6 +149,7 @@ public partial class Program : System.Web.UI.Page
         insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
         insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtAddOrg.Text);
         insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+        insertProgramcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
 
         insertProgramcmd.ExecuteNonQuery();
         //Inserting into RegularProgram table

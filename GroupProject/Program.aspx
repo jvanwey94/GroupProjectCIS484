@@ -79,11 +79,12 @@
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
+                                    <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
                                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" />
                                 </Columns>
                                 
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID"></asp:SqlDataSource>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>  
                             
                         </div>
@@ -125,7 +126,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddOrg" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Address</label>
@@ -133,12 +134,11 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddOrgAddr" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>City</label>
                             </div>
-                            
                             <div class="col-sm-3">
                                 
                                   <asp:DropDownList id="cityDropdownCreate" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
@@ -147,7 +147,7 @@
                                   </asp:DropDownList>
                                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CityName] from [CityInVA] order by CityName"></asp:SqlDataSource>
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>County</label>
@@ -160,7 +160,7 @@
                                   </asp:DropDownList>
                                 <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CountyName] from [CountyInVA] order by CountyName"></asp:SqlDataSource>
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Site Type</label>
@@ -171,7 +171,7 @@
                                     <asp:ListItem>Offsite</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Program Name</label>
@@ -199,7 +199,7 @@
                                 </asp:DropDownList>
                                     
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Program Address</label>
@@ -207,7 +207,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddProgAddress" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>City</label>
@@ -220,7 +220,7 @@
                                   </asp:DropDownList>
                                 
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>County</label>
@@ -233,7 +233,7 @@
                                   </asp:DropDownList>
                                 
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Children</label>
@@ -241,7 +241,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddChildren" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Adults</label>
@@ -249,7 +249,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddAdults" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Status</label>
@@ -257,7 +257,7 @@
                             <div class="col-sm-3">
                                 <asp:CheckBox ID="CheckBoxStatus" Text="Completed" runat="server" />
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Date</label>
@@ -265,7 +265,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddDate" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Payment Status</label>
@@ -277,7 +277,7 @@
                              
                                 </asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Animal</label>
@@ -288,7 +288,7 @@
                             </asp:Panel>
                             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal]"></asp:SqlDataSource>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Educator</label>
@@ -297,7 +297,15 @@
                                 <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
                                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
                             </div>
-                        </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Comments:</label>
+                            </div>
+                             <div class="col-sm-3">
+                                <asp:TextBox ID="txtComments" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -429,6 +437,7 @@
                                 <asp:DropDownList ID="txtEducatorName" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
