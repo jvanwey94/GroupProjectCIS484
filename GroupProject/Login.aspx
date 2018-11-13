@@ -5,6 +5,7 @@
         #nava{
             display:none;
         }
+        
    </style>
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

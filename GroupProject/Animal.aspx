@@ -2,23 +2,29 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     
-    <style type="text/css">
+    <%--<style type="text/css">
         .hidden
         {
             display:none;
         }
-    </style>
+        h1{
+            border-radius: 5px;
+        }
+
+    </style>--%>
 
         <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manage Animals <i class="fa fa-paw icon"></i> </h1>
+                    <div class="panel panel-red">
+                    <h1 class="panel-heading">Manage Animals <i class="fa fa-paw icon"></i> </h1>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-red">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
                             Animals
                              <div class="pull-right">
