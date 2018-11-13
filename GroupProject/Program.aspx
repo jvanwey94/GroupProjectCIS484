@@ -7,15 +7,6 @@
         {
             display:none;
         }
-        .panel-heading-custom {
-            background: #428bca; 
-            color: #fff;
-        }
-        .modal-header{
-            background: #428bca; 
-            color: #fff;
-        }
-        
     </style>
    <script >
     function filterFunction() {
@@ -36,14 +27,12 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <%--<div class="panel panel-default">--%>
-                    <h1 class="panel-heading panel-heading-custom">Programs <i class="fa fa-calendar icon"></i></h1>
-                <%--</div>--%>
+                <h1 class="page-header" style="color:blue">Programs <i class="fa fa-calendar icon"></i></h1>
             </div>
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-info">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             Past Events
                              <div class="pull-right">
@@ -62,7 +51,7 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" AlternatingRowStyle-CssClass="alert-info" RowStyle-CssClass="alert-info">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
@@ -77,7 +66,7 @@
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
-                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" />
                                 </Columns>
                                 
                             </asp:GridView>
@@ -88,7 +77,7 @@
                     </div>
                 </div>
 
-                               
+                               <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
 
             </div>
                             <%--<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Column1" DataValueField="EducatorID"></asp:DropDownList>
@@ -269,7 +258,11 @@
                                 <label>Payment Status</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddPaymentStatus" class="form-control" runat="server"></asp:TextBox>
+                               <asp:DropDownList ID="txtPaymentStatus" class="form-control" runat="server">
+                                    <asp:ListItem>Complete</asp:ListItem>
+                                    <asp:ListItem>Incomplete</asp:ListItem>
+                             
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="row">
@@ -288,8 +281,8 @@
                                 <label>Educator</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownListEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="Column1" DataValueField="EducatorID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [EducatorID], [FirstName] + ' ' + [LastName] FROM [Educator]"></asp:SqlDataSource>
+                                <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
+                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
@@ -419,7 +412,8 @@
                                 <label>Educator</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="Column1" DataValueField="EducatorID"></asp:DropDownList>              
+                                <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
+                                <asp:DropDownList ID="txtEducatorName" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
                             </div>
                         </div>
                     </div>
@@ -490,7 +484,7 @@
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=editProgram]').modal().hide();
+            $('[id=editModal]').modal().hide();
         }
     </script>
 </asp:Content>
