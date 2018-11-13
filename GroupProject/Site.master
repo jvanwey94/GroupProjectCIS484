@@ -63,6 +63,7 @@
                 </button>
                 <%--href="Home.aspx"--%>
                 <a class="navbar-brand" >Wildlife Center Of Virginia</a>
+                <img src="leaflet/images/logo.png" style="padding-left:12px"/>
             </div>
             <!-- /.navbar-header -->
 
@@ -115,7 +116,7 @@
                             		<a href="Animal.aspx">Manage Animals</a>
                             	</li>
                                 <li>
-                                    <a href="trackAnimal.html">Track Animals</a>
+                                    <a href="TrackAnimal.aspx">Track Animals</a>
                                 <li>
                             </ul>
                         </li>
