@@ -22,6 +22,16 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     }
 
+    protected void deleteOnlineProgram(object sender, EventArgs e)
+    {
+        String delQuery = "Delete from [dbo].[OnlineProgram] where ProgramID = @ProgramID";
+        sc.Open();
+        SqlCommand delcmd = new SqlCommand(delQuery, sc);
+        delcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
+        delcmd.ExecuteNonQuery();
+        sc.Close();
+    }
+
     protected void updateOnlineProgram(object sender, EventArgs e)
     {
         String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
@@ -38,7 +48,17 @@ public partial class OnlineProgram : System.Web.UI.Page
         opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
         opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
 
+
+        SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
+        pcmd.Parameters.AddWithValue("@ProgramName", ProgNameTXT.Text);
+        pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
+        pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
+        pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
+        pcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
+
         opcmd.ExecuteNonQuery();
+        pcmd.ExecuteNonQuery();
+        sc.Close();
     }
 
     protected void CreateProgram(object sender, EventArgs e)

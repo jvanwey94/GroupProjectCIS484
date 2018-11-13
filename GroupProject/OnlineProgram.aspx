@@ -241,7 +241,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
     
     </div>
     <!-- edit/delete modal  -->
-    <div class="modal fade" id="onlineprogrammodal" tabindex="-1" aria-labelledby="onlineprogrammodal" aria-hidden="true">
+    <div class="modal fade" id="onlineprogrammodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogrammodal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -343,8 +343,8 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="updateOPbtn" class="btn btn-primary" runat="server" Text="Update Online Program" />
-                    <asp:Button ID="deleteOPbtn" class="btn btn-danger" runat="server" Text="Delete Online Program" />
+                    <asp:Button ID="updateOPbtn" class="btn btn-primary" runat="server" OnClick="updateOnlineProgram" Text="Update Online Program" />
+                    <asp:Button ID="deleteOPbtn" class="btn btn-danger" runat="server" OnClick="deleteOnlineProgram" Text="Delete Online Program" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
             </div>

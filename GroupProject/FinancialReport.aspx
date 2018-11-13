@@ -110,7 +110,7 @@ function Calculation(){
                   <asp:TextBox ID="txtContactPerson" required="required" runat="server" class="form-control"></asp:TextBox><br />
           </div>
         </div>
-        <div class="col-3" style="padding-top:1em;">
+        <div class="col-lg-3" style="padding-top:1em;">
                 <asp:Label ID="lblPaymentCollect" runat="server" Text="Payment Collect"  Font-Size="Large" class="form-control-label" ></asp:Label>
                 <asp:TextBox ID="txtPaymentCollect" runat="server" class="form-control"></asp:TextBox>
         
