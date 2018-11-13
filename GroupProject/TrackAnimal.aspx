@@ -22,9 +22,14 @@
 	                            
                               
                                <script>
+                                  
                                   var geocoder;
                                   var map;
-                                  var address = "1800 S Delphine Ave, Waynesboro";
+                                   var address = "1800 S Delphine Ave, Waynesboro";
+                                   var data = $('gvRegularProgram').DataTable();
+                                   var city = data
+                                       .column('City')
+
                                   function initMap() {
                                     var map = new google.maps.Map(document.getElementById('mapid'), {
                                       zoom: 8,
@@ -59,7 +64,7 @@
 	                         <div class="row">
 	                         	
 	                         		
-	                         			<div class="col-lg-3">
+	                         			<%--<div class="col-lg-3">
 	                         				<label class="form-control-label">Bird(s)</label>
 	                         				<select class="custom-select form-control" multiple>
 	                         					<option>Eugene</option>
@@ -82,10 +87,32 @@
 	                         					<option>Mairin</option>
 	                         					<option>Stevie</option>
 	                         				</select>
-	                         			</div>
-	                         			<div class="col-lg-2 offset-lg-1" id="trackAnimalButton">
+	                         			</div>--%>
+
+                                 <div class="panel-body">
+                            
+                           
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+
+                                <Columns>
+                                    
+                                     <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+                                    <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
+                                   
+                                   
+                                    
+                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+                                </Columns>
+                                
+                            </asp:GridView>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [ProgramID],[ProgName],[City],[County] from dbo.RegularProgram "></asp:SqlDataSource>
+                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>  
+                            
+                        </div>
+	                         			<%--<div class="col-lg-2 offset-lg-1" id="trackAnimalButton">
 	                         				<button class="btn btn-primary submit" type="button">Submit</button>
-	                         			</div>
+	                         			</div>--%>
 	                         		</div>
 	                         	
 	                         
