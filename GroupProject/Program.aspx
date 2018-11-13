@@ -66,7 +66,7 @@
                                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number Of Adults" SortExpression="NumberOfAdults" />
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
-                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                 </Columns>
                                 
                             </asp:GridView>
@@ -290,7 +290,7 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
                     
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Exit</button>
                 </div>
             </div>
         </div>
@@ -421,7 +421,7 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
                     <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Delete" />
-                    <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                    <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" data-backdrop="false" Text="Close" />
                 </div>
             </div>
         </div>
@@ -485,6 +485,17 @@
     <script type="text/javascript">
         function closeModal() {
             $('[id=editModal]').modal().hide();
+        }
+    </script>
+    <script type="text/javascript">
+        function onComplete() {
+            $(document).ready(function(){
+            $("#Buildings_opener").click(function(){
+            $("[id*=editProgram]").modal({ 
+                backdrop: false 
+            });
+            });
+            });
         }
     </script>
 </asp:Content>
