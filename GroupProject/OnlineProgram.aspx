@@ -56,11 +56,12 @@
                     <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
                     <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
                     <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
+                    <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                 </Columns>
             </asp:GridView>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="
-                        <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults, O.ProgramID from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
+                        <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults, O.ProgramID from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
             </div>
                     </div>
                 </div>
@@ -225,7 +226,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
             </div>
             <div class="col-md-3">
-                <asp:TextBox ID="txtDate" type="Date" class="form-control" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtDate" type="Date" class="form-control" runat="server"></asp:TextBox>
                 <br />
             </div>
         </div>
@@ -325,7 +326,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
 
                 <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
                                 <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
-                            </asp:Panel>
+                </asp:Panel>
                             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal]"></asp:SqlDataSource>
         </div>
             </div>
@@ -338,8 +339,19 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
             </div>
         </div>
+        <br />
+        <div class="row">
+        <div class="col-sm-3">
+                                <label>Comments:</label>
+                            </div>
+                             <div class="col-sm-3">
+                                <asp:TextBox ID="txtComments" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                          
+         </div>
                     </div>
                 </div>
+                <br />
                
                 <div class="modal-footer">
                     <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />

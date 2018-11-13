@@ -60,8 +60,8 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
             "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
-        String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName) " +
-            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName)";
+        String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments) " +
+            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName,@Comments)";
    
  
 
@@ -75,6 +75,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
         programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
         programcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+        programcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
 
 
         SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
