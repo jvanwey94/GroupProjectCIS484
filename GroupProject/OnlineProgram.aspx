@@ -31,20 +31,7 @@
                             Past Events
                              <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                         <li><a href="#addOnlineProgram" data-toggle="modal" data-target="#addOnlineProgram">Create a OnlineProgram</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Edit Events</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Delete Event</a>
-                                        </li>
-                                    </ul>
+                                    <button type="button" class="btn btn-warning" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addOnlineProgram"> Create Online Program </button>
                                 </div>
                             </div>
                         </div>
@@ -85,11 +72,11 @@
                     <!-- /.panel -->
                 </div>
             </div>
-            
+            </div>
        
             <br />
             <!--EDIT/DELETE MODAL-->
-            <div class="modal fade" id="editdeletemodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogramModal" aria-hidden="true">
+            <div class="modal fade" id="editdeletemodal" tabindex="-1" role="dialog" aria-labelledby="editdeletemodal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -191,8 +178,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="updateBTN" runat="server" class="btn btn-primary" Text="Update Online Program" />
-                            <asp:Button ID="deleteBTN" runat="server" class="btn btn-danger" Text="Delete Online Program" />
+                            <asp:Button ID="updateBTN" runat="server" onClick="updateOnlineProgram" class="btn btn-primary" userSubmitBehavior="false" Text="Update Online Program" />
+                            <asp:Button ID="deleteBTN" runat="server" OnClick="DeleteOnlineProgram" class="btn btn-danger" userSubmitBehavior="false" Text="Delete Online Program" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -408,6 +395,16 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
         function closeModal() {
             $('[id=editdeletemodal]').modal().hide();
         }
+    </script>
+    <script type="text/javascript">
+    function pageLoad()
+    {
+        $addHandler($get('deleteBTN') , 'click' , onClick);
+    }
+    function onClick() // this onclick event is for cleint side input button
+    {
+        $get('deleteBTN').click(); // here i am calling the server side click event of asp:button with id 'btn'
+    }
     </script>
 
 

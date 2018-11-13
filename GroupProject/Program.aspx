@@ -37,20 +37,7 @@
                             Past Events
                              <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#addProgram" data-toggle="modal" data-target="#addProgram">Create a Program</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Edit Events</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Delete Event</a>
-                                        </li>
-                                    </ul>
+                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
                                 </div>
                             </div>
                         </div>
@@ -498,19 +485,6 @@
                 autoWidth: false
             });
         });
-
-         $(function () {
-            $("[id*=Cdropdown]").prepend($("<thead></thead>").append($(this).find("tr:first"))).value({
-                responsive: true,
-                paging: true,
-                lengthChange: false,
-                searching: true,
-                ordering: true,
-                info: true,
-                autoWidth: false
-            });
-        });
-
     </script>
 <script type='text/javascript'>
         function openModal() {

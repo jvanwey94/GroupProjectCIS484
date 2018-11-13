@@ -30,24 +30,8 @@
                     <div class="panel panel-danger">
                         <div class="panel-heading">
                             Animals
-                             <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#addAnimals" data-toggle="modal" data-target="#addAnimals">Add an Animal</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#DeleteModal" data-toggle="modal" data-target="#DeleteModal">Delete an Animal</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#EditModal" data-toggle="modal" data-target="#EditModal" >Edit an Animal</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <button type="button" class="btn btn-danger" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addAnimals"> Create Animal </button>
+                             
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

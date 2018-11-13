@@ -22,15 +22,6 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     }
 
-    protected void deleteOnlineProgram(object sender, EventArgs e)
-    {
-        String delQuery = "Delete from [dbo].[OnlineProgram] where ProgramID = @ProgramID";
-        sc.Open();
-        SqlCommand delcmd = new SqlCommand(delQuery, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
-        delcmd.ExecuteNonQuery();
-        sc.Close();
-    }
 
     protected void updateOnlineProgram(object sender, EventArgs e)
     {
@@ -159,8 +150,16 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void DeleteOnlineProgram(object sender, EventArgs e)
     {
-        String deleteQuery = "Delete from [dbo].[OnlineProgram] where ";
+        String deleteQuery = "Delete from [dbo].[OnlineProgram] where ProgramID = @ProgramID";
+
+        sc.Open();
+        SqlCommand delcmd = new SqlCommand(deleteQuery, sc);
+        delcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
+        delcmd.ExecuteNonQuery();
+        sc.Close();
     }
+
+
     protected void fillGradeList()
     {
         ListItem gradeBlank = new ListItem();
