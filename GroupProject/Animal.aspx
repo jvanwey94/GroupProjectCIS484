@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel">
+                    <div class="panel panel-red">
                         <div class="panel-heading">
                             Animals
                              <div class="pull-right">
