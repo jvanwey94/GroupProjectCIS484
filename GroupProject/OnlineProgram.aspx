@@ -73,9 +73,80 @@
                     <!-- /.panel -->
                 </div>
             </div>
-            <div>
+            
        
             <br />
+            <!--EDIT/DELETE MODAL-->
+            <div class="modal fade" id="editdeletemodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogramModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="OPtitle"> Edit Online Program </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="ProgNameLBL" runat="server" Text="Program Name"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="ProgNameTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="OrgNameLBL" runat="server" Text="Organization Name"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="OrgNameTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="ProgDateLBL" runat="server" Text="Program Date"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3"><!-- make date input type-->
+                                        <asp:TextBox ID="ProgDateTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="TypeLBL" runat="server" Text="Type of Program"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="TypeTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="CountryLBL" runat="server" Text="Country"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="CountryTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="StateLBL" runat="server" Text="State"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="StateTXT" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="updateBTN" runat="server" Text="Update Online Program" />
+                            <asp:Button ID="deleteBTN" runat="server" Text="Delete Online Program" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
                 <asp:Panel ID="ModalPanel" runat="server" ></asp:Panel>
         <div class="modal fade" id="addOnlineProgram" tabindex="1" role="dialog" aria-labelledby="addOnlineProgram" aria-hidden="true">
@@ -240,8 +311,44 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
         </div>
     
     </div>
-    <!-- edit/delete modal  -->
-    <div class="modal fade" id="onlineprogrammodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogrammodal" aria-hidden="true">
+    
+
+<%--    </asp:UpdatePanel>--%>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=GridViewOnlineProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                responsive: true,
+                paging: true,
+                lengthChange: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false
+            });
+        });
+    </script>          
+    <script type='text/javascript'>
+        function openModal() {
+            $('[id*=onlineprogrammodal]').modal();
+        }
+    </script>
+    <script type="text/javascript">
+        function closeModal() {
+            $('[id=onlineprogrammodal]').modal().hide();
+        }
+    </script>
+
+      <!-- edit/delete modal
+    <div class="modal fade" id="onlineprogrammodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogrammodalStuff" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -349,42 +456,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 </div>
             </div>
         </div>
-    </div>
-
-<%--    </asp:UpdatePanel>--%>
-
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("[id*=GridViewOnlineProgram]").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                responsive: true,
-                paging: true,
-                lengthChange: false,
-                searching: true,
-                ordering: true,
-                info: true,
-                autoWidth: false
-            });
-        });
-    </script>          
-    <script type='text/javascript'>
-        function openModal() {
-            $('[id*=onlineprogrammodal]').modal();
-        }
-    </script>
-    <script type="text/javascript">
-        function closeModal() {
-            $('[id=onlineprogrammodal]').modal().hide();
-        }
-    </script>
-
-        </div>
+    </div>-->
+            
 </asp:Content>
 
