@@ -6,16 +6,27 @@
         {
             display:none;
         }
+        .panel-heading-custom{
+            background:#ffb74d;
+            color: #fff;
+        }
+        .modal-header{
+            background: #ffb74d;
+            color: #fff;
+        }
+        .modal-body {
+            padding: 20px;
+        }
     </style>
         <div id="page-wrapper">
          <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Online Programs <i class="fa fa-wifi icon"></i></h1>
+                <h1 class="panel-heading panel-heading-custom">Online Programs <i class="fa fa-wifi icon"></i></h1>
             </div>
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-yellow">
+                    <div class="panel panel-warning">
                         <div class="panel-heading">
                             Past Events
                              <div class="pull-right">
@@ -45,7 +56,7 @@
 
                         <!--Panel Heading-->
                         <div class="panel-body">
-            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AlternatingRowStyle-CssClass="alert-warning" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-CssClass="alert-warning">
                 <Columns>
                     <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
                     <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
@@ -90,10 +101,10 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <asp:Label ID="ProgNameLBL" runat="server" Text="Program Name"></asp:Label>
+                                        <asp:Label ID="lblProgName" runat="server" Text="Program Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="ProgNameTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="ProgNameTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -101,7 +112,7 @@
                                         <asp:Label ID="OrgNameLBL" runat="server" Text="Organization Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="OrgNameTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="OrgNameTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -109,7 +120,7 @@
                                         <asp:Label ID="ProgDateLBL" runat="server" Text="Program Date"></asp:Label>
                                     </div>
                                     <div class="col-md-3"><!-- make date input type-->
-                                        <asp:TextBox ID="ProgDateTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="ProgDateTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -117,7 +128,7 @@
                                         <asp:Label ID="TypeLBL" runat="server" Text="Type of Program"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="TypeTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TypeTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -125,7 +136,7 @@
                                         <asp:Label ID="CountryLBL" runat="server" Text="Country"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="CountryTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="CountryTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -133,15 +144,55 @@
                                         <asp:Label ID="StateLBL" runat="server" Text="State"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="StateTXT" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="StateTXT" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="GradeLBL" runat="server" Text="Grade Level"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="GradeTXT" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="EmailLBL" runat="server" Text="Email Address"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="EmailTXT" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="ThemeLBL" runat="server" Text="Theme"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="ThemeTXT" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="NumberOfChildrenLBL" runat="server" Text="Number Of Children"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="NumberOfChildrenTXT" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="NumberOfAdultsLBL" runat="server" Text="Number Of Adults"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="NumberOfAdultsTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="updateBTN" runat="server" Text="Update Online Program" />
-                            <asp:Button ID="deleteBTN" runat="server" Text="Delete Online Program" />
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                            <asp:Button ID="updateBTN" runat="server" class="btn btn-primary" Text="Update Online Program" />
+                            <asp:Button ID="deleteBTN" runat="server" class="btn btn-danger" Text="Delete Online Program" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -167,123 +218,123 @@
 AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblOrganizationName" runat="server" Text="Organization Name: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtOrganizationName" required="required" runat="server" ></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtOrganizationName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
             </div>
         </div>
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtProgramName" required="required" runat="server" ></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtProgramName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtDate" type="Date"  runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtDate" type="Date" class="form-control" runat="server"></asp:TextBox><br />
                 <br />
             </div>
         </div>
 <%--   <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="Label2" runat="server" Text="Month: "></asp:Label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>--%>
        <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtType" required="required" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtType" class="form-control" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblState" runat="server" Text="State: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtState" required="required" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtState" class="form-control" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblCountry" runat="server" Text="Country: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtCountry" required="required" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtCountry" class="form-control" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row"> <%--required="required"--%>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtNK" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtNK" class="form-control" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row"><%--required="required" --%>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtNumberOFAdults" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtNumberOFAdults" class="form-control" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="Label7" runat="server" Text="Grade Level: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><br />
+            <div class="col-md-3">
+                <asp:DropDownList ID="DropDownList1" class="form-control" runat="server"></asp:DropDownList><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblTeacherName" runat="server" Text="Teacher Name: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtTeacherName" required="required" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtTeacherName" class="form-control" required="required" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox><br />
             </div>
         </div>
       <div class="row"> <%--required="required" --%>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtTeacher"  runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtTeacher" class="form-control" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row"><%--required="required" --%>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
             </div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txtTheme" runat="server"></asp:TextBox><br />
+            <div class="col-md-3">
+                <asp:TextBox ID="txtTheme" class="form-control" runat="server"></asp:TextBox><br />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblAnimalUsed" runat="server" Text="Animals Used: "></asp:Label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
 
                 <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
                                 <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
@@ -292,10 +343,10 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
         </div>
             </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:Label ID="lblPayment" runat="server" Text="Waiting for payment? "></asp:Label><br />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <asp:RadioButton ID="txtPayment1" runat="server" Text="Yes" />
                 <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
             </div>
@@ -338,125 +389,16 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
     </script>          
     <script type='text/javascript'>
         function openModal() {
-            $('[id*=onlineprogrammodal]').modal();
+            $('[id*=editdeletemodal]').modal();
         }
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=onlineprogrammodal]').modal().hide();
+            $('[id=editdeletemodal]').modal().hide();
         }
     </script>
 
-      <!-- edit/delete modal
-    <div class="modal fade" id="onlineprogrammodal" tabindex="-1" role="dialog" aria-labelledby="onlineprogrammodalStuff" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="onlineprogramheading">Edit Online Program</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="ProgNameLBL" runat="server" Text="Program Name"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="ProgNameTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="OrgNameLBL" runat="server" Text="Organization Name"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="OrgNameTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="ProgDateLBL" runat="server" Text="Program Date"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="ProgDateTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="TypeLBL" runat="server" Text="Type"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="TypeTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="CountryLBL" runat="server" Text="Country"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="CountryTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="StateLBL" runat="server" Text="State"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="StateTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="GradeLBL" runat="server" Text="Grade Level"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="GradeTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="EmailLBL" runat="server" Text="Email Address"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="EmailTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="ThemeLBL" runat="server" Text="Theme"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="ThemeTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="NumberOfChildrenLBL" runat="server" Text="Number Of Children"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="NumberOfChildrenTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="NumberOfAdultsLBL" runat="server" Text="Number Of Adults"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="NumberOfAdultsTXT" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <asp:Button ID="updateOPbtn" class="btn btn-primary" runat="server" OnClick="updateOnlineProgram" Text="Update Online Program" />
-                    <asp:Button ID="deleteOPbtn" class="btn btn-danger" runat="server" OnClick="deleteOnlineProgram" Text="Delete Online Program" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
-                </div>
-            </div>
-        </div>
-    </div>-->
+
             
 </asp:Content>
 

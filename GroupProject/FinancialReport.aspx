@@ -16,6 +16,17 @@ function Calculation(){
     var id = document.getElementsByClassName("<%= dbInvoice.InvoiceID%>");
 
 </script>--%>
+
+    <style type="text/css">
+        .hidden
+        {
+            display:none;
+        }
+        .panel-heading-custom {
+            background: #5cb85c; 
+            color: #fff;
+        }
+    </style>
  
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jQuery.dataTables.min.js"></script>
@@ -26,13 +37,13 @@ function Calculation(){
     <!--Page header -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Financial Reports <i class="fa fa-dollar icon"></i></h1>
+            <h1 class="panel-heading panel-heading-custom">Financial Reports <i class="fa fa-dollar icon"></i></h1>
         </div>
     </div>
         
      <div class="row">
          <div class="col-lg-12">
-             <div class="panel panel-green">
+             <div class="panel panel-success">
                  <div class="panel-heading">
                      Enter Information Here
                  </div>

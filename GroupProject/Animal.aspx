@@ -2,23 +2,26 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     
-    <%--<style type="text/css">
+    <style type="text/css">
         .hidden
         {
             display:none;
         }
-        h1{
-            border-radius: 5px;
+        .panel-heading-custom {
+            background: #d9534f; 
+            color: #fff;
+        }
+        .modal-header {
+            background: #d9534f; 
+            color: #fff;
         }
 
-    </style>--%>
+    </style>
 
         <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <div class="panel panel-red">
-                    <h1 class="panel-heading">Manage Animals <i class="fa fa-paw icon"></i> </h1>
-                    </div>
+                    <h1 class="panel-heading panel-heading-custom">Manage Animals <i class="fa fa-paw icon"></i> </h1> 
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -48,7 +51,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-danger">
                     <Columns>
                         <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
                         <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
@@ -107,7 +110,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="insertAnimalButton" runat="server" onClick="addAnimalToDataBaseButton" class="btn btn-primary" Text="Insert" />
+                    <asp:Button ID="insertAnimalButton" runat="server" onClick="addAnimalToDataBaseButton" class="btn btn-primary" Text="Add Animal" />
                     <asp:Button ID="exitAnimalButton" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
@@ -130,14 +133,14 @@
                                 <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:DropDownList ID="DeleteDDL" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="DeleteDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Delete" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -159,7 +162,7 @@
                                 <asp:Label ID="AnimalTypeEditLBL" runat="server" Text="Animal Type"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:DropDownList ID="AnimalTypeDDL" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="AnimalTypeDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row">
@@ -167,7 +170,7 @@
                                 <asp:Label ID="AnimalNameEditLBL" runat="server" Text="Animal Name"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="AnimalNameEditTXT" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalNameEditTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -175,7 +178,7 @@
                                 <asp:Label ID="AnimalStatusLBL" runat="server" Text="Animal Status"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:DropDownList ID="AnimalStatusDDL" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="AnimalStatusDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row">
@@ -183,7 +186,7 @@
                                 <asp:Label ID="AnimalEventsLBL" runat="server" Text="Number of Events"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="AnimalEditEventsTXT" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalEditEventsTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -191,7 +194,7 @@
                                 <asp:Label ID="AnimalAdultsMetLBL" runat="server" Text="Number of Adults Met"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="AnimalAdultsMetTXT" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalAdultsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -199,7 +202,7 @@
                                 <asp:Label ID="AnimalKidsMetLBL" runat="server" Text="Number of Children Met"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="AnimalKidsMetTXT" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="AnimalKidsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -207,7 +210,7 @@
                 <div class="modal-footer">
                     <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Update Animal" />
                     <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Delete Animal" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

@@ -95,6 +95,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
 
         programcmd.ExecuteNonQuery();
+        GridViewOnlineProgram.DataBind();
         cmd.ExecuteNonQuery();
 
 

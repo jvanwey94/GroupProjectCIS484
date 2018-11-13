@@ -7,6 +7,15 @@
         {
             display:none;
         }
+        .panel-heading-custom {
+            background: #428bca; 
+            color: #fff;
+        }
+        .modal-header{
+            background: #428bca; 
+            color: #fff;
+        }
+        
     </style>
    <script >
     function filterFunction() {
@@ -27,12 +36,14 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Programs <i class="fa fa-calendar icon"></i></h1>
+                <%--<div class="panel panel-default">--%>
+                    <h1 class="panel-heading panel-heading-custom">Programs <i class="fa fa-calendar icon"></i></h1>
+                <%--</div>--%>
             </div>
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             Past Events
                              <div class="pull-right">
@@ -64,7 +75,7 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" AlternatingRowStyle-CssClass="alert-info" RowStyle-CssClass="alert-info">
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
@@ -505,7 +516,7 @@
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=editModal]').modal().hide();
+            $('[id=editProgram]').modal().hide();
         }
     </script>
 </asp:Content>

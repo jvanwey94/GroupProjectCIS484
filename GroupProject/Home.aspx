@@ -1,13 +1,19 @@
 <%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+     <style type="text/css">
+        .panel-heading-custom {
+            background: #f1f8e9; 
+            color: #1b5e20;
+        }
+        
+    </style>
     
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="panel-heading panel-heading-custom">Dashboard<i class="fa fa-dashboard fa-fw"></i></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
