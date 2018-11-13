@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Animal.aspx.cs" Inherits="Animal" %>
+<%@ Page Title="Manage Animal" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Animal.aspx.cs" Inherits="Animal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     
@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel">
+                    <div class="panel panel-red">
                         <div class="panel-heading">
                             Animals
                              <div class="pull-right">

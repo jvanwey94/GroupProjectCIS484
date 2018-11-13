@@ -171,7 +171,7 @@
                                 </a>
                             </div>
                             <!-- /.list-group -->
-                            <a href="manageAnimal.html" class="btn btn-default btn-block">View All Animals</a>
+                            <a href="Animal.aspx" class="btn btn-default btn-block">View All Animals</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>

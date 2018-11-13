@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TrackAnimal.aspx.cs" Inherits="TrackAnimal" %>
+﻿<%@ Page Title="Track Animal" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TrackAnimal.aspx.cs" Inherits="TrackAnimal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 
@@ -19,36 +19,37 @@
                            
                            <div class="row col-lg-12">
 	                           <div id="mapid"></div>
-	                           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD67D7CvKJur6dWrEq-0bq2hCQRnlqugA0&sensor=false" type="text/javascript"></script>  
-                                <script>  
-                                    var mapcode;  
-                                    var diag;  
-                                    function initialize() {  
-                                        mapcode = new google.maps.Geocoder();  
-                                        var lnt = new google.maps.LatLng(38.435159, -78.869808);  
-                                        var diagChoice = {  
-                                            zoom: 9,  
-                                            center: lnt,  
-                                            diagId: google.maps.MapTypeId.ROADMAP  
-                                        }  
-                                        diag = new google.maps.Map(document.getElementById('mapid'), diagChoice);  
-                                    }  
-                                    function getmap() {  
-                                        var completeaddress = document.getElementById('txt_location').value;  
-                                        mapcode.geocode({ 'address': completeaddress }, function (results, status) {  
-                                            if (status == google.maps.GeocoderStatus.OK) {  
-                                                diag.setCenter(results[0].geometry.location);  
-                                                var hint = new google.maps.Marker({  
-                                                    diag: diag,  
-                                                    position: results[0].geometry.location  
-                                                });  
-                                            } else {  
-                                                alert('Location Not Tracked. ' + status);  
-                                            }  
-                                        });  
-                                    }  
-                                    google.maps.event.addDomListener(window, 'load', initialize);  
-                                </script>  
+	                            
+                              
+                               <script>
+                                  var geocoder;
+                                  var map;
+                                  var address = "1800 S Delphine Ave, Waynesboro";
+                                  function initMap() {
+                                    var map = new google.maps.Map(document.getElementById('mapid'), {
+                                      zoom: 8,
+                                      center: {lat: 38.065229, lng: -78.905888}
+                                    });
+                                    geocoder = new google.maps.Geocoder();
+                                    codeAddress(geocoder, map);
+                                  }
+
+                                  function codeAddress(geocoder, map) {
+                                    geocoder.geocode({'address': address}, function(results, status) {
+                                      if (status === 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location
+                                        });
+                                      } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                      }
+                                    });
+                                  }
+                                </script>
+                               <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD67D7CvKJur6dWrEq-0bq2hCQRnlqugA0&callback=initMap"></script>
+    
 	                         </div>
 	                         <div class="row" id="formHeader">
 	                         	<div class="col-lg-5">
@@ -83,7 +84,7 @@
 	                         				</select>
 	                         			</div>
 	                         			<div class="col-lg-2 offset-lg-1" id="trackAnimalButton">
-	                         				<a href="#"><button class="btn btn-primary submit" type="button">Submit</button></a>
+	                         				<button class="btn btn-primary submit" type="button">Submit</button>
 	                         			</div>
 	                         		</div>
 	                         	
