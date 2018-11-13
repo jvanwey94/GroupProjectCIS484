@@ -31,7 +31,7 @@ public partial class Animal : System.Web.UI.Page
             populateAnimalType(AnimalTypeDDL);
         }
 
-
+        GridView1.DataBind();
 
     }
 
@@ -50,7 +50,6 @@ public partial class Animal : System.Web.UI.Page
         insertAnimalcmd.Parameters.AddWithValue("@TotalPeopleMet", 0);
 
         insertAnimalcmd.ExecuteNonQuery();
-        GridView1.DataBind();
         sc.Close();
     }
 
