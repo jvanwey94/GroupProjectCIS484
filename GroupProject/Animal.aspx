@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Save" />
+                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Update Animal" />
                     <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Deactivate Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
