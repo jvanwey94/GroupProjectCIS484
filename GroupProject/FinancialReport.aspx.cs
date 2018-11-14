@@ -193,7 +193,7 @@ public partial class FinancialReport : System.Web.UI.Page
         //insert data to Bird table if text box is qualified
         if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
         {
-
+            connect.Open();
             //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
             String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
             System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
@@ -220,9 +220,9 @@ public partial class FinancialReport : System.Web.UI.Page
             //txtLastUpdatedBy.Text = string.Empty;
             //txtLastUpdated.Text = string.Empty;
             txtSearch.Text = string.Empty;
-
+                connect.Close();
         }
-        connect.Close();
+        
         //}
         //catch (Exception)
         //{
@@ -231,7 +231,7 @@ public partial class FinancialReport : System.Web.UI.Page
         //}
     }//commit button done
 
-    protected void btn1_Search(object sender, EventArgs e)
+    protected void btn1_Select(object sender, EventArgs e)
     {
 
         if (txtSearch.Text != string.Empty)

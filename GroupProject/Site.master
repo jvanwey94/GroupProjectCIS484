@@ -97,12 +97,18 @@
                                 <li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="FinancialReport.aspx"><i class="fa fa-files-o fa-fw"></i> Reports</a>
-                            <li>
-                            		<a href="FinancialReport.aspx">Financial report</a>
+                   <li>
+                            <i class="fa fa-paw fa-fw"></i> Reports<span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="PrgramReports.aspx">Program Reports</a>
                             	</li>
+                                <li>
+                                    <a href="AnimalReports.aspx">Animal Reports</a>
+                                <li>
+                            </ul>
                         </li>
+                       
                     </ul>
             <%--<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
