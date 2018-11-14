@@ -81,6 +81,8 @@ public partial class SiteMaster : MasterPage
             dash.HRef = "Home.aspx";
         else
             dash.HRef = "Homelimited.aspx";
+            Fin1.Visible = false;
+            Fin2.Visible = false;
         }
         catch(Exception)
         {

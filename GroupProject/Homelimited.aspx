@@ -1,13 +1,19 @@
 <%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <style type="text/css">
+        .panel-heading-custom {
+            background: #f1f8e9; 
+            color: #1b5e20;
+        }
+        
+    </style>
     
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="panel-heading panel-heading-custom">Dashboard<i class="fa fa-dashboard fa-fw"></i></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -114,48 +120,6 @@
                     </div>
                 </div>
                     <!-- /.panel -->
-                
-                    <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-paw fa-fw"></i> Available Animals
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> Eugene
-                                    <span class="pull-right text-muted small"><em>Falcon</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> Hector
-                                    <span class="pull-right text-muted small"><em>Owl</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i>Kyle
-                                    <span class="pull-right text-muted small"><em>Falcon</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-fw"></i> Ethan
-                                    <span class="pull-right text-muted small"><em>Snake</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-fw"></i> Mairin
-                                    <span class="pull-right text-muted small"><em>Snake</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="Animal.aspx" class="btn btn-default btn-block">View All Animals</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
             </div>
             <!-- /.row -->
         </div>

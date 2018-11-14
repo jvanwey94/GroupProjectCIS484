@@ -106,7 +106,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="deleteModalTitle">Delete Animal</h3>
+                    <h3 class="modal-title" id="deleteModalTitle">Deactivate Animal</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                     <span aria-hidden="true"></span>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text="Choose an Animal to Deactivate"></asp:Label>
                             </div>
                             <div class="col-md-3">
                                 <asp:DropDownList ID="DeleteDDL" class="form-control" runat="server"></asp:DropDownList>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Delete" />
+                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Deactivate Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -192,8 +192,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Update Animal" />
-                    <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Delete Animal" />
+                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Save" />
+                    <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Deactivate Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
