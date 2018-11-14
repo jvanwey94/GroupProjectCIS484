@@ -165,7 +165,7 @@ function Calculation(){
 <!--close "row"-->
                 <asp:Label ID="lblSearch" runat="server" Text="Search for Invoice Number:"  Font-Size="X-Large" ></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-          <asp:Button ID="btnSearch" class="btn btn-lg btn-success btn-block" runat="server" Text="Search" formNoValidate="formNoValidate"  OnClick="btn1_Select" />
+          <asp:Button ID="btnSearch" class="btn btn-lg btn-success btn-block" runat="server" Text="Search" formNoValidate="formNoValidate"  OnClick="btn1_Insert" />
         <br />
          <br />
 <%--        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Invoice#" OnRowEditing="dbSkill_RowEditing" 

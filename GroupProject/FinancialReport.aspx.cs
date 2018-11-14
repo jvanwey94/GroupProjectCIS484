@@ -127,6 +127,7 @@ public partial class FinancialReport : System.Web.UI.Page
             InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
         }
 
+        //edit the datatype
         Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
         Decimal InputPaymentCollect = 0;
         Decimal InputPaymenLeft = 0;
