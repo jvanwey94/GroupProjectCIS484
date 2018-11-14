@@ -118,7 +118,7 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Address</label>
+                                <label>Organization Address</label>
                             </div>
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddOrgAddr" class="form-control" runat="server"></asp:TextBox>
@@ -126,7 +126,7 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>City</label>
+                                <label>Organization City</label>
                             </div>
                             <div class="col-sm-3">
                                 
@@ -139,7 +139,7 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>County</label>
+                                <label>Organization County</label>
                             </div>
                             <div class="col-sm-3">
                                 
@@ -199,7 +199,7 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>City</label>
+                                <label>Program City</label>
                             </div>
                             <div class="col-sm-3">
                                 
@@ -212,7 +212,7 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>County</label>
+                                <label>Program County</label>
                             </div>
                             <div class="col-sm-3">
                                 
@@ -252,7 +252,7 @@
                                 <label>Date</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddDate" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtAddDate" type="Date" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
                         <div class="row">
@@ -298,7 +298,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Program" />
                     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                 </div>
@@ -326,7 +326,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtOrganizationName" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Address</label>
@@ -334,7 +334,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtOrganizationAddress" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>City</label>
@@ -345,7 +345,7 @@
                                     
                                   </asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>County</label>
@@ -358,7 +358,7 @@
                                   </asp:DropDownList>
                                 
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Site Type</label>
@@ -366,7 +366,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtSiteType" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Program Name</label>
@@ -374,7 +374,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtProgramName" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Status</label>
@@ -382,7 +382,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtStatus" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Date</label>
@@ -390,7 +390,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Children</label>
@@ -398,7 +398,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtNumberOfChildren" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Adults</label>
@@ -406,7 +406,7 @@
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtNumberOfAdults" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Animal</label>
@@ -416,7 +416,7 @@
                                 <asp:CheckBoxList ID="CheckBoxAnimal" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
                             </asp:Panel>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Educator</label>
@@ -425,13 +425,21 @@
                                 <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
                                 <asp:DropDownList ID="txtEducatorName" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
                             </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Comments:</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="CommentsTXT" runat="server"></asp:TextBox>
+                            </div>
                         </div>
                         
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
-                    <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Delete" />
+                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Update Program" />
+                    <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Delete Program" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>

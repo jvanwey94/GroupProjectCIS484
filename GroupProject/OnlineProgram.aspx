@@ -92,7 +92,7 @@
                                         <asp:Label ID="lblProgName" runat="server" Text="Program Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="ProgNameTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="ProgNameTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -100,7 +100,7 @@
                                         <asp:Label ID="OrgNameLBL" runat="server" Text="Organization Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="OrgNameTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="OrgNameTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -108,7 +108,7 @@
                                         <asp:Label ID="ProgDateLBL" runat="server" Text="Program Date"></asp:Label>
                                     </div>
                                     <div class="col-md-3"><!-- make date input type-->
-                                        <asp:TextBox ID="ProgDateTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="ProgDateTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -116,7 +116,7 @@
                                         <asp:Label ID="TypeLBL" runat="server" Text="Type of Program"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="TypeTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TypeTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -124,7 +124,7 @@
                                         <asp:Label ID="CountryLBL" runat="server" Text="Country"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="CountryTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="CountryTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -132,7 +132,7 @@
                                         <asp:Label ID="StateLBL" runat="server" Text="State"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="StateTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="StateTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -140,7 +140,7 @@
                                         <asp:Label ID="GradeLBL" runat="server" Text="Grade Level"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="GradeTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="GradeTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -148,7 +148,7 @@
                                         <asp:Label ID="EmailLBL" runat="server" Text="Email Address"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="EmailTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="EmailTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -156,7 +156,7 @@
                                         <asp:Label ID="ThemeLBL" runat="server" Text="Theme"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="ThemeTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="ThemeTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -164,7 +164,7 @@
                                         <asp:Label ID="NumberOfChildrenLBL" runat="server" Text="Number Of Children"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="NumberOfChildrenTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="NumberOfChildrenTXT" class="form-control" runat="server"></asp:TextBox><br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -172,7 +172,15 @@
                                         <asp:Label ID="NumberOfAdultsLBL" runat="server" Text="Number Of Adults"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="NumberOfAdultsTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="NumberOfAdultsTXT" class="form-control" runat="server"></asp:TextBox><br />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="CommentsLBL" runat="server" Text="Comments:"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="CommentsTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -329,8 +337,8 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 </asp:Panel>
                             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal]"></asp:SqlDataSource>
         </div>
-            </div>
-        <div class="row">
+            </div><br />
+        <%--<div class="row">
             <div class="col-md-3">
                 <asp:Label ID="lblPayment" runat="server" Text="Waiting for payment? "></asp:Label><br />
             </div>
@@ -339,7 +347,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
             </div>
         </div>
-        <br />
+        <br />--%>
         <div class="row">
         <div class="col-sm-3">
                                 <label>Comments:</label>
@@ -354,7 +362,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <br />
                
                 <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Online Program" />
                     <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>

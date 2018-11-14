@@ -29,6 +29,7 @@ public partial class Animal : System.Web.UI.Page
             populateAnimalStatus(AnimalStatusDDL);
             populateAnimals(DeleteDDL);
             populateAnimalType(AnimalTypeDDL);
+            populateAnimalType(AddAnimalStatusDDL);
         }
 
         GridView1.DataBind();
@@ -41,7 +42,7 @@ public partial class Animal : System.Web.UI.Page
         sc.Open();
 
         SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
-        insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeTxt.Text);
+        insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AddAnimalStatusDDL.SelectedItem.Text);
         insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
         insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
         insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", 0);
