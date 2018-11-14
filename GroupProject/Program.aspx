@@ -7,6 +7,14 @@
         {
             display:none;
         }
+        .panel-heading-custom {
+            background: #428bca; 
+            color: #fff;
+        }
+        .modal-header {
+            background: #428bca; 
+            color: #fff;
+        }
     </style>
    <script >
     function filterFunction() {
@@ -27,12 +35,12 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="color:blue">Programs <i class="fa fa-calendar icon"></i></h1>
+                <h1 class="panel-heading panel-heading-custom">Programs <i class="fa fa-calendar icon"></i></h1>
             </div>
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             Past Events
                              <div class="pull-right">
@@ -51,7 +59,7 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-info">
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
@@ -271,9 +279,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
-                                <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
+                                <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
                             </asp:Panel>
-                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select animalName, animalID from dbo.Animal where animalStatus='inactive'"></asp:SqlDataSource>
                             </div>
                         </div><br />
                         <div class="row">
@@ -298,7 +306,7 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
                     
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -411,7 +419,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <asp:Panel ID="Panel2" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
-                                <asp:CheckBoxList ID="CheckBoxAnimal" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
+                                <asp:CheckBoxList ID="CheckBoxAnimal" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
                             </asp:Panel>
                             </div>
                         </div>
@@ -429,7 +437,7 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
-                    <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Delete" />
+                    <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Deactivate Program" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>
@@ -441,7 +449,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="DeleteModalTitle">Delete a Progam</h3>
+                    <h3 class="modal-title" id="DeleteModalTitle">Deactivate a Progam</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -457,7 +465,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <<asp:Button ID="DeleteProgramBTN" class="btn btn-primary" runat="server" Text="Delete Program" />
+                    <<asp:Button ID="DeleteProgramBTN" class="btn btn-primary" runat="server" Text="Deactivate Program" />
                 </div>
             </div>
         </div>
