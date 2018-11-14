@@ -76,21 +76,21 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <label>Animal Name</label>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <label>Type of Animal</label>
                             </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="AddAnimalStatusDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -106,7 +106,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="deleteModalTitle">Delete Animal</h3>
+                    <h3 class="modal-title" id="deleteModalTitle">Deactivate Animal</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                     <span aria-hidden="true"></span>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:Label ID="Label2" runat="server" Text="Choose and Animal to Delete"></asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text="Choose an Animal to Deactivate"></asp:Label>
                             </div>
                             <div class="col-md-3">
                                 <asp:DropDownList ID="DeleteDDL" class="form-control" runat="server"></asp:DropDownList>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Delete" />
+                    <asp:Button ID="DeleteButton" class="btn btn-primary" runat="server" onClick="DeleteButton_Click" Text="Deactivate Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                             <div class="col-md-3">
                                 <asp:DropDownList ID="AnimalTypeDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalNameEditLBL" runat="server" Text="Animal Name"></asp:Label>
@@ -156,7 +156,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalNameEditTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalStatusLBL" runat="server" Text="Animal Status"></asp:Label>
@@ -164,7 +164,7 @@
                             <div class="col-md-3">
                                 <asp:DropDownList ID="AnimalStatusDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalEventsLBL" runat="server" Text="Number of Events"></asp:Label>
@@ -172,7 +172,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalEditEventsTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalAdultsMetLBL" runat="server" Text="Number of Adults Met"></asp:Label>
@@ -180,7 +180,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalAdultsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalKidsMetLBL" runat="server" Text="Number of Children Met"></asp:Label>
@@ -188,12 +188,12 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalKidsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Update Animal" />
-                    <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Delete Animal" />
+                    <asp:Button ID="UpdateButton" runat="server" class="btn btn-primary" onClick="UpdateAnimal" Text="Save" />
+                    <asp:Button ID="DeleteButtonModal" runat="server" class="btn btn-danger" onClick="DeleteAnimal" Text="Deactivate Animal" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>

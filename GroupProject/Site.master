@@ -93,22 +93,16 @@
                             		<a href="Animal.aspx">Manage Animals</a>
                             	</li>
                                 <li>
-                                    <a href="trackAnimal.html">Track Animals</a>
+                                    <a href="TrackAnimal.aspx">Track Animals</a>
                                 <li>
                             </ul>
                         </li>
-                   <li>
-                            <i class="fa fa-paw fa-fw"></i> Reports<span class="fa arrow"></span>
-                            <ul class="nav nav-second-level">
-                            	<li>
-                            		<a href="PrgramReports.aspx">Program Reports</a>
+                        <li>
+                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                            <li>
+                            		<a href="FinancialReport.aspx" id="Fin2" runat="server">Financial report</a>
                             	</li>
-                                <li>
-                                    <a href="AnimalReports.aspx">Animal Reports</a>
-                                <li>
-                            </ul>
                         </li>
-                       
                     </ul>
             <%--<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

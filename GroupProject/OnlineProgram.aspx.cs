@@ -27,7 +27,7 @@ public partial class OnlineProgram : System.Web.UI.Page
     {
         String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
             "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
-        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults " +
+        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments " +
             "where ProgramID = @ProgramID";
         sc.Open();
         SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
@@ -45,6 +45,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
+        pcmd.Parameters.AddWithValue("@Comments", "");
         pcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
 
         opcmd.ExecuteNonQuery();
@@ -61,7 +62,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
             "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
         String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments) " +
-            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName,@Comments)";
+            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments)";
    
  
 
@@ -250,12 +251,15 @@ public partial class OnlineProgram : System.Web.UI.Page
                 r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
                 r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
                 r.ToolTip = "Click to edit Animal";
+                r.Cells[0].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[5].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[7].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
+                r.Cells[8].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
             }
         }
         base.Render(writer);
