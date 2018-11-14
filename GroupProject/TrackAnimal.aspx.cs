@@ -29,9 +29,12 @@ public partial class TrackAnimal : System.Web.UI.Page
     }
     protected void OnSelectedIndexChanged(object sender, EventArgs e)
     {
-
+        GridViewRow row = gvRegularProgram.SelectedRow;
+       
+        string city= row.Cells[1].Text;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "passcity("+city+")", true);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "codeAddress()", true);
-
+        
         
        
     }

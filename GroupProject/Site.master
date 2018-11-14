@@ -98,9 +98,9 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="FinancialReport.aspx"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i> Reports</a>
                             <li>
-                            		<a href="FinancialReport.aspx">Financial report</a>
+                            		<a href="FinancialReport.aspx" id="Fin2" runat="server">Financial report</a>
                             	</li>
                         </li>
                     </ul>

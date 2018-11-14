@@ -22,13 +22,15 @@
 	                            
                               
                                <script>
-                                  
+                                   
                                   var geocoder;
                                   var map;
-                                   var address = "1800 S Delphine Ave, Waynesboro";
-                                   var data = $('gvRegularProgram').DataTable();
-                                   var city = data
-                                       .column('City')
+                                  var address = "Bluefield";
+                                  var address1 = "Blacksburg";
+                                   var address2 = "Roanoke";
+                                   var address3 = "Abingdon";
+                                  var address4 = "Pulaski"
+                                   //"1800 S Delphine Ave, Waynesboro";
 
                                   function initMap() {
                                     var map = new google.maps.Map(document.getElementById('mapid'), {
@@ -50,7 +52,52 @@
                                       } else {
                                         alert('Geocode was not successful for the following reason: ' + status);
                                       }
-                                    });
+                                      });
+                                      
+                                      geocoder.geocode({'address': address2}, function(results, status) {
+                                      if (status === 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location
+                                        });
+                                      } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                      }
+                                      });
+                                      geocoder.geocode({'address': address3}, function(results, status) {
+                                      if (status === 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location
+                                        });
+                                      } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                      }
+                                      });
+                                      geocoder.geocode({ 'address': address1 }, function (results, status) {
+                                      if (status === 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location
+                                        });
+                                      } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                      }
+                                      });
+                                      geocoder.geocode({ 'address': address4 }, function (results, status) {
+                                      if (status === 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location
+                                        });
+                                      } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                      }
+                                      });
                                   }
                                 </script>
                                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD67D7CvKJur6dWrEq-0bq2hCQRnlqugA0&callback=initMap"></script>
@@ -96,13 +143,11 @@
 
                                 <Columns>
                                     
-                                     <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
+                                    <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
                                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                                     <asp:BoundField DataField="County" HeaderText="County" SortExpression="County" />
-                                   
-                                   
-                                    
                                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+
                                 </Columns>
                                 
                             </asp:GridView>
