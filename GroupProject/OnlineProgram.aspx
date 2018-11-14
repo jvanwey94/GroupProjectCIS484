@@ -45,17 +45,17 @@
                         <div class="panel-body">
             <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AlternatingRowStyle-CssClass="alert-warning" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-CssClass="alert-warning">
                 <Columns>
-                    <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
-                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
-                    <asp:BoundField DataField="ProgDate" HeaderText="ProgDate" SortExpression="ProgDate" />
+                    <asp:BoundField DataField="ProgramName" HeaderText="Program" SortExpression="ProgramName" />
+                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
+                    <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" dataformatstring="{0:MM/d/yyyy}" />
                     <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                     <asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" />
                     <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
                     <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
-                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
-                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
+                    <asp:BoundField DataField="NumberOfChildren" HeaderText="Number of Children" SortExpression="NumberOfChildren" />
+                    <asp:BoundField DataField="NumberOfAdults" HeaderText="Number of Adults" SortExpression="NumberOfAdults" />
                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                 </Columns>
@@ -63,6 +63,7 @@
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="
                         <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults, O.ProgramID from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
             </div>
+
                     </div>
                 </div>
             </div>
@@ -80,7 +81,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="OPtitle"> Edit Online Program </h5>
+                            <h3 class="modal-title" id="OPtitle"> Edit Online Program </h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -92,7 +93,18 @@
                                         <asp:Label ID="lblProgName" runat="server" Text="Program Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="ProgNameTXT" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="DropDownOnline" class="form-control" runat="server">
+                                            <asp:ListItem>Book Club</asp:ListItem>
+                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
+                                            <asp:ListItem>Hospital Cam</asp:ListItem>
+                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
+                                            <asp:ListItem>Special Guest</asp:ListItem>
+                                            <asp:ListItem>Special Event</asp:ListItem>
+                                            <asp:ListItem>Skype: Owls</asp:ListItem>
+                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
+                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
+                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -175,6 +187,15 @@
                                         <asp:TextBox ID="NumberOfAdultsTXT" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
+                                 <div class="row">
+        <div class="col-sm-3">
+                                <label>Comments:</label>
+                            </div>
+                             <div class="col-sm-3">
+                                <asp:TextBox ID="Commentstxt" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                          
+         </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -193,9 +214,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title" id="addOnlineProgramModal">
+                        <h3 class="modal-title" id="addOnlineProgramModal">
                             Create OnlineProgram
-                        </h5>
+                        </h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -218,7 +239,18 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
             </div>
             <div class="col-md-3">
-                <asp:TextBox ID="txtProgramName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
+                <asp:DropDownList ID="DropDownOnline2" class="form-control" runat="server">
+                                            <asp:ListItem>Book Club</asp:ListItem>
+                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
+                                            <asp:ListItem>Hospital Cam</asp:ListItem>
+                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
+                                            <asp:ListItem>Special Guest</asp:ListItem>
+                                            <asp:ListItem>Special Event</asp:ListItem>
+                                            <asp:ListItem>Skype: Owls</asp:ListItem>
+                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
+                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
+                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                        </asp:DropDownList>
             </div>
         </div>
         <div class="row">

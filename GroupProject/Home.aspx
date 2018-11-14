@@ -6,9 +6,6 @@
             background: #f1f8e9; 
             color: #1b5e20;
         }
-        .tableauPlaceHolder {
-            align-items: center;
-        }
     </style>
     
 
@@ -31,7 +28,7 @@
                                     <i class="fa fa-calendar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div>Manage Events</div>
+                                    <div>Manage Programs</div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +96,7 @@
                                     <i class="fa fa-wifi fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div>Manage Online Events</div>
+                                    <div>Manage Online Programs</div>
                                 </div>
                             </div>
                         </div>
@@ -120,19 +117,7 @@
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Animal Programs
                             <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Open in other Tab</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="reports.html">View More Data</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                               
                             </div>
                         </div>
                         <!-- /.panel-heading -->

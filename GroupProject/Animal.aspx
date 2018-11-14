@@ -37,13 +37,13 @@
                         <div class="panel-body">
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-danger">
                     <Columns>
-                        <asp:BoundField DataField="AnimalName" HeaderText="AnimalName" SortExpression="AnimalName" />
-                        <asp:BoundField DataField="AnimalType" HeaderText="AnimalType" SortExpression="AnimalType" />
-                        <asp:BoundField DataField="AnimalStatus" HeaderText="AnimalStatus" SortExpression="AnimalStatus" />
-                        <asp:BoundField DataField="NumberOfEvents" HeaderText="NumberOfEvents" SortExpression="NumberOfEvents" />
-                        <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="NumberOfAdultsMet" SortExpression="NumberOfAdultsMet" />
-                        <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="NumberOfChildrenMet" SortExpression="NumberOfChildrenMet" />
-                        <asp:BoundField DataField="TotalNumberOfPeopleMet" HeaderText="TotalNumberOfPeopleMet" SortExpression="TotalNumberOfPeopleMet" />
+                        <asp:BoundField DataField="AnimalName" HeaderText="Name" SortExpression="AnimalName" />
+                        <asp:BoundField DataField="AnimalType" HeaderText="Type" SortExpression="AnimalType" />
+                        <asp:BoundField DataField="AnimalStatus" HeaderText="Status" SortExpression="AnimalStatus" />
+                        <asp:BoundField DataField="NumberOfEvents" HeaderText="Number of Events" SortExpression="NumberOfEvents" />
+                        <asp:BoundField DataField="NumberOfAdultsMet" HeaderText="Number of Adults Met" SortExpression="NumberOfAdultsMet" />
+                        <asp:BoundField DataField="NumberOfChildrenMet" HeaderText="Number of Children Met" SortExpression="NumberOfChildrenMet" />
+                        <asp:BoundField DataField="TotalNumberOfPeopleMet" HeaderText="Total Number of People Met" SortExpression="TotalNumberOfPeopleMet" />
                         <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
                     </Columns>
                 </asp:GridView>

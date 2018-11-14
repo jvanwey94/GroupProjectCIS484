@@ -118,6 +118,7 @@ public partial class Program : System.Web.UI.Page
         txtNumberOfAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
         //CheckBoxAnimal.SelectedIndex = gvRegularProgram.SelectedRow.Cells[10];
         DropDownEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
+        Commentstxt.Text = gvRegularProgram.SelectedRow.Cells[12].Text;
     }
 
 

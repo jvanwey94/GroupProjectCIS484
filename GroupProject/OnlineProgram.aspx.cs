@@ -27,7 +27,7 @@ public partial class OnlineProgram : System.Web.UI.Page
     {
         String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
             "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
-        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults " +
+        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments=@comment " +
             "where ProgramID = @ProgramID";
         sc.Open();
         SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
@@ -41,12 +41,12 @@ public partial class OnlineProgram : System.Web.UI.Page
 
 
         SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
-        pcmd.Parameters.AddWithValue("@ProgramName", ProgNameTXT.Text);
+        pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem);
         pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
         pcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
-
+        pcmd.Parameters.AddWithValue("@comment", Commentstxt.Text);
         opcmd.ExecuteNonQuery();
         pcmd.ExecuteNonQuery();
         sc.Close();
@@ -74,7 +74,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
         programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
         programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
-        programcmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+        programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem);
         programcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
 
 
@@ -122,7 +122,7 @@ public partial class OnlineProgram : System.Web.UI.Page
                     String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
                     SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
                     cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
-                    cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+                    cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem); //
                     cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
                     cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
                     cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
@@ -270,7 +270,7 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         //this is probably wrong, im not sure
         GridViewRow organizationName = GridViewOnlineProgram.SelectedRow;
-        ProgNameTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[0].Text;
+        DropDownOnline.SelectedItem.Text = GridViewOnlineProgram.SelectedRow.Cells[0].Text;
         OrgNameTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[1].Text;
         ProgDateTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[2].Text;
         TypeTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[3].Text;
@@ -281,6 +281,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         ThemeTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[8].Text;
         NumberOfChildrenTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[9].Text;
         NumberOfAdultsTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[10].Text;
+        Commentstxt.Text = GridViewOnlineProgram.SelectedRow.Cells[11].Text;
     }
 
     protected void txtOrganizationName_TextChanged(object sender, EventArgs e)

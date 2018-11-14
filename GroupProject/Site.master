@@ -64,7 +64,8 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-<a href="Home.aspx" ><img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" /></a>
+<img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" />
+       <%-- <a href="Home.aspx" ><img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" /></a>--%>
      <div id="wrapper">
         <%--<div id="container-fluid">--%>
         <div class="navbar-static-top">
@@ -76,13 +77,13 @@
                             <a href="Home.aspx" id="dash" runat="server"><i class="fa fa-dashboard fa-fw" ></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Events <span class="fa arrow"></span></a>
+                            <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Programs <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Regular Events </a>
+                                    <a href="Program.aspx"><i class="fa fa-calendar-o fa-fw"></i> Regular Programs </a>
                                 </li>
                                 <li>
-                                    <a href="OnlineProgram.aspx"><i class="fa fa-calendar-o fa-fw"></i> Online Events </a>
+                                    <a href="OnlineProgram.aspx"><i class="fa fa-calendar-o fa-fw"></i> Online Programs </a>
                                 </li>
                             </ul>
                         </li>
