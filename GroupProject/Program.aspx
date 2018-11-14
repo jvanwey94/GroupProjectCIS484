@@ -90,6 +90,10 @@
 
                                <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
 
+                                <%--<asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID">
+                                </asp:CheckBoxList>--%>
+                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal]"></asp:SqlDataSource>
+
             </div>
                             <%--<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Column1" DataValueField="EducatorID"></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [EducatorID], [FirstName] + ' ' + [LastName] FROM [Educator]"></asp:SqlDataSource>--%>
@@ -283,7 +287,7 @@
                                 <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
                                 <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
                             </asp:Panel>
-                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select animalName, animalID from dbo.Animal where animalStatus='inactive'"></asp:SqlDataSource>
+                            
                             </div>
                         </div><br />
                         <div class="row">
