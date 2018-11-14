@@ -98,10 +98,19 @@
                                 <li>
                             </ul>
                         </li>
+                        
                         <li>
-                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i> Reports</a>
+                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i>Financial Reports</a>
                             <li>
-                            		<a href="FinancialReport.aspx" id="Fin2" runat="server">Financial report</a>
+                            	<ul class="nav nav-second-level">
+                            	<li>
+                            		<a href="AnimalReports.aspx">Animal Report</a>
+                            	</li>
+                                <li>
+                                    <a href="ProgramReports.aspx">Program Report</a>
+                                <li>
+                            </ul>	
+                                <a href="FinancialReport.aspx" id="Fin2" runat="server">Reports</a>
                             	</li>
                         </li>
                     </ul>
