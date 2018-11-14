@@ -45,17 +45,17 @@
                         <div class="panel-body">
             <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AlternatingRowStyle-CssClass="alert-warning" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-CssClass="alert-warning">
                 <Columns>
-                    <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
-                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" />
-                    <asp:BoundField DataField="ProgDate" HeaderText="ProgDate" SortExpression="ProgDate" />
+                    <asp:BoundField DataField="ProgramName" HeaderText="Program" SortExpression="ProgramName" />
+                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
+                    <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" dataformatstring="{0:MM/d/yyyy}"/>
                     <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                     <asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" />
                     <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
                     <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
-                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" SortExpression="NumberOfChildren" />
-                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" SortExpression="NumberOfAdults" />
+                    <asp:BoundField DataField="NumberOfChildren" HeaderText="Number of Children" SortExpression="NumberOfChildren" />
+                    <asp:BoundField DataField="NumberOfAdults" HeaderText="Number of Adults" SortExpression="NumberOfAdults" />
                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                 </Columns>
@@ -92,7 +92,18 @@
                                         <asp:Label ID="lblProgName" runat="server" Text="Program Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="ProgNameTXT" class="form-control" runat="server"></asp:TextBox><br />
+                                        <asp:DropDownList ID="DropDownOnline" class="form-control" runat="server">
+                                            <asp:ListItem>Book Club</asp:ListItem>
+                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
+                                            <asp:ListItem>Hospital Cam</asp:ListItem>
+                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
+                                            <asp:ListItem>Special Guest</asp:ListItem>
+                                            <asp:ListItem>Special Event</asp:ListItem>
+                                            <asp:ListItem>Skype: Owls</asp:ListItem>
+                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
+                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
+                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -226,7 +237,18 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                 <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
             </div>
             <div class="col-md-3">
-                <asp:TextBox ID="txtProgramName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
+                <asp:DropDownList ID="DropDownOnline2" class="form-control" runat="server">
+                                            <asp:ListItem>Book Club</asp:ListItem>
+                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
+                                            <asp:ListItem>Hospital Cam</asp:ListItem>
+                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
+                                            <asp:ListItem>Special Guest</asp:ListItem>
+                                            <asp:ListItem>Special Event</asp:ListItem>
+                                            <asp:ListItem>Skype: Owls</asp:ListItem>
+                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
+                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
+                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                        </asp:DropDownList>
             </div>
         </div>
         <div class="row">
