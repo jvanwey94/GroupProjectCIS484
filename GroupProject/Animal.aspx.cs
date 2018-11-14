@@ -50,6 +50,7 @@ public partial class Animal : System.Web.UI.Page
         insertAnimalcmd.Parameters.AddWithValue("@TotalPeopleMet", 0);
 
         insertAnimalcmd.ExecuteNonQuery();
+        GridView1.DataBind();
         sc.Close();
     }
 
@@ -139,6 +140,7 @@ public partial class Animal : System.Web.UI.Page
         updateAnimalcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
         updateAnimalcmd.ExecuteNonQuery();
+        GridView1.DataBind();
         sc.Close();
         
     }
@@ -151,7 +153,7 @@ public partial class Animal : System.Web.UI.Page
         delcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
         delcmd.ExecuteNonQuery();
-
+        GridView1.DataBind();
         sc.Close();
     }
 
@@ -335,58 +337,43 @@ public partial class Animal : System.Web.UI.Page
 
     protected void populateAnimalType(DropDownList list)
     {
-        int counter = 0;
-        SqlDataReader reader;
         ListItem newItem = new ListItem();
-        String animalQuery = "Select DISTINCT AnimalType from Animal order by AnimalType";
-        SqlCommand filler = new SqlCommand(animalQuery, sc);
-
-        newItem.Value = counter.ToString();
+        newItem.Value = "0";
         newItem.Text = "Select Animal Type";
         list.Items.Add(newItem);
-        sc.Open();
 
-        reader = filler.ExecuteReader();
+        ListItem birdItem = new ListItem();
+        birdItem.Value = "1";
+        birdItem.Text = "Bird";
+        list.Items.Add(birdItem);
 
-        while (reader.Read())
-        {
-            counter++;
-            newItem = new ListItem();
-            newItem.Value = (counter).ToString();
-            newItem.Text = reader["AnimalType"].ToString();
-            list.Items.Add(newItem);
-        }
-        list.DataBind();
-        reader.Close();
-        sc.Close();
+        ListItem mamItem = new ListItem();
+        mamItem.Value = "2";
+        mamItem.Text = "Mammal";
+        list.Items.Add(mamItem);
+
+        ListItem repItem = new ListItem();
+        repItem.Value = "3";
+        repItem.Text = "Reptile";
+        list.Items.Add(repItem);
     }
 
     protected void populateAnimalStatus(DropDownList list)
     {
-        int counter = 0;
-        SqlDataReader reader;
         ListItem newItem = new ListItem();
-        String animalQuery = "Select DISTINCT AnimalStatus from Animal order by AnimalStatus";
-        SqlCommand filler = new SqlCommand(animalQuery, sc);
-
-        newItem.Value = counter.ToString();
+        newItem.Value = "0";
         newItem.Text = "Select Animal Status";
         list.Items.Add(newItem);
-        sc.Open();
 
-        reader = filler.ExecuteReader();
+        ListItem activeItem = new ListItem();
+        activeItem.Value = "1";
+        activeItem.Text = "Active";
+        list.Items.Add(activeItem);
 
-        while (reader.Read())
-        {
-            counter++;
-            newItem = new ListItem();
-            newItem.Value = (counter).ToString();
-            newItem.Text = reader["AnimalStatus"].ToString();
-            list.Items.Add(newItem);
-        }
-        list.DataBind();
-        reader.Close();
-        sc.Close();
+        ListItem inactiveItem = new ListItem();
+        inactiveItem.Value = "2";
+        inactiveItem.Text = "Inactive";
+        list.Items.Add(inactiveItem);
     }
 
     private void bindAnimalData()
@@ -403,12 +390,14 @@ public partial class Animal : System.Web.UI.Page
                 r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
                 r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
                 r.ToolTip = "Click to edit Animal";
+                r.Cells[0].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[5].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
                 r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
+                r.Cells[7].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + r.RowIndex, true);
             }
         }
         base.Render(writer);
@@ -421,9 +410,9 @@ public partial class Animal : System.Web.UI.Page
         //this is probably wrong, im not sure
         GridViewRow organizationName = GridView1.SelectedRow;
 
-        AnimalTypeDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[1].Text + " (Current Animal Type)";
+        AnimalTypeDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[1].Text;
         AnimalNameEditTXT.Text = GridView1.SelectedRow.Cells[0].Text;
-        AnimalStatusDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[2].Text + " (Current Animal Status)";
+        AnimalStatusDDL.SelectedItem.Text = GridView1.SelectedRow.Cells[2].Text;
         AnimalEditEventsTXT.Text = GridView1.SelectedRow.Cells[3].Text;
         AnimalAdultsMetTXT.Text = GridView1.SelectedRow.Cells[4].Text;
         AnimalKidsMetTXT.Text = GridView1.SelectedRow.Cells[5].Text;
