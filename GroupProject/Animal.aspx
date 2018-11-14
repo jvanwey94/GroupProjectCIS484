@@ -76,21 +76,21 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <label>Animal Name</label>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <asp:TextBox ID="AnimalNameTxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                                 <label>Type of Animal</label>
                             </div>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="AnimalTypeTxt" class="form-control" runat="server"></asp:TextBox>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="AddAnimalStatusDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -148,7 +148,7 @@
                             <div class="col-md-3">
                                 <asp:DropDownList ID="AnimalTypeDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalNameEditLBL" runat="server" Text="Animal Name"></asp:Label>
@@ -156,7 +156,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalNameEditTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalStatusLBL" runat="server" Text="Animal Status"></asp:Label>
@@ -164,7 +164,7 @@
                             <div class="col-md-3">
                                 <asp:DropDownList ID="AnimalStatusDDL" class="form-control" runat="server"></asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalEventsLBL" runat="server" Text="Number of Events"></asp:Label>
@@ -172,7 +172,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalEditEventsTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalAdultsMetLBL" runat="server" Text="Number of Adults Met"></asp:Label>
@@ -180,7 +180,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalAdultsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="AnimalKidsMetLBL" runat="server" Text="Number of Children Met"></asp:Label>
@@ -188,7 +188,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="AnimalKidsMetTXT" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
