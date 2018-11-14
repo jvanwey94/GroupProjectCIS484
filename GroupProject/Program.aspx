@@ -75,11 +75,13 @@
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
                                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
-                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" SortExpression="EducatorID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                 </Columns>
                                 
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID"></asp:SqlDataSource>
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID"></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>  
                             
                         </div>
