@@ -1,12 +1,24 @@
 ﻿<%@ Page Title="Track Animal" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TrackAnimal.aspx.cs" Inherits="TrackAnimal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-
+    <style>
+        .panel-heading-custom {
+            background: #7e57c2;
+            color: #fff;
+        }
+        .modal-header {
+            background: #7b1fa2;
+            color: #fff;
+        }
+        .panel > .panel-heading {
+            background-color: #ede7f6 ;
+        }
+    </style>
     
        <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Track Animals <i class="fa fa-paw icon"></i> </h1>
+                    <h1 class="panel-heading panel-heading-custom">Track Animals <i class="fa fa-map-marker"></i> </h1>
                 </div>
                  <div class="row">
                 <div class="col-lg-12">
@@ -105,7 +117,7 @@
 	                         </div>
 	                         <div class="row" id="formHeader">
 	                         	<div class="col-lg-5">
-	                         		<h4><strong>Which animals do you have with you?</strong></h4>
+	                         		<h4><strong>Find your animal</strong></h4>
 	                         	</div>
 	                         </div>
 	                         <div class="row">
@@ -139,7 +151,7 @@
                                  <div class="panel-body">
                             
                            
-                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AlternatingRowStyle-BackColor="#EDE7F6">
 
                                 <Columns>
                                     
