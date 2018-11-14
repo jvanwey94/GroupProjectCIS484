@@ -113,12 +113,12 @@ function Calculation(){
             
                   <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
-                  <asp:TextBox ID="txtAddress" required="required" runat="server" class="form-control"></asp:TextBox><br />
+                  <asp:TextBox ID="txtAddress" runat="server" class="form-control"></asp:TextBox><br />
          </div>
          <div class="col-lg-3">
                <asp:Label ID="lblContactPerson" runat="server" Text="Primary Contact Person:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
-                  <asp:TextBox ID="txtContactPerson" required="required" runat="server" class="form-control"></asp:TextBox><br />
+                  <asp:TextBox ID="txtContactPerson" runat="server" class="form-control"></asp:TextBox><br />
           </div>
         </div>
         <div class="col-lg-3" style="padding-top:1em;">
@@ -150,9 +150,9 @@ function Calculation(){
                <asp:Button ID="btnInsert" class="btn btn-lg btn-success btn-block" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
         <br />
        
-            <%--<asp:Label ID="lblStatus" runat="server"></asp:Label>
+            <asp:Label ID="lblStatus" runat="server"></asp:Label>
         <br />
-     <asp:TextBox ID="txtTest" runat="server"></asp:TextBox>--%>
+
         <br />
          <br />
         </div>
@@ -165,6 +165,78 @@ function Calculation(){
 <!--close "row"-->
                 <asp:Label ID="lblSearch" runat="server" Text="Search for Invoice Number:"  Font-Size="X-Large" ></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+          <asp:Button ID="btnSearch" class="btn btn-lg btn-success btn-block" runat="server" Text="Search" formNoValidate="formNoValidate"  OnClick="btn1_Select" />
+        <br />
+         <br />
+<%--        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Invoice#" OnRowEditing="dbSkill_RowEditing" 
+                OnRowCancelingEdit="dbSkill_RowCancelingEdit" OnRowUpdating="dbSkill_RowUpdating"  >
+                
+                <Columns>
+                    <asp:TemplateField HeaderText ="Invoice Number">
+                        <ItemTemplate>
+                            <div class="text-center">
+                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            </div>
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Organization Name">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_OrganizationName" Text ='<%# Eval("OrganizationName") %>' runat ="server" />
+                        </ItemTemplate>
+                         </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Program">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Program" Text ='<%# Eval("Program") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Payment Type">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PaymentType" Text ='<%# Eval("PaymentType") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Check Number">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_CheckNumber" Text ='<%# Eval("CheckNumber") %>' runat ="server" />
+                     .   </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Amount">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Amount" Text ='<%# Eval("Amount") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Payment Collect">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PaymentCollect" Text ='<%# Eval("PaymentCollect") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="Status">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Status" Text ='<%# Eval("Status") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="LastUpdatedBy">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_LastUpdatedBy" Text ='<%# Eval("LastUpdatedBy") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText ="LastUpdated">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_LastUpdated" Text ='<%# Eval("LastUpdated") %>' runat ="server" />
+                        </ItemTemplate>
+                        
+                    </asp:TemplateField>
+                </Columns>
+        <HeaderStyle BackColor="#663300" ForeColor="#ffffff"/>  
+        <RowStyle BackColor="#e7ceb6"/>  
+        </asp:GridView>--%>
        <br />
         <br />
     <asp:Button ID="ButtonExport" class="btn btn-lg btn-success btn-block" runat="server" formNoValidate="formNoValidate" Text="Export to Excel" />
@@ -257,7 +329,7 @@ function Calculation(){
                         </EditItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText ="LastUpdatedBy">
+                   <%-- <asp:TemplateField HeaderText ="LastUpdatedBy">
                         <ItemTemplate>
                             <asp:Label ID="lbl_LastUpdatedBy" Text ='<%# Eval("LastUpdatedBy") %>' runat ="server" />
                         </ItemTemplate>
@@ -273,7 +345,7 @@ function Calculation(){
                         <EditItemTemplate>
                         <asp:TextBox ID ="GridLastUpdated" Text ='<%#Eval("LastUpdated") %>' readonly="true" runat ="server" Width="160"/>
                     </EditItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
                     <asp:TemplateField HeaderText ="Edit">
                         <ItemTemplate>
                             <asp:Button ID="btn_Edit" runat ="server" CommandName="Edit" Text="Edit" ToolTip="Edit" Width =" 65px" Height =" 30px" />
@@ -286,8 +358,8 @@ function Calculation(){
               
                     </asp:TemplateField>
                 </Columns>
-        <HeaderStyle BackColor="#663300" ForeColor="#ffffff"/>  
-        <RowStyle BackColor="#e7ceb6"/>  
+        <HeaderStyle BackColor="#00cc66" ForeColor="#00cc66"/>  
+        <RowStyle BackColor="#009933"/>  
         </asp:GridView>
         </div>
       <asp:Label ID="lblComplete" runat="server" Text="Complete"  Font-Size="Large" ForeColor="Green"></asp:Label>
@@ -295,7 +367,7 @@ function Calculation(){
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <%--Financial Reports--%>
+                Financial Reports
             </div>
             <div class="panel-body">
         <asp:GridView ID="GridViewTest" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID">

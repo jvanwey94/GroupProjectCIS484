@@ -1,7 +1,16 @@
 <%@ Page Title="Create User" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="CreateUser.aspx.cs" Inherits="CreateUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-
+    <style>
+        #nava{
+            display:none;
+        }
+        .container {
+            margin-left:auto;
+            margin-right:auto;
+            padding-left: 250px;
+        }
+   </style>
     <div class="container">
         <div class="row">
             <h3>Create User</h3>

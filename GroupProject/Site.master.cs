@@ -77,12 +77,14 @@ public partial class SiteMaster : MasterPage
         emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
         string level = Convert.ToString(emlevel.ExecuteScalar());
 
-        if (level == "Full-time Staff")
-            dash.HRef = "Home.aspx";
-        else
-            dash.HRef = "Homelimited.aspx";
-            Fin1.Visible = false;
-            Fin2.Visible = false;
+            if (level == "Full-time Staff")
+                dash.HRef = "Home.aspx";
+            else
+            {
+                dash.HRef = "Homelimited.aspx";
+                Fin1.Visible = false;
+                Fin2.Visible = false;
+            }
         }
         catch(Exception)
         {

@@ -63,7 +63,7 @@
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
-                                    <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" />
+                                    <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" dataformatstring="{0:MM/d/yyyy}" /> 
                                     <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
                                     <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
                                     <asp:BoundField DataField="ProgStatus" HeaderText="Status" SortExpression="ProgStatus" />
@@ -111,9 +111,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title" id="addProgramModal">
+                        <h3 class="modal-title" id="addProgramModal">
                             Create Program
-                        </h5>
+                        </h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -322,9 +322,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title" id="editProgramModal">
+                        <h3 class="modal-title" id="editProgramModal">
                             Edit Program
-                        </h5>
+                        </h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -436,6 +436,14 @@
                             <div class="col-sm-3">
                                 <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
                                 <asp:DropDownList ID="txtEducatorName" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Comments:</label>
+                            </div>
+                             <div class="col-sm-3">
+                                <asp:TextBox ID="Commentstxt" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         
