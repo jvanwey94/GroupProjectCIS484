@@ -105,7 +105,7 @@
                                             <asp:ListItem>Skype: Snakes</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                </div>
+                                </div><br />
                                 <div class="row">
                                     <div class="col-md-3">
                                         <asp:Label ID="OrgNameLBL" runat="server" Text="Organization Name"></asp:Label>
@@ -250,7 +250,7 @@ AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
                                             <asp:ListItem>Skype: Snakes</asp:ListItem>
                                         </asp:DropDownList>
             </div>
-        </div>
+        </div><br />
         <div class="row">
             <div class="col-md-3">
                 <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
