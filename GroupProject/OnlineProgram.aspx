@@ -186,7 +186,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="updateBTN" runat="server" onClick="updateOnlineProgram" class="btn btn-primary" userSubmitBehavior="false" Text="Save" />
+                            <asp:Button ID="updateBTN" runat="server" onClick="updateOnlineProgram" class="btn btn-primary" userSubmitBehavior="false" Text="Update Online Program" />
                             <asp:Button ID="deleteBTN" runat="server" OnClick="DeleteOnlineProgram" class="btn btn-danger" userSubmitBehavior="false" Text="Deactivate Online Program" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>

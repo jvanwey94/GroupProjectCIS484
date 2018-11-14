@@ -310,7 +310,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create" />
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Program" />
                     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -442,7 +442,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Save" />
+                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Update Program" />
                     <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Deactivate Program" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>

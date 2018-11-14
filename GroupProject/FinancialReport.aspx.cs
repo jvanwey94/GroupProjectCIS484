@@ -79,12 +79,12 @@ public partial class FinancialReport : System.Web.UI.Page
     {
         connect.Open();
         String getInvoiceNumber = txtSearch.Text;
-        lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
+        //lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
         SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
-        lblStatus.Text = "Loading";
+        //lblStatus.Text = "Loading";
         getsqlDA.Fill(dtbl);
 
         //if no matching records found, the system populate error message!
@@ -165,8 +165,8 @@ public partial class FinancialReport : System.Web.UI.Page
 
         SqlDataReader myreader;
 
-        try
-        {
+        //try
+        //{
 
             myreader = cmdDatabase1.ExecuteReader();
             //myreader = cmdDatabase2.ExecuteReader();
@@ -179,23 +179,52 @@ public partial class FinancialReport : System.Web.UI.Page
                 txtContactPerson.Text = ContactPerson;
 
             }
-        }
-        catch (Exception ex)
-        {
+        //}
+        //catch (Exception ex)
+        //{
 
-        }
-        connect.Close();
-
-
+        //}
+        myreader.Close();
+        
+        
         //@PaymentCollect,@PaymentLeft,,@Amount
         //@OrganizationName" +
         //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
         //insert data to Bird table if text box is qualified
         if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
         {
+            //Insert into programAnimal table
+            string AnimalNameString = "";
+            
+                    
 
+
+            //        string getOrganizationID = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.Text + "';";
+            //        string getProgramID = "select * from [dbo].[Program] where ProgramName = '" + txtProgram.SelectedItem.Text + "';";
+            //        SqlCommand cmdDatabase3 = new SqlCommand(getOrganizationID, connect);
+            ////SqlCommand cmdDatabase4 = new SqlCommand(getProgramID, connect);
+            ////SqlDataReader myreader3;
+            //SqlDataReader myreader4;
+
+            //myreader3 = cmdDatabase3.ExecuteReader();
+            
+            
+            //myreader3.Read();
+            //int organizationID = myreader3.GetInt32(0);
+            //myreader3.Close();
+
+            
+            //myreader4 = cmdDatabase4.ExecuteReader();
+            //myreader4.Read();
+
+            //int programID = myreader3.GetInt32(0);
+            
+            //myreader4.Close();
+
+           
+            
             //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated)";
+            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
             System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
             insert.Connection = connect;
             insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
@@ -209,9 +238,13 @@ public partial class FinancialReport : System.Web.UI.Page
             insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
             insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
+            insert.Parameters.AddWithValue("@ProgramID", 23);
+            insert.Parameters.AddWithValue("@OrganizationID", 18);
+            insert.Parameters.AddWithValue("@BillAddress", txtAddress.Text);
+            insert.Parameters.AddWithValue("@ContactPerson", txtContactPerson.Text);
 
             insert.ExecuteNonQuery();
-            lblStatus.Text = "succseessful to add this payment to database!";
+            //lblStatus.Text = "succseessful to add this payment to database!";
             //txtTest.Text = InputStatus;
 
             txtAmount.Text = string.Empty;
@@ -222,6 +255,7 @@ public partial class FinancialReport : System.Web.UI.Page
             txtSearch.Text = string.Empty;
 
         }
+        
         connect.Close();
         //}
         //catch (Exception)

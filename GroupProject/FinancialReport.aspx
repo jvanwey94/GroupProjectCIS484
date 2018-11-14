@@ -150,9 +150,9 @@ function Calculation(){
                <asp:Button ID="btnInsert" class="btn btn-lg btn-success btn-block" runat="server" Text="Insert" Width="150" OnClick="btn1_Insert" />
         <br />
        
-            <asp:Label ID="lblStatus" runat="server"></asp:Label>
+            <%--<asp:Label ID="lblStatus" runat="server"></asp:Label>
         <br />
-     <asp:TextBox ID="txtTest" runat="server"></asp:TextBox>
+     <asp:TextBox ID="txtTest" runat="server"></asp:TextBox>--%>
         <br />
          <br />
         </div>
@@ -295,7 +295,7 @@ function Calculation(){
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Financial Reports
+                <%--Financial Reports--%>
             </div>
             <div class="panel-body">
         <asp:GridView ID="GridViewTest" class="table table-hover table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="InvoiceID">
