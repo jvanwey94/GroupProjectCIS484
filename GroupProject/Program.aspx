@@ -105,7 +105,7 @@
             </div>
             </div>
 
-        </div>
+        
 
     <div class="modal fade" id="addProgram" tabindex="1" role="dialog" aria-labelledby="addProgram" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -478,7 +478,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                     <<asp:Button ID="DeleteProgramBTN" class="btn btn-primary" runat="server" Text="Deactivate Program" />
                 </div>
             </div>
@@ -515,7 +515,7 @@
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=editModal]').modal().hide();
+            $('[id=editModal]').modal().closeModal();
         }
     </script>
 </asp:Content>
