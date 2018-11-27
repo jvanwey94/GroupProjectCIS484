@@ -76,7 +76,7 @@ public partial class Program : System.Web.UI.Page
         // select scope_identity() - gets latest inserted value
 
         SqlCommand delcmd = new SqlCommand(pkdelete, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", gvRegularProgram.SelectedRow.Cells[12].Text);
+        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
 
         delcmd.ExecuteNonQuery();
 
