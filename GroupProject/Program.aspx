@@ -15,6 +15,9 @@
             background: #428bca; 
             color: #fff;
         }
+        .modal-backdrop {
+            z-index: -1;
+        }
     </style>
    <script >
     function filterFunction() {

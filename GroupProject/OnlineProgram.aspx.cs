@@ -251,7 +251,6 @@ public partial class OnlineProgram : System.Web.UI.Page
                 r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
                 r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
                 r.ToolTip = "Click to edit Animal";
-                r.Cells[0].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);

@@ -643,43 +643,44 @@ public partial class FinancialReport : System.Web.UI.Page
     //}
 
     // semi working :)
-    protected void ExportBTN(object sender, EventArgs e)
-    {
-        DataTable dt = new DataTable();
-        String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
-            " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
-        String sqlQuery = "Select * from [dbo].[Payment]";
-        connect.Open();
-        SqlCommand filltable = new SqlCommand(sqlQuery, connect);
-        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
-        adapt.Fill(dt);
+    //protected void ExportBTN(object sender, EventArgs e)
+    //{
+    //    DataTable dt = new DataTable();
+    //    String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+    //        " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+    //    String sqlQuery = "Select * from [dbo].[Payment]";
+    //    connect.Open();
+    //    SqlCommand filltable = new SqlCommand(sqlQuery, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+    //    adapt.Fill(dt);
 
-        StringBuilder sb = new StringBuilder();
+    //    StringBuilder sb = new StringBuilder();
 
-        foreach (var col in dt.Columns)
-        {
-            sb.Append(col.ToString() + ",");
-        }
+    //    foreach (var col in dt.Columns)
+    //    {
+    //        sb.Append(col.ToString() + ",");
+    //    }
 
-        sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+    //    sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
 
-        foreach (DataRow dr in dt.Rows)
-        {
-            foreach (var column in dr.ItemArray)
-            {
-                sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
-            }
-        }
-        System.IO.File.WriteAllText("C:\\Users\\labpatron\\Downloads\\FinancialReport.csv", sb.ToString());
-        connect.Close();
-    }
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        foreach (var column in dr.ItemArray)
+    //        {
+    //            sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+    //        }
+    //    }
+    //    System.IO.File.WriteAllText("C:\\Users\\labpatron\\Downloads\\FinancialReport.csv", sb.ToString());
+    //    connect.Close();
+    //}
 
+
+    // fully working :)
     protected void ExportExcelBTN(object sender, EventArgs e)
     {
         DataTable dt = new DataTable();
         String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
             " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
-        String sqlQuery = "Select * from [dbo].[Payment]";
         connect.Open();
         SqlCommand filltable = new SqlCommand(sqlDA, connect);
         SqlDataAdapter adapt = new SqlDataAdapter(filltable);
