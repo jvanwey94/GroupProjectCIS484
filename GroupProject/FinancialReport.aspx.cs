@@ -13,7 +13,7 @@ using System.Data.Common;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
-
+using System.Text;
 
 public partial class FinancialReport : System.Web.UI.Page
 {
@@ -616,8 +616,61 @@ public partial class FinancialReport : System.Web.UI.Page
     //    wb.Worksheets.Add(dt, month + " Report");
     //}
 
+    // file permission problems
+    //protected void ExportToExcel(object sender, EventArgs e)
+    //{
+
+    //    DataTable dt = new DataTable();
+    //    String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+    //        " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+    //    connect.Open();
+    //    SqlCommand filltable = new SqlCommand(sqlDA, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+    //    adapt.Fill(dt);
+
+    //    var lines = new List<String>();
+    //    string[] columnNames = dt.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToArray();
+    //    var header = string.Join(",", columnNames);
+    //    lines.Add(header);
+
+    //    var valueLines = dt.AsEnumerable().Select(row => string.Join(",", row.ItemArray));
+    //    lines.AddRange(valueLines);
 
 
+    //    File.WriteAllLines("excel.csv", lines);
+    //    File.SetAttributes("excel.csv", FileAttributes.Normal);
+    //    connect.Close();
+    //}
+
+    // semi working :)
+    protected void ExportBTN(object sender, EventArgs e)
+    {
+        DataTable dt = new DataTable();
+        String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+            " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+        connect.Open();
+        SqlCommand filltable = new SqlCommand(sqlDA, connect);
+        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+        adapt.Fill(dt);
+
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var col in dt.Columns)
+        {
+            sb.Append(col.ToString() + ",");
+        }
+
+        sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            foreach (var column in dr.ItemArray)
+            {
+                sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+            }
+        }
+        System.IO.File.WriteAllText("C:\\Users\\labpatron\\Downloads\\FinancialReport.csv", sb.ToString());
+    }
 
     protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
     {

@@ -45,7 +45,7 @@
                             Past Events
                              <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-info" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
+                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
             </div>
             </div>
 
-        </div>
+        
 
     <div class="modal fade" id="addProgram" tabindex="1" role="dialog" aria-labelledby="addProgram" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -310,7 +310,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-info" Text="Create Program" />
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Program" />
                     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -450,7 +450,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-info" Text="Update Program" />
+                    <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Update Program" />
                     <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Deactivate Program" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
@@ -478,8 +478,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <<asp:Button ID="DeleteProgramBTN" class="btn btn-info" runat="server" Text="Deactivate Program" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                    <<asp:Button ID="DeleteProgramBTN" class="btn btn-primary" runat="server" Text="Deactivate Program" />
                 </div>
             </div>
         </div>
@@ -515,12 +515,7 @@
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=editModal]').modal().hide();
-
-        //    $('#my-modal').modal({
-        //show: 'false'
-    }); 
-
+            $('[id=editModal]').modal().closeModal();
         }
     </script>
 </asp:Content>
