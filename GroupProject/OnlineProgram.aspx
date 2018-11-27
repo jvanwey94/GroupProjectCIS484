@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
+<%@ Page Title="Online Programs" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="OnlineProgram.aspx.cs" Inherits="OnlineProgram" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <style type="text/css">
@@ -21,10 +21,11 @@
             background-color: #388be9;
         }
     </style>
+
         <div id="page-wrapper">
          <div class="row">
             <div class="col-lg-12">
-                <h1 class="panel-heading panel-heading-custom">Programs <i class="fa fa-wifi icon"></i></h1>
+                <h1 class="panel-heading panel-heading-custom">Online Programs <i class="fa fa-wifi icon"></i></h1>
             </div>
         </div>
          <div class="row">
@@ -81,7 +82,167 @@
             </div>
        
             <br />
-            <!--EDIT/DELETE MODAL-->
+
+        <div class="modal fade" id="addOnlineProgram" tabindex="1" role="dialog" aria-labelledby="addOnlineProgram" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addOnlineProgramModal">
+                            Create OnlineProgram
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblOrganizationName" runat="server" Text="Organization Name: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtOrganizationName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:DropDownList ID="DropDownOnline2" class="form-control" runat="server">
+                                            <asp:ListItem>Book Club</asp:ListItem>
+                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
+                                            <asp:ListItem>Hospital Cam</asp:ListItem>
+                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
+                                            <asp:ListItem>Special Guest</asp:ListItem>
+                                            <asp:ListItem>Special Event</asp:ListItem>
+                                            <asp:ListItem>Skype: Owls</asp:ListItem>
+                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
+                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
+                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                      </asp:DropDownList>
+                                </div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtDate" type="Date" class="form-control" runat="server"></asp:TextBox>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtType" class="form-control" required="required" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblState" runat="server" Text="State: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtState" class="form-control" required="required" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblCountry" runat="server" Text="Country: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtCountry" class="form-control" required="required" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row"> <%--required="required"--%>
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtNK" class="form-control" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row"><%--required="required" --%>
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtNumberOFAdults" class="form-control" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label7" runat="server" Text="Grade Level: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:DropDownList ID="DropDownList1" class="form-control" runat="server"></asp:DropDownList><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblTeacherName" runat="server" Text="Teacher Name: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtTeacherName" class="form-control" required="required" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row"> <%--required="required" --%>
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtTeacher" class="form-control" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                            <div class="row"><%--required="required" --%>
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtTheme" class="form-control" runat="server"></asp:TextBox><br />
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="lblAnimalUsed" runat="server" Text="Animals Used: "></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
+                                        <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
+                                        </asp:Panel>
+                                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal] where AnimalStatus = 'Active'"></asp:SqlDataSource>
+                                    </div>
+                                </div><br />
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>Comments:</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <asp:TextBox ID="txtComments" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <br />
+                <div class="modal-footer">
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Online Program" />
+                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--EDIT/DELETE MODAL-->
             <div class="modal fade" id="editdeletemodal" tabindex="-1" role="dialog" aria-labelledby="editdeletemodal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -210,193 +371,6 @@
                     </div>
                 </div>
             </div>
-
-               <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
-                <asp:Panel ID="ModalPanel" runat="server" ></asp:Panel>
-        <div class="modal fade" id="addOnlineProgram" tabindex="1" role="dialog" aria-labelledby="addOnlineProgram" aria-hidden="true">
-
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="addOnlineProgramModal">
-                            Create OnlineProgram
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <div class="modal-body">
-
-<%-- 
-AutoPostBack="True" OnTextChanged="txtOrganizationName_TextChanged"--%>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblOrganizationName" runat="server" Text="Organization Name: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtOrganizationName" class="form-control" required="required" runat="server" ></asp:TextBox><br />
-            </div>
-        </div>
-          <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:DropDownList ID="DropDownOnline2" class="form-control" runat="server">
-                                            <asp:ListItem>Book Club</asp:ListItem>
-                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
-                                            <asp:ListItem>Hospital Cam</asp:ListItem>
-                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
-                                            <asp:ListItem>Special Guest</asp:ListItem>
-                                            <asp:ListItem>Special Event</asp:ListItem>
-                                            <asp:ListItem>Skype: Owls</asp:ListItem>
-                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
-                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
-                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
-                                        </asp:DropDownList>
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblDate" runat="server" Text="Date: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtDate" type="Date" class="form-control" runat="server"></asp:TextBox>
-                <br />
-            </div>
-        </div>
-<%--   <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="Label2" runat="server" Text="Month: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="TextBox12" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>--%>
-       <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblType" runat="server" Text="Type: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtType" class="form-control" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblState" runat="server" Text="State: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtState" class="form-control" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblCountry" runat="server" Text="Country: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtCountry" class="form-control" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row"> <%--required="required"--%>
-            <div class="col-md-3">
-                <asp:Label ID="lblNK" runat="server" Text="Number of Kids: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtNK" class="form-control" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row"><%--required="required" --%>
-            <div class="col-md-3">
-                <asp:Label ID="lblNA" runat="server" Text="Number of Adults: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtNumberOFAdults" class="form-control" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="Label7" runat="server" Text="Grade Level: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:DropDownList ID="DropDownList1" class="form-control" runat="server"></asp:DropDownList><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblTeacherName" runat="server" Text="Teacher Name: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtTeacherName" class="form-control" required="required" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-      <div class="row"> <%--required="required" --%>
-            <div class="col-md-3">
-                <asp:Label ID="lblTeacher" runat="server" Text="Educator: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtTeacher" class="form-control" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row"><%--required="required" --%>
-            <div class="col-md-3">
-                <asp:Label ID="lblTheme" runat="server" Text="Theme: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txtTheme" class="form-control" runat="server"></asp:TextBox><br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblAnimalUsed" runat="server" Text="Animals Used: "></asp:Label>
-            </div>
-            <div class="col-md-3">
-
-                <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
-                                <asp:CheckBoxList ID="CheckBoxList1" class="form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
-                </asp:Panel>
-                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalName], [AnimalID], [AnimalType] FROM [Animal] where AnimalStatus = 'Active'"></asp:SqlDataSource>
-        </div>
-            </div><br />
-        <%--<div class="row">
-            <div class="col-md-3">
-                <asp:Label ID="lblPayment" runat="server" Text="Waiting for payment? "></asp:Label><br />
-            </div>
-            <div class="col-md-3">
-                <asp:RadioButton ID="txtPayment1" runat="server" Text="Yes" />
-                <asp:RadioButton ID="txtPayment2" runat="server" Text="No"/><br />
-            </div>
-        </div>
-        <br />--%>
-        <div class="row">
-        <div class="col-sm-3">
-                                <label>Comments:</label>
-                            </div>
-                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtComments" class="form-control" runat="server"></asp:TextBox>
-                            </div>
-                          
-         </div>
-                    </div>
-                </div>
-                <br />
-               
-                <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Online Program" />
-                    <asp:Button ID="btnClose" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
-                </div>
-            </div>
-        </div>
-    
-    </div>
     
 
 <%--    </asp:UpdatePanel>--%>

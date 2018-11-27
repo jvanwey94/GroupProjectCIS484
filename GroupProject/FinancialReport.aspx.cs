@@ -643,33 +643,72 @@ public partial class FinancialReport : System.Web.UI.Page
     //}
 
     // semi working :)
-    protected void ExportBTN(object sender, EventArgs e)
+    //protected void ExportBTN(object sender, EventArgs e)
+    //{
+    //    DataTable dt = new DataTable();
+    //    String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+    //        " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+    //    String sqlQuery = "Select * from [dbo].[Payment]";
+    //    connect.Open();
+    //    SqlCommand filltable = new SqlCommand(sqlQuery, connect);
+    //    SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+    //    adapt.Fill(dt);
+
+    //    StringBuilder sb = new StringBuilder();
+
+    //    foreach (var col in dt.Columns)
+    //    {
+    //        sb.Append(col.ToString() + ",");
+    //    }
+
+    //    sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+
+    //    foreach (DataRow dr in dt.Rows)
+    //    {
+    //        foreach (var column in dr.ItemArray)
+    //        {
+    //            sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+    //        }
+    //    }
+    //    System.IO.File.WriteAllText("C:\\Users\\labpatron\\Downloads\\FinancialReport.csv", sb.ToString());
+    //    connect.Close();
+    //}
+
+
+    // fully working :)
+    protected void ExportExcelBTN(object sender, EventArgs e)
     {
         DataTable dt = new DataTable();
-        String sqlDA = "Select ProgDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+        String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
             " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
         connect.Open();
         SqlCommand filltable = new SqlCommand(sqlDA, connect);
         SqlDataAdapter adapt = new SqlDataAdapter(filltable);
         adapt.Fill(dt);
 
-        StringBuilder sb = new StringBuilder();
-
-        foreach (var col in dt.Columns)
+        string attachment = "attachment; filename=FinancialReport.xls";
+        Response.ClearContent();
+        Response.AddHeader("content-disposition", attachment);
+        Response.ContentType = "application/vnd.ms-excel";
+        string tab = "";
+        foreach (DataColumn dc in dt.Columns)
         {
-            sb.Append(col.ToString() + ",");
+            Response.Write(tab + dc.ColumnName);
+            tab = "\t";
         }
-
-        sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
-
+        Response.Write("\n");
+        int i = 0;
         foreach (DataRow dr in dt.Rows)
         {
-            foreach (var column in dr.ItemArray)
+            tab = "";
+            for (i = 0; i < dt.Columns.Count; i++)
             {
-                sb.Replace(",", System.Environment.NewLine, sb.Length - 1, 1);
+                Response.Write(tab + dr[i].ToString());
+                tab = "\t";
             }
+            Response.Write("\n");
         }
-        System.IO.File.WriteAllText("C:\\Users\\labpatron\\Downloads\\FinancialReport.csv", sb.ToString());
+        Response.End();
     }
 
     protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
