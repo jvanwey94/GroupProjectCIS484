@@ -78,14 +78,16 @@
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
                                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
+                                    <asp:BoundField DataField="ProgStatus1" HeaderText="Program Status" SortExpression="Comments" />
                                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" SortExpression="EducatorID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                 </Columns>
                                 
                             </asp:GridView>
-                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID"></asp:SqlDataSource>
-                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%>  
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" 
+                                   SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID "></asp:SqlDataSource>
+                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%> <%-- and P.ProgStatus = 'Active'--%>
                             
                         </div>
                     </div>
@@ -333,124 +335,195 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                <div class="modal-body">
+                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Organization Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtOrganizationName" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditOrganizationName" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtOrganizationAddress" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditAddress" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                 <asp:DropDownList id="DropDownCityEdit" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
+                                
+                                  <asp:DropDownList id="EditCity" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
                                     
                                     
                                   </asp:DropDownList>
-                            </div>
-                        </div>
+                                <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CityName] from [CityInVA] order by CityName"></asp:SqlDataSource>
+                           </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>County</label>
                             </div>
                             <div class="col-sm-3">
                                 
-                                  <asp:DropDownList id="DropDownCountyEdit" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
+                                  <asp:DropDownList id="EditCounty" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
                                     
                                     
                                   </asp:DropDownList>
-                                
+                                <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select [CountyName] from [CountyInVA] order by CountyName"></asp:SqlDataSource>
                            </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Site Type</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtSiteType" class="form-control" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="EditSiteType" class="form-control" runat="server">
+                                    <asp:ListItem>Onsite</asp:ListItem>
+                                    <asp:ListItem>Offsite</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Program Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtProgramName" class="form-control" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="EditProgramName" class="form-control" runat="server">
+                                    <asp:ListItem>Display</asp:ListItem>
+                                    <asp:ListItem>Special Request</asp:ListItem>
+                                    <asp:ListItem>Open House</asp:ListItem>
+                                    <asp:ListItem>Tour</asp:ListItem>
+                                    <asp:ListItem>Whoo's Awake in the Night</asp:ListItem>
+                                    <asp:ListItem>Wild Winter Worlds</asp:ListItem>
+                                    <asp:ListItem>Home Sweet Habitat</asp:ListItem>
+                                    <asp:ListItem>You Are What You Eat</asp:ListItem>
+                                    <asp:ListItem>Critters Don't Need Litter</asp:ListItem>
+                                    <asp:ListItem>For Goodness Snakes</asp:ListItem>
+                                    <asp:ListItem>Birds Of Prey</asp:ListItem>
+                                    <asp:ListItem>Treat to Release</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Owls</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Turtles</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Snakes</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Falcons</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Oppossums</asp:ListItem>
+                                    <asp:ListItem>Classroom Visit: Special</asp:ListItem>
+                                </asp:DropDownList>
+                                    
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Status</label>
+                                <label>Program Address</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtStatus" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditProgramAddres" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>Date</label>
+                                <label>City</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
+                                
+                                  <asp:DropDownList id="EditProgramCity" class="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="CityName" DataValueField="CityName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                
+                           </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>County</label>
                             </div>
-                        </div>
+                            <div class="col-sm-3">
+                                
+                                  <asp:DropDownList id="EditProgramCounty" class="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="CountyName" DataValueField="CountyName" >
+                                    
+                                    
+                                  </asp:DropDownList>
+                                
+                           </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Children</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtNumberOfChildren" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditNBchildren" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Number Of Adults</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtNumberOfAdults" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditNBAdults" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:CheckBox ID="EditStatus" Text="Completed" runat="server" />
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="EditDate" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Payment Status</label>
+                            </div>
+                            <div class="col-sm-3">
+                               <asp:DropDownList ID="EditPaymentSatus" class="form-control" runat="server">
+                                    <asp:ListItem>Complete</asp:ListItem>
+                                    <asp:ListItem>Incomplete</asp:ListItem>
+                             
+                                </asp:DropDownList>
+                            </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Animal</label>
                             </div>
                             <div class="col-sm-3">
                                 <asp:Panel ID="Panel2" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
-                                <asp:CheckBoxList ID="CheckBoxAnimal" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
+                                <asp:CheckBoxList ID="EditAnimal" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID" ></asp:CheckBoxList>
                             </asp:Panel>
+                            
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Educator</label>
                             </div>
                             <div class="col-sm-3">
-                                <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
-                                <asp:DropDownList ID="txtEducatorName" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
+                                <asp:DropDownList ID="EditEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
+                                <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Comments:</label>
                             </div>
                              <div class="col-sm-3">
-                                <asp:TextBox ID="Commentstxt" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="EditComment" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                        </div>
-                        
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
