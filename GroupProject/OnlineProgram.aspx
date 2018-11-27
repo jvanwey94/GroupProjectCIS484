@@ -364,8 +364,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="updateBTN" runat="server" onClick="updateOnlineProgram" class="btn btn-primary" userSubmitBehavior="false" Text="Update Online Program" />
-                            <asp:Button ID="deleteBTN" runat="server" OnClick="DeleteOnlineProgram" class="btn btn-danger" userSubmitBehavior="false" Text="Deactivate Online Program" />
+                            <asp:Button ID="updateBTN" runat="server" onClick="updateOnlineProgram" class="btn btn-primary" useSubmitBehavior="false" Text="Update Online Program" />
+                            <asp:Button ID="deleteBTN" runat="server" OnClick="DeleteOnlineProgram" class="btn btn-danger" useSubmitBehavior="false" data-dismiss="modal" Text="Deactivate Online Program" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -415,6 +415,19 @@
     {
         $get('deleteBTN').click(); // here i am calling the server side click event of asp:button with id 'btn'
     }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#deleteBTN').on('click', function (event) {
+                alert();
+                event.preventDefault();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function buttonModal() {
+            $("div.modalForm").appendTo($("form:first"));
+        }
     </script>
 
 

@@ -38,15 +38,16 @@ public partial class OnlineProgram : System.Web.UI.Page
         opcmd.Parameters.AddWithValue("@Email", EmailTXT.Text);
         opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
         opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
+        opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
 
         SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
-        pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem);
+        pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text);
         pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
         pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
-        pcmd.Parameters.AddWithValue("@Comments", "");
-        pcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
+        pcmd.Parameters.AddWithValue("@Comments", CommentsTXT.Text);
+        pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
         opcmd.ExecuteNonQuery();
         pcmd.ExecuteNonQuery();
@@ -155,7 +156,7 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         sc.Open();
         SqlCommand delcmd = new SqlCommand(deleteQuery, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", GridViewOnlineProgram.SelectedRow.Cells[12]);
+        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
         delcmd.ExecuteNonQuery();
         sc.Close();
     }

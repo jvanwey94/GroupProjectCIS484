@@ -51,8 +51,8 @@ function Calculation(){
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-row">
-               <div class="col-lg-4">
-                <asp:Label ID="lblInvoice" runat="server" Text="Invoice #:" Font-Size="Large" class="form-control-label"></asp:Label>
+                <div class="col-lg-4">
+                    <asp:Label ID="lblInvoice" runat="server" Text="Invoice #:" Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:TextBox ID="txtInvoice" runat="server" class="form-control"></asp:TextBox>
                 </div>
             <div class="col-lg-4">
