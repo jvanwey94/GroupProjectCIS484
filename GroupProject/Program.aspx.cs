@@ -76,7 +76,7 @@ public partial class Program : System.Web.UI.Page
         // select scope_identity() - gets latest inserted value
 
         SqlCommand delcmd = new SqlCommand(pkdelete, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", gvRegularProgram.SelectedRow.Cells[12].Text);
+        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
 
         delcmd.ExecuteNonQuery();
 
@@ -117,7 +117,7 @@ public partial class Program : System.Web.UI.Page
         txtNumberOfChildren.Text = gvRegularProgram.SelectedRow.Cells[8].Text;
         txtNumberOfAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
         //CheckBoxAnimal.SelectedIndex = gvRegularProgram.SelectedRow.Cells[10];
-        DropDownEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
+        txtEducatorName.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
         Commentstxt.Text = gvRegularProgram.SelectedRow.Cells[12].Text;
     }
 
@@ -226,17 +226,97 @@ public partial class Program : System.Web.UI.Page
 
     protected void UpdateProgram(object sender, EventArgs e)
     {
+        
+        sc.Open();
         String updateRegProgQuery = "Update [dbo].[RegularProgram] set ProgName = @ProgName, SiteType = @SiteType, ProgStatus = @ProgStatus, ProgAddress = @ProgAddress, " +
-            "City = @City, County = @County where ProgramID = @ProgramID";
+            "City = @City, County = @County where ProgramID =@ProgramID";
+        
         String updateProgQuery = "Update [dbo].[Program] set ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, PaymentStatus = @PaymentStatus, " +
-            "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments where ProgramID = @ProgramID";
-        String updateProgAnimalQuery = "Update [dbo].[ProgramAnimal] set ProgramName = @ProgramName, AnimalName = @AnimalName, NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet " +
-            "where ProgramID = @ProgramID and AnimalID = @AnimalID";
+            "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments where ProgramID =@ProgramID";
+
+        
+
+        //update program
+        SqlCommand insertProgramcmd = new SqlCommand(updateProgQuery, sc);
+        insertProgramcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
+        insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
+        insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", txtPaymentStatus.SelectedValue);
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+        insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+        insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+        insertProgramcmd.Parameters.AddWithValue("@Comments", Commentstxt.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text)); 
+
+        insertProgramcmd.ExecuteNonQuery();
+        
+        //update regular program
+        SqlCommand insertRegularProgramCmd = new SqlCommand(updateRegProgQuery, sc);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgName", txtProgramName.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", txtSiteType.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", txtStatus.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", txtOrganizationAddress.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@City", DropDownCityEdit.SelectedItem.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@County", DropDownCountyEdit.SelectedItem.Text);
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
+
+        insertRegularProgramCmd.ExecuteNonQuery();
+
+        //update educator
+        string callEducator = "select * from [dbo].[Educator] where FirstName = '" + DropDownEducator.SelectedItem.Text + "';";
+        SqlCommand cmdDatabase3 = new SqlCommand(callEducator, sc);
+        SqlDataReader reader;
+
+        reader = cmdDatabase3.ExecuteReader();
+
+        reader.Read();
+
         String educatorProgQuery = "Update [dbo].[EducatorProgram] set EducatorName = @EducatorName, ProgramName = @ProgramName " +
             "where EducatorID = @EducatorID and ProgramName = @ProgramName";
 
-        SqlCommand regProgUpdate = new SqlCommand(updateRegProgQuery, sc);
-        regProgUpdate.Parameters.AddWithValue("@ProgName", "");
+        int EducatorID = reader.GetInt32(0);
+        SqlCommand insertEducatorProgramCmd = new SqlCommand(educatorProgQuery, sc);
+        insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorID", EducatorID);
+        insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorName", txtEducatorName.Text);
+        insertEducatorProgramCmd.Parameters.AddWithValue("@ProgramName", txtProgramName.Text);
+
+        reader.Close();
+        insertEducatorProgramCmd.ExecuteNonQuery();
+
+        //update into programAnimal table
+        string AnimalNameString = "";
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        {
+            if (CheckBoxList1.Items[i].Selected)
+            {
+                AnimalNameString = CheckBoxList1.Items[i].Text;
+
+
+                string getAnimal = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxAnimal.Items[i].Text + "';";
+                SqlCommand cmdDatabase1 = new SqlCommand(getAnimal, sc);
+                SqlDataReader myreader;
+
+                myreader = cmdDatabase1.ExecuteReader();
+                myreader.Read();
+
+                int animalID = myreader.GetInt32(0);
+                //String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+                String updateProgAnimalQuery = "Update [dbo].[ProgramAnimal] set ProgramName = @ProgramName, AnimalName = @AnimalName, NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet " +
+            "where ProgramID = @ProgramID and AnimalID = @AnimalID";
+                SqlCommand cmd2 = new SqlCommand(updateProgAnimalQuery, sc);
+                cmd2.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
+                cmd2.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+                cmd2.Parameters.AddWithValue("@AnimalName", CheckBoxAnimal.Items[i].Text); //
+                cmd2.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOfAdults.Text);
+                cmd2.Parameters.AddWithValue("@NumberOfChildrenMet", txtNumberOfChildren.Text);
+                insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
+                myreader.Close();
+                cmd2.ExecuteNonQuery();
+
+            }
+        }
+        sc.Close();
     }
 
 

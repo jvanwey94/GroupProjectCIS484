@@ -8,11 +8,11 @@
             display:none;
         }
         .panel-heading-custom {
-            background: #d9534f; 
+            background: #43a047; 
             color: #fff;
         }
         .modal-header {
-            background: #d9534f; 
+            background: #43a047; 
             color: #fff;
         }
 
@@ -27,15 +27,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-danger">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
                             Animals
-                            <button type="button" class="btn btn-danger" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addAnimals"> Create Animal </button>
+                            <button type="button" class="btn btn-success" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addAnimals"> Create Animal </button>
                              
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-danger">
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-success">
                     <Columns>
                         <asp:BoundField DataField="AnimalName" HeaderText="Name" SortExpression="AnimalName" />
                         <asp:BoundField DataField="AnimalType" HeaderText="Type" SortExpression="AnimalType" />
