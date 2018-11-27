@@ -117,9 +117,10 @@ public partial class Animal : System.Web.UI.Page
 
     protected void DeleteButton_Click(object sender, EventArgs e)
     {
-        String deleteQuery = "Delete from Animal where AnimalID = @AnimalID";
+        //String deleteQuery = "Delete from Animal where AnimalID = @AnimalID";
+        String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
         sc.Open();
-        SqlCommand deletecmd = new SqlCommand(deleteQuery, sc);
+        SqlCommand deletecmd = new SqlCommand(deactivateQuery, sc);
         deletecmd.Parameters.AddWithValue("@AnimalID", DeleteDDL.SelectedItem.Value);
 
         deletecmd.ExecuteNonQuery();
@@ -148,9 +149,10 @@ public partial class Animal : System.Web.UI.Page
     
     protected void DeleteAnimal(object sender, EventArgs e)
     {
-        String deleteAnimalQuery = "Delete from [dbo].[Animal] where AnimalID = @AnimalID";
+        //String deleteAnimalQuery = "Delete from [dbo].[Animal] where AnimalID = @AnimalID";
+        String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
         sc.Open();
-        SqlCommand delcmd = new SqlCommand(deleteAnimalQuery, sc);
+        SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
         delcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
         delcmd.ExecuteNonQuery();

@@ -21,7 +21,7 @@
         <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <h1 class="panel-heading panel-heading-custom">Manage Animals <i class="fa fa-paw icon"></i> </h1> 
+                    <h1 class="panel-heading panel-heading-custom">Manage Animals <img src="leaflet/images/icon.png" style="width:50px; height: 50px;"/> </h1> 
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

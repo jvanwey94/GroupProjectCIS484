@@ -7,24 +7,24 @@
             display:none;
         }
         .panel-heading-custom{
-            background:#0277bd;
+            background:#2979ff;
             color: #fff;
         }
         .modal-header{
-            background: #0277bd;
+            background: #0d47a1;
             color: #fff;
         }
         .modal-body {
             padding: 20px;
         }
         .panel > .panel-heading {
-            background-color: #4FC3F7;
+            background-color: #b2ebf2;
         }
     </style>
         <div id="page-wrapper">
          <div class="row">
             <div class="col-lg-12">
-                <h1 class="panel-heading pan    1el-heading-custom">Online Programs <i class="fa fa-wifi icon"></i></h1>
+                <h1 class="panel-heading panel-heading-custom">Online Programs <i class="fa fa-wifi icon"></i></h1>
             </div>
         </div>
          <div class="row">
@@ -46,7 +46,7 @@
 
                         <!--Panel Heading-->
                         <div class="panel-body">
-            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-BorderStyle="NotSet" BackColor="#4FC3F7">
+            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-BorderStyle="NotSet" BackColor="#B2EBF2">
                 <Columns>
                     <asp:BoundField DataField="ProgramName" HeaderText="Program" SortExpression="ProgramName" />
                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
