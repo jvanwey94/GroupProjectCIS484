@@ -7,31 +7,34 @@
             display:none;
         }
         .panel-heading-custom{
-            background:#2979ff;
+            background:#428bca;
             color: #fff;
         }
         .modal-header{
-            background: #0d47a1;
+            background: #428bca;
             color: #fff;
         }
         .modal-body {
             padding: 20px;
         }
         .panel > .panel-heading {
-            background-color: #b2ebf2;
+            background-color: #388be9;
         }
     </style>
         <div id="page-wrapper">
          <div class="row">
             <div class="col-lg-12">
-                <h1 class="panel-heading panel-heading-custom">Online Programs <i class="fa fa-wifi icon"></i></h1>
+                <h1 class="panel-heading panel-heading-custom">Programs <i class="fa fa-wifi icon"></i></h1>
             </div>
         </div>
          <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            Past Events
+                            <asp:DropDownList ID="ddlProgram" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged" runat="server">
+                                <asp:ListItem Value="OnlineProgram.aspx">Online Program</asp:ListItem>
+                                <asp:ListItem Value="Program.aspx">Live Program</asp:ListItem>
+                            </asp:DropDownList>
                              <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addOnlineProgram"> Create Online Program </button>
@@ -46,7 +49,7 @@
 
                         <!--Panel Heading-->
                         <div class="panel-body">
-            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-BorderStyle="NotSet" BackColor="#B2EBF2">
+            <asp:GridView ID="GridViewOnlineProgram" class="table table-striped table-bordered table-hover" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EditRowStyle-CssClass="alert-warning" SelectedRowStyle-CssClass="alert-warning" RowStyle-BorderStyle="NotSet" BackColor="#BBD3ED" ForeColor="#2E456D">
                 <Columns>
                     <asp:BoundField DataField="ProgramName" HeaderText="Program" SortExpression="ProgramName" />
                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />

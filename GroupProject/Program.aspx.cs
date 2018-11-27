@@ -121,6 +121,10 @@ public partial class Program : System.Web.UI.Page
         Commentstxt.Text = gvRegularProgram.SelectedRow.Cells[12].Text;
     }
 
+    protected void ddl_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Response.Redirect(ddlProgram.SelectedValue);
+    }
 
 
     protected void CreateProgram(object sender, EventArgs e)

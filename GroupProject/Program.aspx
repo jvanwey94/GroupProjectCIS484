@@ -42,7 +42,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            Past Events
+                            <asp:DropDownList ID="ddlProgram" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged" runat="server">
+                                <asp:ListItem Value="Program.aspx">Live Program</asp:ListItem>
+                                <asp:ListItem Value="OnlineProgram.aspx">Online Program</asp:ListItem>
+                            </asp:DropDownList>
                              <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
@@ -59,7 +62,7 @@
                         <div class="panel-body">
                             
                            
-                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-info">
+                            <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-info" RowStyle-ForeColor="#1259A9">
 
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />

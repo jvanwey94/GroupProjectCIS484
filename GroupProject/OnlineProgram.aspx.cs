@@ -284,6 +284,11 @@ public partial class OnlineProgram : System.Web.UI.Page
         NumberOfAdultsTXT.Text = GridViewOnlineProgram.SelectedRow.Cells[10].Text;
     }
 
+    protected void ddl_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Response.Redirect(ddlProgram.SelectedValue);
+    }
+
     protected void txtOrganizationName_TextChanged(object sender, EventArgs e)
     {
 
