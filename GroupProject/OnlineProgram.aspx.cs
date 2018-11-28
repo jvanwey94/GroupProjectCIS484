@@ -152,11 +152,11 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void DeleteOnlineProgram(object sender, EventArgs e)
     {
-        String deleteQuery = "Delete from [dbo].[OnlineProgram] where ProgramID = @ProgramID";
+        String deactivateQuery = "Update Program set ProgStatus = 'Inactive' where ProgramID = @ProgramID";
 
         sc.Open();
-        SqlCommand delcmd = new SqlCommand(deleteQuery, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
+        SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
+        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
         delcmd.ExecuteNonQuery();
         sc.Close();
     }

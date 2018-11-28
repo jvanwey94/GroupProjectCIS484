@@ -64,7 +64,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-<img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" />
+<img src="/leaflet/images/newLogo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" />
        <%-- <a href="Home.aspx" ><img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" /></a>--%>
      <div id="wrapper">
         <%--<div id="container-fluid">--%>
