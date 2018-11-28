@@ -15,9 +15,6 @@
             background: #428bca; 
             color: #fff;
         }
-        .modal-backdrop {
-            z-index: -1;
-        }
     </style>
    <script >
     function filterFunction() {
@@ -596,6 +593,13 @@
     <script type="text/javascript">
         function closeModal() {
             $('[id=editModal]').modal().closeModal();
+        }
+    </script>
+    <script type="text/javascript">
+        function modalScreenClose() {
+            $('#editProgram').modal('hide');
+            $(document.body).removeClass('modal-open');
+            $('.modal-backdrop').remove();
         }
     </script>
 </asp:Content>
