@@ -33,11 +33,14 @@
         .sidebar {
             background: #f1f8e9;
             color: #1b5e20;
-            height: auto;
+           
         }
         .container-fluid {
             width: auto;
             
+        }
+        #wrapper {
+            background: #f1f8e9;
         }
 
     </style>
@@ -109,10 +112,13 @@
                                         <a href="ProgramReports.aspx">Program Report</a>
                                     </li>
                                     <li>
-                                        <a href="FinancialReport.aspx" id="Fin2">Financial Report</a>
+                                        <a href="FinancialReport.aspx" id="Fin2" runat="server">Financial Report</a>
                                     </li>
                                </ul>	
                             
+                        </li>
+                        <li>
+                            <a href="Login.aspx" runat="server"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
                         </li>
                 <li>
                     <a href="Users.aspx" id="EditUser" runat="server" ><i class="fa fa-user"></i> User</a>

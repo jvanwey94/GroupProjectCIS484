@@ -8,5 +8,7 @@
         
    </style>
     <h1>Welcome to  Wildlife Center</h1>
+    <h3>No Permissions Granted</h3>
+    <a href="Login.aspx" runat="server">Login</a>
 </asp:Content>
 

@@ -15,11 +15,11 @@
                     <h1 class="panel-heading panel-heading-custom">Dashboard<i class="fa fa-dashboard fa-fw"></i></h1>
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
+            
             <!-- /.row -->
-            <div id="dashboardPanels">
+            
               <a href="Program.aspx">
-                <div class="row" id="panelsTopRow">
+                
                 <div class="col-lg-4 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -39,8 +39,10 @@
                                 <div class="clearfix"></div>
                             </div>
                     </div>
+                    </div>
+                    
                     </a>
-                </div>
+                
                 <div class="col-lg-4 col-md-6">
                    <a href="Animal.aspx">
                     <div class="panel panel-green">
@@ -63,8 +65,8 @@
                     </div>
                     </a>
                 </div>
-               </div>
-                <div class="row" id="panelsBottomRow">
+               
+                
                 <div class="col-lg-4 col-md-6">
                     <a href="FinancialReport.aspx">
                     <div class="panel panel-yellow">
@@ -88,7 +90,7 @@
                     </a>
                 </div>
                 
-            </div>
+            
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8" id="areaChart">
@@ -110,6 +112,7 @@
                     </div>
                 </div>
                     <!-- /.panel -->
+            </div>
             </div>
             <!-- /.row -->
         </div>
