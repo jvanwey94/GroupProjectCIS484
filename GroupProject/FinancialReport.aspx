@@ -109,13 +109,13 @@ function Calculation(){
                 <asp:Label ID="lblAmount" runat="server" Text="Amount:"  Font-Size="Large" class="form-control-label"></asp:Label>
                 <asp:TextBox ID="txtAmount" runat="server" class="form-control"></asp:TextBox>
         </div>
-        <div class="row">
-        <div class="col-lg-3" style="padding-top:1em;">
+        <div class="col-lg-4" style="padding-top:1em;">
             
                   <asp:Label ID="lblAddress" runat="server" Text="Billing Address:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    
                   <asp:TextBox ID="txtAddress" runat="server" class="form-control"></asp:TextBox><br />
          </div>
+         <div class="row">
          <div class="col-lg-3">
                <asp:Label ID="lblContactPerson" runat="server" Text="Primary Contact Person:"  Font-Size="Large" class="form-control-label"></asp:Label>
                    

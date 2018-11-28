@@ -33,11 +33,14 @@
         .sidebar {
             background: #f1f8e9;
             color: #1b5e20;
-            height: auto;
+           
         }
         .container-fluid {
             width: auto;
             
+        }
+        #wrapper {
+            background: #f1f8e9;
         }
 
     </style>
@@ -64,7 +67,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-<img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" />
+<img src="/leaflet/images/newLogo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" />
        <%-- <a href="Home.aspx" ><img src="/leaflet/images/logo.png" id="nava" style="width:auto; height:auto;" id="wildlifeLogo" /></a>--%>
      <div id="wrapper">
         <%--<div id="container-fluid">--%>
@@ -100,21 +103,25 @@
                         </li>
                         
                         <li>
-                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i>Financial Reports</a>
-                            <li>
+                            <a href="FinancialReport.aspx" id="Fin1" runat="server"><i class="fa fa-files-o fa-fw"></i> Reports <span class="fa arrow"></span></a>
                             	<ul class="nav nav-second-level">
-                            	<li>
-                            		<a href="AnimalReports.aspx">Animal Report</a>
-                            	</li>
-                                <li>
-                                    <a href="ProgramReports.aspx">Program Report</a>
-                                <li>
-                            </ul>	
-                                <a href="FinancialReport.aspx" id="Fin2" runat="server">Reports</a>
-                            	</li>
+                            	    <li>
+                            		    <a href="AnimalReports.aspx">Animal Report </a>
+                            	    </li>
+                                    <li>
+                                        <a href="ProgramReports.aspx">Program Report</a>
+                                    </li>
+                                    <li>
+                                        <a href="FinancialReport.aspx" id="Fin2" runat="server">Financial Report</a>
+                                    </li>
+                               </ul>	
+                            
+                        </li>
+                        <li>
+                            <a href="Login.aspx" runat="server"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
                         </li>
                 <li>
-
+                    <a href="Users.aspx" id="EditUser" runat="server" ><i class="fa fa-user"></i> User</a>
                 </li>
                     </ul>
             <%--<div class="navbar-header">

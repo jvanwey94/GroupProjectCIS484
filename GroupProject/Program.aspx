@@ -15,6 +15,9 @@
             background: #428bca; 
             color: #fff;
         }
+        #modalcloser {
+            display:none;
+        }
     </style>
    <script >
     function filterFunction() {
@@ -270,7 +273,7 @@
                                 <label>Date</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:TextBox ID="txtAddDate" class="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtAddDate" type="date" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
                         <div class="row">
@@ -324,7 +327,7 @@
         </div>
     </div>
 
-        <div class="modal fade" id="editProgram" tabindex="1" role="dialog" aria-labelledby="editProgram" aria-hidden="true" >
+        <div class="modal fade" id="editProgram" tabindex="-1" role="dialog" aria-labelledby="editProgram" aria-hidden="true" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -524,6 +527,7 @@
                                 <asp:TextBox ID="EditComment" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
+                        <a id="modalcloser" class="custom-close"></a>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -592,15 +596,24 @@
     </script>
     <script type="text/javascript">
         function closeModal() {
-            $('[id=editModal]').modal().closeModal();
+            $('#editProgram').modal('hide');
+            $('#editProgram').modal({
+                backdrop: false
+            });
         }
     </script>
     <script type="text/javascript">
         function modalScreenClose() {
-            $('#editProgram').modal('hide');
-            $(document.body).removeClass('modal-open');
             $('.modal-backdrop').remove();
         }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $(".custom-close").on('click',
+                function () {
+                    $('#editProgam').modal('hide');
+                });
+        });
     </script>
 </asp:Content>
 
