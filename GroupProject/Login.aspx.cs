@@ -56,7 +56,14 @@ public partial class Login : System.Web.UI.Page
                     btnLogin.Enabled = false;
                     txtUserName.Enabled = false;
                     txtPassword.Enabled = false;
-                    string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+                string seepermission = "select Permission from [dbo].[User] where Username = @Username";
+                System.Data.SqlClient.SqlCommand empermission = new System.Data.SqlClient.SqlCommand(seepermission, sc);
+                empermission.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+                string permission = Convert.ToString(empermission.ExecuteScalar());
+                if (permission == "Yes")
+                { 
+
+                string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
                     System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
                     emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
                       string level = Convert.ToString(emlevel.ExecuteScalar());
@@ -65,9 +72,12 @@ public partial class Login : System.Web.UI.Page
                           Response.Redirect("Home.aspx", false);
                      else
                           Response.Redirect("Homelimited.aspx", false);
-                   
-
                 }
+                else
+                    Response.Redirect("Welcome.aspx", false);
+
+
+            }
                 else
                     Response.Write("Password is wrong.");
             //}

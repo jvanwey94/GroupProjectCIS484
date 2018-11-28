@@ -43,11 +43,11 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                    <a href="Animal.aspx">
-                    <div class="panel panel-red">
+                    <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-paw fa-5x"></i>
+                                    <img src="leaflet/images/icon.png" style="width:70px; height:70px;" />
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div>Manage Animals</div>
@@ -67,7 +67,7 @@
                 <div class="row" id="panelsBottomRow">
                 <div class="col-lg-4 col-md-6">
                     <a href="FinancialReport.aspx">
-                    <div class="panel panel-green">
+                    <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -87,28 +87,7 @@
                     </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <a href="OnlineProgram.aspx">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-wifi fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div>Manage Online Programs</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                            <div class="panel-footer">
-                                <span class="pull-left">Get Started</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                    </div>
-                    </a>
-                </div>
+                
             </div>
             <!-- /.row -->
             <div class="row">

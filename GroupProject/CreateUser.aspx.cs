@@ -58,7 +58,7 @@ public partial class CreateUser : System.Web.UI.Page
                     if (response == true)
                     {
                         // INSERT USER RECORD
-                        createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@userName)";
+                        createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@userName,@Permission)";
                         createUser.Parameters.Add(new SqlParameter("@FName", txtFirstName.Text));
                         createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
                         createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
@@ -68,6 +68,7 @@ public partial class CreateUser : System.Web.UI.Page
                         createUser.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdated", DateTime.Now));
                         createUser.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
+                        createUser.Parameters.Add(new SqlParameter("@Permission", "No"));
 
 
                         createUser.ExecuteNonQuery();

@@ -75,6 +75,12 @@ public partial class SiteMaster : MasterPage
         string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
         System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
         emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
+            string user = Session["User"].ToString();
+            if (user == "jiangmsn")
+                EditUser.Visible = true;
+            else
+                EditUser.Visible = false;
+
         string level = Convert.ToString(emlevel.ExecuteScalar());
 
             if (level == "Full-time Staff")
