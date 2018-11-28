@@ -683,7 +683,7 @@ public partial class FinancialReport : System.Web.UI.Page
     protected void ExportExcelBTN(object sender, EventArgs e)
     {
         DataTable dt = new DataTable();
-        String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, PaymentCollect, PaymentLeft, pay.PaymentStatus" +
+        String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, pay.PaymentStatus" +
             " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
         connect.Open();
         SqlCommand filltable = new SqlCommand(sqlDA, connect);
