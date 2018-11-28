@@ -64,11 +64,12 @@
                     <asp:BoundField DataField="NumberOfChildren" HeaderText="Number of Children" SortExpression="NumberOfChildren" />
                     <asp:BoundField DataField="NumberOfAdults" HeaderText="Number of Adults" SortExpression="NumberOfAdults" />
                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
+                    <asp:BoundField DataField="ProgStatus" HeaderText="Program Status" SortExpression="Program Status" />
                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                 </Columns>
             </asp:GridView>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="
-                        <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults, O.ProgramID from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
+                        <%$ ConnectionStrings:AWSConnection %>" SelectCommand="select P.Comments, P.ProgramName, P.OrganizationName, P.ProgDate, O.Type, O.Country, O.State, O.Grade, O.Email, O.Theme, P.NumberOfChildren, P.NumberOfAdults, P.ProgStatus, O.ProgramID from dbo.OnlineProgram O, dbo.Program P where O.ProgramID = P.ProgramID"></asp:SqlDataSource>
             </div>
                     </div>
                 </div>
