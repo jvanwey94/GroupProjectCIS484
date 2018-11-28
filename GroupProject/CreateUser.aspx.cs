@@ -94,6 +94,7 @@ public partial class CreateUser : System.Web.UI.Page
                         txtPassword.Enabled = false;
                         btnSubmit.Enabled = false;
                         lnkAnother.Visible = true;
+                        Response.Redirect("Welcome.aspx", false);
                     }
                     else
                     {

@@ -5,6 +5,9 @@
         #nava{
             display:none;
         }
+        .panel-heading {
+            background: #00C851;
+        }
         
    </style>
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +25,7 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background:#43a047; color:#fff;">
                         <h3 class="panel-title">Sign in to Wildlife Center</h3>
                     </div>
                     <div class="panel-body">
