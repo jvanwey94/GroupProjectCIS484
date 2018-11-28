@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Text;
 
+
+
 public partial class FinancialReport : System.Web.UI.Page
 {
     //SqlConnection connect = new SqlConnection(@"Server =localhost; Database = Payment4; Trusted_Connection = Yes;");
@@ -303,27 +305,25 @@ public partial class FinancialReport : System.Web.UI.Page
     //gridview update control
     protected void dbInvoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        ////try
-        ////{
+        //try
+        //{
 
-        //connect.Open();
-        //String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
-        //    "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentCollect=@PaymentCollect, " +
-        //    "PaymentLeft=@PaymentLeft, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated" +
-        //    " where InvoiceID=@InvoiceID";
-        //System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
-        //insert.Connection = connect;
-        //insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as TextBox).Text.Trim());
+        connect.Open();
+        String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
+            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount where InvoiceID=@InvoiceID";
+        System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
+        insert.Connection = connect;
+        insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
-        //insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@OrganizationName", (dbInvoice.Rows[e.RowIndex].FindControl("GridOrganization") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
-        //insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@Program", (dbInvoice.Rows[e.RowIndex].FindControl("GridProgram") as  System.Web.UI.WebControls.TextBox).Text.Trim());
 
-        //insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@PaymentType", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentType") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
-        //insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
-        //insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
         //insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
 
@@ -337,20 +337,20 @@ public partial class FinancialReport : System.Web.UI.Page
 
 
 
-        ////insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
-        //insert.ExecuteNonQuery();
-        //dbInvoice.EditIndex = -1;
-        //connect.Close();
-        //PopulateGridview();
+        //insert.Parameters.AddWithValue("@InvoiceID", Convert.ToInt32(dbInvoice.DataKeys[e.RowIndex].Value.ToString()));
+        insert.ExecuteNonQuery();
+        dbInvoice.EditIndex = -1;
+        connect.Close();
+        PopulateGridview();
 
-        //lblStatus.Text = "Successfully updated";
+        lblStatus.Text = "Successfully updated";
 
-        ////}
-        ////catch (Exception ex)
-        ////{
-        ////    txtTest.Text = "";
-        ////    txtTest.Text = ex.Message;
-        ////}
+        //}
+        //catch (Exception ex)
+        //{
+        //    txtTest.Text = "";
+        //    txtTest.Text = ex.Message;
+        //}
     }
 
     protected void OnPaymentSelection(object sender, EventArgs e)
@@ -367,6 +367,10 @@ public partial class FinancialReport : System.Web.UI.Page
         }
     }
 
+    protected void dbInvoice_DataBound(object sender, EventArgs eventArgs)
+    {
+        
+    } 
 
     protected void dbInvoice_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -747,4 +751,20 @@ public partial class FinancialReport : System.Web.UI.Page
         }
         connect.Close();
     }
+
+    //protected void dbInvoice_DataBound1(object sender, EventArgs e)
+    //{
+    //    double restPayment = 0.00;
+    //    foreach (GridViewRow row in dbInvoice.Rows)
+    //    {
+    //        string test = row.Cells[5].Text;
+    //        double amount = Double.Parse(test);
+    //        double Collect = Double.Parse(row.Cells[6].Text);
+    //        restPayment = amount - Collect;
+    //    }
+    //    GridViewRow footer = dbInvoice.FooterRow;
+    //    footer.Cells[0].ColumnSpan = 7;
+    //    footer.Cells[0].HorizontalAlign = HorizontalAlign.Right;
+    //    footer.Cells[0].Text = "Rest Payment is " + restPayment;
+    //}
 }
