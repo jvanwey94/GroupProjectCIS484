@@ -17,11 +17,6 @@ public partial class Program : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //        fillStatusList();
-            //        fillMonthList();
-            //        populateAnimals("'" + "Bird" +"'", DropDownList2);
-            //        populateAnimals("'" + "Mammal" + "'", DropDownList3);
-            //        populateAnimals("'" + "Reptile" + "'", DropDownList4);
             BindData();
         }
         

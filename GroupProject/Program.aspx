@@ -187,7 +187,8 @@
                                 <label>Program Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownProgram" class="form-control" runat="server">
+                                <asp:DropDownList ID="DropDownProgram" AppendDataBoundItems="true" class="form-control" runat="server">
+                                    <asp:ListItem Text="" Value="" Selected="True"></asp:ListItem>
                                     <asp:ListItem>Display</asp:ListItem>
                                     <asp:ListItem>Special Request</asp:ListItem>
                                     <asp:ListItem>Open House</asp:ListItem>
