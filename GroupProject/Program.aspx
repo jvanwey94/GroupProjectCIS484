@@ -70,6 +70,7 @@
                                 <Columns>
                                     <asp:BoundField DataField="OrganizationName" HeaderText="Organization" SortExpression="OrganizationName" />
                                     <asp:BoundField DataField="ProgDate" HeaderText="Date" SortExpression="ProgDate" dataformatstring="{0:MM/d/yyyy}" /> 
+                                     <asp:BoundField DataField="ProgTime" HeaderText="Program Time" SortExpression="Time" />
                                     <asp:BoundField DataField="ProgName" HeaderText="Program" SortExpression="ProgName" />
                                     <asp:BoundField DataField="SiteType" HeaderText="Site Type" SortExpression="SiteType" />
                                     <asp:BoundField DataField="ProgStatus" HeaderText="Status" SortExpression="ProgStatus" />
@@ -82,7 +83,6 @@
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
                                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
                                     <asp:BoundField DataField="ProgStatus1" HeaderText="Program Status" SortExpression="ProgStatus1" />
-                                    <asp:BoundField DataField="ProgTime" HeaderText="Program Time" SortExpression="Time" />
                                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" SortExpression="EducatorID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
@@ -532,12 +532,22 @@
                             </div>
                         </div><br />
                         <div class="row">
-                            <div class="col-sm-3">
+                           <%-- <div class="col-sm-3">
                                 <label>Educator</label>
                             </div>
                             <div class="col-sm-3">
                                 <asp:DropDownList ID="EditEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
                                 <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
+                            </div>--%>
+                            <div class="col-sm-3">
+                                <label>Educator</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:Panel ID="Panel4" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
+                                     <asp:CheckBoxList ID="CheckBoxList3" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID" ></asp:CheckBoxList>
+                             <%--   <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
+                                <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
+                                     </asp:Panel>
                             </div>
                         </div><br />
                         <div class="row">
