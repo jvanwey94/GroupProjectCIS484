@@ -100,7 +100,9 @@
                                <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
 
                                 <%--<asp:
-                                    List ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID">
+                                    List ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="
+                                    
+                                    Name" DataValueField="AnimalID">
                                 </asp:CheckBoxList>--%>
                                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal] where AnimalStatus = 'Active'"></asp:SqlDataSource>
 
@@ -649,4 +651,3 @@
         });
     </script>
 </asp:Content>
-
