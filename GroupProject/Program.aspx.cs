@@ -203,24 +203,33 @@ public partial class Program : System.Web.UI.Page
 
 
         //Inserting into EducatorProgram table
-        string callEducator = "select * from [dbo].[Educator] where FirstName = '" + DropDownEducator.SelectedItem.Text + "';";
-        SqlCommand cmdDatabase3 = new SqlCommand(callEducator, sc);
-        SqlDataReader reader;
+        string EducatorNameString = "";
+        for (int i = 0; i < CheckBoxList2.Items.Count; i++)
+        {
+            if (CheckBoxList2.Items[i].Selected)
+            {
+                EducatorNameString = CheckBoxList2.Items[i].Text;
 
-        reader = cmdDatabase3.ExecuteReader();
+                string callEducator = "select * from [dbo].[Educator] where FirstName = '" + CheckBoxList2.Items[i].Text + "';";
+                SqlCommand cmdDatabase3 = new SqlCommand(callEducator, sc);
+                SqlDataReader reader;
 
-        reader.Read();
+                reader = cmdDatabase3.ExecuteReader();
+
+                reader.Read();
         
         string insertEducatorProgramQuery = "INSERT INTO EducatorProgram VALUES (@EducatorID, (Select MAX(ProgramID) from dbo.Program), @EducatorName, @ProgramName)";
 
         int EducatorID = reader.GetInt32(0);
         SqlCommand insertEducatorProgramCmd = new SqlCommand(insertEducatorProgramQuery, sc);
         insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorID", EducatorID);
-        insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorName", DropDownEducator.SelectedItem.Text);
+        insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorName", CheckBoxList1.Items[i].Text);
         insertEducatorProgramCmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
 
         reader.Close();
         insertEducatorProgramCmd.ExecuteNonQuery();
+            }
+        }
 
         //Insert into programAnimal table
         string AnimalNameString = "";
@@ -322,7 +331,11 @@ public partial class Program : System.Web.UI.Page
         insertRegularProgramCmd.ExecuteNonQuery();
 
         //update educator
-        string callEducator = "select * from [dbo].[Educator] where FirstName = '" + DropDownEducator.SelectedItem.Text + "';";
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        {
+            if (CheckBoxList1.Items[i].Selected)
+            {
+                string callEducator = "select * from [dbo].[Educator] where FirstName = '" + CheckBoxList1.Items[i].Text + "';";
         SqlCommand cmdDatabase3 = new SqlCommand(callEducator, sc);
         SqlDataReader reader;
 
@@ -346,15 +359,15 @@ public partial class Program : System.Web.UI.Page
 
         //update into programAnimal table
         string AnimalNameString = "";
-        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        for (int j = 0; j < CheckBoxList2.Items.Count; i++)
         {
-            if (CheckBoxList1.Items[i].Selected)
+            if (CheckBoxList2.Items[j].Selected)
             {
-                AnimalNameString = CheckBoxList1.Items[i].Text;
+                AnimalNameString = CheckBoxList2.Items[j].Text;
 
 
                 //string getAnimal = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxAnimal.Items[i].Text + "';";
-                string getAnimal = "select * from [dbo].[Animal] where AnimalName = '" + EditAnimal.Items[i].Text + "';";
+                string getAnimal = "select * from [dbo].[Animal] where AnimalName = '" + EditAnimal.Items[j].Text + "';";
                 SqlCommand cmdDatabase1 = new SqlCommand(getAnimal, sc);
                 SqlDataReader myreader;
 
@@ -384,6 +397,8 @@ public partial class Program : System.Web.UI.Page
         }
         gvRegularProgram.DataBind();
         sc.Close();
+            }
+        }
     }
 
 

@@ -304,8 +304,11 @@
                                 <label>Educator</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              
+                                <asp:Panel ID="Panel3" runat="server" ScrollBars="Auto" Height="250px" Width="250px" >
+                                     <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID" ></asp:CheckBoxList>
+                             <%--   <asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
                                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
+                                     </asp:Panel>
                             </div>
                         </div><br />
                         <div class="row">
