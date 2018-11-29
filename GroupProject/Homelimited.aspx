@@ -42,7 +42,7 @@
                     </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <%--<div class="col-lg-4 col-md-6" >
                    <a href="Animal.aspx">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -63,7 +63,7 @@
                             </div>
                     </div>
                     </a>
-                </div>
+                </div>--%>
                </div>
 
             <!-- /.row -->

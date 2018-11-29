@@ -25,140 +25,165 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void updateOnlineProgram(object sender, EventArgs e)
     {
-        String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
-            "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
-        String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments " +
-            "where ProgramID = @ProgramID";
-        sc.Open();
-        SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
-        opcmd.Parameters.AddWithValue("@Type", TypeTXT.Text);
-        opcmd.Parameters.AddWithValue("@Country", CountryTXT.Text);
-        opcmd.Parameters.AddWithValue("@State", StateTXT.Text);
-        opcmd.Parameters.AddWithValue("@Grade", GradeTXT.Text);
-        opcmd.Parameters.AddWithValue("@Email", EmailTXT.Text);
-        opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
-        opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
-        opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
+        try
+        {
+            String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
+                "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
+            String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments " +
+                "where ProgramID = @ProgramID";
+            sc.Open();
+            SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
+            opcmd.Parameters.AddWithValue("@Type", TypeTXT.Text);
+            opcmd.Parameters.AddWithValue("@Country", CountryTXT.Text);
+            opcmd.Parameters.AddWithValue("@State", StateTXT.Text);
+            opcmd.Parameters.AddWithValue("@Grade", GradeTXT.Text);
+            opcmd.Parameters.AddWithValue("@Email", EmailTXT.Text);
+            opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
+            opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
+            opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
 
-        SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
-        pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text);
-        pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
-        pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
-        pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
-        pcmd.Parameters.AddWithValue("@Comments", CommentsTXT.Text);
-        pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
+            SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
+            pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text);
+            pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
+            pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
+            pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
+            pcmd.Parameters.AddWithValue("@Comments", CommentsTXT.Text);
+            pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
-        opcmd.ExecuteNonQuery();
-        pcmd.ExecuteNonQuery();
-        sc.Close();
+            opcmd.ExecuteNonQuery();
+            pcmd.ExecuteNonQuery();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error updating online program. Make sure data entered matches the corresponding fields.')</script>");
+        }
     }
 
     protected void CreateProgram(object sender, EventArgs e)
     {
-        sc.Open();
-        String payment = "Free";
-
-
-        String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
-            "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
-        String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments) " +
-            "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments)";
-
-
-
-        SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
-        //programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
-        programcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfChildren", txtNK.Text);
-        programcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOFAdults.Text);
-        programcmd.Parameters.AddWithValue("@PaymentStatus", payment);
-        programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
-        programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
-        programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
-        programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem);
-        programcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
-
-
-        SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
-        cmd.Parameters.AddWithValue("@Type", txtType.Text); // add drop down list to describe types of viewing
-        cmd.Parameters.AddWithValue("@Country", txtCountry.Text); //
-        cmd.Parameters.AddWithValue("@State", txtState.Text); //
-        cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
-        cmd.Parameters.AddWithValue("@Email", txtEmail.Text); //
-        cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
-
-        programcmd.ExecuteNonQuery();
-        GridViewOnlineProgram.DataBind();
-        cmd.ExecuteNonQuery();
-
-
-
-        string AnimalNameString = "";
-        //foreach (ListItem item in CheckBoxList1.Items)
-        //{
-        //    AnimalNameString += item.Selected + ", ";
-        //}
-        //txtCountry.Text = AnimalNameString;
-
-        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+        try
         {
-            if (CheckBoxList1.Items[i].Selected)
+
+
+            sc.Open();
+            String payment = "Free";
+
+
+            String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
+                "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
+            String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments) " +
+                "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments)";
+
+
+
+            SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
+            //programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
+            programcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
+            programcmd.Parameters.AddWithValue("@NumberOfChildren", txtNK.Text);
+            programcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOFAdults.Text);
+            programcmd.Parameters.AddWithValue("@PaymentStatus", payment);
+            programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+            programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+            programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
+            programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem);
+            programcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+
+
+            SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
+            cmd.Parameters.AddWithValue("@Type", txtType.Text); // add drop down list to describe types of viewing
+            cmd.Parameters.AddWithValue("@Country", txtCountry.Text); //
+            cmd.Parameters.AddWithValue("@State", txtState.Text); //
+            cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
+            cmd.Parameters.AddWithValue("@Email", txtEmail.Text); //
+            cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
+
+            programcmd.ExecuteNonQuery();
+            GridViewOnlineProgram.DataBind();
+            cmd.ExecuteNonQuery();
+
+
+
+            string AnimalNameString = "";
+            //foreach (ListItem item in CheckBoxList1.Items)
+            //{
+            //    AnimalNameString += item.Selected + ", ";
+            //}
+            //txtCountry.Text = AnimalNameString;
+
+            for (int i = 0; i < CheckBoxList1.Items.Count; i++)
             {
-                AnimalNameString = CheckBoxList1.Items[i].Text + "  ";
+                if (CheckBoxList1.Items[i].Selected)
+                {
+                    AnimalNameString = CheckBoxList1.Items[i].Text + "  ";
 
 
-                string getAnimalID = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxList1.Items[i].Text + "';";
-                SqlCommand cmdDatabase1 = new SqlCommand(getAnimalID, sc);
+                    string getAnimalID = "select * from [dbo].[Animal] where AnimalName = '" + CheckBoxList1.Items[i].Text + "';";
+                    SqlCommand cmdDatabase1 = new SqlCommand(getAnimalID, sc);
 
-                SqlDataReader myreader;
-
-
-                myreader = cmdDatabase1.ExecuteReader();
-
-                //while (myreader.Read())
-                myreader.Read();
+                    SqlDataReader myreader;
 
 
-                int animalID = myreader.GetInt32(0);
-                String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
-                SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
-                cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
-                cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem); //
-                cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
-                cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
-                cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+                    myreader = cmdDatabase1.ExecuteReader();
+
+                    //while (myreader.Read())
+                    myreader.Read();
 
 
-                myreader.Close();
-                cmd1.ExecuteNonQuery();
+                    int animalID = myreader.GetInt32(0);
+                    String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+                    SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+                    cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
+                    cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem); //
+                    cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
+                    cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
+                    cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
 
-                //}
 
+                    myreader.Close();
+                    cmd1.ExecuteNonQuery();
+
+                    //}
+
+                }
             }
+
+            //SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
+            //cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
+            //cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
+            //cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
+            //cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
+            //cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+
+
+
+            sc.Close();
         }
-
-        //SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
-        //cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
-        //cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
-        //cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
-        //cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
-        //cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
-
-
-
-        sc.Close();
+        catch
+        {
+            Response.Write("<script>alert('Error creating online program. Make sure data entered matches the corresponding fields.')</script>");
+        }
     }
 
     protected void DeleteOnlineProgram(object sender, EventArgs e)
     {
-        String deactivateQuery = "Update Program set ProgStatus = 'Inactive' where ProgramID = @ProgramID";
+        try
+        {
 
-        sc.Open();
-        SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
-        delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
-        delcmd.ExecuteNonQuery();
-        sc.Close();
+
+            String deactivateQuery = "Update Program set ProgStatus = 'Inactive' where ProgramID = @ProgramID";
+
+            sc.Open();
+            SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
+            delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
+            delcmd.ExecuteNonQuery();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error deactivating online program. Please try again.')</script>");
+        }
     }
 
 

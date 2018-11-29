@@ -81,7 +81,8 @@
                                     <asp:BoundField DataField="AnimalName" HeaderText="Animal Name" SortExpression="AnimalName" />
                                     <asp:BoundField DataField="EducatorName" HeaderText="Educator Name" SortExpression="EducatorName" />
                                     <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
-                                    <asp:BoundField DataField="ProgStatus1" HeaderText="Program Status" SortExpression="Comments" />
+                                    <asp:BoundField DataField="ProgStatus1" HeaderText="Program Status" SortExpression="ProgStatus1" />
+                                    <asp:BoundField DataField="ProgTime" HeaderText="Program Time" SortExpression="Time" />
                                     <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="ProgramID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="AnimalID" HeaderText="AnimalID" SortExpression="AnimalID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                     <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" SortExpression="EducatorID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
@@ -89,7 +90,7 @@
                                 
                             </asp:GridView>
                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" 
-                                   SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID "></asp:SqlDataSource>
+                                   SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID "></asp:SqlDataSource>
                                <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%> <%-- and P.ProgStatus = 'Active'--%>
                             
                         </div>
@@ -187,7 +188,8 @@
                                 <label>Program Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownProgram" class="form-control" runat="server">
+                                <asp:DropDownList ID="DropDownProgram" AppendDataBoundItems="true" class="form-control" runat="server">
+                                    <asp:ListItem Text="" Value="" Selected="True"></asp:ListItem>
                                     <asp:ListItem>Display</asp:ListItem>
                                     <asp:ListItem>Special Request</asp:ListItem>
                                     <asp:ListItem>Open House</asp:ListItem>
@@ -274,6 +276,14 @@
                             </div>
                             <div class="col-sm-3">
                                 <asp:TextBox ID="txtAddDate" type="date" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Time</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtAddTime" placeholder="00:00:00" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
                         <div class="row">
@@ -488,6 +498,14 @@
                             </div>
                             <div class="col-sm-3">
                                 <asp:TextBox ID="EditDate" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Time</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="EditTime" placeholder="00:00:00" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
                         <div class="row">
