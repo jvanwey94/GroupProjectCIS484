@@ -227,7 +227,7 @@ public partial class FinancialReport : System.Web.UI.Page
            
             
             //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
+            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
             System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
             insert.Connection = connect;
             insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
@@ -236,8 +236,8 @@ public partial class FinancialReport : System.Web.UI.Page
             insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
             insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
             insert.Parameters.AddWithValue("@Amount", InputAmount);
-            insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
-            insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
+            //insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
+            //insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
             insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
             insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
