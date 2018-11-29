@@ -51,7 +51,7 @@
                             </asp:DropDownList>
                              <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
+                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Add Program </button>
                                 </div>
                             </div>
                         </div>
