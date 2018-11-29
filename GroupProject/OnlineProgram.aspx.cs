@@ -57,7 +57,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error updating online program. Please try again.')</script>");
+            Response.Write("<script>alert('Error updating online program. Make sure data entered matches the corresponding fields.')</script>");
         }
     }
 
@@ -162,7 +162,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error creating online program. Please try again.')</script>");
+            Response.Write("<script>alert('Error creating online program. Make sure data entered matches the corresponding fields.')</script>");
         }
     }
 

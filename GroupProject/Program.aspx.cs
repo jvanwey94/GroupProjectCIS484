@@ -269,7 +269,7 @@ public partial class Program : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error creating program. Please try again.')</script>");
+            Response.Write("<script>alert('Error creating program. Make sure data entered matches the corresponding fields.')</script>");
         }
     }
 
@@ -403,7 +403,7 @@ public partial class Program : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert(' Invalid data type entered into database. Please try again. ')</script>");
+            Response.Write("<script>alert(' Invalid data type entered into database. Make sure data entered matches the corresponding fields. ')</script>");
         }
         sc.Close();
     }

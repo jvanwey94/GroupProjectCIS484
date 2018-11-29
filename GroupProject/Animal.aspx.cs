@@ -60,7 +60,7 @@ public partial class Animal : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error adding animal to database. Please try again.')</script>");
+            Response.Write("<script>alert('Error adding animal to database. Make sure data entered matches the corresponding fields.')</script>");
         }
     }
 
@@ -169,7 +169,7 @@ public partial class Animal : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error updating animal. Please try again.')</script>");
+            Response.Write("<script>alert('Error updating animal. Make sure data entered matches the corresponding fields.')</script>");
         }
         
     }
