@@ -51,6 +51,7 @@ public partial class Program : System.Web.UI.Page
                 r.Cells[6].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
                 r.Cells[7].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
                 r.Cells[8].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
+                r.Cells[9].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.gvRegularProgram, "Select$" + r.RowIndex, true);
             }
         }
 
@@ -139,6 +140,7 @@ public partial class Program : System.Web.UI.Page
         EditNBAdults.Text = gvRegularProgram.SelectedRow.Cells[9].Text;
         EditEducator.SelectedItem.Text = gvRegularProgram.SelectedRow.Cells[11].Text;
         EditComment.Text = gvRegularProgram.SelectedRow.Cells[12].Text;
+        EditTime.Text = gvRegularProgram.SelectedRow.Cells[14].Text;
     }
 
     protected void ddl_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,7 +172,7 @@ public partial class Program : System.Web.UI.Page
             Status = "Incomplete";
         }
 
-        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName,@Comments)";
+        String insertProgramQuery = "INSERT INTO Program VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName,@Comments,@ProgStatus,@ProgTime)";
         String insertRegularProgramQuery = "INSERT INTO RegularProgram VALUES ((Select MAX(ProgramID) from dbo.Program),@ProgName, @SiteType, @ProgStatus, @ProgAddress, @City, @County)";
        
         String updateAnimalQuery = "Update Animal set NumberOfEvents = @NumberOfEvents, NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet";
@@ -186,6 +188,8 @@ public partial class Program : System.Web.UI.Page
         insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtAddOrg.Text);
         insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
         insertProgramcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgStatus", Status);
+        insertProgramcmd.Parameters.AddWithValue("@ProgTime", txtAddTime.Text);
 
         insertProgramcmd.ExecuteNonQuery();
         //Inserting into RegularProgram table
@@ -267,7 +271,7 @@ public partial class Program : System.Web.UI.Page
             "City = @City, County = @County where ProgramID =@ProgramID";
         
         String updateProgQuery = "Update [dbo].[Program] set ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, PaymentStatus = @PaymentStatus, " +
-            "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments where ProgramID =@ProgramID";
+            "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments, ProgStatus = @ProgStatus, ProgTime = @ProgTime where ProgramID =@ProgramID";
 
         
 
@@ -290,7 +294,9 @@ public partial class Program : System.Web.UI.Page
         insertProgramcmd.Parameters.AddWithValue("@OrganizationName", EditOrganizationName.Text);
         insertProgramcmd.Parameters.AddWithValue("@ProgramName", EditProgramName.SelectedValue);
         insertProgramcmd.Parameters.AddWithValue("@Comments", EditComment.Text);
-        insertProgramcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[14].Text));
+        insertProgramcmd.Parameters.AddWithValue("@ProgStatus", EditStatus.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgTime", EditTime.Text);
+        insertProgramcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
         insertProgramcmd.ExecuteNonQuery();
 
         //update regular program
@@ -317,7 +323,7 @@ public partial class Program : System.Web.UI.Page
         insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", EditProgramAddres.Text);
         insertRegularProgramCmd.Parameters.AddWithValue("@City", EditCity.SelectedItem.Text);
         insertRegularProgramCmd.Parameters.AddWithValue("@County", EditCounty.SelectedItem.Text);
-        insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[14].Text));
+        insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
 
         insertRegularProgramCmd.ExecuteNonQuery();
 
