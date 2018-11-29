@@ -30,7 +30,7 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             Animals
-                            <button type="button" class="btn btn-success" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addAnimals"> Create Animal </button>
+                            <button type="button" class="btn btn-success" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addAnimals"> Add Animal </button>
                              
                         </div>
                         <!-- /.panel-heading -->

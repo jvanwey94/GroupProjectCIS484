@@ -38,21 +38,30 @@ public partial class Animal : System.Web.UI.Page
 
     protected void addAnimalToDataBaseButton(object sender, EventArgs e)
     {
-        String insertAnimalQuery = "INSERT INTO Animal VALUES (@AnimalType, @AnimalName, @AnimalStatus, @NumberOfEvents, @NumberOfChildrenMet, @NumberOfAdultsMet, @TotalPeopleMet)";
-        sc.Open();
+        try
+        {
 
-        SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
-        insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AddAnimalStatusDDL.SelectedItem.Text);
-        insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
-        insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", 0);
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", 0);
-        insertAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", 0);
-        insertAnimalcmd.Parameters.AddWithValue("@TotalPeopleMet", 0);
 
-        insertAnimalcmd.ExecuteNonQuery();
-        GridView1.DataBind();
-        sc.Close();
+            String insertAnimalQuery = "INSERT INTO Animal VALUES (@AnimalType, @AnimalName, @AnimalStatus, @NumberOfEvents, @NumberOfChildrenMet, @NumberOfAdultsMet, @TotalPeopleMet)";
+            sc.Open();
+
+            SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
+            insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AddAnimalStatusDDL.SelectedItem.Text);
+            insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
+            insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
+            insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", 0);
+            insertAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", 0);
+            insertAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", 0);
+            insertAnimalcmd.Parameters.AddWithValue("@TotalPeopleMet", 0);
+
+            insertAnimalcmd.ExecuteNonQuery();
+            GridView1.DataBind();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error adding animal to database. Make sure data entered matches the corresponding fields.')</script>");
+        }
     }
 
     //protected void btn1_Search(object sender, EventArgs e)
@@ -117,47 +126,72 @@ public partial class Animal : System.Web.UI.Page
 
     protected void DeleteButton_Click(object sender, EventArgs e)
     {
-        //String deleteQuery = "Delete from Animal where AnimalID = @AnimalID";
-        String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
-        sc.Open();
-        SqlCommand deletecmd = new SqlCommand(deactivateQuery, sc);
-        deletecmd.Parameters.AddWithValue("@AnimalID", DeleteDDL.SelectedItem.Value);
+        try
+        {
 
-        deletecmd.ExecuteNonQuery();
-        sc.Close();
+
+            //String deleteQuery = "Delete from Animal where AnimalID = @AnimalID";
+            String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
+            sc.Open();
+            SqlCommand deletecmd = new SqlCommand(deactivateQuery, sc);
+            deletecmd.Parameters.AddWithValue("@AnimalID", DeleteDDL.SelectedItem.Value);
+
+            deletecmd.ExecuteNonQuery();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error deactivating animal. Please try again.')</script>");
+        }
     }
 
     protected void UpdateAnimal(object sender, EventArgs e)
     {
-        String updateAnimalQuery = "Update [dbo].[Animal] set AnimalType = @AnimalType, AnimalName = @AnimalName, AnimalStatus = @AnimalStatus, NumberOfEvents = @NumberOfEvents, " +
-            "NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet where AnimalID = @AnimalID";
-        sc.Open();
-        SqlCommand updateAnimalcmd = new SqlCommand(updateAnimalQuery, sc);
-        updateAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeDDL.SelectedItem.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameEditTXT.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@AnimalStatus", AnimalStatusDDL.SelectedItem.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", AnimalEditEventsTXT.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", AnimalAdultsMetTXT.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", AnimalKidsMetTXT.Text);
-        updateAnimalcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
+        try
+        {
 
-        updateAnimalcmd.ExecuteNonQuery();
-        GridView1.DataBind();
-        sc.Close();
+
+            String updateAnimalQuery = "Update [dbo].[Animal] set AnimalType = @AnimalType, AnimalName = @AnimalName, AnimalStatus = @AnimalStatus, NumberOfEvents = @NumberOfEvents, " +
+                "NumberOfAdultsMet = @NumberOfAdultsMet, NumberOfChildrenMet = @NumberOfChildrenMet where AnimalID = @AnimalID";
+            sc.Open();
+            SqlCommand updateAnimalcmd = new SqlCommand(updateAnimalQuery, sc);
+            updateAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeDDL.SelectedItem.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameEditTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@AnimalStatus", AnimalStatusDDL.SelectedItem.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", AnimalEditEventsTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", AnimalAdultsMetTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", AnimalKidsMetTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
+
+            updateAnimalcmd.ExecuteNonQuery();
+            GridView1.DataBind();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error updating animal. Make sure data entered matches the corresponding fields.')</script>");
+        }
         
     }
     
     protected void DeleteAnimal(object sender, EventArgs e)
     {
-        //String deleteAnimalQuery = "Delete from [dbo].[Animal] where AnimalID = @AnimalID";
-        String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
-        sc.Open();
-        SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
-        delcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
+        try
+        {
+            //String deleteAnimalQuery = "Delete from [dbo].[Animal] where AnimalID = @AnimalID";
+            String deactivateQuery = "Update Animal set AnimalStatus = 'Inactive' where AnimalID = @AnimalID";
+            sc.Open();
+            SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
+            delcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
-        delcmd.ExecuteNonQuery();
-        GridView1.DataBind();
-        sc.Close();
+            delcmd.ExecuteNonQuery();
+            GridView1.DataBind();
+            sc.Close();
+        }
+        catch
+        {
+            Response.Write("<script>alert('Error deactivating animal. Please try again.')</script>");
+        }
     }
 
     //protected void clickInsertButton(object sender, EventArgs e)

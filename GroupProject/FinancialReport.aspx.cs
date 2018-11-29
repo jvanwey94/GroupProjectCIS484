@@ -116,8 +116,8 @@ public partial class FinancialReport : System.Web.UI.Page
     //commit button 
     protected void btn1_Insert(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
         Int32 InputCheckNumber;
         String InputInvoiceNumber = txtInvoice.Text;
         if (txtCheckNumber.Text == String.Empty)
@@ -227,7 +227,7 @@ public partial class FinancialReport : System.Web.UI.Page
            
             
             //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentCollect,@PaymentLeft,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
+            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
             System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
             insert.Connection = connect;
             insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
@@ -236,8 +236,8 @@ public partial class FinancialReport : System.Web.UI.Page
             insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
             insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
             insert.Parameters.AddWithValue("@Amount", InputAmount);
-            insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
-            insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
+            //insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
+            //insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
             insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
             insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
@@ -260,29 +260,36 @@ public partial class FinancialReport : System.Web.UI.Page
         }
         
         connect.Close();
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Write("<script>alert('user must fill required fileds!)</script>");
-        //    return;
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Write("<script>alert('user must fill required fileds!)</script>");
+            return;
+        }
     }//commit button done
 
     protected void btn1_Search(object sender, EventArgs e)
     {
-
-        if (txtSearch.Text != string.Empty)
+        try
         {
-            PopulateGridview();
-            dbInvoice.Visible = true;
+
+
+            if (txtSearch.Text != string.Empty)
+            {
+                PopulateGridview();
+                dbInvoice.Visible = true;
+            }
+            else
+            {
+                dbInvoice.Visible = false;
+                Response.Write("<script>alert('No matching records are found! Please enter a Payment Number!')</script>");
+
+            }
         }
-        else
+        catch
         {
-            dbInvoice.Visible = false;
-            Response.Write("<script>alert('No matching records are found! Please enter a Payment Number!')</script>");
-
+            Response.Write("<script>alert('Error searching for invoice. Please try again.')</script>");
         }
-
 
     }//search done
 
@@ -682,37 +689,44 @@ public partial class FinancialReport : System.Web.UI.Page
     // fully working :)
     protected void ExportExcelBTN(object sender, EventArgs e)
     {
-        DataTable dt = new DataTable();
-        String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, pay.PaymentStatus" +
-            " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
-        connect.Open();
-        SqlCommand filltable = new SqlCommand(sqlDA, connect);
-        SqlDataAdapter adapt = new SqlDataAdapter(filltable);
-        adapt.Fill(dt);
+        try
+        {
+            DataTable dt = new DataTable();
+            String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.InvoiceID, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, pay.PaymentStatus" +
+                " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
+            connect.Open();
+            SqlCommand filltable = new SqlCommand(sqlDA, connect);
+            SqlDataAdapter adapt = new SqlDataAdapter(filltable);
+            adapt.Fill(dt);
 
-        string attachment = "attachment; filename=FinancialReport.xls";
-        Response.ClearContent();
-        Response.AddHeader("content-disposition", attachment);
-        Response.ContentType = "application/vnd.ms-excel";
-        string tab = "";
-        foreach (DataColumn dc in dt.Columns)
-        {
-            Response.Write(tab + dc.ColumnName);
-            tab = "\t";
-        }
-        Response.Write("\n");
-        int i = 0;
-        foreach (DataRow dr in dt.Rows)
-        {
-            tab = "";
-            for (i = 0; i < dt.Columns.Count; i++)
+            string attachment = "attachment; filename=FinancialReport.xls";
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/vnd.ms-excel";
+            string tab = "";
+            foreach (DataColumn dc in dt.Columns)
             {
-                Response.Write(tab + dr[i].ToString());
+                Response.Write(tab + dc.ColumnName);
                 tab = "\t";
             }
             Response.Write("\n");
+            int i = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                tab = "";
+                for (i = 0; i < dt.Columns.Count; i++)
+                {
+                    Response.Write(tab + dr[i].ToString());
+                    tab = "\t";
+                }
+                Response.Write("\n");
+            }
+            Response.End();
         }
-        Response.End();
+        catch
+        {
+            Response.Write("<script>alert('Error exporting to excel. Please try again.')</script>");
+        }
     }
 
     protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)

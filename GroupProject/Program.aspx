@@ -51,7 +51,7 @@
                             </asp:DropDownList>
                              <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Create Program </button>
+                                    <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Add Program </button>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,8 @@
                                 <label>Program Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownProgram" class="form-control" runat="server">
+                                <asp:DropDownList ID="DropDownProgram" AppendDataBoundItems="true" class="form-control" runat="server">
+                                    <asp:ListItem Text="" Value="" Selected="True"></asp:ListItem>
                                     <asp:ListItem>Display</asp:ListItem>
                                     <asp:ListItem>Special Request</asp:ListItem>
                                     <asp:ListItem>Open House</asp:ListItem>
