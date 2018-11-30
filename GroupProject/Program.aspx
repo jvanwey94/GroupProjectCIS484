@@ -216,6 +216,16 @@
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
+                                <asp:Label ID="lblNewPro" runat="server" Text="If Program Name not exist, please add new Program." ForeColor="Red"></asp:Label>
+                               <%-- <asp:Button ID="btnNewProgram" runat="server"  onClick="CreateProgramName" class="btn btn-primary" Text="New Program Name" data-dismiss="false"/>--%>
+                                  
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox ID="txtProgramName" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-3">
                                 <label>Program Address</label>
                             </div>
                             <div class="col-sm-3">
