@@ -25,7 +25,7 @@ function Calculation(){
         }
         .panel-heading-custom {
             background: #ffbb33; 
-            color: #fff;
+            color: #bf360c;
         }
     </style>
  

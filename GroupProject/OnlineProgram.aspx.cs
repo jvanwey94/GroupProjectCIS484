@@ -40,7 +40,7 @@ public partial class OnlineProgram : System.Web.UI.Page
             opcmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(EmailTXT.Text));
             opcmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(ThemeTXT.Text));
             opcmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(OrgNameTXT.Text));
-            opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
+            opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
 
 
             SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
@@ -49,12 +49,12 @@ public partial class OnlineProgram : System.Web.UI.Page
             pcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(NumberOfChildrenTXT.Text));
             pcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(NumberOfAdultsTXT.Text));
             pcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(CommentsTXT.Text));
-            pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
+            pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
 
             opcmd.ExecuteNonQuery();
             pcmd.ExecuteNonQuery();
             sc.Close();
-        }
+    }
         catch
         {
             Response.Write("<script>alert('Error updating online program. Make sure data entered matches the corresponding fields.')</script>");

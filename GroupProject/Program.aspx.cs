@@ -313,11 +313,11 @@ public partial class Program : System.Web.UI.Page
             "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments, ProgStatus = @ProgStatus, ProgTime = @ProgTime where ProgramID =@ProgramID";
 
 
-        //try
-        //{
+        try
+        {
 
-        //update program
-        SqlCommand insertProgramcmd = new SqlCommand(updateProgQuery, sc);
+            //update program
+            SqlCommand insertProgramcmd = new SqlCommand(updateProgQuery, sc);
         //insertProgramcmd.Parameters.AddWithValue("@ProgDate",. txtDate.Text);
         //insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
         //insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
@@ -462,11 +462,11 @@ public partial class Program : System.Web.UI.Page
             }
         }
         gvRegularProgram.DataBind();
-        // }
-        //catch
-        //{
-        //    Response.Write("<script>alert(' Invalid data type entered into database. Make sure data entered matches the corresponding fields. ')</script>");
-        //}
+        }
+        catch
+        {
+            Response.Write("<script>alert(' Invalid data type entered into database. Make sure data entered matches the corresponding fields. ')</script>");
+        }
         sc.Close();
     }
 

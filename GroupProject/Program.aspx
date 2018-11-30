@@ -189,30 +189,17 @@
                             <div class="col-sm-3">
                                 <label>Program Name</label>
                             </div>
-                            <div class="col-sm-3">
-                                <asp:DropDownList ID="DropDownProgram" AppendDataBoundItems="true" class="form-control" runat="server">
-                                    <asp:ListItem Text="" Value="" Selected="True"></asp:ListItem>
-                                    <asp:ListItem>Display</asp:ListItem>
-                                    <asp:ListItem>Special Request</asp:ListItem>
-                                    <asp:ListItem>Open House</asp:ListItem>
-                                    <asp:ListItem>Tour</asp:ListItem>
-                                    <asp:ListItem>Whoo's Awake in the Night</asp:ListItem>
-                                    <asp:ListItem>Wild Winter Worlds</asp:ListItem>
-                                    <asp:ListItem>Home Sweet Habitat</asp:ListItem>
-                                    <asp:ListItem>You Are What You Eat</asp:ListItem>
-                                    <asp:ListItem>Critters Don't Need Litter</asp:ListItem>
-                                    <asp:ListItem>For Goodness Snakes</asp:ListItem>
-                                    <asp:ListItem>Birds Of Prey</asp:ListItem>
-                                    <asp:ListItem>Treat to Release</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Owls</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Turtles</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Snakes</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Falcons</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Oppossums</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Special</asp:ListItem>
-                                </asp:DropDownList>
+                            
+                                <div class="col-sm-3">
+                                
+                                  <asp:DropDownList id="DropDownProgram" class="form-control" runat="server" DataSourceID="SqlDataSource8" DataTextField="ProgramName" DataValueField="ProgramName" >
                                     
-                            </div>
+                                    
+                                  </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select ProgramName from Category where ProgramType='Live'"></asp:SqlDataSource>
+                           </div>
+                                    
+                            
                         </div><br />
                         <div class="row">
                             <div class="col-sm-3">
@@ -424,25 +411,8 @@
                                 <label>Program Name</label>
                             </div>
                             <div class="col-sm-3">
-                                <asp:DropDownList ID="EditProgramName" class="form-control" runat="server">
-                                    <asp:ListItem>Display</asp:ListItem>
-                                    <asp:ListItem>Special Request</asp:ListItem>
-                                    <asp:ListItem>Open House</asp:ListItem>
-                                    <asp:ListItem>Tour</asp:ListItem>
-                                    <asp:ListItem>Whoo's Awake in the Night</asp:ListItem>
-                                    <asp:ListItem>Wild Winter Worlds</asp:ListItem>
-                                    <asp:ListItem>Home Sweet Habitat</asp:ListItem>
-                                    <asp:ListItem>You Are What You Eat</asp:ListItem>
-                                    <asp:ListItem>Critters Don't Need Litter</asp:ListItem>
-                                    <asp:ListItem>For Goodness Snakes</asp:ListItem>
-                                    <asp:ListItem>Birds Of Prey</asp:ListItem>
-                                    <asp:ListItem>Treat to Release</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Owls</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Turtles</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Snakes</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Falcons</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Oppossums</asp:ListItem>
-                                    <asp:ListItem>Classroom Visit: Special</asp:ListItem>
+                                <asp:DropDownList ID="EditProgramName" class="form-control" runat="server" DataSourceID="SqlDataSource8" DataTextField="ProgramName" DataValueField="ProgramName" >
+                                    
                                 </asp:DropDownList>
                                     
                             </div>

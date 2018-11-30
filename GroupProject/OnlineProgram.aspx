@@ -110,19 +110,10 @@
                                     <asp:Label ID="lblProgramName" runat="server" Text="Program Name: "></asp:Label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:DropDownList ID="DropDownOnline2" class="form-control" runat="server">
-                                            <asp:ListItem>Book Club</asp:ListItem>
-                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
-                                            <asp:ListItem>Hospital Cam</asp:ListItem>
-                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
-                                            <asp:ListItem>Special Guest</asp:ListItem>
-                                            <asp:ListItem>Special Event</asp:ListItem>
-                                            <asp:ListItem>Skype: Owls</asp:ListItem>
-                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
-                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
-                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
-                                      </asp:DropDownList>
-                                </div>
+                                  <asp:DropDownList id="DropDownOnline2" class="form-control" runat="server" DataSourceID="SqlDataSource8" DataTextField="ProgramName" DataValueField="ProgramName" >
+                                 </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="select ProgramName from Category where ProgramType='Online'"></asp:SqlDataSource>
+                           </div>
                             </div><br />
                             <div class="row">
                                 <div class="col-md-3">
@@ -268,17 +259,8 @@
                                         <asp:Label ID="lblProgName" runat="server" Text="Program Name"></asp:Label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:DropDownList ID="DropDownOnline" class="form-control" runat="server">
-                                            <asp:ListItem>Book Club</asp:ListItem>
-                                            <asp:ListItem>Cam in the Classroom</asp:ListItem>
-                                            <asp:ListItem>Hospital Cam</asp:ListItem>
-                                            <asp:ListItem>Wildlife Center Classroom Series</asp:ListItem>
-                                            <asp:ListItem>Special Guest</asp:ListItem>
-                                            <asp:ListItem>Special Event</asp:ListItem>
-                                            <asp:ListItem>Skype: Owls</asp:ListItem>
-                                            <asp:ListItem>Skype: Turtles</asp:ListItem>
-                                            <asp:ListItem>Skype: Opossums</asp:ListItem>
-                                            <asp:ListItem>Skype: Snakes</asp:ListItem>
+                                        <asp:DropDownList ID="DropDownOnline" class="form-control" runat="server" DataSourceID="SqlDataSource8" DataTextField="ProgramName" DataValueField="ProgramName" >
+                                            
                                         </asp:DropDownList>
                                     </div>
                                 </div><br />
