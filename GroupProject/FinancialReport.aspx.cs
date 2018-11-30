@@ -689,8 +689,6 @@ public partial class FinancialReport : System.Web.UI.Page
     // fully working :)
     protected void ExportExcelBTN(object sender, EventArgs e)
     {
-        try
-        {
             DataTable dt = new DataTable();
             String sqlDA = "Select Format(ProgDate, 'd') as ProgramDate, pay.InvoiceID, pay.OrganizationName, pay.Program, PaymentType, CheckNumber, Amount, pay.PaymentStatus" +
                 " FROM [dbo].[Program] prog inner join [dbo].[Payment] pay on prog.ProgramID = pay.ProgramID";
@@ -710,7 +708,7 @@ public partial class FinancialReport : System.Web.UI.Page
                 tab = "\t";
             }
             Response.Write("\n");
-            int i = 0;
+            int i;
             foreach (DataRow dr in dt.Rows)
             {
                 tab = "";
@@ -722,11 +720,6 @@ public partial class FinancialReport : System.Web.UI.Page
                 Response.Write("\n");
             }
             Response.End();
-        }
-        catch
-        {
-            Response.Write("<script>alert('Error exporting to excel. Please try again.')</script>");
-        }
     }
 
     protected void txtOrganization_SelectedIndexChanged(object sender, EventArgs e)
