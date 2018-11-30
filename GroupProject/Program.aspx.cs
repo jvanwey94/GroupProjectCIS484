@@ -298,8 +298,8 @@ public partial class Program : System.Web.UI.Page
             "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, ProgramName = @ProgramName, Comments = @Comments, ProgStatus = @ProgStatus, ProgTime = @ProgTime where ProgramID =@ProgramID";
 
 
-        try
-        {
+        //try
+        //{
 
             //update program
             SqlCommand insertProgramcmd = new SqlCommand(updateProgQuery, sc);
@@ -391,16 +391,20 @@ public partial class Program : System.Web.UI.Page
 
                     reader.Read();
 
-                    string insertEducatorProgramQuery = "INSERT INTO EducatorProgram VALUES (@EducatorID, (Select MAX(ProgramID) from dbo.Program), @EducatorName, @ProgramName)";
+                    String updateProgAnimalQuery = "Update [dbo].[EducatorProgram] set EducatorName = @EducatorName, ProgramName = @ProgramName " +
+                    "where ProgramID = @ProgramID and EducatorID = @EducatorID";
+
+                
 
                     int EducatorID = reader.GetInt32(0);
-                    SqlCommand insertEducatorProgramCmd = new SqlCommand(insertEducatorProgramQuery, sc);
-                    insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorID", EducatorID);
-                    insertEducatorProgramCmd.Parameters.AddWithValue("@EducatorName", CheckBoxList3.Items[i].Text);
-                    insertEducatorProgramCmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+                    SqlCommand EditEducator = new SqlCommand(updateProgAnimalQuery, sc);
+                    EditEducator.Parameters.AddWithValue("@EducatorID", EducatorID);
+                    EditEducator.Parameters.AddWithValue("@EducatorName", CheckBoxList3.Items[i].Text);
+                    EditEducator.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
+                    EditEducator.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
 
                     reader.Close();
-                    insertEducatorProgramCmd.ExecuteNonQuery();
+                    EditEducator.ExecuteNonQuery();
                 }
             }
 
@@ -443,11 +447,11 @@ public partial class Program : System.Web.UI.Page
                 }
             }
             gvRegularProgram.DataBind();
-        }
-        catch
-        {
-            Response.Write("<script>alert(' Invalid data type entered into database. Make sure data entered matches the corresponding fields. ')</script>");
-        }
+       // }
+        //catch
+        //{
+        //    Response.Write("<script>alert(' Invalid data type entered into database. Make sure data entered matches the corresponding fields. ')</script>");
+        //}
         sc.Close();
     }
 

@@ -100,7 +100,9 @@
                                <%--<asp:DropDownList ID="DropDownEducator" class="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="FirstName" DataValueField="EducatorID"></asp:DropDownList>              --%>
 
                                 <%--<asp:
-                                    List ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="AnimalName" DataValueField="AnimalID">
+                                    List ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="
+                                    
+                                    Name" DataValueField="AnimalID">
                                 </asp:CheckBoxList>--%>
                                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [AnimalID], [AnimalName] FROM [Animal] where AnimalStatus = 'Active'"></asp:SqlDataSource>
 
@@ -334,7 +336,8 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Add Program" />
                     
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"  aria-label="Close">Close</button>
+                   
                 </div>
             </div>
         </div>
@@ -565,6 +568,7 @@
                     <asp:Button ID="btnUpdateProgram" runat="server" onClick="UpdateProgram" class="btn btn-primary" Text="Update Program" />
                     <asp:Button ID="btnDeletProgram" class="btn btn-danger" runat="server" onClick="DeleteProgram" Text="Deactivate Program" />
                     <asp:Button ID="btnExit" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
+                    
                 </div>
             </div>
         </div>
@@ -647,4 +651,3 @@
         });
     </script>
 </asp:Content>
-
