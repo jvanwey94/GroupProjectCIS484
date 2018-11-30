@@ -53,7 +53,8 @@ public partial class OnlineProgram : System.Web.UI.Page
 
             opcmd.ExecuteNonQuery();
             pcmd.ExecuteNonQuery();
-            sc.Close();
+        GridViewOnlineProgram.DataBind();
+        sc.Close();
     }
         catch
         {
@@ -78,8 +79,8 @@ public partial class OnlineProgram : System.Web.UI.Page
             String payment = "Free";
 
 
-            String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
-                "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
+            String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme,organizationName) " +
+                "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme,@organizationName)";
             String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments,ProgStatus,ProgTime) " +
                 "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments, @ProgStatus, @ProgTime)";
 
@@ -110,6 +111,7 @@ public partial class OnlineProgram : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
             cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(txtEmail.Text)); //
             cmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(txtTheme.Text)); // 
+            cmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(txtOrganizationName.Text)); // 
 
             programcmd.ExecuteNonQuery();
             GridViewOnlineProgram.DataBind();
@@ -288,7 +290,7 @@ public partial class OnlineProgram : System.Web.UI.Page
             {
                 r.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
                 r.Attributes["onmouseout"] = "this.style.textDecoration='none';";
-                r.ToolTip = "Click to edit Animal";
+                r.ToolTip = "Click to edit Online program";
                 r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
                 r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridViewOnlineProgram, "Select$" + r.RowIndex, true);
