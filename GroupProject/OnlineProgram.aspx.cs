@@ -33,22 +33,22 @@ public partial class OnlineProgram : System.Web.UI.Page
                 "where ProgramID = @ProgramID";
             sc.Open();
             SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
-            opcmd.Parameters.AddWithValue("@Type", TypeTXT.Text);
-            opcmd.Parameters.AddWithValue("@Country", CountryTXT.Text);
-            opcmd.Parameters.AddWithValue("@State", StateTXT.Text);
-            opcmd.Parameters.AddWithValue("@Grade", GradeTXT.Text);
-            opcmd.Parameters.AddWithValue("@Email", EmailTXT.Text);
-            opcmd.Parameters.AddWithValue("@Theme", ThemeTXT.Text);
-            opcmd.Parameters.AddWithValue("@organizationName", OrgNameTXT.Text);
+            opcmd.Parameters.AddWithValue("@Type", HttpUtility.HtmlEncode(TypeTXT.Text));
+            opcmd.Parameters.AddWithValue("@Country", HttpUtility.HtmlEncode(CountryTXT.Text));
+            opcmd.Parameters.AddWithValue("@State", HttpUtility.HtmlEncode(StateTXT.Text));
+            opcmd.Parameters.AddWithValue("@Grade", HttpUtility.HtmlEncode(GradeTXT.Text));
+            opcmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(EmailTXT.Text));
+            opcmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(ThemeTXT.Text));
+            opcmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(OrgNameTXT.Text));
             opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
 
             SqlCommand pcmd = new SqlCommand(updatePQuery, sc);
             pcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text);
-            pcmd.Parameters.AddWithValue("@ProgDate", ProgDateTXT.Text);
-            pcmd.Parameters.AddWithValue("@NumberOfChildren", NumberOfChildrenTXT.Text);
-            pcmd.Parameters.AddWithValue("@NumberOfAdults", NumberOfAdultsTXT.Text);
-            pcmd.Parameters.AddWithValue("@Comments", CommentsTXT.Text);
+            pcmd.Parameters.AddWithValue("@ProgDate", HttpUtility.HtmlEncode(ProgDateTXT.Text));
+            pcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(NumberOfChildrenTXT.Text));
+            pcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(NumberOfAdultsTXT.Text));
+            pcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(CommentsTXT.Text));
             pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[12].Text));
 
             opcmd.ExecuteNonQuery();
@@ -63,41 +63,53 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void CreateProgram(object sender, EventArgs e)
     {
-        try
-        {
-
-
+         try
+         {
+        String stat = ""; 
+            if (CheckBox1.Checked)
+            {
+                stat = "Complete";
+            }
+            else
+            {
+                stat = "Incomplete";
+            }
             sc.Open();
             String payment = "Free";
 
 
             String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme) " +
                 "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme)";
-            String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments) " +
-                "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments)";
+            String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments,ProgStatus,ProgTime) " +
+                "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments, @ProgStatus, @ProgTime)";
 
 
 
             SqlCommand programcmd = new SqlCommand(insertProgramQuery, sc);
             //programcmd.Parameters.AddWithValue("@ProgMonth", TextBox12.Text);
-            programcmd.Parameters.AddWithValue("@ProgDate", txtDate.Text);
-            programcmd.Parameters.AddWithValue("@NumberOfChildren", txtNK.Text);
-            programcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOFAdults.Text);
+            programcmd.Parameters.AddWithValue("@ProgDate", HttpUtility.HtmlEncode(txtDate.Text));
+            programcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(txtNK.Text));
+            programcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(txtNumberOFAdults.Text));
             programcmd.Parameters.AddWithValue("@PaymentStatus", payment);
             programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
-            programcmd.Parameters.AddWithValue("@OrganizationName", txtOrganizationName.Text);
-            programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem);
-            programcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+            programcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(txtOrganizationName.Text));
+            programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem.Text);
+            programcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(txtComments.Text));
+            programcmd.Parameters.AddWithValue("@ProgStatus", stat);
+            programcmd.Parameters.AddWithValue("@ProgTime", "14:30:00");
+
+        
+            
 
 
             SqlCommand cmd = new SqlCommand(insertOnlineProgramQuery, sc);
-            cmd.Parameters.AddWithValue("@Type", txtType.Text); // add drop down list to describe types of viewing
-            cmd.Parameters.AddWithValue("@Country", txtCountry.Text); //
-            cmd.Parameters.AddWithValue("@State", txtState.Text); //
+            cmd.Parameters.AddWithValue("@Type", HttpUtility.HtmlEncode(txtType.Text)); // add drop down list to describe types of viewing
+            cmd.Parameters.AddWithValue("@Country", HttpUtility.HtmlEncode(txtCountry.Text)); //
+            cmd.Parameters.AddWithValue("@State", HttpUtility.HtmlEncode(txtState.Text)); //
             cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text); //
-            cmd.Parameters.AddWithValue("@Theme", txtTheme.Text); // 
+            cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(txtEmail.Text)); //
+            cmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(txtTheme.Text)); // 
 
             programcmd.ExecuteNonQuery();
             GridViewOnlineProgram.DataBind();
@@ -135,10 +147,10 @@ public partial class OnlineProgram : System.Web.UI.Page
                     String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
                     SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
                     cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
-                    cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem); //
+                    cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text); //
                     cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
-                    cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
-                    cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
+                    cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", HttpUtility.HtmlEncode(txtNumberOFAdults.Text));
+                    cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", HttpUtility.HtmlEncode(txtNK.Text));
 
 
                     myreader.Close();
@@ -162,7 +174,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         }
         catch
         {
-            Response.Write("<script>alert('Error creating online program. Make sure data entered matches the corresponding fields.')</script>");
+           // Response.Write("<script>alert('Error creating online program. Make sure data entered matches the corresponding fields.')</script>");
         }
     }
 
@@ -319,7 +331,7 @@ public partial class OnlineProgram : System.Web.UI.Page
 
         System.Data.SqlClient.SqlConnection connect = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
 
-        string callState = "select * from [dbo].[OnlineProgram] where OrganizationName = '" + txtOrganizationName.Text + "';";
+        string callState = "select * from [dbo].[OnlineProgram] where OrganizationName = '" + HttpUtility.HtmlEncode(txtOrganizationName.Text) + "';";
         SqlCommand cmdDatabase1 = new SqlCommand(callState, connect);
 
         SqlDataReader myreader;

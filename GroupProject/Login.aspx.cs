@@ -15,7 +15,7 @@ public partial class Login : System.Web.UI.Page
 
         if (IsPostBack)
         {
-            Session["User"] = txtUserName.Text;
+            Session["User"] = HttpUtility.HtmlEncode(txtUserName.Text);
         }
     }
 
@@ -38,7 +38,7 @@ public partial class Login : System.Web.UI.Page
         findPass.Connection = sc;
         // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
         findPass.CommandText = "select PasswordHash from Passwd where Username = @Username";
-        findPass.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+        findPass.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(txtUserName.Text)));
 
         SqlDataReader reader = findPass.ExecuteReader(); // create a reader
 
@@ -49,7 +49,7 @@ public partial class Login : System.Web.UI.Page
             reader.Read();
                 string storedHash = reader["PasswordHash"].ToString(); // store the database password into this variable
                 reader.Close();
-                if (PasswordHash.ValidatePassword(txtPassword.Text, storedHash)) // if the entered password matches what is stored, it will show success
+                if (PasswordHash.ValidatePassword(HttpUtility.HtmlEncode(txtPassword.Text), storedHash)) // if the entered password matches what is stored, it will show success
                 {
                    
                     //lblStatus.Text = "Success!";
@@ -58,14 +58,14 @@ public partial class Login : System.Web.UI.Page
                     txtPassword.Enabled = false;
                 string seepermission = "select Permission from [dbo].[User] where Username = @Username";
                 System.Data.SqlClient.SqlCommand empermission = new System.Data.SqlClient.SqlCommand(seepermission, sc);
-                empermission.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+                empermission.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(txtUserName.Text)));
                 string permission = Convert.ToString(empermission.ExecuteScalar());
                 if (permission == "Yes")
                 { 
 
                 string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
                     System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
-                    emlevel.Parameters.Add(new SqlParameter("@Username", txtUserName.Text));
+                    emlevel.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(txtUserName.Text)));
                       string level = Convert.ToString(emlevel.ExecuteScalar());
                       Session["userLevel"] = level;
                       if (level == "Full-time Staff")

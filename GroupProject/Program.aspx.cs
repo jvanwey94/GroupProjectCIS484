@@ -190,17 +190,17 @@ public partial class Program : System.Web.UI.Page
             sc.Open();
             //Inserting into Program table -- maybe have the trigger run to update ProgramID after inserting?
             SqlCommand insertProgramcmd = new SqlCommand(insertProgramQuery, sc);
-            insertProgramcmd.Parameters.AddWithValue("@ProgDate", txtAddDate.Text);
-            insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtAddChildren.Text);
-            insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtAddAdults.Text);
+            insertProgramcmd.Parameters.AddWithValue("@ProgDate", HttpUtility.HtmlEncode(txtAddDate.Text));
+            insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(txtAddChildren.Text));
+            insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(txtAddAdults.Text));
             insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", txtPaymentStatus.SelectedValue);
             insertProgramcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-            insertProgramcmd.Parameters.AddWithValue("@OrganizationName", txtAddOrg.Text);
+            insertProgramcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(txtAddOrg.Text));
             insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
-            insertProgramcmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+            insertProgramcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(txtComments.Text));
             insertProgramcmd.Parameters.AddWithValue("@ProgStatus", Status);
-            insertProgramcmd.Parameters.AddWithValue("@ProgTime", txtAddTime.Text);
+            insertProgramcmd.Parameters.AddWithValue("@ProgTime", HttpUtility.HtmlEncode(txtAddTime.Text));
 
             insertProgramcmd.ExecuteNonQuery();
             //Inserting into RegularProgram table
@@ -209,7 +209,7 @@ public partial class Program : System.Web.UI.Page
             insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", DropDownSite.SelectedValue);
             //insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", CheckBoxStatus.Checked);
             insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", Status);
-            insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", txtAddProgAddress.Text);
+            insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", HttpUtility.HtmlEncode(txtAddProgAddress.Text));
             //insertRegularProgramCmd.Parameters.AddWithValue("@City", DropDownCityEdit.SelectedItem.Text);
             //insertRegularProgramCmd.Parameters.AddWithValue("@County", DropDownCityEdit.SelectedItem.Text);
             insertRegularProgramCmd.Parameters.AddWithValue("@City", DropDownList2.SelectedItem.Text);
@@ -268,8 +268,8 @@ public partial class Program : System.Web.UI.Page
                     cmd2.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
                     cmd2.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue); //
                     cmd2.Parameters.AddWithValue("@AnimalName", CheckBoxList1.Items[i].Text); //
-                    cmd2.Parameters.AddWithValue("@NumberOfAdultsMet", txtAddChildren.Text);
-                    cmd2.Parameters.AddWithValue("@NumberOfChildrenMet", txtAddAdults.Text);
+                    cmd2.Parameters.AddWithValue("@NumberOfAdultsMet", HttpUtility.HtmlEncode(txtAddChildren.Text));
+                    cmd2.Parameters.AddWithValue("@NumberOfChildrenMet", HttpUtility.HtmlEncode(txtAddAdults.Text));
 
                     myreader.Close();
                     cmd2.ExecuteNonQuery();
@@ -307,9 +307,9 @@ public partial class Program : System.Web.UI.Page
             //insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", txtNumberOfChildren.Text);
             //insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", txtNumberOfAdults.Text);
             //insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", txtPaymentStatus.SelectedValue);
-            insertProgramcmd.Parameters.AddWithValue("@ProgDate", EditDate.Text);
-            insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", EditNBchildren.Text);
-            insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", EditNBAdults.Text);
+            insertProgramcmd.Parameters.AddWithValue("@ProgDate", HttpUtility.HtmlEncode(EditDate.Text));
+            insertProgramcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(EditNBchildren.Text));
+            insertProgramcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(EditNBAdults.Text));
             insertProgramcmd.Parameters.AddWithValue("@PaymentStatus", EditPaymentSatus.SelectedValue);
             insertProgramcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
             insertProgramcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
@@ -317,11 +317,11 @@ public partial class Program : System.Web.UI.Page
             //insertProgramcmd.Parameters.AddWithValue("@ProgramName", DropDownProgram.SelectedValue);
             //insertProgramcmd.Parameters.AddWithValue("@Comments", Commentstxt.Text);
             //insertProgramcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
-            insertProgramcmd.Parameters.AddWithValue("@OrganizationName", EditOrganizationName.Text);
+            insertProgramcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(EditOrganizationName.Text));
             insertProgramcmd.Parameters.AddWithValue("@ProgramName", EditProgramName.SelectedValue);
-            insertProgramcmd.Parameters.AddWithValue("@Comments", EditComment.Text);
-            insertProgramcmd.Parameters.AddWithValue("@ProgStatus", EditStatus.Text);
-            insertProgramcmd.Parameters.AddWithValue("@ProgTime", EditTime.Text);
+            insertProgramcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(EditComment.Text));
+            insertProgramcmd.Parameters.AddWithValue("@ProgStatus", HttpUtility.HtmlEncode(EditStatus.Text));
+            insertProgramcmd.Parameters.AddWithValue("@ProgTime", HttpUtility.HtmlEncode(EditTime.Text));
             insertProgramcmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
             insertProgramcmd.ExecuteNonQuery();
             //update regular program
@@ -345,7 +345,7 @@ public partial class Program : System.Web.UI.Page
             insertRegularProgramCmd.Parameters.AddWithValue("@ProgName", EditProgramName.SelectedValue);
             insertRegularProgramCmd.Parameters.AddWithValue("@SiteType", EditSiteType.SelectedValue);
             insertRegularProgramCmd.Parameters.AddWithValue("@ProgStatus", Status);
-            insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", EditProgramAddres.Text);
+            insertRegularProgramCmd.Parameters.AddWithValue("@ProgAddress", HttpUtility.HtmlEncode( EditProgramAddres.Text));
             insertRegularProgramCmd.Parameters.AddWithValue("@City", EditCity.SelectedItem.Text);
             insertRegularProgramCmd.Parameters.AddWithValue("@County", EditCounty.SelectedItem.Text);
             insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
@@ -438,8 +438,8 @@ public partial class Program : System.Web.UI.Page
                                                                          //insertRegularProgramCmd.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[13].Text));
                     cmd2.Parameters.AddWithValue("@ProgramName", EditProgramName.SelectedItem.Text); //
                     cmd2.Parameters.AddWithValue("@AnimalName", EditAnimal.Items[i].Text); //
-                    cmd2.Parameters.AddWithValue("@NumberOfAdultsMet", EditNBAdults.Text);
-                    cmd2.Parameters.AddWithValue("@NumberOfChildrenMet", EditNBchildren.Text);
+                    cmd2.Parameters.AddWithValue("@NumberOfAdultsMet", HttpUtility.HtmlEncode(EditNBAdults.Text));
+                    cmd2.Parameters.AddWithValue("@NumberOfChildrenMet", HttpUtility.HtmlEncode(EditNBchildren.Text));
                     cmd2.Parameters.AddWithValue("@ProgramID", int.Parse(gvRegularProgram.SelectedRow.Cells[15].Text));
                     myreader.Close();
                     cmd2.ExecuteNonQuery();

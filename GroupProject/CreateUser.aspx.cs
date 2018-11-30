@@ -48,26 +48,26 @@ public partial class CreateUser : System.Web.UI.Page
 
 
             // Validate password
-            String passwd = txtPassword.Text;
+            String passwd = HttpUtility.HtmlEncode(txtPassword.Text);
             Boolean response;
             response = ValidatePw(passwd);
             if (validationEmail == true /*&& validationPhone == true*/)
             {
-                if (txtPassword.Text == txtConfirm.Text)
+                if (txtPassword.Text == HttpUtility.HtmlEncode(txtConfirm.Text))
                 {
                     if (response == true)
                     {
                         // INSERT USER RECORD
                         createUser.CommandText = "insert into[dbo].[User] values(@FName, @LName,@Email,@Phone,@Gender,@JobLevel,@LastUpdatedBy,@LastUpdated,@userName,@Permission)";
-                        createUser.Parameters.Add(new SqlParameter("@FName", txtFirstName.Text));
-                        createUser.Parameters.Add(new SqlParameter("@LName", txtLastName.Text));
-                        createUser.Parameters.Add(new SqlParameter("@Email", txtEmail.Text));
-                        createUser.Parameters.Add(new SqlParameter("@Phone", txtPN.Text));
+                        createUser.Parameters.Add(new SqlParameter("@FName", HttpUtility.HtmlEncode(txtFirstName.Text)));
+                        createUser.Parameters.Add(new SqlParameter("@LName", HttpUtility.HtmlEncode(txtLastName.Text)));
+                        createUser.Parameters.Add(new SqlParameter("@Email", HttpUtility.HtmlEncode(txtEmail.Text)));
+                        createUser.Parameters.Add(new SqlParameter("@Phone", HttpUtility.HtmlEncode(txtPN.Text)));
                         createUser.Parameters.Add(new SqlParameter("@Gender", txtGender.SelectedItem.ToString()));
                         createUser.Parameters.Add(new SqlParameter("@JobLevel", txtJobLevel.SelectedItem.ToString()));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
                         createUser.Parameters.Add(new SqlParameter("@LastUpdated", DateTime.Now));
-                        createUser.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
+                        createUser.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(txtUsername.Text)));
                         createUser.Parameters.Add(new SqlParameter("@Permission", "No"));
 
 
@@ -79,7 +79,7 @@ public partial class CreateUser : System.Web.UI.Page
                         // INSERT PASSWORD RECORD AND CONNECT TO USER
                         setPass.CommandText = "insert into[dbo].[Passwd] values(@PersonID, @Username, @Password,@LastUpdatedBy,@LastUpdated)";
                         setPass.Parameters.Add(new SqlParameter("@PersonID", readcount));
-                        setPass.Parameters.Add(new SqlParameter("@Username", txtUsername.Text));
+                        setPass.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(txtUsername.Text)));
                         setPass.Parameters.Add(new SqlParameter("@Password", PasswordHash.HashPassword(txtPassword.Text))); // hash entered password
                         setPass.Parameters.Add(new SqlParameter("@LastUpdatedBy", "Kevin"));
                         setPass.Parameters.Add(new SqlParameter("@LastUpdated", DateTime.Now));

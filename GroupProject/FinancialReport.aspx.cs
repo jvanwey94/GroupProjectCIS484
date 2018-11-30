@@ -80,7 +80,7 @@ public partial class FinancialReport : System.Web.UI.Page
     void PopulateGridview()
     {
         connect.Open();
-        String getInvoiceNumber = txtSearch.Text;
+        String getInvoiceNumber = HttpUtility.HtmlEncode(txtSearch.Text);
         //lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
         String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
@@ -119,18 +119,18 @@ public partial class FinancialReport : System.Web.UI.Page
         try
         {
         Int32 InputCheckNumber;
-        String InputInvoiceNumber = txtInvoice.Text;
+        String InputInvoiceNumber = HttpUtility.HtmlEncode(txtInvoice.Text);
         if (txtCheckNumber.Text == String.Empty)
         {
             InputCheckNumber = 0;
         }
         else
         {
-            InputCheckNumber = Convert.ToInt32(txtCheckNumber.Text);
+            InputCheckNumber = Convert.ToInt32(HttpUtility.HtmlEncode(txtCheckNumber.Text));
         }
 
         //edit the datatype
-        Decimal InputAmount = Convert.ToDecimal(txtAmount.Text);
+        Decimal InputAmount = Convert.ToDecimal(HttpUtility.HtmlEncode(txtAmount.Text));
         Decimal InputPaymentCollect = 0;
         Decimal InputPaymenLeft = 0;
         //String InputLastUpdatedBy = "Kevin";
@@ -138,7 +138,7 @@ public partial class FinancialReport : System.Web.UI.Page
         String InputProgram = txtProgram.SelectedItem.ToString();
         String InputOrganization = txtOrganization.SelectedItem.ToString();
         String InputPaymentType = txtPaymentType.SelectedItem.ToString();
-        String InputStatus = lblIncomplete.Text;
+        String InputStatus = HttpUtility.HtmlEncode(lblIncomplete.Text);
 
 
         //check the validation for required field
@@ -243,8 +243,8 @@ public partial class FinancialReport : System.Web.UI.Page
             insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
             insert.Parameters.AddWithValue("@ProgramID", 23);
             insert.Parameters.AddWithValue("@OrganizationID", 18);
-            insert.Parameters.AddWithValue("@BillAddress", txtAddress.Text);
-            insert.Parameters.AddWithValue("@ContactPerson", txtContactPerson.Text);
+            insert.Parameters.AddWithValue("@BillAddress", HttpUtility.HtmlEncode(txtAddress.Text));
+            insert.Parameters.AddWithValue("@ContactPerson", HttpUtility.HtmlEncode(txtContactPerson.Text));
 
             insert.ExecuteNonQuery();
             //lblStatus.Text = "succseessful to add this payment to database!";

@@ -74,10 +74,10 @@ public partial class Users : System.Web.UI.Page
         string edit = "Update [dbo].[User] set FirstName = @FirstName, LastName = @LastName, PersonEmail = @Email, PersonPhone=@Phone, JobLevel = @JobLevel, Permission = @Permission where UserID = @user";
         sc.Open();
         SqlCommand edituser = new SqlCommand(edit, sc);
-        edituser.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-        edituser.Parameters.AddWithValue("@LastName", txtLastName.Text);
-        edituser.Parameters.AddWithValue("@Email", txtEmail.Text);
-        edituser.Parameters.AddWithValue("@Phone", txtPhone.Text);
+        edituser.Parameters.AddWithValue("@FirstName", HttpUtility.HtmlEncode(txtFirstName.Text));
+        edituser.Parameters.AddWithValue("@LastName", HttpUtility.HtmlEncode(txtLastName.Text));
+        edituser.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(txtEmail.Text));
+        edituser.Parameters.AddWithValue("@Phone", HttpUtility.HtmlEncode(txtPhone.Text));
         edituser.Parameters.AddWithValue("@JobLevel", txtJobLevel.SelectedItem.Text);
         edituser.Parameters.AddWithValue("@Permission", txtPermission.SelectedItem.Text);
         edituser.Parameters.AddWithValue("@user", UserGridView.SelectedRow.Cells[8].Text);

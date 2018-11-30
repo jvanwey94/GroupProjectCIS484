@@ -232,6 +232,14 @@
                                         <asp:TextBox ID="txtComments" class="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="ProgStatusLBL" runat="server" Text="Program Status"></asp:Label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="Complete"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 <br />

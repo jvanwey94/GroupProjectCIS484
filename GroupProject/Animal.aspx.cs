@@ -47,7 +47,7 @@ public partial class Animal : System.Web.UI.Page
 
             SqlCommand insertAnimalcmd = new SqlCommand(insertAnimalQuery, sc);
             insertAnimalcmd.Parameters.AddWithValue("@AnimalType", AddAnimalStatusDDL.SelectedItem.Text);
-            insertAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameTxt.Text);
+            insertAnimalcmd.Parameters.AddWithValue("@AnimalName", HttpUtility.HtmlEncode(AnimalNameTxt.Text));
             insertAnimalcmd.Parameters.AddWithValue("@AnimalStatus", "Inactive");
             insertAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", 0);
             insertAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", 0);
@@ -156,11 +156,11 @@ public partial class Animal : System.Web.UI.Page
             sc.Open();
             SqlCommand updateAnimalcmd = new SqlCommand(updateAnimalQuery, sc);
             updateAnimalcmd.Parameters.AddWithValue("@AnimalType", AnimalTypeDDL.SelectedItem.Text);
-            updateAnimalcmd.Parameters.AddWithValue("@AnimalName", AnimalNameEditTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@AnimalName", HttpUtility.HtmlEncode(AnimalNameEditTXT.Text));
             updateAnimalcmd.Parameters.AddWithValue("@AnimalStatus", AnimalStatusDDL.SelectedItem.Text);
-            updateAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", AnimalEditEventsTXT.Text);
-            updateAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", AnimalAdultsMetTXT.Text);
-            updateAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", AnimalKidsMetTXT.Text);
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfEvents", HttpUtility.HtmlEncode(AnimalEditEventsTXT.Text));
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfAdultsMet", HttpUtility.HtmlEncode(AnimalAdultsMetTXT.Text));
+            updateAnimalcmd.Parameters.AddWithValue("@NumberOfChildrenMet", HttpUtility.HtmlEncode(AnimalKidsMetTXT.Text));
             updateAnimalcmd.Parameters.AddWithValue("@AnimalID", GridView1.SelectedRow.Cells[7].Text);
 
             updateAnimalcmd.ExecuteNonQuery();
