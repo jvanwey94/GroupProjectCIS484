@@ -332,7 +332,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Create Program" />
+                    <asp:Button ID="btnCreateProgram" runat="server" onClick="CreateProgram" class="btn btn-primary" Text="Add Program" />
                     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>

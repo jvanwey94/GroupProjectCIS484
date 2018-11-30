@@ -118,6 +118,9 @@
                             
                         </li>
                 <li>
+                    <a href="Organization.aspx" id="A1" runat="server" ><img src="leaflet/images/notebook1.png" style="width:19px; height:19px; background:#1b5e20" /> Organization</a>
+                </li>
+                <li>
                     <a href="Users.aspx" id="EditUser" runat="server" ><i class="fa fa-user"></i> User</a>
                 </li>
                         <li>
