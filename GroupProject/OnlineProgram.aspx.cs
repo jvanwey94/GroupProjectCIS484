@@ -28,7 +28,7 @@ public partial class OnlineProgram : System.Web.UI.Page
         try
         {
             String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
-                "Email = @Email, Theme = @Theme, organizationName = @organizationName, where ProgramID = @ProgramID";
+                "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
             String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments " +
                 "where ProgramID = @ProgramID";
             sc.Open();
@@ -53,7 +53,8 @@ public partial class OnlineProgram : System.Web.UI.Page
 
             opcmd.ExecuteNonQuery();
             pcmd.ExecuteNonQuery();
-            sc.Close();
+        GridViewOnlineProgram.DataBind();
+        sc.Close();
     }
         catch
         {
