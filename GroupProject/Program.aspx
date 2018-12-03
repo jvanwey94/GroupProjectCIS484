@@ -54,6 +54,7 @@
                                     <button type="button" class="btn btn-primary" style="float:right;margin-bottom:1px;height:3.5%" data-toggle="modal" data-target="#addProgram"> Add Program </button>
                                 </div>
                             </div>
+
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -63,8 +64,25 @@
 
                         <!--Panel Heading-->
                         <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Start Date<asp:TextBox ID="txtStart" type="date" class="form-control" runat="server" Width="1456px"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-3">
+                                    End Date<asp:TextBox ID="txtEnd" type="date" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3" style="padding: 15px;">
+                                    <asp:Button ID="btnLoad" class="btn btn-primary" runat="server" OnClick="btnLoad_Click" Text="Load" />
+                                    <Button ID="btnUndo" class="btn btn-mini" Onclick="undo_click" runat="server"><i class="fa fa-undo" aria-hidden="true"></i></Button>
+                                </div>
+                            </div>
+
+                                    
+                               
+                                
                             
-                           
                             <asp:GridView ID="gvRegularProgram" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="OnSelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-info" RowStyle-ForeColor="#1259A9">
 
                                 <Columns>
@@ -91,7 +109,8 @@
                             </asp:GridView>
                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" 
                                    SelectCommand="select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID "></asp:SqlDataSource>
-                               <%--<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">--%> <%-- and P.ProgStatus = 'Active'--%>
+                               
+                            <%--<asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" ></asp:SqlDataSource>--%>
                             
                         </div>
                     </div>
@@ -604,7 +623,8 @@
             });
         });
     </script>
-<script type='text/javascript'>
+
+    <script type='text/javascript'>
         function openModal() {
             $('[id*=editProgram]').modal();
         }
