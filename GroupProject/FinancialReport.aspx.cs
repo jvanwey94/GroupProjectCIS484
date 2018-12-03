@@ -82,7 +82,7 @@ public partial class FinancialReport : System.Web.UI.Page
         connect.Open();
         String getInvoiceNumber = HttpUtility.HtmlEncode(txtSearch.Text);
         //lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
-        String sqlDA = "SELECT * FROM [dbo].[Payment]  where InvoiceID = @InvoiceID";
+        String sqlDA = "select InvoiceID, OrganizationName, Program, PaymentType, CheckNumber, convert(numeric(10,2), Amount) as PaymentAmount from [Payment] where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
         SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);

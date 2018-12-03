@@ -100,19 +100,19 @@ public partial class SiteMaster : MasterPage
 
         }
 
-        if (!Request.FilePath.Contains("Home"))
-        {
-            string strPreviousPage = "";
-            if (Request.UrlReferrer != null)
-            {
-                strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
-            }
-            if (strPreviousPage == "")
-            {
-                Response.Redirect("Login.aspx");
-            }
+        //if (!Request.FilePath.Contains("Home"))
+        //{
+        //    string strPreviousPage = "";
+        //    if (Request.UrlReferrer != null)
+        //    {
+        //        strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
+        //    }
+        //    if (strPreviousPage == "")
+        //    {
+        //        Response.Redirect("Login.aspx");
+        //    }
 
-        }
+        //}
     }
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
     {
