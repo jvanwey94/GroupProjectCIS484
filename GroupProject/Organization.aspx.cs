@@ -108,4 +108,14 @@ public partial class Organization : System.Web.UI.Page
     {
 
     }
+
+    protected void addSecondaryContact(object sender, EventArgs e)
+    {
+        secondContactLBL.Visible = true;
+        secondContactTXT.Visible = true;
+        secondPhoneLBL.Visible = true;
+        secondPhoneTXT.Visible = true;
+        secondEmailLBL.Visible = true;
+        secondEmailTXT.Visible = true;
+    }
 }
