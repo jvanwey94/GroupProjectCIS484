@@ -121,7 +121,10 @@
                     <a href="Organization.aspx" id="A1" runat="server" ><img src="leaflet/images/notebook1.png" style="width:19px; height:19px; background:#1b5e20" /> Organization</a>
                 </li>
                 <li>
-                    <a href="Category.aspx" id="A2" runat="server" ><img src="leaflet/images/list.png" style="width:19px; height:19px; background:#1b5e20" /> Category</a>
+                    <a href="Category.aspx" id="A2" runat="server" ><img src="leaflet/images/list.png" style="width:19px; height:19px; background:#00838f;" /> Category</a>
+                </li>
+                <li>
+                    <a href="EducatorPage.aspx" id="A3" runat="server" ><img src="leaflet/images/class.png" style="width:19px; height:19px; background:#00838f;" />Educator</a>
                 </li>
                 <li>
                     <a href="Users.aspx" id="EditUser" runat="server" ><i class="fa fa-user"></i> User</a>

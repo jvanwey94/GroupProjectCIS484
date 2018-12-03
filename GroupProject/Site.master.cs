@@ -85,12 +85,14 @@ public partial class SiteMaster : MasterPage
 
             if (level == "Full-time Staff")
                 dash.HRef = "Home.aspx";
-            else
+            else 
             {
                 dash.HRef = "Homelimited.aspx";
                 Fin1.Visible = false;
                 Fin2.Visible = false;
-
+                Animal.Visible = false;
+                Ani1.Visible = false;
+                Ani2.Visible = false; 
             }
         }
         catch (Exception)

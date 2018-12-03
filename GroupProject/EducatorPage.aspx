@@ -8,11 +8,11 @@
             display:none;
         }
         .panel-heading-custom {
-            background: #26a69a; 
+            background: #9e9d24; 
             color: #fff;
         }
         .modal-header {
-            background: #26a69a; 
+            background: #9e9d24; 
             color: #fff;
         }
 
@@ -21,7 +21,7 @@
         <div id="page-wrapper">
             <div class="row ">
                 <div class="col-lg-12">
-                    <h1 class="panel-heading panel-heading-custom">Manage Educators  <img src="leaflet/images/list.png" style="width:70px; height:70px;"/></h1> 
+                    <h1 class="panel-heading panel-heading-custom">Manage Educators  <img src="leaflet/images/class.png" style="width:70px; height:70px;"/></h1> 
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -35,7 +35,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <asp:GridView ID="EducatorGridView" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="EducatorGridView_SelectedIndexChanged" DataSourceID="SqlDataSource1" RowStyle-CssClass="alert-success">
+                            <asp:GridView ID="EducatorGridView" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="EducatorGridView_SelectedIndexChanged" DataSourceID="SqlDataSource1" BackColor="#E6EE9C" ForeColor="#5D4037">
                     <Columns>
                         
                        

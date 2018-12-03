@@ -6,6 +6,10 @@
             background: #f1f8e9; 
             color: #1b5e20;
         }
+
+        .organizationPanel {
+            background: #26a69a !important;
+        }
     </style>
     
 
@@ -90,6 +94,74 @@
                     </a>
                 </div>
                 
+                <div class="col-lg-4 col-md-6">
+                   <a href="Organization.aspx">
+                    <div class="panel panel-default" id="organizationPanel">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="leaflet/images/notebook.png" style="width:70px; height:70px;" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Manage Organization</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                            <div class="panel-footer">
+                                <span class="pull-left">Get Started</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                   <a href="Category.aspx">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="leaflet/images/list.png" style="width:70px; height:70px;" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Manage Category</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                            <div class="panel-footer">
+                                <span class="pull-left">Get Started</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                   <a href="Educator.aspx">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="leaflet/images/class.png" style="width:70px; height:70px;" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Manage Educator</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                            <div class="panel-footer">
+                                <span class="pull-left">Get Started</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                    </a>
+                </div>
             
             <!-- /.row -->
             <div class="row">
