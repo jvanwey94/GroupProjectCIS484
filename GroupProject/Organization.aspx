@@ -18,6 +18,10 @@
             background: #795548; 
             color: #fff;
         }
+        .bold
+        {
+            font-weight:bold;
+        }
 
     </style>
 
@@ -253,9 +257,34 @@
                                 <asp:TextBox ID="addEmail" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="secondContactLBL" runat="server" Visible="false" class="bold" Text="Secondary Contact Person"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="secondContactTXT" runat="server" Visible="false" class="form-control"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="secondPhoneLBL" runat="server" Visible="false" class="bold" Text="Secondary Contact Phone"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="secondPhoneTXT" runat="server" Visible="false" class="form-control"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="secondEmailLBL" runat="server" Visible="false" class="bold" Text="Secondary Contact Email"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="secondEmailTXT" runat="server" Visible="false" class="form-control"></asp:TextBox>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <asp:Button ID="AddContactButton" runat="server" class="btn btn-primary" OnClick="addSecondaryContact" OnClientClick="showModal(); return false" Text="Add Additional Contact" />
                     <asp:Button ID="Button1" runat="server" onClick="insertButton_Click" class="btn btn-primary" Text="Add Organization" />
                     <asp:Button ID="Button2" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
@@ -293,7 +322,12 @@
         function closeModal() {
             $('[id=AddOrganization]').modal('hide');
         }
-    </script>
+        </script>
+        <script type="text/javascript">
+            function refreshModal() {
+                modal.location.reload(true);
+            }
+        </script>
 
 </asp:Content>
 

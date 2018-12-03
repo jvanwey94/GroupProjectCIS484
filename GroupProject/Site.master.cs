@@ -69,19 +69,19 @@ public partial class SiteMaster : MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         try
-        { 
-        System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
-        sc.Open();
-        string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
-        System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
-        emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
+        {
+            System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
+            sc.Open();
+            string seelevel = "select JobLevel from [dbo].[User] where Username = @Username";
+            System.Data.SqlClient.SqlCommand emlevel = new System.Data.SqlClient.SqlCommand(seelevel, sc);
+            emlevel.Parameters.Add(new SqlParameter("@Username", Session["User"]));
             string user = Session["User"].ToString();
             if (user == "jiangmsn")
                 EditUser.Visible = true;
             else
                 EditUser.Visible = false;
 
-        string level = Convert.ToString(emlevel.ExecuteScalar());
+            string level = Convert.ToString(emlevel.ExecuteScalar());
 
             if (level == "Full-time Staff")
                 dash.HRef = "Home.aspx";
@@ -90,18 +90,30 @@ public partial class SiteMaster : MasterPage
                 dash.HRef = "Homelimited.aspx";
                 Fin1.Visible = false;
                 Fin2.Visible = false;
+
             }
         }
-        catch(Exception)
+        catch (Exception)
         {
-            
+
             Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
-            
+
         }
 
+        //if (!Request.FilePath.Contains("Home"))
+        //{
+        //    string strPreviousPage = "";
+        //    if (Request.UrlReferrer != null)
+        //    {
+        //        strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
+        //    }
+        //    if (strPreviousPage == "")
+        //    {
+        //        Response.Redirect("Login.aspx");
+        //    }
 
+        //}
     }
-
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
     {
         Context.GetOwinContext().Authentication.SignOut();

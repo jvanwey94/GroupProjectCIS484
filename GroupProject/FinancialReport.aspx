@@ -257,7 +257,7 @@ function Calculation(){
 
                     <asp:TemplateField HeaderText ="Amount">
                         <ItemTemplate>
-                            <asp:Label ID="lbl_Amount" Text ='<%# Eval("Amount") %>' runat ="server" />
+                            <asp:Label ID="lbl_Amount" Text ='<%# Eval("PaymentAmount") %>' runat ="server" />
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID ="GridAmount" Text ='<%#Eval("Amount") %>' runat ="server" Width="100"/>
@@ -329,7 +329,7 @@ function Calculation(){
     <asp:Button ID="ButtonExport" class="btn btn-lg btn-warning btn-block" runat="server" formNoValidate="formNoValidate" onClick="ExportExcelBTN" Text="Export to Excel" />
          <br /><%--OnSelectedIndexChanged="dbInvoice_SelectedIndexChanged"--%>
 
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WildLifeCenterConnectionString %>" SelectCommand="SELECT * FROM [Payment]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WildLifeCenterConnectionString %>" SelectCommand=" select InvoiceID, OrganizationName, Program, PaymentType, CheckNumber, convert(numeric(10,2), Amount) as PaymentAmount from [Payment]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>                       
         </div>
           
