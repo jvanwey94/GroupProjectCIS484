@@ -90,6 +90,8 @@ public partial class SiteMaster : MasterPage
                 dash.HRef = "Homelimited.aspx";
                 Fin1.Visible = false;
                 Fin2.Visible = false;
+                Animal.Visible = false;
+                Ani1.Visible = false;
             }
         }
         catch(Exception)

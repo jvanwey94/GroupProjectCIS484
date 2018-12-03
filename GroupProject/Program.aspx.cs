@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 public partial class Program : System.Web.UI.Page
 {
@@ -19,6 +20,9 @@ public partial class Program : System.Web.UI.Page
         {
             BindData();
         }
+        HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        HttpContext.Current.Response.Cache.SetNoServerCaching();
+        HttpContext.Current.Response.Cache.SetNoStore();
 
 
     }
@@ -603,4 +607,35 @@ public partial class Program : System.Web.UI.Page
     //    DropDownProgram.Visible = false;
 
     //}
+
+    protected void btnLoad_Click(object sender, EventArgs e)
+    {
+
+
+        sc.Open();
+        string sqlQuery = "select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID and P.ProgDate between '" + txtStart.Text + "' and '" + txtEnd.Text + "'";
+        //SqlCommand sqlComm = new SqlCommand(sqlQuery, sc);
+        //string query = "select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID and P.ProgDate between '" + txtStart.Text + "' and '" + txtEnd.Text + "'";
+        //SqlDataAdapter da = new SqlDataAdapter("select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID and P.ProgDate between '" + txtStart.Text + "' and '" + txtEnd.Text + "'", sc);
+        //SqlCommandBuilder cm = new SqlCommandBuilder(da);
+        //DataTable dt = new DataTable();
+        //da.Fill(dt);
+        //SqlDataReader sdr = sqlComm.ExecuteReader();
+
+        SqlDataSource1.SelectCommand = sqlQuery;
+        gvRegularProgram.DataBind();
+
+
+        sc.Close();
+        
+    }
+
+    protected void undo_Click(object sender, EventArgs e)
+    {
+        sc.Open();
+        string sqlQuery = "select P.Comments, E.EducatorName, P.OrganizationName, P.ProgDate, P.ProgTime, R.ProgName, R.SiteType, R.ProgStatus, R.ProgAddress, R.City, R.County, P.NumberOfChildren, P.NumberOfAdults, A.AnimalName, P.ProgramID, A.AnimalID, E.EducatorID, P.ProgStatus from dbo.ProgramAnimal A, dbo.Program P, dbo.RegularProgram R, dbo.EducatorProgram E where P.ProgramID = R.ProgramID and A.ProgramID = P.ProgramID and E.ProgramID=P.ProgramID";
+        SqlDataSource1.SelectCommand = sqlQuery;
+        gvRegularProgram.DataBind();
+        sc.Close();
+    }
 }

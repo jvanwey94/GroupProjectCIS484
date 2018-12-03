@@ -40,7 +40,7 @@
             
         }
         #wrapper {
-            background: #f1f8e9;
+            background: #1b5e20;
         }
 
     </style>
@@ -91,13 +91,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="Animal.aspx" id="Animal"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <a href="Animal.aspx" id="Animal" runat="server"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             	<li>
-                            		<a href="Animal.aspx" id="Ani1">Manage Animals</a>
+                            		<a href="Animal.aspx" id="Ani1" runat="server">Manage Animals</a>
                             	</li>
                                 <li>
-                                    <a href="TrackAnimal.aspx">Track Animals</a>
+                                    <a href="TrackAnimal.aspx" id="Ani2" runat="server">Track Animals</a>
                                 <li>
                             </ul>
                         </li>
