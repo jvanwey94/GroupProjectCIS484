@@ -20,9 +20,7 @@ public partial class Program : System.Web.UI.Page
         {
             BindData();
         }
-        HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        HttpContext.Current.Response.Cache.SetNoServerCaching();
-        HttpContext.Current.Response.Cache.SetNoStore();
+        
 
 
     }
