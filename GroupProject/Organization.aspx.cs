@@ -66,14 +66,16 @@ public partial class Organization : System.Web.UI.Page
         EditPerson.Text = OrgGridView.SelectedRow.Cells[5].Text;
         EditPhone.Text = OrgGridView.SelectedRow.Cells[6].Text;
         EditEmail.Text = OrgGridView.SelectedRow.Cells[7].Text;
-       
-        
     }
 
     protected void insertButton_Click(object sender, EventArgs e)
     {
         sc.Open();
+        int fk;
+        string getOrgFK = "Select OrganizationID from [dbo].[Organization] where OrganizationName = @OrganizationName";
         string addOrg = "insert into [dbo].[Organization] values (@OrgAddress, @OrgCity, @OrgCounty, @OrgCountry, @PrimaryContactPerson, @OrgPhone, @OrgEmail, @LastUpdatedBy, @LastUpdated, @OrganizationName, @Status)";
+        string addContact = "insert into [dbo].[ContactPerson] values(@ContactName, @ContactPhone, @ContactEmail, @OrganizationID)";
+
         SqlCommand addOrgcmd = new SqlCommand(addOrg, sc);
         addOrgcmd.Parameters.AddWithValue("@OrgAddress", HttpUtility.HtmlEncode(addOrgAddress.Text));
         addOrgcmd.Parameters.AddWithValue("@OrgCity", addCity.SelectedItem.Text);
@@ -85,9 +87,30 @@ public partial class Organization : System.Web.UI.Page
         addOrgcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
         addOrgcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today);
         addOrgcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(addOrgName.Text));
-        addOrgcmd.Parameters.AddWithValue("@Status", "Active");
-        
+        addOrgcmd.Parameters.AddWithValue("@Status", HttpUtility.HtmlEncode("Active"));
         addOrgcmd.ExecuteNonQuery();
+
+        SqlCommand fkcmd = new SqlCommand(getOrgFK, sc);
+        fkcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(addOrgName.Text));
+        SqlDataReader reader = fkcmd.ExecuteReader();
+        reader.Read();
+        fk = reader.GetInt32(0);
+        reader.Close();
+
+        SqlCommand addContact1cmd = new SqlCommand(addContact, sc);
+        addContact1cmd.Parameters.AddWithValue("@ContactName", HttpUtility.HtmlEncode(addPerson.Text));
+        addContact1cmd.Parameters.AddWithValue("@ContactPhone", HttpUtility.HtmlEncode(addPhone.Text));
+        addContact1cmd.Parameters.AddWithValue("@ContactEmail", HttpUtility.HtmlEncode(addEmail.Text));
+        addContact1cmd.Parameters.AddWithValue("@OrganizationID", HttpUtility.HtmlEncode(fk));
+        addContact1cmd.ExecuteNonQuery();
+
+        SqlCommand addContact2cmd = new SqlCommand(addContact, sc);
+        addContact2cmd.Parameters.AddWithValue("@ContactName", HttpUtility.HtmlEncode(secondContactTXT.Text));
+        addContact2cmd.Parameters.AddWithValue("@ContactPhone", HttpUtility.HtmlEncode(secondPhoneTXT.Text));
+        addContact2cmd.Parameters.AddWithValue("@ContactEmail", HttpUtility.HtmlEncode(secondEmailTXT.Text));
+        addContact2cmd.Parameters.AddWithValue("@OrganizationID", HttpUtility.HtmlEncode(fk));
+        addContact2cmd.ExecuteNonQuery();
+
         OrgGridView.DataBind();
         sc.Close();
     }
