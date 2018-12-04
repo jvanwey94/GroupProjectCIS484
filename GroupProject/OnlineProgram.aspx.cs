@@ -13,6 +13,11 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User"] == null)
+        {
+
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+        }
 
         if (!IsPostBack)
         {
