@@ -193,58 +193,58 @@ public partial class FinancialReport : System.Web.UI.Page
 
         //}
         myreader.Close();
-        
-        
-        //@PaymentCollect,@PaymentLeft,,@Amount
-        //@OrganizationName" +
-        //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
-        //insert data to Bird table if text box is qualified
-        if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
-        {
-            //Insert into programAnimal table
-            string AnimalNameString = "";
-            
-                    
 
 
-            //        string getOrganizationID = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.Text + "';";
-            //        string getProgramID = "select * from [dbo].[Program] where ProgramName = '" + txtProgram.SelectedItem.Text + "';";
-            //        SqlCommand cmdDatabase3 = new SqlCommand(getOrganizationID, connect);
-            ////SqlCommand cmdDatabase4 = new SqlCommand(getProgramID, connect);
-            ////SqlDataReader myreader3;
-            //SqlDataReader myreader4;
+            //@PaymentCollect,@PaymentLeft,,@Amount
+            //@OrganizationName" +
+            //    "@Program,@PaymentType,@CheckNumber,@PaymentStatus," +
+            //insert data to Bird table if text box is qualified
+            if ((txtInvoice.Text != "") && (txtAmount.Text != string.Empty))
+            {
+                //Insert into programAnimal table
+                string AnimalNameString = "";
 
-            //myreader3 = cmdDatabase3.ExecuteReader();
-            
-            
-            //myreader3.Read();
-            //int organizationID = myreader3.GetInt32(0);
-            //myreader3.Close();
 
-            
-            //myreader4 = cmdDatabase4.ExecuteReader();
-            //myreader4.Read();
 
-            //int programID = myreader3.GetInt32(0);
-            
-            //myreader4.Close();
 
-           
-            
-            //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
-            String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
-            System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
-            insert.Connection = connect;
-            insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
-            insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
-            insert.Parameters.AddWithValue("@Program", InputProgram);
-            insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
-            insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
-            insert.Parameters.AddWithValue("@Amount", InputAmount);
-            //insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
-            //insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
-            insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
-            insert.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
+                //        string getOrganizationID = "select * from [dbo].[Organization] where OrganizationName = '" + txtOrganization.SelectedItem.Text + "';";
+                //        string getProgramID = "select * from [dbo].[Program] where ProgramName = '" + txtProgram.SelectedItem.Text + "';";
+                //        SqlCommand cmdDatabase3 = new SqlCommand(getOrganizationID, connect);
+                ////SqlCommand cmdDatabase4 = new SqlCommand(getProgramID, connect);
+                ////SqlDataReader myreader3;
+                //SqlDataReader myreader4;
+
+                //myreader3 = cmdDatabase3.ExecuteReader();
+
+
+                //myreader3.Read();
+                //int organizationID = myreader3.GetInt32(0);
+                //myreader3.Close();
+
+
+                //myreader4 = cmdDatabase4.ExecuteReader();
+                //myreader4.Read();
+
+                //int programID = myreader3.GetInt32(0);
+
+                //myreader4.Close();
+
+
+
+                //BirdClass bird = new BirdClass(InputBirdName, InputBirdType, InputLastUpdatedBy, InputLastUpdated, InputBirdAct);
+                String query1 = "insert into [dbo].[Payment] values (@InvoiceID,@OrganizationName,@Program,@PaymentType,@CheckNumber,@Amount,@PaymentStatus,@LastUpdatedBy,@LastUpdated,@ProgramID,@OrganizationID,@BillAddress,@ContactPerson)";
+                System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query1, connect);
+                insert.Connection = connect;
+                insert.Parameters.AddWithValue("@InvoiceID", InputInvoiceNumber);
+                insert.Parameters.AddWithValue("@OrganizationName", InputOrganization);
+                insert.Parameters.AddWithValue("@Program", InputProgram);
+                insert.Parameters.AddWithValue("@PaymentType", InputPaymentType);
+                insert.Parameters.AddWithValue("@CheckNumber", InputCheckNumber);
+                insert.Parameters.AddWithValue("@Amount", InputAmount);
+                //insert.Parameters.AddWithValue("@PaymentCollect", InputPaymentCollect);
+                //insert.Parameters.AddWithValue("@PaymentLeft", InputPaymenLeft);
+                insert.Parameters.AddWithValue("@PaymentStatus", InputStatus);
+                insert.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
             insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now.Date);
             insert.Parameters.AddWithValue("@ProgramID", 23);
             insert.Parameters.AddWithValue("@OrganizationID", 18);
@@ -322,7 +322,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
         connect.Open();
         String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
-            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount where InvoiceID=@InvoiceID";
+            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where InvoiceID=@InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
         insert.Connection = connect;
         insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as System.Web.UI.WebControls.TextBox).Text.Trim());
@@ -336,6 +336,10 @@ public partial class FinancialReport : System.Web.UI.Page
         insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
         insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as System.Web.UI.WebControls.TextBox).Text.Trim());
+
+        insert.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+
+        insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
 
         //insert.Parameters.AddWithValue("@PaymentCollect", (dbInvoice.Rows[e.RowIndex].FindControl("GridPaymentCollect") as TextBox).Text.Trim());
 
