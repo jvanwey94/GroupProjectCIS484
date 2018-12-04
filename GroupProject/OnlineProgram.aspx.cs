@@ -13,6 +13,11 @@ public partial class OnlineProgram : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User"] == null)
+        {
+
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+        }
 
         if (!IsPostBack)
         {
@@ -28,9 +33,9 @@ public partial class OnlineProgram : System.Web.UI.Page
         try
         {
             String updateOPQuery = "Update [dbo].[OnlineProgram] set Type = @Type, Country = @Country, State = @State, Grade = @Grade, " +
-                "Email = @Email, Theme = @Theme, organizationName = @organizationName where ProgramID = @ProgramID";
-            String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments " +
-                "where ProgramID = @ProgramID";
+                "Email = @Email, Theme = @Theme, organizationName = @organizationName, LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where ProgramID = @ProgramID";
+            String updatePQuery = "Update [dbo].[Program] set ProgramName = @ProgramName, ProgDate = @ProgDate, NumberOfChildren = @NumberOfChildren, NumberOfAdults = @NumberOfAdults, Comments = @Comments, " +
+                "LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where ProgramID = @ProgramID";
             sc.Open();
             SqlCommand opcmd = new SqlCommand(updateOPQuery, sc);
             opcmd.Parameters.AddWithValue("@Type", HttpUtility.HtmlEncode(TypeTXT.Text));
@@ -40,6 +45,8 @@ public partial class OnlineProgram : System.Web.UI.Page
             opcmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(EmailTXT.Text));
             opcmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(ThemeTXT.Text));
             opcmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(OrgNameTXT.Text));
+            opcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+            opcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
             opcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
 
 
@@ -49,6 +56,8 @@ public partial class OnlineProgram : System.Web.UI.Page
             pcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(NumberOfChildrenTXT.Text));
             pcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(NumberOfAdultsTXT.Text));
             pcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(CommentsTXT.Text));
+            pcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+            pcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
             pcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
 
             opcmd.ExecuteNonQuery();
@@ -80,7 +89,7 @@ public partial class OnlineProgram : System.Web.UI.Page
 
 
             String insertOnlineProgramQuery = "INSERT INTO OnlineProgram (ProgramID,Type,Country,State,Grade,Email,Theme,organizationName) " +
-                "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme,@organizationName)";
+                "VALUES ((Select MAX(ProgramID) from dbo.Program), @Type, @Country, @State, @Grade, @Email, @Theme,@organizationName,@LastUpdatedBy, @LastUpdated)";
             String insertProgramQuery = "Insert into Program (ProgDate, NumberOfChildren, NumberOfAdults, PaymentStatus, LastUpdatedBy, LastUpdated, OrganizationName,ProgramName,Comments,ProgStatus,ProgTime) " +
                 "VALUES (@ProgDate, @NumberOfChildren, @NumberOfAdults, @PaymentStatus, @LastUpdatedBy, @LastUpdated, @OrganizationName, @ProgramName, @Comments, @ProgStatus, @ProgTime)";
 
@@ -92,8 +101,8 @@ public partial class OnlineProgram : System.Web.UI.Page
             programcmd.Parameters.AddWithValue("@NumberOfChildren", HttpUtility.HtmlEncode(txtNK.Text));
             programcmd.Parameters.AddWithValue("@NumberOfAdults", HttpUtility.HtmlEncode(txtNumberOFAdults.Text));
             programcmd.Parameters.AddWithValue("@PaymentStatus", payment);
-            programcmd.Parameters.AddWithValue("@LastUpdatedBy", "Kevin");
-            programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today.ToString());
+            programcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+            programcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
             programcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(txtOrganizationName.Text));
             programcmd.Parameters.AddWithValue("@ProgramName", DropDownOnline2.SelectedItem.Text);
             programcmd.Parameters.AddWithValue("@Comments", HttpUtility.HtmlEncode(txtComments.Text));
@@ -111,7 +120,9 @@ public partial class OnlineProgram : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Grade", DropDownList1.SelectedValue.ToString()); //
             cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(txtEmail.Text)); //
             cmd.Parameters.AddWithValue("@Theme", HttpUtility.HtmlEncode(txtTheme.Text)); // 
-            cmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(txtOrganizationName.Text)); // 
+            cmd.Parameters.AddWithValue("@organizationName", HttpUtility.HtmlEncode(txtOrganizationName.Text)); //
+            cmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+            cmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
 
             programcmd.ExecuteNonQuery();
             GridViewOnlineProgram.DataBind();
@@ -146,14 +157,15 @@ public partial class OnlineProgram : System.Web.UI.Page
 
 
                     int animalID = myreader.GetInt32(0);
-                    String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet)";
+                    String insertProAnimalQuery = "INSERT INTO ProgramAnimal VALUES ((Select MAX(ProgramID) from dbo.Program), @AnimalID,@ProgramName,@AnimalName,@NumberOfAdultsMet,@NumberOfChildrenMet,@LastUpdatedBy,@LastUpdated)";
                     SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
                     cmd1.Parameters.AddWithValue("@AnimalID", animalID); // add drop down list to describe types of viewing
                     cmd1.Parameters.AddWithValue("@ProgramName", DropDownOnline.SelectedItem.Text); //
                     cmd1.Parameters.AddWithValue("@AnimalName", AnimalNameString); //
                     cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", HttpUtility.HtmlEncode(txtNumberOFAdults.Text));
                     cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", HttpUtility.HtmlEncode(txtNK.Text));
-
+                    cmd1.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+                    cmd1.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
 
                     myreader.Close();
                     cmd1.ExecuteNonQuery();
@@ -162,15 +174,6 @@ public partial class OnlineProgram : System.Web.UI.Page
 
                 }
             }
-
-            //SqlCommand cmd1 = new SqlCommand(insertProAnimalQuery, sc);
-            //cmd1.Parameters.AddWithValue("@AnimalID", "1"); // add drop down list to describe types of viewing
-            //cmd1.Parameters.AddWithValue("@ProgramName", txtProgramName.Text); //
-            //cmd1.Parameters.AddWithValue("@AnimalName", finalAnimalNameString); //
-            //cmd1.Parameters.AddWithValue("@NumberOfAdultsMet", txtNumberOFAdults.Text);
-            //cmd1.Parameters.AddWithValue("@NumberOfChildrenMet", txtNK.Text);
-
-
 
             sc.Close();
         }
@@ -186,11 +189,13 @@ public partial class OnlineProgram : System.Web.UI.Page
         {
 
 
-            String deactivateQuery = "Update Program set ProgStatus = 'Inactive' where ProgramID = @ProgramID";
+            String deactivateQuery = "Update Program set ProgStatus = 'Inactive', LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where ProgramID = @ProgramID";
 
             sc.Open();
             SqlCommand delcmd = new SqlCommand(deactivateQuery, sc);
             delcmd.Parameters.AddWithValue("@ProgramID", int.Parse(GridViewOnlineProgram.SelectedRow.Cells[13].Text));
+            delcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+            delcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
             delcmd.ExecuteNonQuery();
             sc.Close();
         }

@@ -40,7 +40,7 @@
             
         }
         #wrapper {
-            background: #1b5e20;
+            background: #f1f8e9;
         }
 
     </style>
@@ -92,13 +92,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="Animal.aspx" id="Animal" runat="server"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
+                            <a href="Animal.aspx" id="Animal"><i class="fa fa-paw fa-fw"></i> Animals<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             	<li>
-                            		<a href="Animal.aspx" id="Ani1" runat="server">Manage Animals</a>
+                            		<a href="Animal.aspx" id="Ani1">Manage Animals</a>
                             	</li>
                                 <li>
-                                    <a href="TrackAnimal.aspx" id="Ani2" runat="server">Track Animals</a>
+                                    <a href="TrackAnimal.aspx">Track Animals</a>
                                 <li>
                             </ul>
                         </li>
@@ -122,17 +122,17 @@
                     <a href="Organization.aspx" id="A1" runat="server" ><img src="leaflet/images/notebook1.png" style="width:19px; height:19px; background:#1b5e20" /> Organization</a>
                 </li>
                 <li>
-                    <a href="Category.aspx" id="A2" runat="server" ><img src="leaflet/images/list.png" style="width:19px; height:19px; background:#00838f;" /> Category</a>
-                </li>
-                <li>
-                    <a href="EducatorPage.aspx" id="A3" runat="server" ><img src="leaflet/images/class.png" style="width:19px; height:19px; background:#00838f;" />Educator</a>
+                    <a href="Category.aspx" id="A2" runat="server" ><img src="leaflet/images/list.png" style="width:19px; height:19px; background:#1b5e20" /> Category</a>
                 </li>
                 <li>
                     <a href="Users.aspx" id="EditUser" runat="server" ><i class="fa fa-user"></i> User</a>
                 </li>
                         <li>
-                            <a href="Login.aspx" runat="server"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
+                           <asp:Button OnClick="btnLogout_Click" ID="logoout" Text="Log Out" runat="server" />
                         </li>
+
+              <%--  <a href="Login.aspx" runat="server" onClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
+                        </li>--%>
                 
                     </ul>
           

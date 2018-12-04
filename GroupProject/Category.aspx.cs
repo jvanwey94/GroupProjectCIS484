@@ -13,6 +13,11 @@ public partial class Category : System.Web.UI.Page
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User"] == null)
+        {
+
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+        }
         if (!IsPostBack)
         {
             BindData();
@@ -58,10 +63,12 @@ public partial class Category : System.Web.UI.Page
     protected void insertButton_Click(object sender, EventArgs e)
     {
         sc.Open();
-        string insertcat = "insert into [dbo].[Category] values (@ProgramType, @ProgramName)";
+        string insertcat = "insert into [dbo].[Category] values (@ProgramType, @ProgramName, @LastUpdatedBy, @LastUpdated)";
         SqlCommand insertCatcmd = new SqlCommand(insertcat, sc);
         insertCatcmd.Parameters.AddWithValue("@ProgramType", addType.SelectedItem.Value);
         insertCatcmd.Parameters.AddWithValue("@ProgramName", addCategoryName.Text);
+        insertCatcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+        insertCatcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
 
         insertCatcmd.ExecuteNonQuery();
         CategoryGridView.DataBind();
@@ -71,11 +78,13 @@ public partial class Category : System.Web.UI.Page
     protected void EditButton_Click(object sender, EventArgs e)
     {
         sc.Open();
-        string editCat = "Update [dbo].[Category] set ProgramType = @ProgramType, ProgramName = @ProgramName where CategoryID = @CategoryID";
+        string editCat = "Update [dbo].[Category] set ProgramType = @ProgramType, ProgramName = @ProgramName, LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where CategoryID = @CategoryID";
         SqlCommand editCatcmd = new SqlCommand(editCat, sc);
         editCatcmd.Parameters.AddWithValue("@ProgramType", EditType.SelectedItem.Value);
         editCatcmd.Parameters.AddWithValue("@ProgramName", EditName.Text);
         editCatcmd.Parameters.AddWithValue("@CategoryID", CategoryGridView.SelectedRow.Cells[2].Text);
+        editCatcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+        editCatcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
 
         editCatcmd.ExecuteNonQuery();
         CategoryGridView.DataBind();

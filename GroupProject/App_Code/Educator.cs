@@ -9,13 +9,16 @@ public class Educator
     string LastName;
     string email;
     string phone;
+    string Status;
 
-    public Educator(string fn, string ls, string em, string ph)
+    public Educator(string fn, string ls, string em, string ph, string status)
     {
         setFN(fn);
         setLN(ls);
         setEM(em);
         setPH(ph);
+        setStatus(status);
+        
 
     }
 
@@ -35,6 +38,10 @@ public class Educator
     {
         this.phone = ph;
     }
+    public void setStatus(string status)
+    {
+        this.Status = status;
+    }
     public string getFN()
     {
         return this.FirstName;
@@ -50,5 +57,9 @@ public class Educator
     public string getPH()
     {
         return this.phone;
+    }
+    public string getStatus()
+    {
+        return this.Status;
     }
 }
