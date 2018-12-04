@@ -23,8 +23,12 @@ public partial class Animal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User"] == null)
+        {
 
-        if(!IsPostBack)
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+        }
+        if (!IsPostBack)
         {
             populateAnimalStatus(AnimalStatusDDL);
             populateAnimals(DeleteDDL);

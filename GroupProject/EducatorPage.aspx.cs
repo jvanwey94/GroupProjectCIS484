@@ -14,6 +14,11 @@ public partial class EducatorPage : System.Web.UI.Page
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["AWSConnection"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User"] == null)
+        {
+
+            Response.Write("<script>alert('Please login first!'); window.location='Login.aspx';</script>");
+        }
         if (!IsPostBack)
         {
             BindData();

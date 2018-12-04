@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                   <a href="Educator.aspx">
+                   <a href="EducatorPage.aspx">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
