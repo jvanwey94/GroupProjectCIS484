@@ -68,7 +68,7 @@ public partial class Organization : System.Web.UI.Page
     protected void insertButton_Click(object sender, EventArgs e)
     {
         sc.Open();
-        string addOrg = "insert into [dbo].[Organization] values (@OrgAddress, @OrgCity, @OrgCounty, @OrgCountry, @PrimaryContactPerson, @OrgPhone, @OrgEmail, @LastUpdatedBy, @LastUpdated, @OrganizationName)";
+        string addOrg = "insert into [dbo].[Organization] values (@OrgAddress, @OrgCity, @OrgCounty, @OrgCountry, @PrimaryContactPerson, @OrgPhone, @OrgEmail, @LastUpdatedBy, @LastUpdated, @OrganizationName, @Status)";
         SqlCommand addOrgcmd = new SqlCommand(addOrg, sc);
         addOrgcmd.Parameters.AddWithValue("@OrgAddress", HttpUtility.HtmlEncode(addOrgAddress.Text));
         addOrgcmd.Parameters.AddWithValue("@OrgCity", addCity.SelectedItem.Text);
@@ -77,9 +77,10 @@ public partial class Organization : System.Web.UI.Page
         addOrgcmd.Parameters.AddWithValue("@PrimaryContactPerson", HttpUtility.HtmlEncode(addPerson.Text));
         addOrgcmd.Parameters.AddWithValue("@OrgPhone", HttpUtility.HtmlEncode(addPhone.Text));
         addOrgcmd.Parameters.AddWithValue("@OrgEmail", HttpUtility.HtmlEncode(addEmail.Text));
-        addOrgcmd.Parameters.AddWithValue("@LastUpdatedBy", "Judy");
+        addOrgcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
         addOrgcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Today);
         addOrgcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(addOrgName.Text));
+        addOrgcmd.Parameters.AddWithValue("@Status", "Active");
         
         addOrgcmd.ExecuteNonQuery();
         OrgGridView.DataBind();
@@ -89,7 +90,7 @@ public partial class Organization : System.Web.UI.Page
     protected void UpdateButton_Click(object sender, EventArgs e)
     {
         sc.Open();
-        string updateOrg = "Update [dbo].[Organization] set OrgAddress = @OrgAddress, OrgCity = @OrgCity, OrgCounty = @OrgCounty, PrimaryContactPerson =@ContactPerson, OrgPhone=@OrgPhone, OrgEmail=@OrgEmail, OrganizationName = @OrganizationName where OrganizationID=@OrganizationID";
+        string updateOrg = "Update [dbo].[Organization] set OrgAddress = @OrgAddress, OrgCity = @OrgCity, OrgCounty = @OrgCounty, PrimaryContactPerson =@ContactPerson, OrgPhone=@OrgPhone, OrgEmail=@OrgEmail, LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated, OrganizationName = @OrganizationName, Status = @Status where OrganizationID=@OrganizationID";
         SqlCommand updateOrgcmd = new SqlCommand(updateOrg, sc);
         updateOrgcmd.Parameters.AddWithValue("@OrgAddress", HttpUtility.HtmlEncode(EditOrgAddress.Text));
         updateOrgcmd.Parameters.AddWithValue("@OrgCity", EditProgramCity.SelectedItem.Text);
@@ -97,8 +98,11 @@ public partial class Organization : System.Web.UI.Page
         updateOrgcmd.Parameters.AddWithValue("@ContactPerson", HttpUtility.HtmlEncode(EditPerson.Text));
         updateOrgcmd.Parameters.AddWithValue("@OrgPhone", HttpUtility.HtmlEncode(EditPhone.Text));
         updateOrgcmd.Parameters.AddWithValue("@OrgEmail", HttpUtility.HtmlEncode(EditEmail.Text));
+        updateOrgcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+        updateOrgcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
         updateOrgcmd.Parameters.AddWithValue("@OrganizationName", HttpUtility.HtmlEncode(EditOrgName.Text));
-        updateOrgcmd.Parameters.AddWithValue("@OrganizationID", OrgGridView.SelectedRow.Cells[8].Text);
+        updateOrgcmd.Parameters.AddWithValue("@OrganizationID", OrgGridView.SelectedRow.Cells[9].Text);
+        updateOrgcmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedItem.Value);
         updateOrgcmd.ExecuteNonQuery();
         OrgGridView.DataBind();
         sc.Close();
@@ -106,7 +110,15 @@ public partial class Organization : System.Web.UI.Page
 
     protected void DeleteButtonModal_Click(object sender, EventArgs e)
     {
-
+        sc.Open();
+        string deactivateOrg = "Update Organization set Status = 'Inactive', LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where OrganizationID = @OrganizationID";
+        SqlCommand deactivatecmd = new SqlCommand(deactivateOrg, sc);
+        deactivatecmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+        deactivatecmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+        deactivatecmd.Parameters.AddWithValue("@OrganizationID", OrgGridView.SelectedRow.Cells[9].Text);
+        deactivatecmd.ExecuteNonQuery();
+        OrgGridView.DataBind();
+        sc.Close();
     }
 
     protected void addSecondaryContact(object sender, EventArgs e)

@@ -18,7 +18,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div id="dashboardPanels">
+
               <a href="Program.aspx">
                 
                 <div class="col-lg-4 col-md-6">
@@ -40,18 +40,18 @@
                                 <div class="clearfix"></div>
                             </div>
                     </div>
+                    </div>
                     </a>
-                </div>
-                <%--<div class="col-lg-4 col-md-6" >
-                   <a href="Animal.aspx">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
+            <div class="col-lg-4 col-md-6">
+                   <a href="Organization.aspx">
+                    <div class="panel panel-default">
+                        <div class="panel-heading custom_class" style="background-color:#795548; color:#fff;">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <img src="leaflet/images/icon.png" style="width:70px; height:70px;" />
+                                    <img src="leaflet/images/notebook.png" style="width:70px; height:70px;" />
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div>Manage Animals</div>
+                                    <div>Manage Organization</div>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,33 @@
                             </div>
                     </div>
                     </a>
-                </div>--%>
-               </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                   <a href="Category.aspx">
+                    <div class="panel panel-green">
+                        <div class="panel-heading custom_class" style="background-color:#26a69a; color:#fff;">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="leaflet/images/list.png" style="width:70px; height:70px;" />
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Manage Category</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                            <div class="panel-footer">
+                                <span class="pull-left">Get Started</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                    </a>
+                </div>
+                
+                
+            
 
             <!-- /.row -->
             <div class="row">
@@ -89,7 +114,7 @@
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
+
     <!-- /#wrapper -->
 
     <!-- jQuery -->

@@ -71,7 +71,7 @@ public partial class Users : System.Web.UI.Page
     protected void editUserButton_Click(object sender, EventArgs e)
     {
 
-        string edit = "Update [dbo].[User] set FirstName = @FirstName, LastName = @LastName, PersonEmail = @Email, PersonPhone=@Phone, JobLevel = @JobLevel, Permission = @Permission where UserID = @user";
+        string edit = "Update [dbo].[User] set FirstName = @FirstName, LastName = @LastName, PersonEmail = @Email, PersonPhone=@Phone, JobLevel = @JobLevel, Permission = @Permission, LastUpdatedBy = @LastUpdatedBy, LastUpdated = @LastUpdated where UserID = @user";
         sc.Open();
         SqlCommand edituser = new SqlCommand(edit, sc);
         edituser.Parameters.AddWithValue("@FirstName", HttpUtility.HtmlEncode(txtFirstName.Text));
@@ -80,6 +80,8 @@ public partial class Users : System.Web.UI.Page
         edituser.Parameters.AddWithValue("@Phone", HttpUtility.HtmlEncode(txtPhone.Text));
         edituser.Parameters.AddWithValue("@JobLevel", txtJobLevel.SelectedItem.Text);
         edituser.Parameters.AddWithValue("@Permission", txtPermission.SelectedItem.Text);
+        edituser.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
+        edituser.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
         edituser.Parameters.AddWithValue("@user", UserGridView.SelectedRow.Cells[8].Text);
 
         edituser.ExecuteNonQuery();

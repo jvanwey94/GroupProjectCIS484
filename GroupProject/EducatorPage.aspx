@@ -30,24 +30,26 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             Educator
-                            <button type="button" class="btn btn-success" style="float:right;margin-bottom:1px;height:3.5%;background: #26a69a;  " data-toggle="modal"  data-target="#addEducator"> Add Educator </button>
+                            <button type="button" class="btn btn-success" style="float:right;margin-bottom:1px;height:3.5%;background: #9e9d24;  " data-toggle="modal"  data-target="#addEducator"> Add Educator </button>
                              
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <asp:GridView ID="EducatorGridView" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="EducatorGridView_SelectedIndexChanged" DataSourceID="SqlDataSource1" BackColor="#E6EE9C" ForeColor="#5D4037">
+                            <asp:GridView ID="EducatorGridView" runat="server" AutoGenerateColumns="False" class="table table-striped table-bordered table-hover" OnSelectedIndexChanged="EducatorGridView_SelectedIndexChanged" DataSourceID="SqlDataSource1" BackColor="#E6EE9C" ForeColor="#5D4037" DataKeyNames="EducatorID">
                     <Columns>
                         
                        
-                        <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
-                        <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
-                        <asp:BoundField DataField="eduEmail" HeaderText="Email Address" SortExpression="Email" />
-                        <asp:BoundField DataField="eduPhone" HeaderText="Phone Number" SortExpression="Phone Number" />
-                        <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" SortExpression="EducatorID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+                        <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                        <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+                        <asp:BoundField DataField="eduEmail" HeaderText="eduEmail" SortExpression="eduEmail" />
+                        <asp:BoundField DataField="eduPhone" HeaderText="eduPhone" SortExpression="eduPhone" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                        <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" ReadOnly="True" SortExpression="EducatorID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT * FROM [Educator]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [LastName], [eduEmail], [eduPhone], [Status], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -125,7 +127,7 @@
                         </button>
                     </div>
                 <div class="modal-body">
-                   <div class="modal-body">
+                   
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
@@ -159,11 +161,23 @@
                                 <asp:TextBox ID="editPH" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="ddlStatus" class="form-control" runat="server">
+                                    <asp:ListItem>Active</asp:ListItem>
+                                    <asp:ListItem>Inactive</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div><br />
                     </div>
-                </div>
+                
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="Button1" runat="server" onClick="EditButton_Click" class="btn btn-primary" Text="Edit Educator" />
+                    <asp:Button ID="DeleteButton" class="btn btn-danger" runat="server" onClick="DeactivateButton_Click" Text="Deactivate Educator" />
                     <asp:Button ID="Button2" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>

@@ -12,7 +12,7 @@
             color: #fff;
         }
         .modal-header {
-            background: #43a047; 
+            background: #757575; 
             color: #fff;
         }
 

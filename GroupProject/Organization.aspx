@@ -55,22 +55,24 @@
                        
                             
                            
-                            <asp:GridView ID="OrgGridView" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1"   OnSelectedIndexChanged="UserGridView_SelectedIndexChanged" BackColor="#EEEEEE">
+                            <asp:GridView ID="OrgGridView" class="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1"   OnSelectedIndexChanged="UserGridView_SelectedIndexChanged" BackColor="#EEEEEE" DataKeyNames="OrganizationID">
                                 <Columns>
-                                    <asp:BoundField DataField="OrganizationName" HeaderText="Organization Name" SortExpression="OrganizationName" />
-                                    <asp:BoundField DataField="OrgAddress" HeaderText="Address" SortExpression="OrgAddress" /> 
-                                    <asp:BoundField DataField="OrgCity" HeaderText="City" SortExpression="OrgCity" />
-                                    <asp:BoundField DataField="OrgCounty" HeaderText="County" SortExpression="OrgCounty" />
-                                    <asp:BoundField DataField="OrgCountry" HeaderText="Country" SortExpression="OrgCountry" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                    <asp:BoundField DataField="PrimaryContactPerson" HeaderText="Primary Contact Person" SortExpression="PrimaryContactPerson" />
-                                    <asp:BoundField DataField="OrgPhone" HeaderText="Phone Number" SortExpression="OrgPhone" />
-                                    <asp:BoundField DataField="OrgEmail" HeaderText="Email" SortExpression="OrgEmail" />
-                                    <asp:BoundField DataField="OrganizationID" HeaderText="OrganizationID" SortExpression="OrganizationID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                    
+                                    <asp:BoundField DataField="OrganizationName" HeaderText="OrganizationName" SortExpression="OrganizationName" /> 
+                                    <asp:BoundField DataField="OrgAddress" HeaderText="OrgAddress" SortExpression="OrgAddress" />
+                                    <asp:BoundField DataField="OrgCity" HeaderText="OrgCity" SortExpression="OrgCity" />
+                                    <asp:BoundField DataField="OrgCounty" HeaderText="OrgCounty" SortExpression="OrgCounty" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="OrgCountry" HeaderText="OrgCountry" SortExpression="OrgCountry" />
+                                    <asp:BoundField DataField="PrimaryContactPerson" HeaderText="PrimaryContactPerson" SortExpression="PrimaryContactPerson" />
+                                    <asp:BoundField DataField="OrgPhone" HeaderText="OrgPhone" SortExpression="OrgPhone" />
+                                    <asp:BoundField DataField="OrgEmail" HeaderText="OrgEmail" SortExpression="OrgEmail" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                    <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                                    <asp:BoundField DataField="OrganizationID" HeaderText="OrganizationID" SortExpression="OrganizationID" InsertVisible="False" ReadOnly="True" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
                                 </Columns>
                                 
                             </asp:GridView>
                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>"
-                                   SelectCommand="select OrganizationID, OrganizationName, OrgAddress, OrgCity, OrgCounty, OrgCountry, PrimaryContactPerson, OrgPhone, OrgEmail from [WildLifeCenter].[dbo].[Organization]"></asp:SqlDataSource>
+                                   SelectCommand="SELECT [OrganizationID], [OrganizationName], [OrgAddress], [OrgCity], [OrgCounty], [OrgCountry], [PrimaryContactPerson], [OrgPhone], [OrgEmail], [Status] FROM [Organization]"></asp:SqlDataSource>
                                
                             
                        
@@ -165,10 +167,22 @@
                                 <asp:TextBox ID="EditEmail" class="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="ddlStatus" class="form-control" runat="server">
+                                    <asp:ListItem>Active</asp:ListItem>
+                                    <asp:ListItem>Inactive</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div><br />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="insertAnimalButton" runat="server" onClick="UpdateButton_Click" class="btn btn-primary" Text="Edit Organization" />
+                    <asp:Button ID="insertAnimalButton" runat="server" onClick="UpdateButton_Click" class="btn btn-primary"  Text="Edit Organization" />
+                    <asp:Button ID="Deactivate" runat="server" OnClick="DeleteButtonModal_Click" class="btn btn-danger" Text="Deactivate Organization" />
                     <asp:Button ID="exitAnimalButton" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" />
                 </div>
             </div>

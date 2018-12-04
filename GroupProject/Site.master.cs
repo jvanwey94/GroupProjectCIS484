@@ -92,7 +92,8 @@ public partial class SiteMaster : MasterPage
                 Fin2.Visible = false;
                 Animal.Visible = false;
                 Ani1.Visible = false;
-                Ani2.Visible = false; 
+                Ani2.Visible = false;
+                A3.Visible = false;
             }
         }
         catch (Exception)

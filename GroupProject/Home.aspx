@@ -7,8 +7,8 @@
             color: #1b5e20;
         }
 
-        .organizationPanel {
-            background: #26a69a !important;
+        .organizationID {
+            background: #795548;
         }
     </style>
     
@@ -96,8 +96,8 @@
                 
                 <div class="col-lg-4 col-md-6">
                    <a href="Organization.aspx">
-                    <div class="panel panel-default" id="organizationPanel">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading custom_class" style="background-color:#795548; color:#fff;">
                             <div class="row">
                                 <div class="col-xs-3">
                                     <img src="leaflet/images/notebook.png" style="width:70px; height:70px;" />
@@ -120,7 +120,7 @@
                 <div class="col-lg-4 col-md-6">
                    <a href="Category.aspx">
                     <div class="panel panel-green">
-                        <div class="panel-heading">
+                        <div class="panel-heading custom_class" style="background-color:#26a69a; color:#fff;">
                             <div class="row">
                                 <div class="col-xs-3">
                                     <img src="leaflet/images/list.png" style="width:70px; height:70px;" />
@@ -141,9 +141,9 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                   <a href="Educator.aspx">
+                   <a href="EducatorPage.aspx">
                     <div class="panel panel-green">
-                        <div class="panel-heading">
+                        <div class="panel-heading custom_class" style="background-color:#9e9d24; color:#fff">
                             <div class="row">
                                 <div class="col-xs-3">
                                     <img src="leaflet/images/class.png" style="width:70px; height:70px;" />
