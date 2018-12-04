@@ -87,7 +87,7 @@ public partial class FinancialReport : System.Web.UI.Page
         connect.Open();
         String getInvoiceNumber = HttpUtility.HtmlEncode(txtSearch.Text);
         //lblStatus.Text = getInvoiceNumber + "succseessfully connect to database!  ";
-        String sqlDA = "select InvoiceID, OrganizationName, Program, PaymentType, CheckNumber, convert(numeric(10,2), Amount) as PaymentAmount from [Payment] where InvoiceID = @InvoiceID";
+        String sqlDA = "select InvoiceID, OrganizationName, Program, PaymentType, CheckNumber, convert(numeric(10,2), Amount) as PaymentAmount, PaymentStatus from [Payment] where InvoiceID = @InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(sqlDA, connect);
         insert.Parameters.AddWithValue("@InvoiceID", txtSearch.Text);
         SqlDataAdapter getsqlDA = new SqlDataAdapter(insert);
@@ -322,7 +322,7 @@ public partial class FinancialReport : System.Web.UI.Page
 
         connect.Open();
         String query = "Update [dbo].[Payment] set InvoiceID=@InvoiceID, OrganizationName=@OrganizationName, Program=@Program, " +
-            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where InvoiceID=@InvoiceID";
+            "PaymentType=@PaymentType, CheckNumber=@CheckNumber,Amount=@Amount, PaymentStatus=@PaymentStatus, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where InvoiceID=@InvoiceID";
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand(query, connect);
         insert.Connection = connect;
         insert.Parameters.AddWithValue("@InvoiceID", (dbInvoice.Rows[e.RowIndex].FindControl("GridInvoiceID") as System.Web.UI.WebControls.TextBox).Text.Trim());
@@ -336,6 +336,7 @@ public partial class FinancialReport : System.Web.UI.Page
         insert.Parameters.AddWithValue("@CheckNumber", (dbInvoice.Rows[e.RowIndex].FindControl("GridCheckNumber") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
         insert.Parameters.AddWithValue("@Amount", (dbInvoice.Rows[e.RowIndex].FindControl("GridAmount") as System.Web.UI.WebControls.TextBox).Text.Trim());
+        insert.Parameters.AddWithValue("@PaymentStatus", (dbInvoice.Rows[e.RowIndex].FindControl("GridStatus") as System.Web.UI.WebControls.TextBox).Text.Trim());
 
         insert.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
 
