@@ -44,6 +44,7 @@ public partial class EducatorPage : System.Web.UI.Page
                 r.Cells[1].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.EducatorGridView, "Select$" + r.RowIndex, true);
                 r.Cells[2].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.EducatorGridView, "Select$" + r.RowIndex, true);
                 r.Cells[3].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.EducatorGridView, "Select$" + r.RowIndex, true);
+                r.Cells[4].Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.EducatorGridView, "Select$" + r.RowIndex, true);
 
             }
         }
@@ -63,11 +64,12 @@ public partial class EducatorPage : System.Web.UI.Page
 
     protected void insertButton_Click(object sender, EventArgs e)
     {
-        Educator newEdu = new Educator(addFN.Text, addLN.Text, addEmail.Text, addPhone.Text,"Active");
+        Educator newEdu = new Educator(addFN.Text, addLN.Text, addEmail.Text, addPhone.Text,"Active",addJob.SelectedItem.Text);
         newEdu.setFN(addFN.Text);
         newEdu.setLN(addLN.Text);
         newEdu.setEM(addEmail.Text);
         newEdu.setPH(addPhone.Text);
+        newEdu.setJob(addJob.SelectedItem.Text);
         sc.Open();
         System.Data.SqlClient.SqlCommand createUser = new System.Data.SqlClient.SqlCommand();
         createUser.Connection = sc;
@@ -75,7 +77,7 @@ public partial class EducatorPage : System.Web.UI.Page
         createUser = new SqlCommand(countdata, sc);
         Int32 countItem = (Int32)createUser.ExecuteScalar();
         int readcount = (int)countItem + 1;
-        string insert = "insert into [dbo].[Educator] values(@EducatorID, @FirstName, @LastName, @eduEmail, @eduPhone, @Status, @LastUpdatedBy, @LastUpdated)";
+        string insert = "insert into [dbo].[Educator] values(@EducatorID, @FirstName, @LastName, @eduEmail, @eduPhone, @Status, @LastUpdatedBy, @LastUpdated, @EmployeeLevel)";
         SqlCommand insertcmd = new SqlCommand(insert, sc);
         insertcmd.Parameters.AddWithValue("@EducatorID", readcount);
         insertcmd.Parameters.AddWithValue("@FirstName", newEdu.getFN());
@@ -83,6 +85,7 @@ public partial class EducatorPage : System.Web.UI.Page
         insertcmd.Parameters.AddWithValue("@eduEmail", newEdu.getEM());
         insertcmd.Parameters.AddWithValue("@eduPhone", newEdu.getPH());
         insertcmd.Parameters.AddWithValue("@Status", newEdu.getStatus());
+        insertcmd.Parameters.AddWithValue("@EmployeeLevel", newEdu.getJob());
         insertcmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
         insertcmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
         insertcmd.ExecuteNonQuery();
@@ -93,20 +96,22 @@ public partial class EducatorPage : System.Web.UI.Page
 
     protected void EditButton_Click(object sender, EventArgs e)
     {
-        Educator editEdu = new Educator(editFN.Text, editLN.Text, editEM.Text, editPH.Text, ddlStatus.SelectedItem.Value);
+        Educator editEdu = new Educator(editFN.Text, editLN.Text, editEM.Text, editPH.Text, ddlStatus.SelectedItem.Value,ddlJob.SelectedItem.Text);
         editEdu.setFN(editFN.Text);
         editEdu.setLN(editLN.Text);
         editEdu.setEM(editEM.Text);
         editEdu.setPH(editPH.Text);
+        editEdu.setJob(ddlJob.SelectedItem.Text);
         sc.Open();
-        string update = "update [dbo].[Educator] set FirstName=@FirstName, LastName=@LastName, eduEmail=@eduEmail, eduPhone=@eduPhone, Status=@Status, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where EducatorID=@EducatorID";
+        string update = "update [dbo].[Educator] set FirstName=@FirstName, LastName=@LastName, eduEmail=@eduEmail, eduPhone=@eduPhone, Status=@Status, EmployeeLevel=@EmployeeLevel, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where EducatorID=@EducatorID";
         SqlCommand updatecmd = new SqlCommand(update, sc);
-        updatecmd.Parameters.AddWithValue("@EducatorID", EducatorGridView.SelectedRow.Cells[5].Text);
+        updatecmd.Parameters.AddWithValue("@EducatorID", EducatorGridView.SelectedRow.Cells[6].Text);
         updatecmd.Parameters.AddWithValue("@FirstName", editEdu.getFN());
         updatecmd.Parameters.AddWithValue("@LastName", editEdu.getLN());
         updatecmd.Parameters.AddWithValue("@eduEmail", editEdu.getEM());
         updatecmd.Parameters.AddWithValue("@eduPhone", editEdu.getPH());
         updatecmd.Parameters.AddWithValue("@Status", editEdu.getStatus());
+        updatecmd.Parameters.AddWithValue("@EmployeeLevel", editEdu.getJob());
         updatecmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
         updatecmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
         updatecmd.ExecuteNonQuery();
@@ -116,11 +121,11 @@ public partial class EducatorPage : System.Web.UI.Page
 
     protected void DeactivateButton_Click(object sender, EventArgs e)
     {
-        Educator editEdu = new Educator(editFN.Text, editLN.Text, editEM.Text, editPH.Text, "Inactive");
+        Educator editEdu = new Educator(editFN.Text, editLN.Text, editEM.Text, editPH.Text, "Inactive",ddlJob.SelectedItem.Text);
         sc.Open();
         string update = "update [dbo].[Educator] set Status=@Status, LastUpdatedBy=@LastUpdatedBy, LastUpdated=@LastUpdated where EducatorID=@EducatorID";
         SqlCommand deactivatecmd = new SqlCommand(update, sc);
-        deactivatecmd.Parameters.AddWithValue("@EducatorID", EducatorGridView.SelectedRow.Cells[5].Text);
+        deactivatecmd.Parameters.AddWithValue("@EducatorID", EducatorGridView.SelectedRow.Cells[6].Text);
         deactivatecmd.Parameters.AddWithValue("@Status", editEdu.getStatus());
         deactivatecmd.Parameters.AddWithValue("@LastUpdatedBy", Session["User"]);
         deactivatecmd.Parameters.AddWithValue("@LastUpdated", DateTime.Now);

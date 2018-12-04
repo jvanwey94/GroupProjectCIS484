@@ -39,15 +39,16 @@
                     <Columns>
                         
                        
-                        <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                        <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-                        <asp:BoundField DataField="eduEmail" HeaderText="eduEmail" SortExpression="eduEmail" />
-                        <asp:BoundField DataField="eduPhone" HeaderText="eduPhone" SortExpression="eduPhone" />
+                        <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                        <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                        <asp:BoundField DataField="eduEmail" HeaderText="Email" SortExpression="eduEmail" />
+                        <asp:BoundField DataField="eduPhone" HeaderText="Phone" SortExpression="eduPhone" />
                         <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                        <asp:BoundField DataField="EmployeeLevel" HeaderText="Employee Level" SortExpression="EmployeeLevel" />
                         <asp:BoundField DataField="EducatorID" HeaderText="EducatorID" ReadOnly="True" SortExpression="EducatorID" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden"/>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [LastName], [eduEmail], [eduPhone], [Status], [EducatorID] FROM [Educator]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AWSConnection %>" SelectCommand="SELECT [FirstName], [LastName], [eduEmail], [eduPhone], [Status], [EducatorID], [EmployeeLevel] FROM [Educator]"></asp:SqlDataSource>
                             <!-- /.table-responsive -->
                             
                         </div>
@@ -103,6 +104,17 @@
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="addPhone" class="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Job Level</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="addJob" class="form-control" runat="server">
+                                    <asp:ListItem>Full Time Staff</asp:ListItem>
+                                    <asp:ListItem>Volunteer</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div><br />
                     </div>
@@ -169,6 +181,17 @@
                                 <asp:DropDownList ID="ddlStatus" class="form-control" runat="server">
                                     <asp:ListItem>Active</asp:ListItem>
                                     <asp:ListItem>Inactive</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Job Level</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="ddlJob" class="form-control" runat="server">
+                                    <asp:ListItem>Full Time Staff</asp:ListItem>
+                                    <asp:ListItem>Volunteer</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div><br />
